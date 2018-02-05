@@ -1,5 +1,9 @@
 app.controller('StatusController', function ($http, $rootScope, $scope, $window) {
     $scope.refreshStatus = function () {
+        var username = "Parry";
+        var password = "123456";
+        var authdata = Base64.encode(username + ':' + password);
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
         $http.get($rootScope.baseUrl + "odata/Punches/Default.Current")
             .then(response => {
                 $rootScope.current.punch = response
