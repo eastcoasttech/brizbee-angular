@@ -24,7 +24,7 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
             Session: {
                 EmailAddress: $scope.session.EmailAddress,
                 Method: "email",
-                Password: $scope.session.Password
+                EmailPassword: $scope.session.EmailPassword
             }
         }
         $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", json)
