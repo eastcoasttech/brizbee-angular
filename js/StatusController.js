@@ -1,4 +1,4 @@
-app.controller('StatusController', function ($rootScope, $scope, $window) {
+app.controller('StatusController', function ($http, $rootScope, $scope, $window) {
     $scope.refreshStatus = function () {
         $http.get("odata/Punches/Default.Current")
             .then(response => {
