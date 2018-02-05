@@ -33,6 +33,13 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                 $rootScope.AuthExpiration = response.AuthExpiration
                 $rootScope.AuthToken = response.AuthToken
                 $rootScope.AuthUserId = response.AuthUserId
+
+                $http.defaults.headers.common = {
+                    'AUTH_USER_ID': response.AuthUserId,
+                    'AUTH_EXPIRATION': response.AuthExpiration,
+                    'AUTH_TOKEN': response.AuthToken
+                }
+
                 $location.path('/status')
             }, error => {
                 $scope.working.login = false
