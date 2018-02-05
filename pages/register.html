@@ -1,0 +1,42 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Sign Up for BRIZBEE</div>
+                <div class="panel-body">
+                    <form ng-submit="register()" ng-show="show.success == false">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="user_email_address" placeholder="Email Address" ng-model="user.EmailAddress" ng-disabled="working.register" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Full Name" ng-model="user.Name" ng-disabled="working.register" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Company Name" ng-model="organization.Name" ng-disabled="working.register" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" ng-model="user.Password" ng-disabled="working.register" />
+                        </div>
+                        <button type="submit" class="btn btn-primary" ng-disabled="working.register">Save and Continue</button>
+                    </form>
+
+                    <p class="text-center" ng-show="show.success == true">
+                        Thank you for signing up! Please check your
+                        Email to confirm your account and you'll be ready!
+                        <br />
+                        <i class="fa fa-check-circle" aria-hidden="true" style="font-size: 300%;"></i>                        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <hr />
+        <p>&copy; 2018 Joshua Shane Martin</p>
+    </footer>
+</div>

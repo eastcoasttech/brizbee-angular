@@ -1,0 +1,154 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img alt="BRIZBEE Logo" src="/images/logo-32x32.png" style="height: 22px;">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#!/status">Status</a></li>
+                <li ng-show="current.user.role == 'Administrator'"><a href="#!/punches">Punches</a></li>
+                <li ng-show="current.user.role == 'Administrator'" class="active"><a href="#!/jobs">Jobs and Customers <span class="sr-only">(current)</span></a></li>
+                <li ng-show="current.user.role == 'Administrator'"><a href="#!/locations">Locations</a></li>
+                <li ng-show="current.user.role == 'Administrator'"><a href="#!/users">Users</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{current.user.name}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="">Account Details</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="" ng-click="logout()">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row row-toolbar">
+                <div class="col-md-12">
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" ng-click="showNewCustomer()"><i class="fa fa-user" aria-hidden="true" style="margin-right: 5px;"></i> New Customer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--List of Customers-->
+            <table class="table table-bordered table-condensed table-jobs">
+                <thead>
+                    <tr>
+                        <th colspan="2">Customers <i class="fa fa-spinner fa-spin fa-fw" ng-show="loading.customers"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="customer in customers" class="selectable" ng-class="{ 'selected' : selected.customer._id == customer._id }">
+                        <td ng-click="selectCustomer(customer)">
+                            <a href="">{{customer.name}}</a>
+                            <!-- <br /> -->
+                            <!-- <small class="text-muted"># {{customer.number}} &mdash; Added {{showMomentDate(customer.created_at, 'MMM Do YY')}}</small> -->
+                        </td>
+                        <!-- <td class="col-md-1 text-right text-muted" style="vertical-align: middle;"><i class="fa fa-chevron-right" aria-hidden="true"></i></td> -->
+                        <td class="col-md-1 text-right text-muted" style="vertical-align: middle;">
+                            <a href="" ng-click="showEditCustomer(customer)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <div class="row row-toolbar">
+                <div class="col-md-12">
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" ng-click="showNewJob()" ng-disabled="selected.customer == null"><i class="fa fa-handshake-o" aria-hidden="true" style="margin-right: 5px;"></i> New Job</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--List of Jobs-->
+            <table class="table table-bordered table-condensed table-jobs">
+                <thead>
+                    <tr>
+                        <th colspan="2">Jobs <i class="fa fa-spinner fa-spin fa-fw" ng-show="loading.jobs"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="job in jobs" class="selectable" ng-class="{ 'selected' : selected.job._id == job._id }">
+                        <td ng-click="selectJob(job)">
+                            <a href="">{{job.name}}</a>
+                            <!-- <br />
+                            <small class="text-muted"># {{job.number}} &mdash; Added {{showMomentDate(job.created_at, 'MMM Do YY')}}</small> -->
+                        </td>
+                        <!-- <td class="col-md-1 text-right text-muted" style="vertical-align: middle;"><i class="fa fa-chevron-right" aria-hidden="true"></i></td> -->
+                        <td class="col-md-1 text-right text-muted" style="vertical-align: middle;">
+                            <a href="" ng-click="showEditJob(job)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    <tr ng-show="selected.customer == null">
+                        <td colspan="2">No Customer Selected</td>
+                    </tr>
+                    <tr ng-show="(jobs.length == 0) && (selected.customer != null)">
+                        <td colspan="2">No Jobs for Selected Customer</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <div class="row row-toolbar">
+                <div class="col-md-12">
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" ng-click="showNewTask()" ng-disabled="selected.job == null"><i class="fa fa-tasks" aria-hidden="true" style="margin-right: 5px;"></i> New Task</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--List of Tasks-->
+            <table class="table table-bordered table-condensed table-jobs">
+                <thead>
+                    <tr>
+                        <th colspan="2">Tasks <i class="fa fa-spinner fa-spin fa-fw" ng-show="loading.tasks"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="task in tasks" class="selectable" ng-class="{ 'selected' : selected.task._id == task._id }">
+                        <td ng-click="selectTask(task)">
+                            <a href="">{{task.name}}</a>
+                            <!-- <br />
+                            <small class="text-muted"># {{task.number}} &mdash; Added {{showMomentDate(task.created_at, 'MMM Do YY')}}</small> -->
+                        </td>
+                        <td class="col-md-1 text-right text-muted" style="vertical-align: middle;">
+                            <a href="" ng-click="showEditTask(task)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    <tr ng-show="selected.job == null">
+                        <td colspan="2">No Job Selected</td>
+                    </tr>
+                    <tr ng-show="(tasks.length == 0) && (selected.job != null)">
+                        <td colspan="2">No Tasks for Selected Job</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <footer>
+        <hr />
+        <p>&copy; 2017 Joshua Shane Martin</p>
+    </footer>
+</div>

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html ng-app="brizby">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRIZBEE - Time and Asset Tracking</title>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="/images/favicon.ico">
+    <!--Angular-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-touch.min.js"></script>
+    <!--Bootstrap + jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--Angular Bootstrap UI-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <!--Moment-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
+    <!--Bootstrap Styles-->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!--Application Styles-->
+    <link href="/css/main.css" rel="stylesheet">
+    <!--Font Styles-->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!--Application-->
+    <script defer src="/js/Application.js"></script>
+    <script defer src="/js/ApplicationController.js"></script>
+    <script defer src="/js/CustomerDetailsController.js"></script>
+    <script defer src="/js/FiltersController.js"></script>
+    <script defer src="/js/InConfirmController.js"></script>
+    <script defer src="/js/InJobController.js"></script>
+    <script defer src="/js/InTaskController.js"></script>
+    <script defer src="/js/JobsController.js"></script>
+    <script defer src="/js/JobDetailsController.js"></script>
+    <script defer src="/js/LocationsController.js"></script>
+    <script defer src="/js/LocationDetailsController.js"></script>
+    <script defer src="/js/LoginController.js"></script>
+    <script defer src="/js/OutConfirmController.js"></script>
+    <script defer src="/js/PunchesController.js"></script>
+    <script defer src="/js/PunchDetailsController.js"></script>
+    <script defer src="/js/RangeController.js"></script>
+    <script defer src="/js/RegisterController.js"></script>
+    <script defer src="/js/SetupController.js"></script>
+    <script defer src="/js/StatusController.js"></script>
+    <script defer src="/js/TaskDetailsController.js"></script>
+    <script defer src="/js/UsersController.js"></script>
+    <script defer src="/js/UserDetailsController.js"></script>
+</head>
+<body>
+    <div ng-view ng-controller="ApplicationController" ng-cloak></div>
+    <script>
+        // disable mousewheel on a input number field when in focus
+        // (to prevent Cromium browsers change the value when scrolling)
+        $('form').on('focus', 'input[type=number]', function (e) {
+            $(this).on('mousewheel.disableScroll', function (e) {
+                e.preventDefault()
+            })
+        })
+        
+        $('form').on('blur', 'input[type=number]', function (e) {
+            $(this).off('mousewheel.disableScroll')
+        })
+    </script>
+</body>
+</html>

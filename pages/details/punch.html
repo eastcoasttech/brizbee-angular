@@ -1,0 +1,71 @@
+<div class="modal-header">
+    <h3 class="modal-title" ng-if="punch._id == null">New Punch</h3>
+    <h3 class="modal-title" ng-if="punch._id != null">Edit Punch</h3>
+</div>
+<div class="modal-body">
+    <form ng-submit="save()">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-group">
+                    <label>User</label>
+                    <select class="form-control" ng-model="punch.user" ng-options="user.name for user in users" ng-disabled="working.save || punch.commit_id" autofocus></select>
+                </div>
+                <div class="form-group">
+                    <label>Customer</label>
+                    <select class="form-control" ng-model="punch.customer" ng-options="customer.name for customer in customers" ng-disabled="working.save || punch.commit_id"></select>
+                </div>
+                <div class="form-group">
+                    <label>Job</label>
+                    <select class="form-control" ng-model="punch.job" ng-options="job.name for job in jobs" ng-disabled="working.save || punch.commit_id"></select>
+                </div>
+                <div class="form-group">
+                    <label>Task</label>
+                    <select class="form-control" ng-model="punch.task" ng-options="task.name for task in tasks" ng-disabled="working.save || punch.commit_id"></select>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <label>In</label>
+        <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12">
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.in_at" is-open="datepicker.in_at.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || punch.commit_id" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="showInAtDatepicker()" ng-disabled="working.save || punch.commit_id"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <div uib-timepicker ng-model="punch.in_at" show-meridian="true" show-spinners="false" show-seconds="false" ng-disabled="working.save || punch.commit_id"></div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="punch.has_out_at" ng-disabled="working.save || punch.commit_id"> Has punch out timestamp?
+            </label>
+        </div>
+        <label>Out</label>
+        <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12">
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.out_at" is-open="datepicker.out_at.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || !punch.has_out_at || punch.commit_id" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="showOutAtDatepicker()" ng-disabled="working.save || !punch.has_out_at || punch.commit_id"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <div uib-timepicker ng-model="punch.out_at" show-meridian="true" show-spinners="false" show-seconds="false" ng-disabled="working.save || !punch.has_out_at || punch.commit_id"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="save()" ng-disabled="working.save || punch.commit_id">OK</button>
+    <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.save">Cancel</button>
+</div>

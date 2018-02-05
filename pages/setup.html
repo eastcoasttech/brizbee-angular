@@ -1,0 +1,48 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <li><a href="" ng-click="logout()">Sign Out</a></li>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Let's Get You Started</h1>
+
+    <form ng-submit="save()">
+        <div class="row">
+            <div class="col-md-7">
+                <p style="font-size: 125%; line-height: 175%; margin-top: 20px;">Please tell us a little more about yourself.</p>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="user_name" placeholder="Your Full Name" ng-model="user.name" ng-disabled="working.save" />
+                </div>
+                <p style="font-size: 125%; line-height: 175%; margin-top: 20px;">Every user belongs to an organization, like your company, church, or non-profit organization. You can create a new one now, or join an existing one if you have your <strong>organization code</strong>.</p>
+                <div class="form-inline" style="margin-top: 20px; margin-bottom: 20px;">
+                    <label style="margin-right: 20px;">
+                        <input type="radio" ng-model="organization.method" value="existing" ng-disabled="working.save"> Join an Existing Organization
+                    </label>
+                    <label>
+                        <input type="radio" ng-model="organization.method" value="new" ng-disabled="working.save"> Create a New Organization
+                    </label>
+                </div>
+                <div ng-show="organization.method == 'existing'">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter Your Organization Code" ng-model="organization.code" ng-disabled="working.save" />
+                    </div>
+                    <button type="submit" class="btn btn-primary" ng-disabled="working.save">Save and Continue</button>
+                </div>
+                <div ng-show="organization.method == 'new'">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Company or Organization Name" ng-model="organization.name" ng-disabled="working.save" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Organization Code" ng-model="organization.code" ng-disabled="working.save" />
+                    </div>
+                    <button type="submit" class="btn btn-primary" ng-disabled="working.save">Save and Continue</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

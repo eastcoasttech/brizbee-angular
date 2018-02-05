@@ -1,0 +1,67 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Change Filters</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <form ng-submit="refresh()">
+        <table class="table table-condensed" style="margin-bottom: 0;">
+            <tbody>
+                <tr>
+                    <td class="col-md-4" style="vertical-align: middle; border-top: none;">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="filters.user.selected">
+                                Filter by User
+                            </label>
+                        </div>
+                    </td>
+                    <td class="col-md-8" style="vertical-align: middle; border-top: none;">
+                        <select class="form-control" ng-model="filters.user.users" ng-options="user.name for user in users" ng-disabled="!filters.user.selected" autofocus multiple></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4" style="vertical-align: middle;">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="filters.customer.selected">
+                                Filter by Customer
+                            </label>
+                        </div>
+                    </td>
+                    <td class="col-md-8" style="vertical-align: middle;">
+                        <select class="form-control" ng-model="filters.customer.customer_id" ng-options="customer.name for customer in customers" ng-disabled="!filters.customer.selected" ng-change="refreshJobs()"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4" style="vertical-align: middle;">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="filters.job.selected">
+                                Filter by Job
+                            </label>
+                        </div>
+                    </td>
+                    <td class="col-md-8" style="vertical-align: middle;">
+                        <select class="form-control" ng-model="filters.job.job_id" ng-options="job.name for job in jobs" ng-disabled="!filters.job.selected" ng-change="refreshTasks()"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4" style="vertical-align: middle;">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="filters.task.selected">
+                                Filter by Task
+                            </label>
+                        </div>
+                    </td>
+                    <td class="col-md-8" style="vertical-align: middle;">
+                        <select class="form-control" ng-model="filters.task.task_id" ng-options="task.name for task in tasks" ng-disabled="!filters.task.selected"></select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+</div>

@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h3 class="modal-title" ng-if="location._id == null">New Location</h3>
+    <h3 class="modal-title" ng-if="location._id != null">Edit Location</h3>
+</div>
+<div class="modal-body">
+    <form ng-submit="save()">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-group">
+                    <label>Number</label>
+                    <input type="text" class="form-control" ng-model="location.number" ng-disabled="working.save" />
+                </div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" ng-model="location.name" ng-disabled="working.save" autofocus />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save" ng-if="location._id">Delete</button>
+    <button class="btn btn-primary" type="button" ng-click="save()" ng-disabled="working.save">OK</button>
+    <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.save">Cancel</button>
+</div>

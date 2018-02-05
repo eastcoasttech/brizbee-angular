@@ -1,0 +1,104 @@
+body {
+    padding-top: 70px;
+    overflow-y: scroll;
+    background-color: #f5f5f5;
+}
+
+    body.modal-open {
+        overflow-y: scroll;
+    }
+
+.btn-green {
+    background-color: green;
+    color: white;
+}
+
+    .btn-green:hover {
+        background-color: lightgreen;
+        color: white;
+    }
+
+.btn-red {
+    background-color: red;
+    color: white;
+}
+
+    .btn-red:hover {
+        background-color: lightcoral;
+        color: white;
+    }
+
+table.table-noborder {
+    border: none;
+}
+
+    table.table-noborder tr {
+        border: none;
+    }
+
+        table.table-noborder tr td {
+            border: none;
+        }
+
+table {
+    background-color: #ffffff;
+}
+
+table.table-jobs tr td {
+    border-left: none;
+    border-right: none;
+}
+
+table tr.selectable:hover {
+    background-color: #e7e7e7;
+    cursor: pointer;
+}
+
+table tr.selectable:hover a {
+    text-decoration: underline;
+}
+
+table tr.selected {
+    background-color: #e7e7e7;
+    cursor: pointer;
+}
+
+table tr.selected a {
+    text-decoration: underline;
+}
+
+input:focus {
+    outline: none;
+    border: 2px #ffc600 solid !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.row-toolbar {
+    margin-bottom: 10px;
+}
+
+/* a:hover, a:focus, a:active {
+    text-decoration: none;
+} */
+
+.btn {
+    text-transform: uppercase;
+    padding: 6px 16px;
+}
+
+.modal-body hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.navbar-phone {
+    font-weight: bold;
+    color: #fff;
+}
+
+    .navbar-phone a {
+        font-weight: bold;
+        color: #fff;
+    }
