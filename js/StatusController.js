@@ -1,6 +1,6 @@
 app.controller('StatusController', function ($http, $rootScope, $scope, $window) {
     $scope.refreshStatus = function () {
-        $http.get("odata/Punches/Default.Current")
+        $http.get($rootScope.baseUrl + "odata/Punches/Default.Current")
             .then(response => {
                 $rootScope.current.punch = response
             }, error => {
