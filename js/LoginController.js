@@ -30,7 +30,9 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
         $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", json)
             .then(response => {
                 // User exists, redirect to status
-                $rootScope.current.user = users[0]
+                $rootScope.AuthExpiration = response.AuthExpiration
+                $rootScope.AuthToken = response.AuthToken
+                $rootScope.AuthUserId = response.AuthUserId
                 $location.path('/status')
             }, error => {
                 $scope.working.login = false
