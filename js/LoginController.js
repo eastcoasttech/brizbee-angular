@@ -10,7 +10,7 @@ $.urlParam = function(name){
     }
 }
 
-app.controller('LoginController', function ($location, $rootScope, $routeParams, $scope, $window) {
+app.controller('LoginController', function ($http, $location, $rootScope, $routeParams, $scope, $window) {
     $scope.user = {}
     $scope.organization = {}
     $scope.working = { login: false }
