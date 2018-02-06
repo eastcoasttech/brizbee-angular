@@ -29,6 +29,7 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
         }
         $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", json)
             .then(response => {
+                console.log(response)
                 // User exists, redirect to status
                 $rootScope.AuthExpiration = response.AuthExpiration
                 $rootScope.AuthToken = response.AuthToken
