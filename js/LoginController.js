@@ -29,16 +29,15 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
         }
         $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", json)
             .then(response => {
-                console.log(response)
                 // User exists, redirect to status
-                $rootScope.AuthExpiration = response.AuthExpiration
-                $rootScope.AuthToken = response.AuthToken
-                $rootScope.AuthUserId = response.AuthUserId
+                $rootScope.AuthExpiration = response.data.AuthExpiration
+                $rootScope.AuthToken = response.data.AuthToken
+                $rootScope.AuthUserId = response.data.AuthUserId
 
                 $http.defaults.headers.common = {
-                    'AUTH_USER_ID': response.AuthUserId,
-                    'AUTH_EXPIRATION': response.AuthExpiration,
-                    'AUTH_TOKEN': response.AuthToken
+                    'AUTH_USER_ID': response.data.AuthUserId,
+                    'AUTH_EXPIRATION': response.data.AuthExpiration,
+                    'AUTH_TOKEN': response.data.AuthToken
                 }
 
                 $location.path('/status')
