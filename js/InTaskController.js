@@ -7,7 +7,6 @@ app.controller('InTaskController', function ($http, $location, $rootScope, $scop
         $http.get($rootScope.baseUrl + "odata/Tasks(" + $scope.task.Id + ")")
             .then(response => {
                 $rootScope.selected.task = response
-                $scope.$apply()
                 $location.path('/in/confirm')
             }, error => {
                 $scope.working.search = false
