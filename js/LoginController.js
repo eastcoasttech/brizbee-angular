@@ -37,9 +37,7 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                 $http.defaults.headers.common = {
                     'AUTH_USER_ID': response.data.AuthUserId,
                     'AUTH_EXPIRATION': response.data.AuthExpiration,
-                    'AUTH_TOKEN': response.data.AuthToken,
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'AUTH_TOKEN': response.data.AuthToken
                 }
 
                 $location.path('/status')
