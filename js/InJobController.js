@@ -6,8 +6,7 @@ app.controller('InJobController', function ($http, $location, $rootScope, $scope
         $scope.working.search = true
         $http.get($rootScope.baseUrl + "odata/Jobs(" + $scope.job.Id + ")")
             .then(response => {
-                console.log(response)
-                $rootScope.selected.job = response
+                $rootScope.selected.job = response.data
                 $location.path('/in/task')
             }, error => {
                 $scope.working.search = false
