@@ -10,9 +10,9 @@
                 <div class="panel-heading">Please Confirm</div>
                 <div class="panel-body">
                     <form ng-submit="save()">
-                        <p class="text-center">You are punching <span class="text-success"><strong>IN</strong></span> on <strong>{{selected.job.number}} &ndash; {{selected.job.name}}</strong></p>
+                        <p class="text-center">You are punching <span class="text-success"><strong>IN</strong></span> on <strong>{{selected.job.Id}} &ndash; {{selected.job.Name}}</strong></p>
                         <p class="text-center">for customer <strong>{{selected.job.customer_number}} &ndash; {{selected.job.customer_name}}</strong></p>
-                        <p class="text-center">performing <strong>{{selected.task.number}} &ndash; {{selected.task.name}}</strong></p>
+                        <p class="text-center">performing <strong>{{selected.task.Id}} &ndash; {{selected.task.Name}}</strong></p>
                         <button type="submit" class="btn btn-block btn-primary" ng-disabled="working.search" autofocus>Save and Continue</button>
                         <a href="#!/status" class="btn btn-block btn-default">Cancel</a>
                     </form>
