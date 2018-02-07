@@ -1,4 +1,4 @@
-app.controller('InJobController', function ($location, $rootScope, $scope, $window) {
+app.controller('InJobController', function ($http, $location, $rootScope, $scope, $window) {
     $scope.job = {}
     $scope.working = {}
 

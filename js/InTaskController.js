@@ -1,4 +1,4 @@
-app.controller('InTaskController', function ($location, $rootScope, $scope, $window) {
+app.controller('InTaskController', function ($http, $location, $rootScope, $scope, $window) {
     $scope.task = {}
     $scope.working = {}
 
