@@ -4,24 +4,17 @@ app.controller('InJobController', function ($location, $rootScope, $scope, $wind
 
     $scope.searchJobs = function () {
         $scope.working.search = true
-        db.collection('jobs').find({ number: $scope.job.number }).limit(1).execute()
-            .then(jobs => {
-                console.log(jobs)
-                if (jobs.length > 0) {
-                    $rootScope.selected.job = jobs[0]
-                    $location.path('/in/task')
-                    $scope.$apply()
-                } else {
-                    $scope.working.search = false
-                    console.error('No job found')
-                }
-            }).catch(err => {
+        $http.get($rootScope.baseUrl + "odata/Jobs(" + $scope.job.Id + ")")
+            .then(response => {
+                $rootScope.selected.job = response.data
+                $location.path('/in/task')
+            }, error => {
                 $scope.working.search = false
-                console.error(err)
+                console.error(error)
             })
     };
 
     // Focus on job number input and scroll to top
-    $window.document.getElementById("job_number").focus()
+    $window.document.getElementById("job_id").focus()
     $window.scrollTo(0, 0)
 });
