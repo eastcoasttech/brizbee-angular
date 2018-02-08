@@ -1,6 +1,6 @@
 app.controller('StatusController', function ($http, $rootScope, $scope, $window) {
     $scope.refreshStatus = function () {
-        $http.get($rootScope.baseUrl + "odata/Punches/Default.Current?$expand=Task")
+        $http.get($rootScope.baseUrl + "odata/Punches/Default.Current?$expand=Task/Job/Customer")
             .then(response => {
                 if (response.data != null)
                 {
