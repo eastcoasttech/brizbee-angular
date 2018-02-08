@@ -42,9 +42,9 @@
                 <div class="panel-body">
                     <h3 class="text-center"><small>Hello</small><br />{{current.user.name}}</h3>
                     <div ng-show="current.punch">
-                        <p class="text-center">You are <span class="text-success"><strong>IN</strong></span> on <strong>{{current.punch.job_number}} &ndash; {{current.punch.job_name}}</strong></p>
-                        <p class="text-center">for customer <strong>{{current.punch.customer_number}} &ndash; {{current.punch.customer_name}}</strong></p>
-                        <p class="text-center">performing <strong>{{current.punch.task_number}} &ndash; {{current.punch.task_name}}</strong></p>
+                        <p class="text-center">You are <span class="text-success"><strong>IN</strong></span> on <strong>{{current.punch.Task.Job.Id}} &ndash; {{current.punch.Task.Job.Name}}</strong></p>
+                        <p class="text-center">for customer <strong>{{current.punch.Task.Job.Customer.Id}} &ndash; {{current.punch.Task.Job.Customer.Name}}</strong></p>
+                        <p class="text-center">performing <strong>{{current.punch.Task.Id}} &ndash; {{current.punch.Task.Name}}</strong></p>
                     </div>
                     <div ng-show="!current.punch">
                         <p class="text-center">You are not currently punched in.</p>
