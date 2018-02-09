@@ -40,6 +40,14 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                     'AUTH_TOKEN': response.data.AuthToken
                 }
 
+                $http.get($rootScope.baseUrl + "odata/Users(" + response.data.AuthUserId + ")")
+                    .then(response2 => {
+                        $rootScope.current.user = response2.data
+                    }, error2 => {
+                        $scope.working.login = false
+                        console.error(error2)
+                    })
+
                 $location.path('/status')
             }, error => {
                 $scope.working.login = false
