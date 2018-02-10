@@ -14,7 +14,8 @@ app.controller('RegisterController', function ($http, $location, $rootScope, $sc
             },
             User: {
                 EmailAddress: $scope.user.EmailAddress,
-                Name: $scope.user.Name
+                Name: $scope.user.Name,
+                Password: $scope.user.Password
             }
         }
         $http.post($rootScope.baseUrl + "odata/Users/Default.Register", json)
