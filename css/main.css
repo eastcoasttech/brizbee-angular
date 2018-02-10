@@ -102,3 +102,9 @@ input:focus {
         font-weight: bold;
         color: #fff;
     }
+
+.panel-default h2 {
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
