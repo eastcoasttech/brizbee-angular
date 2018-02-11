@@ -58,7 +58,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         sortParameter[$scope.sortType] = $scope.sortDirection
         console.log(sortParameter)
 
-        $http.get($rootScope.baseUrl + "odata/Punches")
+        $http.get($rootScope.baseUrl + "odata/Punches?$expand=User,Task($expand=Job($expand=Customer))")
             .then(response => {
                 $scope.loading.punches = false
                 $scope.punches = response.data
