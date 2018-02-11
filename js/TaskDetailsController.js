@@ -15,7 +15,7 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     }
 
     $scope.saveExistingTask = function () {
-        var task = {
+        var json = {
             Name: $scope.task.Name
         }
 
@@ -28,7 +28,7 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     }
 
     $scope.saveNewTask = function () {
-        var task = {
+        var json = {
             JobId: $rootScope.selected.job.Id,
             Name: $scope.task.Name
         }
