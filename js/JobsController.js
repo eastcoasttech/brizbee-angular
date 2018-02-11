@@ -1,4 +1,4 @@
-app.controller('JobsController', function ($rootScope, $scope, $uibModal, $window) {
+app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal, $window) {
     $scope.customers = []
     $scope.jobs = []
     $scope.loading = { customers: false, jobs: false, tasks: false }
@@ -9,14 +9,13 @@ app.controller('JobsController', function ($rootScope, $scope, $uibModal, $windo
     $scope.refreshCustomers = function () {
         $scope.customers = []
         $scope.loading.customers = true
-        db.collection('customers').find().sort({ number: 1 }).execute()
-            .then(docs => {
+        $http.get($rootScope.baseUrl + "odata/Customers?$orderby=Id")
+            .then(response => {
                 $scope.loading.customers = false
-                $scope.customers = docs
-                $scope.$apply()
-            }).catch(err => {
+                $scope.customers = response.data.value
+            }, error => {
                 $scope.loading.customers = false
-                console.error(err)
+                console.error(error)
             })
     };
 
@@ -29,14 +28,13 @@ app.controller('JobsController', function ($rootScope, $scope, $uibModal, $windo
         $scope.jobs = []
         $scope.tasks = []
         $scope.loading.jobs = true
-        db.collection('jobs').find({ customer_id: $scope.selected.customer._id }).sort({ number: 1 }).execute()
-            .then(docs => {
+        $http.get($rootScope.baseUrl + "odata/Jobs?$orderby=Id&$filter=CustomerId=" + $scope.selected.customer.Id)
+            .then(response => {
                 $scope.loading.jobs = false
-                $scope.jobs = docs
-                $scope.$apply()
-            }).catch(err => {
+                $scope.jobs = response.data.value
+            }, error => {
                 $scope.loading.jobs = false
-                console.error(err)
+                console.error(error)
             })
     };
 
@@ -47,14 +45,13 @@ app.controller('JobsController', function ($rootScope, $scope, $uibModal, $windo
 
         $scope.tasks = []
         $scope.loading.tasks = true
-        db.collection('tasks').find({ job_id: $scope.selected.job._id }).sort({ number: 1 }).execute()
-            .then(docs => {
+        $http.get($rootScope.baseUrl + "odata/Tasks?$orderby=Id&$filter=JobId=" + $scope.selected.job.Id)
+            .then(response => {
                 $scope.loading.tasks = false
-                $scope.tasks = docs
-                $scope.$apply()
-            }).catch(err => {
+                $scope.tasks = response.data.value
+            }, error => {
                 $scope.loading.tasks = false
-                console.error(err)
+                console.error(error)
             })
     };
     

@@ -54,9 +54,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="customer in customers" class="selectable" ng-class="{ 'selected' : selected.customer._id == customer._id }">
+                    <tr ng-repeat="customer in customers" class="selectable" ng-class="{ 'selected' : selected.customer.Id == customer.Id }">
                         <td ng-click="selectCustomer(customer)">
-                            <a href="">{{customer.name}}</a>
+                            <a href="">{{customer.Name}}</a>
                             <!-- <br /> -->
                             <!-- <small class="text-muted"># {{customer.number}} &mdash; Added {{showMomentDate(customer.created_at, 'MMM Do YY')}}</small> -->
                         </td>
@@ -87,9 +87,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="job in jobs" class="selectable" ng-class="{ 'selected' : selected.job._id == job._id }">
+                    <tr ng-repeat="job in jobs" class="selectable" ng-class="{ 'selected' : selected.job.Id == job.Id }">
                         <td ng-click="selectJob(job)">
-                            <a href="">{{job.name}}</a>
+                            <a href="">{{job.Name}}</a>
                             <!-- <br />
                             <small class="text-muted"># {{job.number}} &mdash; Added {{showMomentDate(job.created_at, 'MMM Do YY')}}</small> -->
                         </td>
@@ -126,9 +126,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="task in tasks" class="selectable" ng-class="{ 'selected' : selected.task._id == task._id }">
+                    <tr ng-repeat="task in tasks" class="selectable" ng-class="{ 'selected' : selected.task.Id == task.Id }">
                         <td ng-click="selectTask(task)">
-                            <a href="">{{task.name}}</a>
+                            <a href="">{{task.Name}}</a>
                             <!-- <br />
                             <small class="text-muted"># {{task.number}} &mdash; Added {{showMomentDate(task.created_at, 'MMM Do YY')}}</small> -->
                         </td>
