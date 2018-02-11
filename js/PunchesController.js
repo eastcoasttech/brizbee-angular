@@ -36,7 +36,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         $http.get($rootScope.baseUrl + "odata/Commits?$orderby=InAt desc")
             .then(response => {
                 $scope.loading.commits = false
-                $scope.commits = response.value
+                $scope.commits = response.data.value
             }, error => {
                 $scope.loading.commits = false
                 console.error(error)
@@ -61,7 +61,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         $http.get($rootScope.baseUrl + "odata/Punches?$expand=User,Task($expand=Job($expand=Customer))")
             .then(response => {
                 $scope.loading.punches = false
-                $scope.punches = response.value
+                $scope.punches = response.data.value
             }, error => {
                 $scope.loading.punches = false
                 console.error(error)
