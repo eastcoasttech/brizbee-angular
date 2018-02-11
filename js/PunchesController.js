@@ -1,4 +1,4 @@
-app.controller('PunchesController', function ($rootScope, $scope, $uibModal, $window) {
+app.controller('PunchesController', function ($http, $rootScope, $scope, $uibModal, $window) {
     $scope.active = 0
     $scope.commits = []
     $scope.datepicker = { in_at: {}, out_at: {}, options: {} }
