@@ -1,5 +1,5 @@
-app.controller('CustomerDetailsController', function ($rootScope, $scope, $uibModalInstance, $window, customer) {
-    if (customer._id == null) {
+app.controller('CustomerDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, customer) {
+    if (customer.Id == null) {
         $scope.customer = {}
     } else {
         $scope.customer = customer
@@ -7,7 +7,7 @@ app.controller('CustomerDetailsController', function ($rootScope, $scope, $uibMo
     $scope.working = { save: false }
     
     $scope.save = function () {
-        if (customer._id == null) {
+        if (customer.Id == null) {
             $scope.saveNewCustomer()
         } else {
             $scope.saveExistingCustomer()
@@ -16,33 +16,26 @@ app.controller('CustomerDetailsController', function ($rootScope, $scope, $uibMo
 
     $scope.saveExistingCustomer = function () {
         var customer = {
-            name: $scope.customer.name,
-            number: $scope.customer.number
+            Name: $scope.customer.Name
         }
 
-        db.collection('customers').updateOne({ _id: $scope.customer._id }, { $set: customer })
-            .then(result => {
+        $http.put($rootScope.baseUrl + "odata/Customers(" + $scope.customer.Id + ")", JSON.stringify(json))
+            .then(response => {
                 $scope.ok()
-            })
-            .catch(error => {
+            }, error => {
                 console.error(error)
             })
     }
 
     $scope.saveNewCustomer = function () {
         var customer = {
-            owner_id: client.authedId(),
-            organization_id: $rootScope.current.user.organization_id,
-            name: $scope.customer.name,
-            number: $scope.customer.number,
-            created_at: new Date()
+            Name: $scope.customer.Name
         }
 
-        db.collection('customers').insertOne(customer)
-            .then(result => {
+        $http.post($rootScope.baseUrl + "odata/Customers", JSON.stringify(json))
+            .then(response => {
                 $scope.ok()
-            })
-            .catch(error => {
+            }, error => {
                 console.error(error)
             })
     }

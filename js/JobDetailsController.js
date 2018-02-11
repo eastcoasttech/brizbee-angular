@@ -1,6 +1,6 @@
-app.controller('JobDetailsController', function ($rootScope, $scope, $uibModalInstance, $window, job) {
+app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, job) {
     $scope.loading = { templates: false }
-    if (job._id == null) {
+    if (job.Id == null) {
         $scope.job = {}
     } else {
         $scope.job = job
@@ -8,7 +8,7 @@ app.controller('JobDetailsController', function ($rootScope, $scope, $uibModalIn
     $scope.working = { save: false }
     
     $scope.save = function () {
-        if (job._id == null) {
+        if (job.Id == null) {
             $scope.saveNewJob()
         } else {
             $scope.saveExistingJob()
@@ -16,34 +16,28 @@ app.controller('JobDetailsController', function ($rootScope, $scope, $uibModalIn
     }
 
     $scope.saveExistingJob = function () {
-        var job = {
-            name: $scope.job.name,
-            number: $scope.job.number
+        var json = {
+            Name: $scope.job.Name
         }
 
-        db.collection('jobs').updateOne({ _id: $scope.job._id }, { $set: job })
-            .then(result => {
+        $http.put($rootScope.baseUrl + "odata/Jobs(" + $scope.job.Id + ")", JSON.stringify(json))
+            .then(response => {
                 $scope.ok()
-            })
-            .catch(error => {
+            }, error => {
                 console.error(error)
             })
     }
 
     $scope.saveNewJob = function () {
-        var job = {
-            owner_id: client.authedId(),
-            organization_id: $rootScope.current.user.organization_id,
-            name: $scope.job.name,
-            number: $scope.job.number,
-            created_at: new Date()
+        var json = {
+            CustomerId: $rootScope.selected.customer.Id,
+            Name: $scope.job.Name
         }
 
-        db.collection('jobs').insertOne(job)
-            .then(result => {
+        $http.post($rootScope.baseUrl + "odata/Jobs", JSON.stringify(json))
+            .then(response => {
                 $scope.ok()
-            })
-            .catch(error => {
+            }, error => {
                 console.error(error)
             })
     }
@@ -56,23 +50,23 @@ app.controller('JobDetailsController', function ($rootScope, $scope, $uibModalIn
         $uibModalInstance.dismiss('cancel');
     }
 
-    $scope.refreshTemplates = function () {
-        if (!$scope.job._id) {
-            return;
-        }
+    // $scope.refreshTemplates = function () {
+    //     if (!$scope.job._id) {
+    //         return;
+    //     }
 
-        $scope.templates = []
-        $scope.loading.templates = true
-        db.collection('templates').find({ organization_id: $rootScope.current.user.organization_id }).sort({ name: 1 }).execute()
-            .then(docs => {
-                $scope.loading.templates = false
-                $scope.templates = docs
-                $scope.$apply()
-            }).catch(err => {
-                $scope.loading.templates = false
-                console.error(err)
-            })
-    }
+    //     $scope.templates = []
+    //     $scope.loading.templates = true
+    //     db.collection('templates').find({ organization_id: $rootScope.current.user.organization_id }).sort({ name: 1 }).execute()
+    //         .then(docs => {
+    //             $scope.loading.templates = false
+    //             $scope.templates = docs
+    //             $scope.$apply()
+    //         }).catch(err => {
+    //             $scope.loading.templates = false
+    //             console.error(err)
+    //         })
+    // }
 
-    $scope.refreshTemplates()
+    // $scope.refreshTemplates()
 });

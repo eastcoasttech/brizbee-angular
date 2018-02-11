@@ -1,5 +1,5 @@
-app.controller('TaskDetailsController', function ($rootScope, $scope, $uibModalInstance, $window, task) {
-    if (task._id == null) {
+app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, task) {
+    if (task.Id == null) {
         $scope.task = {}
     } else {
         $scope.task = task
@@ -7,7 +7,7 @@ app.controller('TaskDetailsController', function ($rootScope, $scope, $uibModalI
     $scope.working = { save: false }
     
     $scope.save = function () {
-        if (task._id == null) {
+        if (task.Id == null) {
             $scope.saveNewTask()
         } else {
             $scope.saveExistingTask()
@@ -16,33 +16,27 @@ app.controller('TaskDetailsController', function ($rootScope, $scope, $uibModalI
 
     $scope.saveExistingTask = function () {
         var task = {
-            name: $scope.task.name,
-            number: $scope.task.number
+            Name: $scope.task.Name
         }
 
-        db.collection('tasks').updateOne({ _id: $scope.task._id }, { $set: task })
-            .then(result => {
+        $http.put($rootScope.baseUrl + "odata/Tasks(" + $scope.task.Id + ")", JSON.stringify(json))
+            .then(response => {
                 $scope.ok()
-            })
-            .catch(error => {
+            }, error => {
                 console.error(error)
             })
     }
 
     $scope.saveNewTask = function () {
         var task = {
-            owner_id: client.authedId(),
-            organization_id: $rootScope.current.user.organization_id,
-            name: $scope.task.name,
-            number: $scope.task.number,
-            created_at: new Date()
+            JobId: $rootScope.selected.job.Id,
+            Name: $scope.task.Name
         }
 
-        db.collection('tasks').insertOne(task)
-            .then(result => {
+        $http.post($rootScope.baseUrl + "odata/Tasks", JSON.stringify(json))
+            .then(response => {
                 $scope.ok()
-            })
-            .catch(error => {
+            }, error => {
                 console.error(error)
             })
     }
