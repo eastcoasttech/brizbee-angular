@@ -92,51 +92,6 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
             }, error => {
                 console.error(error)
             })
-
-        // // Get the count of punches in this commit
-        // db.collection('punches').count({ in_at: { $gte: $rootScope.range.in_at, $lte: $rootScope.range.out_at } })
-        //     .then(count => {
-        //         var commit = {
-        //             in_at: $rootScope.range.in_at,
-        //             out_at: $rootScope.range.out_at,
-        //             created_at: moment().toDate(),
-        //             punches_count: count,
-        //             user_name: $rootScope.current.user.name,
-        //             user_id: client.authedId()
-        //         }
-                
-        //         // Create a commit and update all the punches
-        //         db.collection('commits').insertOne(commit)
-        //             .then(result => {
-        //                 db.collection('punches').updateMany(
-        //                     {
-        //                         in_at: {
-        //                             $gte: $rootScope.range.in_at,
-        //                             $lte: $rootScope.range.out_at
-        //                         }
-        //                     },
-        //                     { $set: { commit_id: result['insertedId'] } })
-        //                     .then(result => {
-        //                         // Refresh the punches and commits
-        //                         $scope.refreshPunches()
-        //                         $scope.refreshCommits()
-        //                         $scope.working.commit = false
-        //                         alert('Punches were successfully committed')
-        //                     })
-        //                     .catch(error => {
-        //                         console.error(error)
-        //                         $scope.working.commit = false
-        //                     })
-        //             })
-        //             .catch(error => {
-        //                 console.error(error)
-        //                 $scope.working.commit = false
-        //             })
-        //     })
-        //     .catch(error => {
-        //         console.error(error)
-        //         $scope.working.commit = false
-        //     })
     }
 
     $scope.showEditPunch = function (punch) {
@@ -240,30 +195,6 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
                 }, error => {
                     console.error(error)
                 })
-
-            // db.collection('punches').updateMany(
-            //     {
-            //         commit_id: commit._id
-            //     },
-            //     { $unset: { commit_id: 1 } })
-            //     .then(result => {
-            //         // Delete the commit
-            //         db.collection('commits').deleteOne({ _id: commit._id })
-            //             .then(result => {
-            //                 // Refresh the punches and commits
-            //                 $scope.refreshPunches()
-            //                 $scope.refreshCommits()
-            //                 $scope.working.commit = false
-            //             })
-            //             .catch(error => {
-            //                 console.error(error)
-            //                 $scope.working.commit = false
-            //             })
-            //     })
-            //     .catch(error => {
-            //         console.error(error)
-            //         $scope.working.commit = false
-            //     })
         }
     }
 
