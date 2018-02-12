@@ -2,7 +2,6 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
     $scope.customers = []
     $scope.jobs = []
     $scope.loading = { customers: false, jobs: false, tasks: false }
-    // $scope.new = { customer: {}, job: {}, task: {} }
     $scope.selected = {}
     $scope.tasks = []
 
@@ -55,42 +54,6 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
             })
     };
     
-    // $scope.saveJob = function () {
-    //     db.collection('jobs').insertOne({
-    //         owner_id: client.authedId(),
-    //         organization_id: $rootScope.current.user.organization_id,
-    //         name: $scope.new.job.name,
-    //         number: $scope.new.job.number,
-    //         customer_id: $scope.selected.customer._id,
-    //         customer_number: $scope.selected.customer.number,
-    //         customer_name: $scope.selected.customer.name,
-    //         created_at: new Date()
-    //     })
-    //         .then(function (result) {
-    //             console.log(result)
-    //             $scope.new.job = {}
-    //             $scope.refreshJobs()
-    //         })
-    // };
-
-    // $scope.saveTask = function () {
-    //     db.collection('tasks').insertOne({
-    //         owner_id: client.authedId(),
-    //         organization_id: $rootScope.current.user.organization_id,
-    //         name: $scope.new.task.name,
-    //         number: $scope.new.task.number,
-    //         job_id: $scope.selected.job._id,
-    //         job_number: $scope.selected.job.number,
-    //         job_name: $scope.selected.job.name,
-    //         created_at: new Date()
-    //     })
-    //         .then(function (result) {
-    //             console.log(result)
-    //             $scope.new.task = {}
-    //             $scope.refreshTasks()
-    //         })
-    // };
-
     $scope.selectCustomer = function (customer) {
         $scope.selected.customer = customer;
         delete $scope.selected.job
@@ -125,7 +88,6 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
 
         instance.result
             .then((msg) => {
-                console.log(msg)
                 $scope.refreshCustomers()
             }, () => {
                 console.log('dismissed')
@@ -149,7 +111,6 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
 
         instance.result
             .then((msg) => {
-                console.log(msg)
                 $scope.refreshJobs()
             }, () => {
                 console.log('dismissed')
@@ -173,7 +134,6 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
 
         instance.result
             .then((msg) => {
-                console.log(msg)
                 $scope.refreshTasks()
             }, () => {
                 console.log('dismissed')
