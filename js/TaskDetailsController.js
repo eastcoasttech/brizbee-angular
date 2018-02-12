@@ -1,4 +1,4 @@
-app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, task) {
+app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, job, task) {
     if (task.Id == null) {
         $scope.task = {}
     } else {
@@ -40,7 +40,7 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
 
     $scope.saveNewTask = function () {
         var json = {
-            JobId: $rootScope.selected.job.Id,
+            JobId: job.Id,
             Name: $scope.task.Name
         }
 

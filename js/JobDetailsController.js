@@ -1,4 +1,4 @@
-app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, job) {
+app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, customer, job) {
     $scope.loading = { templates: false }
     if (job.Id == null) {
         $scope.job = {}
@@ -41,7 +41,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
 
     $scope.saveNewJob = function () {
         var json = {
-            CustomerId: $rootScope.selected.customer.Id,
+            CustomerId: customer.Id,
             Name: $scope.job.Name
         }
 

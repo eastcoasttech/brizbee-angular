@@ -205,6 +205,9 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
             templateUrl: '/pages/details/job.html',
             controller: 'JobDetailsController',
             resolve: {
+                customer: function () {
+                    return $scope.selected.customer;
+                },
                 job: function () {
                     return {};
                 }
@@ -225,6 +228,9 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
             templateUrl: '/pages/details/task.html',
             controller: 'TaskDetailsController',
             resolve: {
+                job: function () {
+                    return $scope.selected.job;
+                },
                 task: function () {
                     return {};
                 }
