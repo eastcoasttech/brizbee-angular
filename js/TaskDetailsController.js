@@ -6,6 +6,15 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     }
     $scope.working = { save: false }
     
+    $scope.delete = function () {
+        $http.delete($rootScope.baseUrl + "odata/Tasks(" + $scope.task.Id + ")")
+            .then(response => {
+                $scope.ok()
+            }, error => {
+                console.error(error)
+            })
+    }
+
     $scope.save = function () {
         if (task.Id == null) {
             $scope.saveNewTask()

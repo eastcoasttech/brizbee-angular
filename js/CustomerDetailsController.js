@@ -5,6 +5,15 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
         $scope.customer = customer
     }
     $scope.working = { save: false }
+
+    $scope.delete = function () {
+        $http.delete($rootScope.baseUrl + "odata/Customers(" + $scope.customer.Id + ")")
+            .then(response => {
+                $scope.ok()
+            }, error => {
+                console.error(error)
+            })
+    }
     
     $scope.save = function () {
         if (customer.Id == null) {

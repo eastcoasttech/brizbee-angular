@@ -7,6 +7,15 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
     }
     $scope.working = { save: false }
     
+    $scope.delete = function () {
+        $http.delete($rootScope.baseUrl + "odata/Jobs(" + $scope.job.Id + ")")
+            .then(response => {
+                $scope.ok()
+            }, error => {
+                console.error(error)
+            })
+    }
+
     $scope.save = function () {
         if (job.Id == null) {
             $scope.saveNewJob()
