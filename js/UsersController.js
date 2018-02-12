@@ -5,14 +5,13 @@ app.controller('UsersController', function ($rootScope, $scope, $uibModal, $wind
     $scope.refreshUsers = function () {
         $scope.users = []
         $scope.loading.users = true
-        db.collection('users').find().sort({ email: 1 }).execute()
-            .then(docs => {
+        $http.get($rootScope.baseUrl + "odata/Users?$orderby=EmailAddress")
+            .then(response => {
                 $scope.loading.users = false
-                $scope.users = docs
-                $scope.$apply()
-            }).catch(err => {
+                $scope.users = response.data.value
+            }, error => {
                 $scope.loading.users = false
-                console.error(err)
+                console.error(error)
             })
     }
 
@@ -29,7 +28,6 @@ app.controller('UsersController', function ($rootScope, $scope, $uibModal, $wind
 
         instance.result
             .then((msg) => {
-                console.log(msg)
                 $scope.refreshUsers()
             }, () => {
                 console.log('dismissed')

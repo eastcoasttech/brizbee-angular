@@ -7,16 +7,15 @@ app.controller('UserDetailsController', function ($rootScope, $scope, $uibModalI
     }
 
     $scope.saveExistingUser = function () {
-        var user = {
+        var json = {
             name: $scope.user.name,
             role: $scope.user.role
         }
 
-        db.collection('users').updateOne({ _id: $scope.user._id }, { $set: user })
-            .then(result => {
+        $http.put($rootScope.baseUrl + "odata/Users(" + $scope.user.Id + ")", JSON.stringify(json))
+            .then(response => {
                 $scope.ok()
-            })
-            .catch(error => {
+            }, error => {
                 console.error(error)
             })
     }
