@@ -1,4 +1,4 @@
-app.controller('UsersController', function ($rootScope, $scope, $uibModal, $window) {
+app.controller('UsersController', function ($http, $rootScope, $scope, $uibModal, $window) {
     $scope.loading = { users: false }
     $scope.users = []
 

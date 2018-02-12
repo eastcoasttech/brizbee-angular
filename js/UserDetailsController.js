@@ -1,4 +1,4 @@
-app.controller('UserDetailsController', function ($rootScope, $scope, $uibModalInstance, user) {
+app.controller('UserDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, user) {
     $scope.user = user
     $scope.working = { save: false }
     
