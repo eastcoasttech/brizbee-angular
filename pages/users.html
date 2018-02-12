@@ -56,10 +56,10 @@
         </thead>
         <tbody>
             <tr ng-repeat="user in users" class="clickable" ng-click="showEditUser(user)">
-                <td><a href="">{{user.email}}</a></td>
-                <td><a href="">{{user.name}}</a></td>
-                <td><a href="">{{user.role}}</a></td>
-                <td><a href="">{{showMomentDate(user.created_at, 'YYYY-MM-DD h:mm a')}}</a></td>
+                <td><a href="">{{user.EmailAddress}}</a></td>
+                <td><a href="">{{user.Name}}</a></td>
+                <td><a href="">{{user.Role}}</a></td>
+                <td><a href="">{{showMomentDate(user.CreatedAt, 'YYYY-MM-DD h:mm a')}}</a></td>
             </tr>
             <tr ng-show="loading.users">
                 <td colspan="4"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
