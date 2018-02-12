@@ -21,8 +21,6 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
     $scope.refreshJobs = function () {
         if ($scope.selected.customer == null)
         {
-            $scope.jobs = []
-            $scope.tasks = []
             return;
         }
 
@@ -41,7 +39,6 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
 
     $scope.refreshTasks = function () {
         if ($scope.selected.job == null) {
-            $scope.tasks = []
             return;
         }
 
@@ -93,6 +90,8 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
             .then((deleted) => {
                 if (deleted) {
                     delete $scope.selected.customer
+                    $scope.jobs = []
+                    $scope.tasks = []
                 }
                 $scope.refreshCustomers()
             }, () => {
@@ -119,6 +118,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
             .then((deleted) => {
                 if (deleted) {
                     delete $scope.selected.job
+                    $scope.tasks = []
                 }
                 $scope.refreshJobs()
             }, () => {
