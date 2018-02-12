@@ -6,13 +6,6 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
     $scope.tasks = []
 
     $scope.refreshCustomers = function () {
-        if ($scope.selected.customer == null)
-        {
-            $scope.jobs = []
-            $scope.tasks = []
-            return;
-        }
-        
         $scope.customers = []
         $scope.loading.customers = true
         $http.get($rootScope.baseUrl + "odata/Customers?$orderby=Id")
