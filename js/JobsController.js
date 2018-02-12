@@ -21,6 +21,8 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
     $scope.refreshJobs = function () {
         if ($scope.selected.customer == null)
         {
+            $scope.jobs = []
+            $scope.tasks = []
             return;
         }
 
@@ -39,6 +41,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
 
     $scope.refreshTasks = function () {
         if ($scope.selected.job == null) {
+            $scope.tasks = []
             return;
         }
 
