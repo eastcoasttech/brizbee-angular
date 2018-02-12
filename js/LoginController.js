@@ -27,7 +27,7 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                 EmailPassword: $scope.session.EmailPassword
             }
         }
-        $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", json)
+        $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", JSON.stringify(json))
             .then(response => {
                 // User exists, redirect to status
                 $rootScope.AuthExpiration = response.data.AuthExpiration
@@ -63,14 +63,31 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
         var json = {
             Session: {
                 Method: "pin",
-                OrganizationCode: $scope.session.OrganizationCode,
-                Pin: $scope.session.Pin
+                PinOrganizationCode: $scope.session.OrganizationCode,
+                PinUserPin: $scope.session.Pin
             }
         }
-        $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", json)
+        $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", JSON.stringify(json))
             .then(response => {
                 // User exists, redirect to status
-                $rootScope.current.user = users[0]
+                $rootScope.AuthExpiration = response.data.AuthExpiration
+                $rootScope.AuthToken = response.data.AuthToken
+                $rootScope.AuthUserId = response.data.AuthUserId
+
+                $http.defaults.headers.common = {
+                    'AUTH_USER_ID': response.data.AuthUserId,
+                    'AUTH_EXPIRATION': response.data.AuthExpiration,
+                    'AUTH_TOKEN': response.data.AuthToken
+                }
+
+                $http.get($rootScope.baseUrl + "odata/Users(" + response.data.AuthUserId + ")")
+                    .then(response2 => {
+                        $rootScope.current.user = response2.data
+                    }, error2 => {
+                        $scope.working.login = false
+                        console.error(error2)
+                    })
+
                 $location.path('/status')
             }, error => {
                 $scope.working.login = false
