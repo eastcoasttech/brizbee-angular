@@ -63,8 +63,8 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
         var json = {
             Session: {
                 Method: "pin",
-                PinOrganizationCode: $scope.session.OrganizationCode,
-                PinUserPin: $scope.session.Pin
+                PinOrganizationCode: $scope.session.PinOrganizationCode,
+                PinUserPin: $scope.session.PinUserPin
             }
         }
         $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", json)
