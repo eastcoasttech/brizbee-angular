@@ -11,7 +11,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
         if (confirm("Are you sure you want to delete this job and all it's tasks?")) {
             $http.delete($rootScope.baseUrl + "odata/Jobs(" + $scope.job.Id + ")")
                 .then(response => {
-                    $scope.ok()
+                    $scope.ok(true)
                 }, error => {
                     console.error(error)
                 })
@@ -33,7 +33,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
 
         $http.put($rootScope.baseUrl + "odata/Jobs(" + $scope.job.Id + ")", JSON.stringify(json))
             .then(response => {
-                $scope.ok()
+                $scope.ok(false)
             }, error => {
                 console.error(error)
             })
@@ -47,14 +47,14 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
 
         $http.post($rootScope.baseUrl + "odata/Jobs", JSON.stringify(json))
             .then(response => {
-                $scope.ok()
+                $scope.ok(false)
             }, error => {
                 console.error(error)
             })
     }
     
-    $scope.ok = function () {
-        $uibModalInstance.close('Success');
+    $scope.ok = function (deleted) {
+        $uibModalInstance.close(deleted);
     }
 
     $scope.cancel = function () {

@@ -10,7 +10,7 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
         if (confirm("Are you sure you want to delete this task?")) {
             $http.delete($rootScope.baseUrl + "odata/Tasks(" + $scope.task.Id + ")")
                 .then(response => {
-                    $scope.ok()
+                    $scope.ok(true)
                 }, error => {
                     console.error(error)
                 })
@@ -32,7 +32,7 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
 
         $http.put($rootScope.baseUrl + "odata/Tasks(" + $scope.task.Id + ")", JSON.stringify(json))
             .then(response => {
-                $scope.ok()
+                $scope.ok(false)
             }, error => {
                 console.error(error)
             })
@@ -46,14 +46,14 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
 
         $http.post($rootScope.baseUrl + "odata/Tasks", JSON.stringify(json))
             .then(response => {
-                $scope.ok()
+                $scope.ok(false)
             }, error => {
                 console.error(error)
             })
     }
     
-    $scope.ok = function () {
-        $uibModalInstance.close('Success');
+    $scope.ok = function (deleted) {
+        $uibModalInstance.close(deleted);
     }
 
     $scope.cancel = function () {

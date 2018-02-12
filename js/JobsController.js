@@ -21,8 +21,6 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
     $scope.refreshJobs = function () {
         if ($scope.selected.customer == null)
         {
-            $scope.jobs = []
-            $scope.tasks = []
             return;
         }
 
@@ -41,7 +39,6 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
 
     $scope.refreshTasks = function () {
         if ($scope.selected.job == null) {
-            $scope.tasks = []
             return;
         }
 
@@ -90,7 +87,10 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
         });
 
         instance.result
-            .then((msg) => {
+            .then((deleted) => {
+                if (deleted) {
+                    delete $scope.selected.customer
+                }
                 $scope.refreshCustomers()
             }, () => {
                 console.log('dismissed')
@@ -113,7 +113,10 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
         });
 
         instance.result
-            .then((msg) => {
+            .then((deleted) => {
+                if (deleted) {
+                    delete $scope.selected.job
+                }
                 $scope.refreshJobs()
             }, () => {
                 console.log('dismissed')
@@ -136,7 +139,10 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
         });
 
         instance.result
-            .then((msg) => {
+            .then((deleted) => {
+                if (deleted) {
+                    delete $scope.selected.task
+                }
                 $scope.refreshTasks()
             }, () => {
                 console.log('dismissed')

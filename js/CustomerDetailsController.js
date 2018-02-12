@@ -10,7 +10,7 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
         if (confirm("Are you sure you want to delete this customer?")) {
             $http.delete($rootScope.baseUrl + "odata/Customers(" + $scope.customer.Id + ")")
                 .then(response => {
-                    $scope.ok()
+                    $scope.ok(true)
                 }, error => {
                     console.error(error)
                 })
@@ -32,7 +32,7 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
 
         $http.put($rootScope.baseUrl + "odata/Customers(" + $scope.customer.Id + ")", JSON.stringify(json))
             .then(response => {
-                $scope.ok()
+                $scope.ok(false)
             }, error => {
                 console.error(error)
             })
@@ -45,14 +45,14 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
 
         $http.post($rootScope.baseUrl + "odata/Customers", JSON.stringify(json))
             .then(response => {
-                $scope.ok()
+                $scope.ok(false)
             }, error => {
                 console.error(error)
             })
     }
     
-    $scope.ok = function () {
-        $uibModalInstance.close('Success');
+    $scope.ok = function (deleted) {
+        $uibModalInstance.close(deleted);
     }
 
     $scope.cancel = function () {
