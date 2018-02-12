@@ -6,6 +6,13 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
     $scope.tasks = []
 
     $scope.refreshCustomers = function () {
+        if ($scope.selected.customer == null)
+        {
+            $scope.jobs = []
+            $scope.tasks = []
+            return;
+        }
+        
         $scope.customers = []
         $scope.loading.customers = true
         $http.get($rootScope.baseUrl + "odata/Customers?$orderby=Id")
@@ -21,6 +28,8 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
     $scope.refreshJobs = function () {
         if ($scope.selected.customer == null)
         {
+            $scope.jobs = []
+            $scope.tasks = []
             return;
         }
 
@@ -39,6 +48,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
 
     $scope.refreshTasks = function () {
         if ($scope.selected.job == null) {
+            $scope.tasks = []
             return;
         }
 
@@ -161,8 +171,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
         });
 
         instance.result
-        .then((msg) => {
-            console.log(msg)
+        .then((deleted) => {
             $scope.refreshCustomers()
         }, () => {
             console.log('dismissed')
@@ -184,8 +193,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
         });
 
         instance.result
-        .then((msg) => {
-            console.log(msg)
+        .then((deleted) => {
             $scope.refreshJobs()
         }, () => {
             console.log('dismissed')
@@ -207,8 +215,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
         });
 
         instance.result
-        .then((msg) => {
-            console.log(msg)
+        .then((deleted) => {
             $scope.refreshTasks()
         }, () => {
             console.log('dismissed')
