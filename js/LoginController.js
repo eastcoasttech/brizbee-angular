@@ -27,7 +27,7 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                 EmailPassword: $scope.session.EmailPassword
             }
         }
-        $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", JSON.stringify(json))
+        $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", json)
             .then(response => {
                 // User exists, redirect to status
                 $rootScope.AuthExpiration = response.data.AuthExpiration
@@ -67,7 +67,7 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                 PinUserPin: $scope.session.Pin
             }
         }
-        $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", JSON.stringify(json))
+        $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", json)
             .then(response => {
                 // User exists, redirect to status
                 $rootScope.AuthExpiration = response.data.AuthExpiration
