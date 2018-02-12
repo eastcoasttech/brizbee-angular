@@ -7,12 +7,14 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
     $scope.working = { save: false }
 
     $scope.delete = function () {
-        $http.delete($rootScope.baseUrl + "odata/Customers(" + $scope.customer.Id + ")")
-            .then(response => {
-                $scope.ok()
-            }, error => {
-                console.error(error)
-            })
+        if (confirm("Are you sure you want to delete this customer?")) {
+            $http.delete($rootScope.baseUrl + "odata/Customers(" + $scope.customer.Id + ")")
+                .then(response => {
+                    $scope.ok()
+                }, error => {
+                    console.error(error)
+                })
+        }
     }
     
     $scope.save = function () {

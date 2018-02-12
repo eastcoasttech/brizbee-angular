@@ -8,12 +8,14 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
     $scope.working = { save: false }
     
     $scope.delete = function () {
-        $http.delete($rootScope.baseUrl + "odata/Jobs(" + $scope.job.Id + ")")
-            .then(response => {
-                $scope.ok()
-            }, error => {
-                console.error(error)
-            })
+        if (confirm("Are you sure you want to delete this job and all it's tasks?")) {
+            $http.delete($rootScope.baseUrl + "odata/Jobs(" + $scope.job.Id + ")")
+                .then(response => {
+                    $scope.ok()
+                }, error => {
+                    console.error(error)
+                })
+        }
     }
 
     $scope.save = function () {
