@@ -62,7 +62,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             json.OutAt = null
         }
 
-        $http.put($rootScope.baseUrl + "odata/Punches(" + $scope.punch.Id + ")", JSON.stringify(json))
+        $http.patch($rootScope.baseUrl + "odata/Punches(" + $scope.punch.Id + ")", JSON.stringify(json))
             .then(response => {
                 $scope.ok()
             }, error => {
