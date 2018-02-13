@@ -33,7 +33,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     $scope.refreshCommits = function () {
         $scope.commits = []
         $scope.loading.commits = true
-        $http.get($rootScope.baseUrl + "odata/Commits?$orderby=InAt desc")
+        $http.get($rootScope.baseUrl + "odata/Commits?$orderby=InAt desc&$expand=User")
             .then(response => {
                 $scope.loading.commits = false
                 $scope.commits = response.data.value
