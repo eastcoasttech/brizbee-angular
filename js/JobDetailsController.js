@@ -61,23 +61,22 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
         $uibModalInstance.dismiss('cancel');
     }
 
-    // $scope.refreshTemplates = function () {
-    //     if (!$scope.job._id) {
-    //         return;
-    //     }
+    $scope.refreshTemplates = function () {
+        if (!$scope.job.Id) {
+            return;
+        }
 
-    //     $scope.templates = []
-    //     $scope.loading.templates = true
-    //     db.collection('templates').find({ organization_id: $rootScope.current.user.organization_id }).sort({ name: 1 }).execute()
-    //         .then(docs => {
-    //             $scope.loading.templates = false
-    //             $scope.templates = docs
-    //             $scope.$apply()
-    //         }).catch(err => {
-    //             $scope.loading.templates = false
-    //             console.error(err)
-    //         })
-    // }
+        $scope.templates = []
+        $scope.loading.templates = true
+        $http.get($rootScope.baseUrl + "odata/TaskTemplates?$orderby=Name")
+            .then(response => {
+                $scope.loading.templates = false
+                $scope.templates = response.data.value
+            }, error => {
+                $scope.loading.templates = false
+                console.error(error)
+            })
+    }
 
-    // $scope.refreshTemplates()
+    $scope.refreshTemplates()
 });

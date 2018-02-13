@@ -185,7 +185,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     $scope.undo = function (commit) {
         if (confirm("Are you sure you want to undo this commit? All the punches will be editable again?")) {
 
-            $http.post($rootScope.baseUrl + "odata/Commits(" + commit.Id + ")/Undo")
+            $http.post($rootScope.baseUrl + "odata/Commits(" + commit.Id + ")/Default.Undo")
                 .then(response => {
                     // Refresh the punches and commits
                     $scope.refreshPunches()
