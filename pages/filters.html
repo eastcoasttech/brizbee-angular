@@ -15,7 +15,7 @@
                         </div>
                     </td>
                     <td class="col-md-8" style="vertical-align: middle; border-top: none;">
-                        <select class="form-control" ng-model="filters.user.users" ng-options="user.name for user in users" ng-disabled="!filters.user.selected" autofocus multiple></select>
+                        <select class="form-control" ng-model="filters.user.users" ng-options="user.Name for user in users" ng-disabled="!filters.user.selected" autofocus multiple></select>
                     </td>
                 </tr>
                 <tr>
@@ -28,7 +28,7 @@
                         </div>
                     </td>
                     <td class="col-md-8" style="vertical-align: middle;">
-                        <select class="form-control" ng-model="filters.customer.customer_id" ng-options="customer.name for customer in customers" ng-disabled="!filters.customer.selected" ng-change="refreshJobs()"></select>
+                        <select class="form-control" ng-model="filters.customer.customer_id" ng-options="customer.Name for customer in customers" ng-disabled="!filters.customer.selected" ng-change="refreshJobs()"></select>
                     </td>
                 </tr>
                 <tr>
@@ -41,7 +41,7 @@
                         </div>
                     </td>
                     <td class="col-md-8" style="vertical-align: middle;">
-                        <select class="form-control" ng-model="filters.job.job_id" ng-options="job.name for job in jobs" ng-disabled="!filters.job.selected" ng-change="refreshTasks()"></select>
+                        <select class="form-control" ng-model="filters.job.job_id" ng-options="job.Name for job in jobs" ng-disabled="!filters.job.selected" ng-change="refreshTasks()"></select>
                     </td>
                 </tr>
                 <tr>
@@ -54,7 +54,7 @@
                         </div>
                     </td>
                     <td class="col-md-8" style="vertical-align: middle;">
-                        <select class="form-control" ng-model="filters.task.task_id" ng-options="task.name for task in tasks" ng-disabled="!filters.task.selected"></select>
+                        <select class="form-control" ng-model="filters.task.task_id" ng-options="task.Name for task in tasks" ng-disabled="!filters.task.selected"></select>
                     </td>
                 </tr>
             </tbody>

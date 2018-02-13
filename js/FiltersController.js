@@ -1,28 +1,27 @@
-app.controller('FiltersController', function ($scope, $uibModalInstance, filters) {
+app.controller('FiltersController', function ($http, $scope, $uibModalInstance, filters) {
     $scope.filters = filters
     $scope.loading = { customers: false, jobs: false, tasks: false }
 
     $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel')
     }
 
     $scope.ok = function () {
         console.log($scope.filters)
-        $uibModalInstance.close($scope.filters);
+        $uibModalInstance.close($scope.filters)
     }
 
     $scope.refreshCustomers = function () {
         $scope.customers = []
         $scope.loading.customers = true
-        db.collection('customers').find().sort({ number: 1 }).execute()
-            .then(docs => {
+        $http.get($rootScope.baseUrl + "odata/Customers?$orderby=Id")
+            .then(response => {
                 $scope.loading.customers = false
-                $scope.customers = docs
-                $scope.$apply()
+                $scope.customers = response.data.value
                 $scope.refreshJobs()
-            }).catch(err => {
+            }, error => {
                 $scope.loading.customers = false
-                console.error(err)
+                console.error(error)
             })
     }
 
@@ -34,15 +33,14 @@ app.controller('FiltersController', function ($scope, $uibModalInstance, filters
         $scope.jobs = []
         $scope.tasks = []
         $scope.loading.jobs = true
-        db.collection('jobs').find({ customer_id: $scope.filters['customer'].customer_id._id }).sort({ number: 1 }).execute()
-            .then(docs => {
+        $http.get($rootScope.baseUrl + "odata/Jobs?$orderby=Id&$filter=CustomerId eq " + $scope.filters['customer'].customer_id.Id)
+            .then(response => {
                 $scope.loading.jobs = false
-                $scope.jobs = docs
-                $scope.$apply()
+                $scope.jobs = response.data.value
                 $scope.refreshTasks()
-            }).catch(err => {
+            }, error => {
                 $scope.loading.jobs = false
-                console.error(err)
+                console.error(error)
             })
     }
 
@@ -53,14 +51,13 @@ app.controller('FiltersController', function ($scope, $uibModalInstance, filters
 
         $scope.tasks = []
         $scope.loading.tasks = true
-        db.collection('tasks').find({ job_id: $scope.filters['job'].job_id._id }).sort({ number: 1 }).execute()
-            .then(docs => {
+        $http.get($rootScope.baseUrl + "odata/Tasks?$orderby=Id&$filter=JobId eq " + $scope.filters['job'].job_id.Id)
+            .then(response => {
                 $scope.loading.tasks = false
-                $scope.tasks = docs
-                $scope.$apply()
-            }).catch(err => {
+                $scope.tasks = response.data.value
+            }, error => {
                 $scope.loading.tasks = false
-                console.error(err)
+                console.error(error)
             })
     }
 
@@ -68,14 +65,13 @@ app.controller('FiltersController', function ($scope, $uibModalInstance, filters
         console.log($scope.filters.user.users)
         $scope.users = []
         $scope.loading.users = true
-        db.collection('users').find().sort({ name: 1 }).execute()
-            .then(docs => {
+        $http.get($rootScope.baseUrl + "odata/Users?$orderby=Id")
+            .then(response => {
                 $scope.loading.users = false
-                $scope.users = docs
-                $scope.$apply()
-            }).catch(err => {
+                $scope.users = response.data.value
+            }, error => {
                 $scope.loading.users = false
-                console.error(err)
+                console.error(error)
             })
     }
 
