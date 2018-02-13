@@ -5,6 +5,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
     } else {
         $scope.job = job
     }
+    $scope.templates = []
     $scope.working = { save: false }
     
     $scope.delete = function () {
