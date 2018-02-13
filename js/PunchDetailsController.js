@@ -35,9 +35,9 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             UserId: $scope.punch.user.Id
         }
 
-        // out_at is optional when editing manually
+        // OutAt is optional when editing manually
         if ($scope.punch.has_out_at) {
-            json.OutAt = $scope.punch.out_at
+            json.OutAt = $scope.punch.OutAt
         }
 
         $http.post($rootScope.baseUrl + "odata/Punches", JSON.stringify(json))
@@ -55,9 +55,9 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             UserId: $scope.punch.user.Id
         }
 
-        // out_at is optional when editing manually
+        // OutAt is optional when editing manually
         if ($scope.punch.has_out_at) {
-            json.OutAt = $scope.punch.out_at
+            json.OutAt = $scope.punch.OutAt
         } else {
             json.OutAt = null
         }
@@ -163,11 +163,11 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     }
     
     $scope.showInAtDatepicker = function () {
-        $scope.datepicker.in_at.opened = true
+        $scope.datepicker.InAt.opened = true
     }
 
     $scope.showOutAtDatepicker = function () {
-        $scope.datepicker.out_at.opened = true
+        $scope.datepicker.OutAt.opened = true
     }
 
     $scope.refreshUsers()
