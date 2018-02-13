@@ -117,8 +117,8 @@
                         <td><a href="">{{punch.User.Name}}</a></td>
                         <td><a href="">{{showMomentDate(punch.InAt, 'YYYY-MM-DD h:mm a')}}</a></td>
                         <td><a href="" ng-if="punch.OutAt != null">{{showMomentDate(punch.OutAt, 'YYYY-MM-DD h:mm a')}}</a></td>
-                        <td><a href="">{{punch.Customer.Id}} &mdash; {{punch.Customer.Name}}</a></td>
-                        <td><a href="">{{punch.Job.Id}} &mdash; {{punch.Job.Name}}</a></td>
+                        <td><a href="">{{punch.Task.Job.Customer.Id}} &mdash; {{punch.Task.Job.Customer.Name}}</a></td>
+                        <td><a href="">{{punch.Task.Job.Id}} &mdash; {{punch.Task.Job.Name}}</a></td>
                         <td><a href="">{{punch.Task.Id}} &mdash; {{punch.Task.Name}}</a></td>
                         <td class="text-center"><i class="fa fa-lock" aria-hidden="true" ng-if="punch.CommitId != null"></i></td>
                     </tr>
@@ -156,11 +156,11 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="commit in commits">
-                        <td>{{showMomentDate(commit.in_at, 'YYYY-MM-DD h:mm a')}}</td>
-                        <td>{{showMomentDate(commit.out_at, 'YYYY-MM-DD h:mm a')}}</td>
+                        <td>{{showMomentDate(commit.InAt, 'YYYY-MM-DD h:mm a')}}</td>
+                        <td>{{showMomentDate(commit.OutAt, 'YYYY-MM-DD h:mm a')}}</td>
                         <td>{{commit.punches_count}}</td>
-                        <td>{{showMomentDate(commit.created_at, 'YYYY-MM-DD h:mm a')}}</td>
-                        <td>{{commit.user_name}}</td>
+                        <td>{{showMomentDate(commit.CreatedAt, 'YYYY-MM-DD h:mm a')}}</td>
+                        <td>{{commit.User.Name}}</td>
                         <td class="text-center"><a href="" ng-click="undo(commit)">Undo</a></td>
                     </tr>
                     <tr ng-show="loading.commits">
