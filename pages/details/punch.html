@@ -8,19 +8,19 @@
             <div class="col-md-7">
                 <div class="form-group">
                     <label>User</label>
-                    <select class="form-control" ng-model="punch.user" ng-options="user.name for user in users" ng-disabled="working.save || punch.CommitId" autofocus></select>
+                    <select class="form-control" ng-model="punch.user" ng-options="user.Name for user in users" ng-disabled="working.save || punch.CommitId" autofocus></select>
                 </div>
                 <div class="form-group">
                     <label>Customer</label>
-                    <select class="form-control" ng-model="punch.customer" ng-options="customer.name for customer in customers" ng-disabled="working.save || punch.CommitId"></select>
+                    <select class="form-control" ng-model="punch.customer" ng-options="customer.Name for customer in customers" ng-disabled="working.save || punch.CommitId"></select>
                 </div>
                 <div class="form-group">
                     <label>Job</label>
-                    <select class="form-control" ng-model="punch.job" ng-options="job.name for job in jobs" ng-disabled="working.save || punch.CommitId"></select>
+                    <select class="form-control" ng-model="punch.job" ng-options="job.Name for job in jobs" ng-disabled="working.save || punch.CommitId"></select>
                 </div>
                 <div class="form-group">
                     <label>Task</label>
-                    <select class="form-control" ng-model="punch.task" ng-options="task.name for task in tasks" ng-disabled="working.save || punch.CommitId"></select>
+                    <select class="form-control" ng-model="punch.task" ng-options="task.Name for task in tasks" ng-disabled="working.save || punch.CommitId"></select>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
                 <p class="input-group">
-                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.InAt" is-open="datepicker.InAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || punch.commit_id" />
+                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.InAt" is-open="datepicker.InAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || punch.CommitId" />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="showInAtDatepicker()" ng-disabled="working.save || punch.CommitId"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
@@ -51,7 +51,7 @@
         <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
                 <p class="input-group">
-                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.OutAt" is-open="datepicker.OutAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || !punch.has_out_at || punch.commit_id" />
+                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.OutAt" is-open="datepicker.OutAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || !punch.has_out_at || punch.CommitId" />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="showOutAtDatepicker()" ng-disabled="working.save || !punch.has_out_at || punch.CommitId"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
