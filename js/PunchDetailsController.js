@@ -11,9 +11,9 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         }
     } else {
         $scope.punch = punch
-        $scope.punch.InAt = moment(punch.InAt)
+        $scope.punch.InAt = moment(punch.InAt).toDate()
         if ($scope.punch.OutAt != null) {
-            $scope.punch.OutAt = moment(punch.OutAt)
+            $scope.punch.OutAt = moment(punch.OutAt).toDate()
             $scope.punch.has_out_at = true
         }
     }
