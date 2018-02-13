@@ -1,4 +1,4 @@
-app.controller('FiltersController', function ($http, $scope, $uibModalInstance, filters) {
+app.controller('FiltersController', function ($http, $rootScope, $scope, $uibModalInstance, filters) {
     $scope.filters = filters
     $scope.loading = { customers: false, jobs: false, tasks: false }
 
