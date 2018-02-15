@@ -2,6 +2,17 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
     $scope.user = user
     $scope.working = { save: false }
     
+    $scope.delete = function () {
+        if (confirm("Are you sure you want to delete this user?")) {
+            $http.delete($rootScope.baseUrl + "odata/Users(" + $scope.user.Id + ")")
+                .then(response => {
+                    $scope.ok(true)
+                }, error => {
+                    console.error(error)
+                })
+        }
+    }
+
     $scope.save = function () {
         $scope.saveExistingUser()
     }
