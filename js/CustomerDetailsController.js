@@ -30,7 +30,7 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
             Name: $scope.customer.Name
         }
 
-        $http.put($rootScope.baseUrl + "odata/Customers(" + $scope.customer.Id + ")", JSON.stringify(json))
+        $http.patch($rootScope.baseUrl + "odata/Customers(" + $scope.customer.Id + ")", JSON.stringify(json))
             .then(response => {
                 $scope.ok(false)
             }, error => {

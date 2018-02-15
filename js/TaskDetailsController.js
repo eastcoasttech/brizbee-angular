@@ -30,7 +30,7 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
             Name: $scope.task.Name
         }
 
-        $http.put($rootScope.baseUrl + "odata/Tasks(" + $scope.task.Id + ")", JSON.stringify(json))
+        $http.patch($rootScope.baseUrl + "odata/Tasks(" + $scope.task.Id + ")", JSON.stringify(json))
             .then(response => {
                 $scope.ok(false)
             }, error => {

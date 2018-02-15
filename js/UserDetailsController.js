@@ -1,5 +1,9 @@
 app.controller('UserDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, user) {
-    $scope.user = user
+    if (user.Id == null) {
+        $scope.user = {}
+    } else {
+        $scope.user = user
+    }
     $scope.working = { save: false }
     
     $scope.delete = function () {
@@ -14,7 +18,11 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
     }
 
     $scope.save = function () {
-        $scope.saveExistingUser()
+        if (task.Id == null) {
+            $scope.saveNewUser()
+        } else {
+            $scope.saveExistingUser()
+        }
     }
 
     $scope.saveExistingUser = function () {
@@ -24,9 +32,25 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
             Pin: $scope.user.Pin
         }
 
-        $http.put($rootScope.baseUrl + "odata/Users(" + $scope.user.Id + ")", JSON.stringify(json))
+        $http.patch($rootScope.baseUrl + "odata/Users(" + $scope.user.Id + ")", JSON.stringify(json))
             .then(response => {
                 $scope.ok()
+            }, error => {
+                console.error(error)
+            })
+    }
+
+    $scope.saveNewUser = function () {
+        var json = {
+            EmailAddress: $scope.user.EmailAddress,
+            Name: $scope.user.Name,
+            Role: $scope.user.Role,
+            Pin: $scope.user.Pin
+        }
+
+        $http.post($rootScope.baseUrl + "odata/Users", JSON.stringify(json))
+            .then(response => {
+                $scope.ok(false)
             }, error => {
                 console.error(error)
             })

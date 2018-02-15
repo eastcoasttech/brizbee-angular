@@ -32,7 +32,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
             Name: $scope.job.Name
         }
 
-        $http.put($rootScope.baseUrl + "odata/Jobs(" + $scope.job.Id + ")", JSON.stringify(json))
+        $http.patch($rootScope.baseUrl + "odata/Jobs(" + $scope.job.Id + ")", JSON.stringify(json))
             .then(response => {
                 $scope.ok(false)
             }, error => {

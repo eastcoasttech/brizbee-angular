@@ -33,6 +33,26 @@ app.controller('UsersController', function ($http, $rootScope, $scope, $uibModal
                 console.log('dismissed')
             })
     }
+
+    $scope.showNewUser = function () {
+        var instance = $uibModal.open({
+            templateUrl: '/pages/details/user.html',
+            controller: 'UserDetailsController',
+            resolve: {
+                user: function () {
+                    return {};
+                }
+            }
+        });
+
+        instance.result
+            .then((msg) => {
+                console.log(msg)
+                $scope.refreshUsers()
+            }, () => {
+                console.log('dismissed')
+            })
+    }
     
     $scope.refreshUsers()
 
