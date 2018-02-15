@@ -25,9 +25,14 @@
                     <input type="text" class="form-control" ng-model="user.Pin" ng-disabled="working.save" />
                 </div>
                 <hr />
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" ng-model="user.Password" ng-disabled="working.save" />
+                <p ng-show="!show.changePassword">
+                    <a href="" ng-click="show.changePassword = true">Change Password</a>
+                </p>
+                <div ng-show="show.changePassword">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" ng-model="user.Password" ng-disabled="working.save" />
+                    </div>
                 </div>
             </div>
         </div>

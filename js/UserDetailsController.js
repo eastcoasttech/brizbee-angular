@@ -1,5 +1,7 @@
 app.controller('UserDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, user) {
+    $scope.show = { changePassword: false }
     if (user.Id == null) {
+        $scope.show.changePassword = true
         $scope.user = { Role: "Standard" }
     } else {
         $scope.user = user
@@ -30,6 +32,11 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
             Name: $scope.user.Name,
             Role: $scope.user.Role,
             Pin: $scope.user.Pin
+        }
+
+        // Changing password is optional
+        if ($scope.show.changePassword) {
+            json.Password = $scope.user.Password
         }
 
         $http.patch($rootScope.baseUrl + "odata/Users(" + $scope.user.Id + ")", JSON.stringify(json))
