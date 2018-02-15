@@ -56,7 +56,7 @@
                 <tbody>
                     <tr ng-repeat="customer in customers" class="selectable" ng-class="{ 'selected' : selected.customer.Id == customer.Id }">
                         <td ng-click="selectCustomer(customer)">
-                            <a href="">{{customer.Name}}</a>
+                            <a href="">{{customer.Number}} &ndash; {{customer.Name}}</a>
                             <!-- <br /> -->
                             <!-- <small class="text-muted"># {{customer.number}} &mdash; Added {{showMomentDate(customer.created_at, 'MMM Do YY')}}</small> -->
                         </td>
@@ -89,7 +89,7 @@
                 <tbody>
                     <tr ng-repeat="job in jobs" class="selectable" ng-class="{ 'selected' : selected.job.Id == job.Id }">
                         <td ng-click="selectJob(job)">
-                            <a href="">{{job.Name}}</a>
+                            <a href="">{{job.Number}} &ndash; {{job.Name}}</a>
                             <!-- <br />
                             <small class="text-muted"># {{job.number}} &mdash; Added {{showMomentDate(job.created_at, 'MMM Do YY')}}</small> -->
                         </td>
@@ -128,7 +128,7 @@
                 <tbody>
                     <tr ng-repeat="task in tasks" class="selectable" ng-class="{ 'selected' : selected.task.Id == task.Id }">
                         <td ng-click="selectTask(task)">
-                            <a href="">{{task.Name}}</a>
+                            <a href="">{{task.Number}} &ndash; {{task.Name}}</a>
                             <!-- <br />
                             <small class="text-muted"># {{task.number}} &mdash; Added {{showMomentDate(task.created_at, 'MMM Do YY')}}</small> -->
                         </td>
