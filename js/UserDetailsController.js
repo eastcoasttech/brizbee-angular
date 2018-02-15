@@ -45,7 +45,8 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
             EmailAddress: $scope.user.EmailAddress,
             Name: $scope.user.Name,
             Role: $scope.user.Role,
-            Pin: $scope.user.Pin
+            Pin: $scope.user.Pin,
+            Password: $scope.user.Password
         }
 
         $http.post($rootScope.baseUrl + "odata/Users", JSON.stringify(json))

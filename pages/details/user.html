@@ -7,15 +7,15 @@
             <div class="col-md-7">
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="email" class="form-control" ng-model="user.EmailAddress" ng-disabled="user.Id" />
+                    <input type="email" class="form-control" ng-model="user.EmailAddress" ng-disabled="user.Id" required />
                 </div>
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" ng-model="user.Name" ng-disabled="working.save" autofocus />
+                    <input type="text" class="form-control" ng-model="user.Name" ng-disabled="working.save" required autofocus />
                 </div>
                 <div class="form-group">
                     <label>Role</label>
-                    <select class="form-control" ng-model="user.Role" ng-disabled="working.save">
+                    <select class="form-control" ng-model="user.Role" ng-disabled="working.save" required>
                         <option>Administrator</option>
                         <option>Standard</option>
                     </select>
@@ -23,6 +23,11 @@
                 <div class="form-group">
                     <label>Pin Number</label>
                     <input type="text" class="form-control" ng-model="user.Pin" ng-disabled="working.save" />
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" ng-model="user.Password" ng-disabled="working.save" />
                 </div>
             </div>
         </div>
