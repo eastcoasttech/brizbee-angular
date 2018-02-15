@@ -18,7 +18,7 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
     }
 
     $scope.save = function () {
-        if (task.Id == null) {
+        if (user.Id == null) {
             $scope.saveNewUser()
         } else {
             $scope.saveExistingUser()
