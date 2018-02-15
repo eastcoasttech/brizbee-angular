@@ -1,6 +1,6 @@
 app.controller('UserDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, user) {
     if (user.Id == null) {
-        $scope.user = {}
+        $scope.user = { Role: "Standard" }
     } else {
         $scope.user = user
     }
