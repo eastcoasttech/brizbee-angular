@@ -8,8 +8,8 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
 
     $scope.saveExistingUser = function () {
         var json = {
-            name: $scope.user.name,
-            role: $scope.user.role
+            Name: $scope.user.Name,
+            Role: $scope.user.Role
         }
 
         $http.put($rootScope.baseUrl + "odata/Users(" + $scope.user.Id + ")", JSON.stringify(json))
@@ -21,10 +21,10 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
     }
     
     $scope.ok = function () {
-        $uibModalInstance.close('Success');
+        $uibModalInstance.close('Success')
     }
 
     $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel')
     }
-});
+})
