@@ -9,7 +9,8 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
     $scope.saveExistingUser = function () {
         var json = {
             Name: $scope.user.Name,
-            Role: $scope.user.Role
+            Role: $scope.user.Role,
+            Pin: $scope.user.Pin
         }
 
         $http.put($rootScope.baseUrl + "odata/Users(" + $scope.user.Id + ")", JSON.stringify(json))
