@@ -1,5 +1,5 @@
 app.controller('MyOrganizationController', function ($http, $location, $rootScope, $scope, $window) {
-    $scope.organization = angular.copy($rootScope.current.organization)
+    $scope.organization = angular.copy($rootScope.current.user.organization)
     $scope.working = { save: false }
 
     $scope.save = function () {
