@@ -35,11 +35,11 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: 'LocationsController'
         }).
         when('/my/organization', {
-            templateUrl: '/my/organization.html',
+            templateUrl: '/pages/my/organization.html',
             controller: 'MyOrganizationController'
         }).
         when('/my/user', {
-            templateUrl: '/my/user.html',
+            templateUrl: '/pages/my/user.html',
             controller: 'MyUserController'
         }).
         when('/out/confirm', {
