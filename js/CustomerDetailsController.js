@@ -27,7 +27,8 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
 
     $scope.saveExistingCustomer = function () {
         var json = {
-            Name: $scope.customer.Name
+            Name: $scope.customer.Name,
+            Number: $scope.customer.Number
         }
 
         $http.patch($rootScope.baseUrl + "odata/Customers(" + $scope.customer.Id + ")", JSON.stringify(json))
@@ -40,7 +41,8 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
 
     $scope.saveNewCustomer = function () {
         var json = {
-            Name: $scope.customer.Name
+            Name: $scope.customer.Name,
+            Number: $scope.customer.Number
         }
 
         $http.post($rootScope.baseUrl + "odata/Customers", JSON.stringify(json))

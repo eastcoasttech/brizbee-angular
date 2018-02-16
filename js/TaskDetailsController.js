@@ -27,7 +27,8 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
 
     $scope.saveExistingTask = function () {
         var json = {
-            Name: $scope.task.Name
+            Name: $scope.task.Name,
+            Number: $scope.task.Number
         }
 
         $http.patch($rootScope.baseUrl + "odata/Tasks(" + $scope.task.Id + ")", JSON.stringify(json))
@@ -41,7 +42,8 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     $scope.saveNewTask = function () {
         var json = {
             JobId: job.Id,
-            Name: $scope.task.Name
+            Name: $scope.task.Name,
+            Number: $scope.task.Number
         }
 
         $http.post($rootScope.baseUrl + "odata/Tasks", JSON.stringify(json))
