@@ -34,6 +34,14 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/pages/locations.html',
             controller: 'LocationsController'
         }).
+        when('/my/organization', {
+            templateUrl: '/my/organization.html',
+            controller: 'MyOrganizationController'
+        }).
+        when('/my/user', {
+            templateUrl: '/my/user.html',
+            controller: 'MyUserController'
+        }).
         when('/out/confirm', {
             templateUrl: '/pages/out/confirm.html',
             controller: 'OutConfirmController'
