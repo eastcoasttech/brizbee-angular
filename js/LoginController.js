@@ -40,7 +40,7 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                     'AUTH_TOKEN': response.data.AuthToken
                 }
 
-                $http.get($rootScope.baseUrl + "odata/Users(" + response.data.AuthUserId + ")")
+                $http.get($rootScope.baseUrl + "odata/Users(" + response.data.AuthUserId + ")?$expand=Organization")
                     .then(response2 => {
                         $rootScope.current.user = response2.data
                     }, error2 => {
@@ -80,7 +80,7 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                     'AUTH_TOKEN': response.data.AuthToken
                 }
 
-                $http.get($rootScope.baseUrl + "odata/Users(" + response.data.AuthUserId + ")")
+                $http.get($rootScope.baseUrl + "odata/Users(" + response.data.AuthUserId + ")?$expand=Organization")
                     .then(response2 => {
                         $rootScope.current.user = response2.data
                     }, error2 => {
