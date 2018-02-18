@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <input type="password" class="form-control" placeholder="PIN Number" ng-model="session.PinUserPin" ng-disabled="working.login" />
                         </div>
-                        <button type="submit" class="btn btn-primary" ng-disabled="working.login">Sign In</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="working.login">Sign In <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.login"></i></button>
                     </form>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <input type="password" class="form-control" placeholder="Password" ng-model="session.EmailPassword" ng-disabled="working.login" />
                         </div>
-                        <button type="submit" class="btn btn-primary" ng-disabled="working.login">Sign In</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="working.login">Sign In <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.login"></i></button>
                         <a href="#!/reset" class="btn btn-default" ng-disabled="working.login">Reset Password</a>
                     </form>
                 </div>
