@@ -2,8 +2,8 @@
     <h3 class="modal-title" ng-if="punch.Id == null">New Punch</h3>
     <h3 class="modal-title" ng-if="punch.Id != null">Edit Punch</h3>
 </div>
-<div class="modal-body">
-    <form ng-submit="save()">
+<form ng-submit="save()">
+    <div class="modal-body">
         <div class="row">
             <div class="col-md-7">
                 <div class="form-group">
@@ -63,10 +63,10 @@
                 </div>
             </div>
         </div>
-    </form>
-</div>
-<div class="modal-footer">
-    <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save || punch.CommitId" ng-if="punch.Id">Delete</button>
-    <button class="btn btn-primary" type="button" ng-click="save()" ng-disabled="working.save || punch.CommitId">OK</button>
-    <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.save">Cancel</button>
-</div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save || punch.CommitId" ng-if="punch.Id">Delete</button>
+        <button class="btn btn-primary" type="submit" ng-click="save()" ng-disabled="working.save || punch.CommitId">OK</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.save">Cancel</button>
+    </div>
+</form>
