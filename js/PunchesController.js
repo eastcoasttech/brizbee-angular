@@ -58,7 +58,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         sortParameter[$scope.sortType] = $scope.sortDirection
         console.log(sortParameter)
 
-        $http.get($rootScope.baseUrl + "odata/Punches?$expand=User,Task($expand=Job($expand=Customer))&$filter=InAt gte '" + moment($rootScope.range.InAt).format("YYYY-MM-DDT00:00:00") + "' and InAt lte '" + moment($rootScope.range.OutAt).format("YYYY-MM-DDT23:59:59") + "'")
+        $http.get($rootScope.baseUrl + "odata/Punches?$expand=User,Task($expand=Job($expand=Customer))&$filter=InAt gte datetime'" + moment($rootScope.range.InAt).format("YYYY-MM-DDT00:00:00") + "' and InAt lte datetime'" + moment($rootScope.range.OutAt).format("YYYY-MM-DDT23:59:59") + "'")
             .then(response => {
                 $scope.loading.punches = false
                 $scope.punches = response.data.value
