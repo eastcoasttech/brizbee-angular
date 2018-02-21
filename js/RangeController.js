@@ -1,7 +1,6 @@
 app.controller('RangeController', function ($scope, $uibModalInstance, range) {
     $scope.datepicker = { InAt: {}, OutAt: {}, options: {} }
-    $scope.range = { InAt: moment(range.IntAt).toDate(),
-        OutAt: moment(range.OutAt).toDate() }
+    $scope.range = range
     
     $scope.ok = function () {
         $uibModalInstance.close($scope.range);
