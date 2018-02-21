@@ -66,6 +66,7 @@
     </form>
 </div>
 <div class="modal-footer">
+    <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save || punch.CommitId" ng-if="punch.Id">Delete</button>
     <button class="btn btn-primary" type="button" ng-click="save()" ng-disabled="working.save || punch.CommitId">OK</button>
     <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.save">Cancel</button>
 </div>

@@ -20,6 +20,17 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     $scope.tasks = []
     $scope.working = { save: false }
 
+    $scope.delete = function () {
+        if (confirm("Are you sure you want to delete this punch?")) {
+            $http.delete($rootScope.baseUrl + "odata/Punches(" + $scope.punch.Id + ")")
+                .then(response => {
+                    $scope.ok(true)
+                }, error => {
+                    console.error(error)
+                })
+        }
+    }
+
     $scope.save = function () {
         if (punch.Id == null) {
             $scope.saveNewPunch()
