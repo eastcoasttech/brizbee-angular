@@ -1,6 +1,5 @@
 app.controller('RangeController', function ($scope, $uibModalInstance, range) {
     $scope.datepicker = { InAt: {}, OutAt: {}, options: {} }
-    console.log(range)
     $scope.range = range
     
     $scope.ok = function () {
