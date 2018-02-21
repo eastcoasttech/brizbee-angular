@@ -81,7 +81,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     $scope.saveCommit = function () {
         $scope.working.commit = true
 
-        var json = { InAt: $rootScope.range.in_at, OutAt: $rootScope.range.out_at }
+        var json = { InAt: $rootScope.range.InAt, OutAt: $rootScope.range.OutAt }
         $http.post($rootScope.baseUrl + "odata/Commits", JSON.stringify(json))
             .then(response => {
                 // Refresh the punches and commits

@@ -58,7 +58,7 @@
                     <div class="btn-toolbar pull-right" role="toolbar">
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default" ng-click="showFilters()"><i class="fa fa-filter" aria-hidden="true" style="margin-right: 5px;"></i> Filters ({{filterCount()}})</button>
-                            <button type="button" class="btn btn-default" ng-click="showRange()"><i class="fa fa-calendar" aria-hidden="true" style="margin-right: 5px;"></i> {{showMomentDate(range.in_at, 'YYYY-MM-DD')}} <small>thru</small> {{showMomentDate(range.out_at, 'YYYY-MM-DD')}}</button>
+                            <button type="button" class="btn btn-default" ng-click="showRange()"><i class="fa fa-calendar" aria-hidden="true" style="margin-right: 5px;"></i> {{showMomentDate(range.InAt, 'YYYY-MM-DD')}} <small>thru</small> {{showMomentDate(range.OutAt, 'YYYY-MM-DD')}}</button>
                         </div>
                     </div>
                 </div>
@@ -76,17 +76,17 @@
                             </a>
                         </th>
                         <th class="col-md-2">
-                            <a href="" ng-click="setSortType('in_at')">
+                            <a href="" ng-click="setSortType('InAt')">
                                 In
-                                <span ng-show="(sortType == 'in_at') && (sortDirection == 1)" class="fa fa-caret-down"></span>
-                                <span ng-show="(sortType == 'in_at') && (sortDirection == -1)" class="fa fa-caret-up"></span>
+                                <span ng-show="(sortType == 'InAt') && (sortDirection == 1)" class="fa fa-caret-down"></span>
+                                <span ng-show="(sortType == 'InAt') && (sortDirection == -1)" class="fa fa-caret-up"></span>
                             </a>
                         </th>
                         <th class="col-md-2">
-                            <a href="" ng-click="setSortType('out_at')">
+                            <a href="" ng-click="setSortType('OutAt')">
                                 Out
-                                <span ng-show="(sortType == 'out_at') && (sortDirection == 1)" class="fa fa-caret-down"></span>
-                                <span ng-show="(sortType == 'out_at') && (sortDirection == -1)" class="fa fa-caret-up"></span>
+                                <span ng-show="(sortType == 'OutAt') && (sortDirection == 1)" class="fa fa-caret-down"></span>
+                                <span ng-show="(sortType == 'OutAt') && (sortDirection == -1)" class="fa fa-caret-up"></span>
                             </a>
                         </th>
                         <th class="col-md-2">
@@ -188,7 +188,7 @@
                 <div class="row">
                     <div class="col-md-5 col-sm-12 col-xs-12">
                         <p class="input-group">
-                            <input type="text" class="form-control" uib-datepicker-popup ng-model="range.in_at" is-open="datepicker.in_at.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save" />
+                            <input type="text" class="form-control" uib-datepicker-popup ng-model="range.InAt" is-open="datepicker.InAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save" />
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="showInAtDatepicker()" ng-disabled="working.commit"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
@@ -199,7 +199,7 @@
                 <div class="row">
                     <div class="col-md-5 col-sm-12 col-xs-12">
                         <p class="input-group">
-                            <input type="text" class="form-control" uib-datepicker-popup ng-model="range.out_at" is-open="datepicker.out_at.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save" />
+                            <input type="text" class="form-control" uib-datepicker-popup ng-model="range.OutAt" is-open="datepicker.OutAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save" />
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="showOutAtDatepicker()" ng-disabled="working.commit"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>

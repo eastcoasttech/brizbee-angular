@@ -3,7 +3,7 @@ app.controller('ApplicationController', function ($location, $rootScope, $scope)
     $rootScope.baseUrl = "https://brizbeeweb.azurewebsites.net/"
     $rootScope.selected = {}
     $rootScope.current = {}
-    $rootScope.range = { in_at: moment().startOf('day').toDate(), out_at: moment().endOf('day').toDate() }
+    $rootScope.range = { InAt: moment().startOf('day').toDate(), OutAt: moment().endOf('day').toDate() }
 
     $scope.logout = function () {
         $rootScope.current = {}
