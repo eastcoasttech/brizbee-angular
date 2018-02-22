@@ -1,4 +1,4 @@
-app.controller('OutConfirmController', function ($location, $rootScope, $scope, $window) {
+app.controller('OutConfirmController', function ($http, $location, $rootScope, $scope, $window) {
     $scope.working = {}
 
     $scope.save = function () {
