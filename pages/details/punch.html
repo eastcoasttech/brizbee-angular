@@ -63,6 +63,9 @@
                 </div>
             </div>
         </div>
+        <p class="text-danger" ng-show="punch.CommitId">
+            This punch is not editable because it's included in a commit. You may undo the commit, but first ensure that the commit has not been exported to payroll software.
+        </p>
     </div>
     <div class="modal-footer">
         <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save || punch.CommitId" ng-if="punch.Id">Delete</button>
