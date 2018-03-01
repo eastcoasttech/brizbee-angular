@@ -91,7 +91,10 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
                 alert('Punches were successfully committed')
             }, error => {
                 $scope.working.commit = false
-                alert(error.data.message)
+                if (error.data.error.message)
+                {
+                    alert(error.data.error.message)
+                }
                 console.error(error)
             })
     }
