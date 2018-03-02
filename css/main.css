@@ -116,27 +116,27 @@ input:focus {
  */
  .StripeElement {
     background-color: white;
-    height: 36px;
-    padding: 6px 12px;
-    border: 2px solid transparent;
+    height: 34px;
+    padding: 7px 12px;
+    font-size: 14px;
+    border: 2px solid #ccc;
     box-shadow: 0 1px 3px 0 #e6ebf1;
     -webkit-transition: box-shadow 150ms ease;
     transition: box-shadow 150ms ease;
-  }
-  
-  .StripeElement--focus {
-      outline: none;
-      border: 2px #ffc600 solid !important;
-      -webkit-box-shadow: none !important;
-      -moz-box-shadow: none !important;
-      box-shadow: none !important;
-  }
-  
-  .StripeElement--invalid {
+}
+
+.StripeElement--focus {
+    outline: none;
+    border: 2px #ffc600 solid !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.StripeElement--invalid {
     border-color: #fa755a;
-  }
-  
-  .StripeElement--webkit-autofill {
+}
+
+.StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
-  }
-  
+}
