@@ -3,7 +3,12 @@ app.controller('RangeController', function ($scope, $uibModalInstance, range) {
     $scope.range = range
     
     $scope.ok = function () {
-        $uibModalInstance.close($scope.range);
+        if (moment($scope.range.InAt).isAfter(moment($scope.range.OutAt))) {
+            
+        }
+        else {
+            $uibModalInstance.close($scope.range);
+        }
     }
 
     $scope.cancel = function () {
