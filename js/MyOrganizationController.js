@@ -24,11 +24,11 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
     
     // Custom styling can be passed to options when creating an Element.
     var style = {
-    base: {
-        // Add your base input styles here. For example:
-        fontSize: '16px',
-        color: "#32325d",
-    }
+        base: {
+            // Add your base input styles here. For example:
+            fontSize: '16px',
+            color: "#32325d",
+        }
     };
 
     // Create an instance of the card Element.
