@@ -1,6 +1,6 @@
 app.controller('RangeController', function ($scope, $uibModalInstance, range) {
     $scope.datepicker = { InAt: {}, OutAt: {}, options: {} }
-    $scope.range = range
+    $scope.range = angular.copy(range)
     
     $scope.ok = function () {
         if (moment($scope.range.InAt).isAfter(moment($scope.range.OutAt))) {
