@@ -54,17 +54,18 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
         });
     });
 
-    function stripeTokenHandler(token) {
-        // Insert the token ID into the form so it gets submitted to the server
-        var form = document.getElementById('payment-form');
-        var hiddenInput = document.createElement('input');
-        hiddenInput.setAttribute('type', 'hidden');
-        hiddenInput.setAttribute('name', 'stripeToken');
-        hiddenInput.setAttribute('value', token.id);
-        form.appendChild(hiddenInput);
+    function stripeTokenHandler (token) {
+        var json = {
+            StripePaymentId: token.id
+        }
 
-        // Submit the form
-        form.submit();
+        $http.patch($rootScope.baseUrl + "odata/Organizations(" + $scope.organization.Id + ")", JSON.stringify(json))
+            .then(response => {
+                $scope.working = false
+            }, error => {
+                $scope.working = false
+                console.error(error)
+            })
     }
 
     // Scroll to top
