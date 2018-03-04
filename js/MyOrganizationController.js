@@ -37,26 +37,26 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
         }
     });
 
-    // Create a token or display an error when the form is submitted.
+    // Create a source or display an error when the form is submitted.
     var form = document.getElementById('payment-form');
     form.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        stripe.createToken(card).then(function(result) {
+        stripe.createSource(card).then(function(result) {
             if (result.error) {
                 // Inform the customer that there was an error.
                 var errorElement = document.getElementById('card-errors');
                 errorElement.textContent = result.error.message;
             } else {
-                // Send the token to your server.
-                stripeTokenHandler(result.token);
+                // Send the source to your server.
+                stripeSourceHandler(result.source);
             }
         });
     });
 
-    function stripeTokenHandler (token) {
+    function stripeSourceHandler (source) {
         var json = {
-            StripePaymentId: token.id
+            StripePaymentId: source.id
         }
 
         $http.patch($rootScope.baseUrl + "odata/Organizations(" + $scope.organization.Id + ")", JSON.stringify(json))
