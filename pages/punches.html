@@ -138,7 +138,7 @@
                     <button class="btn btn-sm btn-default" ng-click="punchesNext()" ng-show="punchesCount > 20"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
                 </div>
                 <div class="col-md-6 text-right">
-                    <p class="form-control-static">{{punchesStart()}} to {{punchesEnd()}} of {{punchesCount}}</p>
+                    <p class="form-control-static" ng-show="(punches.length == 0) && (!loading.punches)">{{punchesStart()}} to {{punchesEnd()}} of {{punchesCount}}</p>
                 </div>
             </div>
         </uib-tab>
