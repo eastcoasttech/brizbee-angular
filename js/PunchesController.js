@@ -5,6 +5,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     $scope.filters = { customer: {}, job: {}, task: {}, user: { users: [] } }
     $scope.loading = { commits: false, punches: false }
     $scope.punches = []
+    $scope.punchesPageStart = 0
     $scope.sortDirection = 1
     $scope.sortType = 'user_name'
     $scope.working = { commit: false }
@@ -28,6 +29,24 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
             }
         })
         return count
+    }
+    
+    $scope.punchesEnd = function () {
+        return $scope.punchesPageStart + 20 < $scope.punchesCount ? $scope.punchesPageStart + 20 : $scope.punchesCount;
+    };
+
+    $scope.punchesNext = function () {
+        $scope.punchesPageStart = $scope.punchesPageStart + 20
+        $scope.refreshPunches()
+    }
+    
+    $scope.punchesPrevious = function () {
+        $scope.punchesPageStart = $scope.punchesPageStart - 20
+        $scope.refreshPunches()
+    }
+
+    $scope.punchesStart = function () {
+        return $scope.punchesPageStart + 1
     }
 
     $scope.refreshCommits = function () {
@@ -58,9 +77,10 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         sortParameter[$scope.sortType] = $scope.sortDirection
         console.log(sortParameter)
 
-        $http.get($rootScope.baseUrl + "odata/Punches?$expand=User,Task($expand=Job($expand=Customer))&$filter=InAt ge " + moment($rootScope.range.InAt).format("YYYY-MM-DDT00:00:00Z") + " and InAt le " + moment($rootScope.range.OutAt).format("YYYY-MM-DDT23:59:59Z"))
+        $http.get($rootScope.baseUrl + "odata/Punches?$expand=User,Task($expand=Job($expand=Customer))&$top=20&$skip=" + $scope.punchesPageStart + "&$filter=InAt ge " + moment($rootScope.range.InAt).format("YYYY-MM-DDT00:00:00Z") + " and InAt le " + moment($rootScope.range.OutAt).format("YYYY-MM-DDT23:59:59Z"))
             .then(response => {
                 $scope.loading.punches = false
+                $scope.punchesCount = response.data["@odata.count"]
                 $scope.punches = response.data.value
             }, error => {
                 $scope.loading.punches = false
