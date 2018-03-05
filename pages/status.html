@@ -25,7 +25,7 @@
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{current.user.Name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#!/my/user">Account Details</a></li>
-                        <li><a href="#!/my/organization">Organization Details</a></li>
+                        <li ng-show="current.user.Role == 'Administrator'"><a href="#!/my/organization">Organization Details</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="" ng-click="logout()">Sign Out</a></li>
                     </ul>
