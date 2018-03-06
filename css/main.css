@@ -117,6 +117,15 @@ input.form-control {
     transition: box-shadow 150ms ease;
 }
 
+ol.getting-started {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+ol.getting-started li {
+    margin-bottom: 15px;
+}
+
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
  * how you can use CSS to style your Element's container.
