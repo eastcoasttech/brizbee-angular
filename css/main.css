@@ -118,7 +118,8 @@ input.form-control {
 }
 
 ol.getting-started {
-    font-size: 30px;
+    margin-top: 30px;
+    font-size: 25px;
     font-weight: bold;
 }
 
