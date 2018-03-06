@@ -199,8 +199,8 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         });
         
         instance.result
-            .then((msg) => {
-                console.log(msg)
+            .then((range) => {
+                $rootScope.range = range
                 $scope.refreshPunches()
             }, () => {
                 console.log('dismissed')
