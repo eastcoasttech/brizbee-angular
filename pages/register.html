@@ -32,6 +32,7 @@
                         <div class="form-group">
                             <label>Your Company Name</label>
                             <input type="text" class="form-control" ng-model="organization.Name" ng-disabled="working.register" required />
+                            <p class="help-block">Ex. Martin Corporation, Bill's Auto Shop, First Baptist Church.</p>
                         </div>
                         <!-- <div class="form-group">
                             <label>Number</label>
@@ -40,6 +41,7 @@
                         <div class="form-group">
                             <label>Password</label>
                             <input type="password" class="form-control" ng-model="user.Password" ng-disabled="working.register" required />
+                            <p class="help-block">Must be 8+ characters and include both numbers and letters.</p>
                         </div>
                         <button type="submit" class="btn btn-primary" ng-disabled="working.register">Save and Start Tracking Time <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.register"></i></button>
                     </form>
