@@ -11,21 +11,26 @@
                 <div class="panel-body">
                     <form ng-submit="register()" ng-show="show.success == false">
                         <div class="form-group">
-                            <input type="email" class="form-control" id="user_email_address" placeholder="Email Address" ng-model="user.EmailAddress" ng-disabled="working.register" />
+                            <label>Email Address</label>
+                            <input type="email" class="form-control" id="user_email_address" ng-model="user.EmailAddress" ng-disabled="working.register" required />
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Full Name" ng-model="user.Name" ng-disabled="working.register" />
+                            <label>Your Name</label>
+                            <input type="text" class="form-control" ng-model="user.Name" ng-disabled="working.register" required />
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Company Name" ng-model="organization.Name" ng-disabled="working.register" />
+                            <label>Your Company Name</label>
+                            <input type="text" class="form-control" ng-model="organization.Name" ng-disabled="working.register" required />
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
+                            <label>Number</label>
                             <input type="text" class="form-control" placeholder="Company Code" ng-model="organization.Code" ng-disabled="working.register" />
-                        </div>
+                        </div> -->
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" ng-model="user.Password" ng-disabled="working.register" />
+                            <label>Password</label>
+                            <input type="password" class="form-control" ng-model="user.Password" ng-disabled="working.register" required />
                         </div>
-                        <button type="submit" class="btn btn-primary" ng-disabled="working.register">Save and Continue <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.register"></i></button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="working.register">Save and Start Tracking Time <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.register"></i></button>
                     </form>
 
                     <p class="text-center" ng-show="show.success == true">
