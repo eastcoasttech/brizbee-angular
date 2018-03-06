@@ -61,12 +61,13 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="card-element">
-                        {{organization.StripeSourceCardBrand}} *{{organization.StripeSourceCardLast4}} expires {{organization.StripeSourceCardExpirationMonth}} &ndash; {{organization.StripeSourceCardExpirationYear}}
+                        Current Card
                     </label>
+                    <p>{{organization.StripeSourceCardBrand}} *{{organization.StripeSourceCardLast4}} expires {{organization.StripeSourceCardExpirationMonth}} &ndash; {{organization.StripeSourceCardExpirationYear}}</p>
                 </div>
                 <div class="form-group">
                     <label for="card-element">
-                        Credit or Debit Card
+                        Update Credit or Debit Card
                     </label>
                     <div id="card-element">
                         <!-- A Stripe Element will be inserted here. -->
