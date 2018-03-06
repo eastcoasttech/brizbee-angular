@@ -56,7 +56,7 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
 
     function stripeSourceHandler (source) {
         var json = {
-            StripePaymentId: source.id
+            StripeSourceId: source.id
         }
 
         $http.patch($rootScope.baseUrl + "odata/Organizations(" + $scope.organization.Id + ")", JSON.stringify(json))
