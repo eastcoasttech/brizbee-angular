@@ -41,29 +41,36 @@
             <div class="panel panel-default panel-status">
                 <div class="panel-body">
                     <h3 class="text-center"><small>Hello</small><br />{{current.user.Name}}</h3>
-                    <div ng-show="current.punch">
-                        <p class="text-center" style="text-transform: uppercase;">You are <span class="text-success"><strong>PUNCHED IN</strong></span></p>
-                        <p class="text-center" style="text-transform: uppercase;"><small>on job</small><br /><strong>{{current.punch.Task.Job.Number}} &ndash; {{current.punch.Task.Job.Name}}</strong></p>
-                        <p class="text-center" style="text-transform: uppercase;"><small>for customer</small><br /><strong>{{current.punch.Task.Job.Customer.Number}} &ndash; {{current.punch.Task.Job.Customer.Name}}</strong></p>
-                        <p class="text-center" style="text-transform: uppercase;"><small>doing task</small><br /><strong>{{current.punch.Task.Number}} &ndash; {{current.punch.Task.Name}}</strong></p>
-                        <p class="text-center" style="text-transform: uppercase;"><small>since {{showMomentDate(current.punch.CreatedAt, 'MMM D, YYYY h:mm a')}}</small></p>
+
+                    <div class="text-center" ng-show="working.status">
+                        <i class="fa fa-spinner fa-spin fa-fw"></i>
                     </div>
-                    <div ng-show="!current.punch">
-                        <p class="text-center">You are not currently punched in.</p>
+
+                    <div ng-show="!working.status">
+                        <div ng-show="current.punch">
+                            <p class="text-center" style="text-transform: uppercase;">You are <span class="text-success"><strong>PUNCHED IN</strong></span></p>
+                            <p class="text-center" style="text-transform: uppercase;"><small>on job</small><br /><strong>{{current.punch.Task.Job.Number}} &ndash; {{current.punch.Task.Job.Name}}</strong></p>
+                            <p class="text-center" style="text-transform: uppercase;"><small>for customer</small><br /><strong>{{current.punch.Task.Job.Customer.Number}} &ndash; {{current.punch.Task.Job.Customer.Name}}</strong></p>
+                            <p class="text-center" style="text-transform: uppercase;"><small>doing task</small><br /><strong>{{current.punch.Task.Number}} &ndash; {{current.punch.Task.Name}}</strong></p>
+                            <p class="text-center" style="text-transform: uppercase;"><small>since {{showMomentDate(current.punch.CreatedAt, 'MMM D, YYYY h:mm a')}}</small></p>
+                        </div>
+                        <div ng-show="!current.punch">
+                            <p class="text-center">You are not currently punched in.</p>
+                        </div>
+                        <table class="table table-noborder">
+                            <tbody>
+                                <tr>
+                                    <td><a href="#!/in/job" class="btn btn-block btn-lg btn-success">Punch In</a></td>
+                                </tr>
+                                <tr ng-show="current.punch">
+                                    <td><a href="#!/out/confirm" class="btn btn-block btn-lg btn-danger">Punch Out</a></td>
+                                </tr>
+                                <tr>
+                                    <td><button type="button" class="btn btn-block btn-lg btn-default" ng-click="logout()">Exit</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <table class="table table-noborder">
-                        <tbody>
-                            <tr>
-                                <td><a href="#!/in/job" class="btn btn-block btn-lg btn-success">Punch In</a></td>
-                            </tr>
-                            <tr ng-show="current.punch">
-                                <td><a href="#!/out/confirm" class="btn btn-block btn-lg btn-danger">Punch Out</a></td>
-                            </tr>
-                            <tr>
-                                <td><button type="button" class="btn btn-block btn-lg btn-default" ng-click="logout()">Exit</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
