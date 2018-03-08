@@ -55,7 +55,7 @@
                             <p class="text-center" style="text-transform: uppercase;"><small>since {{showMomentDate(current.punch.CreatedAt, 'MMM D, YYYY h:mm a')}}</small></p>
                         </div>
                         <div ng-show="!current.punch">
-                            <p class="text-center">You are not currently punched in.</p>
+                            <p class="text-center" style="text-transform: uppercase;">You are <span class="text-danger"><strong>PUNCHED OUT</strong></span></p>
                         </div>
                         <table class="table table-noborder">
                             <tbody>
