@@ -46,7 +46,7 @@
                         <p class="text-center" style="text-transform: uppercase;">on job <strong>{{current.punch.Task.Job.Number}} &ndash; {{current.punch.Task.Job.Name}}</strong></p>
                         <p class="text-center" style="text-transform: uppercase;">for customer <strong>{{current.punch.Task.Job.Customer.Number}} &ndash; {{current.punch.Task.Job.Customer.Name}}</strong></p>
                         <p class="text-center" style="text-transform: uppercase;">doing task <strong>{{current.punch.Task.Number}} &ndash; {{current.punch.Task.Name}}</strong></p>
-                        <p class="text-center" style="text-transform: uppercase;">since {{current.punch.CreatedAt}}</p>
+                        <p class="text-center" style="text-transform: uppercase;">since {{showMomentDate(current.punch.CreatedAt, 'YYYY-MM-DD h:mm a')}}</p>
                     </div>
                     <div ng-show="!current.punch">
                         <p class="text-center">You are not currently punched in.</p>
