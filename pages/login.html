@@ -13,7 +13,7 @@
 
     <div class="row" style="margin-top: 20px;">
         <div class="col-md-4">
-            <div class="panel panel-default">
+            <div class="panel panel-default" ng-show="method == 'pin'">
                 <div class="panel-heading">Login with Your PIN</div>
                 <div class="panel-body">
                     <form ng-submit="loginWithPin()">
@@ -27,10 +27,8 @@
                     </form>
                 </div>
             </div>
-
-            <p class="text-center" style="margin: 0 0 17px 0; padding: 0; font-size: 1.25em; line-height: 1.25em;">OR</p>
-
-            <div class="panel panel-default">
+            
+            <div class="panel panel-default" ng-show="method == 'email'">
                 <div class="panel-heading">Login with Email Address</div>
                 <div class="panel-body">
                     <form ng-submit="loginWithEmail()">
@@ -46,6 +44,9 @@
                     </form>
                 </div>
             </div>
+
+            <p class="text-right" ng-show="method == 'pin'" ng-click="showMethod('email')">Login with Email address instead.</p>
+            <p class="text-right" ng-show="method == 'email'" ng-click="showMethod('pin')">Login with PIN Number instead.</p>
         </div>
         <div class="col-md-4">
             <p class="text-center" style="margin-top: 50px;">

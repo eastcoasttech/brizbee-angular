@@ -12,8 +12,9 @@ $.urlParam = function(name){
 
 app.controller('LoginController', function ($http, $location, $rootScope, $routeParams, $scope, $window) {
     $scope.alert = {}
-    $scope.user = {}
+    $scope.method = "email"
     $scope.organization = {}
+    $scope.user = {}
     $scope.working = { login: false }
 
     $scope.loginWithEmail = function () {
@@ -95,6 +96,10 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                 $scope.working.login = false
                 console.error(error)
             })
+    }
+
+    $scope.showMethod = function (method) {
+        $scope.method = method
     }
     
     // Confirm the Email address if the proper parameters are passed
