@@ -12,7 +12,7 @@ $.urlParam = function(name){
 
 app.controller('LoginController', function ($http, $location, $rootScope, $routeParams, $scope, $window) {
     $scope.alert = {}
-    $scope.method = "email"
+    $scope.method = "pin"
     $scope.organization = {}
     $scope.user = {}
     $scope.working = { login: false }
