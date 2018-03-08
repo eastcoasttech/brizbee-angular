@@ -132,7 +132,13 @@ ol.getting-started li {
 }
 
 .panel-status p {
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 20px;
+}
+
+.panel-status p small {
+    font-size: 12px;
 }
 
 /**
