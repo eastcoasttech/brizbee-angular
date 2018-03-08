@@ -127,6 +127,14 @@ ol.getting-started li {
     margin-bottom: 12px;
 }
 
+.panel-status h3 {
+    font-weight: bold;
+}
+
+.panel-status p {
+    font-size: 18px;
+}
+
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
  * how you can use CSS to style your Element's container.
