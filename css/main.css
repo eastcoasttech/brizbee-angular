@@ -118,13 +118,13 @@ input.form-control {
 }
 
 ol.getting-started {
-    margin-top: 30px;
+    margin-top: 25px;
     font-size: 25px;
     font-weight: bold;
 }
 
 ol.getting-started li {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 /**

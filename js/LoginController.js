@@ -11,6 +11,7 @@ $.urlParam = function(name){
 }
 
 app.controller('LoginController', function ($http, $location, $rootScope, $routeParams, $scope, $window) {
+    $scope.alert = {}
     $scope.user = {}
     $scope.organization = {}
     $scope.working = { login: false }
@@ -51,6 +52,7 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                 $location.path('/status')
             }, error => {
                 $scope.working.login = false
+                $scope.alert.login = error.data.error.message
                 console.error(error)
             })
     }
