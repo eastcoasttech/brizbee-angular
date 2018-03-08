@@ -52,7 +52,7 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                 $location.path('/status')
             }, error => {
                 $scope.working.login = false
-                $scope.alert.login = error.data.error.message
+                $scope.alert.login = error
                 console.error(error)
             })
     }
