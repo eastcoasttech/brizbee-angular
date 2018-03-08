@@ -42,10 +42,11 @@
                 <div class="panel-body">
                     <h3 class="text-center"><small>Hello</small><br />{{current.user.Name}}</h3>
                     <div ng-show="current.punch">
-                        <p class="text-center">You are <span class="text-success"><strong>IN</strong></span>.</p>
-                        <p class="text-center">on job <strong>{{current.punch.Task.Job.Number}} &ndash; {{current.punch.Task.Job.Name}}</strong></p>
-                        <p class="text-center">for customer <strong>{{current.punch.Task.Job.Customer.Number}} &ndash; {{current.punch.Task.Job.Customer.Name}}</strong></p>
-                        <p class="text-center">doing task <strong>{{current.punch.Task.Number}} &ndash; {{current.punch.Task.Name}}</strong></p>
+                        <p class="text-center" style="text-transform: uppercase;">You are <span class="text-success"><strong>IN</strong></span></p>
+                        <p class="text-center" style="text-transform: uppercase;">on job <strong>{{current.punch.Task.Job.Number}} &ndash; {{current.punch.Task.Job.Name}}</strong></p>
+                        <p class="text-center" style="text-transform: uppercase;">for customer <strong>{{current.punch.Task.Job.Customer.Number}} &ndash; {{current.punch.Task.Job.Customer.Name}}</strong></p>
+                        <p class="text-center" style="text-transform: uppercase;">doing task <strong>{{current.punch.Task.Number}} &ndash; {{current.punch.Task.Name}}</strong></p>
+                        <p class="text-center" style="text-transform: uppercase;">since {{current.punch.CreatedAt}}</p>
                     </div>
                     <div ng-show="!current.punch">
                         <p class="text-center">You are not currently punched in.</p>
