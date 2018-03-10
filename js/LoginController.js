@@ -98,7 +98,7 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
             })
     }
 
-    $scope.showMethod = function (method) {
+    $scope.showMethod = function (event, method) {
         $scope.method = method
 
         if ($scope.method == "email") {
@@ -108,6 +108,8 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
             $window.document.getElementById("session_pin_organization_code").focus()
             $window.document.getElementById("session_pin_organization_code").select()
         }
+
+        event.preventDefault()
     }
     
     // Confirm the Email address if the proper parameters are passed

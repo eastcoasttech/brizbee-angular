@@ -51,8 +51,8 @@
                 </div>
             </div>
 
-            <p class="text-right" ng-show="method == 'pin'"><a href="" ng-click="showMethod('email')">Login with Email address Instead</a></p>
-            <p class="text-right" ng-show="method == 'email'"><a href="" ng-click="showMethod('pin')">Login with PIN Number Instead</a></p>
+            <p class="text-right" ng-show="method == 'pin'"><a href="" ng-click="showMethod($event, 'email')">Login with Email address Instead</a></p>
+            <p class="text-right" ng-show="method == 'email'"><a href="" ng-click="showMethod($event, 'pin')">Login with PIN Number Instead</a></p>
 
             <p class="text-center" style="margin-top: 50px;">
                 Don't have an account?
