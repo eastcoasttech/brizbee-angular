@@ -13,6 +13,7 @@ app.controller('StatusController', function ($http, $rootScope, $scope, $window)
                 }
             }, error => {
                 console.error(error)
+                $scope.working.status = false
             })
     };
 
