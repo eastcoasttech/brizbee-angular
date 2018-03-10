@@ -4,9 +4,9 @@ app.controller('InTaskController', function ($http, $location, $rootScope, $scop
 
     $scope.searchTasks = function () {
         $scope.working.search = true
-        $http.get($rootScope.baseUrl + "odata/Tasks?$filter=Number eq '" + $scope.task.Number + "'&$limit=1")
+        $http.get($rootScope.baseUrl + "odata/Tasks?$filter=Number eq '" + $scope.task.Number + "'")
             .then(response => {
-                $rootScope.selected.task = response.data
+                $rootScope.selected.task = response.data[0]
                 $location.path('/in/confirm')
             }, error => {
                 $scope.working.search = false
