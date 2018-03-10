@@ -133,12 +133,15 @@ ol.getting-started li {
 }
 
 .panel-status p {
-    font-size: 16px;
-    line-height: 22px;
     margin-bottom: 15px;
 }
 
-.panel-status p small {
+.panel-kiosk p {
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.panel-kiosk p small {
     font-size: 12px;
 }
 

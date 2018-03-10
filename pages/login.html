@@ -20,14 +20,14 @@
             <div class="panel panel-default panel-login" ng-show="method == 'pin'">
                 <div class="panel-heading">Login with Your PIN</div>
                 <div class="panel-body">
-                    <form ng-submit="loginWithPin()">
+                    <form name="pinForm" ng-submit="loginWithPin()" novalidate>
                         <div class="form-group">
                             <input type="text" class="form-control" id="session_pin_organization_code" placeholder="Organization Code" ng-model="session.PinOrganizationCode" ng-disabled="working.login" />
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" placeholder="PIN Number" ng-model="session.PinUserPin" ng-disabled="working.login" />
                         </div>
-                        <button type="submit" class="btn btn-primary" ng-disabled="working.login">Login <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.login"></i></button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="working.login || pinForm.$invalid">Login <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.login"></i></button>
                     </form>
                 </div>
             </div>
@@ -35,14 +35,16 @@
             <div class="panel panel-default panel-login" ng-show="method == 'email'">
                 <div class="panel-heading">Login with Email Address</div>
                 <div class="panel-body">
-                    <form ng-submit="loginWithEmail()">
+                    <form name="emailForm" ng-submit="loginWithEmail()" novalidate>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="session_email_address" placeholder="Email Address" ng-model="session.EmailAddress" ng-disabled="working.login" />
+                            <input name="email_email_address" type="email" class="form-control" id="session_email_address" placeholder="Email Address" ng-model="session.EmailAddress" required ng-disabled="working.login" />
+                            <p ng-show="emailForm.email_email_address.$invalid && !emailForm.email_email_address.$pristine" class="help-block">Your Email address is required.</p>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" ng-model="session.EmailPassword" ng-disabled="working.login" />
+                            <input name="email_password" type="password" class="form-control" placeholder="Password" ng-model="session.EmailPassword" required ng-disabled="working.login" />
+                            <p ng-show="emailForm.email_password.$invalid && !emailForm.email_password.$pristine" class="help-block">Your password is required.</p>
                         </div>
-                        <button type="submit" class="btn btn-primary" ng-disabled="working.login">Login <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.login"></i></button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="working.login || emailForm.$invalid">Login <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.login"></i></button>
                         <a href="#!/reset" class="btn btn-default" ng-disabled="working.login">Reset Password</a>
                         <p class="text-danger" ng-show="alert.login">{{alert.login}}</p>
                     </form>
