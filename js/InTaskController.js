@@ -4,7 +4,7 @@ app.controller('InTaskController', function ($http, $location, $rootScope, $scop
 
     $scope.searchTasks = function () {
         $scope.working.search = true
-        $http.get($rootScope.baseUrl + "odata/Tasks(" + $scope.task.Id + ")")
+        $http.get($rootScope.baseUrl + "odata/Tasks?$filter=Number eq '" + $scope.task.Number + "'&$limit=1")
             .then(response => {
                 $rootScope.selected.task = response.data
                 $location.path('/in/confirm')
@@ -15,6 +15,6 @@ app.controller('InTaskController', function ($http, $location, $rootScope, $scop
     };
 
     // Focus on task number input and scroll to top
-    $window.document.getElementById("task_id").focus()
+    $window.document.getElementById("task_number").focus()
     $window.scrollTo(0, 0)
 });

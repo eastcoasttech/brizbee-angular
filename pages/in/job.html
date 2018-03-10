@@ -39,11 +39,11 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-12 col-xs-12">
             <div class="panel panel-default panel-kiosk">
-                <div class="panel-heading"><h2>What is your Job Id?</h2></div>
+                <div class="panel-heading"><h2>What is your Job Number?</h2></div>
                 <div class="panel-body">
                     <form ng-submit="searchJobs()">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="job_id" placeholder="Job Id" ng-model="job.Id" ng-disabled="working.search" autocomplete="off" autofocus />
+                            <input type="text" class="form-control" id="job_number" placeholder="Job Number" ng-model="job.Number" ng-disabled="working.search" autocomplete="off" autofocus />
                         </div>
                         <button type="submit" class="btn btn-block btn-lg btn-primary" ng-disabled="working.search">Continue</button>
                         <a href="#!/status" class="btn btn-block btn-lg btn-default">Cancel</a>
