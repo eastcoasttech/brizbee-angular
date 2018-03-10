@@ -100,6 +100,14 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
 
     $scope.showMethod = function (method) {
         $scope.method = method
+
+        if ($scope.method == "email") {
+            $window.document.getElementById("session_email_address").focus()
+            $window.document.getElementById("session_email_address").select()
+        } else {
+            $window.document.getElementById("session_pin_organization_code").focus()
+            $window.document.getElementById("session_pin_organization_code").select()
+        }
     }
     
     // Confirm the Email address if the proper parameters are passed
