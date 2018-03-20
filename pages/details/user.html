@@ -24,6 +24,11 @@
                     <label>Pin Number</label>
                     <input type="text" class="form-control" ng-model="user.Pin" ng-disabled="working.save" />
                 </div>
+                <div class="form-group">
+                    <label>QuickBooks Employee</label>
+                    <input type="text" class="form-control" ng-model="user.QuickBooksEmployee" ng-disabled="working.save" />
+                    <p class="help-block">Must match the Employee in QuickBooks *exactly*</p>
+                </div>
                 <hr />
                 <p ng-show="!show.changePassword">
                     <a href="" ng-click="show.changePassword = true">Change Password</a>

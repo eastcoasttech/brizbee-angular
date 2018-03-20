@@ -31,7 +31,8 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
         var json = {
             Name: $scope.user.Name,
             Role: $scope.user.Role,
-            Pin: $scope.user.Pin
+            Pin: $scope.user.Pin,
+            QuickBooksEmployee: $scope.user.QuickBooksEmployee
         }
 
         // Changing password is optional
@@ -53,7 +54,8 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
             Name: $scope.user.Name,
             Role: $scope.user.Role,
             Pin: $scope.user.Pin,
-            Password: $scope.user.Password
+            Password: $scope.user.Password,
+            QuickBooksEmployee: $scope.user.QuickBooksEmployee
         }
 
         $http.post($rootScope.baseUrl + "odata/Users", JSON.stringify(json))

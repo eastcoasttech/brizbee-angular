@@ -28,7 +28,9 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     $scope.saveExistingTask = function () {
         var json = {
             Name: $scope.task.Name,
-            Number: $scope.task.Number
+            Number: $scope.task.Number,
+            QuickBooksPayrollItem: $scope.task.QuickBooksPayrollItem,
+            QuickBooksServiceItem: $scope.task.QuickBooksServiceItem
         }
 
         $http.patch($rootScope.baseUrl + "odata/Tasks(" + $scope.task.Id + ")", JSON.stringify(json))
@@ -43,7 +45,9 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
         var json = {
             JobId: job.Id,
             Name: $scope.task.Name,
-            Number: $scope.task.Number
+            Number: $scope.task.Number,
+            QuickBooksPayrollItem: $scope.task.QuickBooksPayrollItem,
+            QuickBooksServiceItem: $scope.task.QuickBooksServiceItem
         }
 
         $http.post($rootScope.baseUrl + "odata/Tasks", JSON.stringify(json))
