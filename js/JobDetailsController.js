@@ -30,7 +30,8 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
     $scope.saveExistingJob = function () {
         var json = {
             Name: $scope.job.Name,
-            Number: $scope.job.Number
+            Number: $scope.job.Number,
+            QuickBooksCustomerJob: $scope.job.QuickBooksCustomerJob
         }
 
         $http.patch($rootScope.baseUrl + "odata/Jobs(" + $scope.job.Id + ")", JSON.stringify(json))
@@ -45,7 +46,8 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
         var json = {
             CustomerId: customer.Id,
             Name: $scope.job.Name,
-            Number: $scope.job.Number
+            Number: $scope.job.Number,
+            QuickBooksCustomerJob: $scope.job.QuickBooksCustomerJob
         }
 
         $http.post($rootScope.baseUrl + "odata/Jobs", JSON.stringify(json))
