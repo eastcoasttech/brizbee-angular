@@ -1,9 +1,28 @@
 app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal, $window) {
     $scope.customers = []
+    $scope.customersPageStart = 0
     $scope.jobs = []
     $scope.loading = { customers: false, jobs: false, tasks: false }
     $scope.selected = {}
     $scope.tasks = []
+
+    $scope.customersEnd = function () {
+        return $scope.customersPageStart + 20 < $scope.customersCount ? $scope.customersPageStart + 20 : $scope.customersCount;
+    };
+
+    $scope.customersNext = function () {
+        $scope.customersPageStart = $scope.customersPageStart + 20
+        $scope.refreshCustomers()
+    }
+    
+    $scope.customersPrevious = function () {
+        $scope.customersPageStart = $scope.customersPageStart - 20
+        $scope.refreshCustomers()
+    }
+
+    $scope.customersStart = function () {
+        return $scope.customersPageStart + 1
+    }
 
     $scope.refreshCustomers = function () {
         $scope.customers = []
