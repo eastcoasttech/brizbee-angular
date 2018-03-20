@@ -27,9 +27,10 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
     $scope.refreshCustomers = function () {
         $scope.customers = []
         $scope.loading.customers = true
-        $http.get($rootScope.baseUrl + "odata/Customers?$orderby=Number")
+        $http.get($rootScope.baseUrl + "odata/Customers?$orderby=Number&$top=20&$skip=" + $scope.customersPageStart)
             .then(response => {
                 $scope.loading.customers = false
+                $scope.customersCount = response.data["@odata.count"]
                 $scope.customers = response.data.value
             }, error => {
                 $scope.loading.customers = false
