@@ -120,6 +120,16 @@
                     </tr>
                 </tbody>
             </table>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-sm btn-default" ng-click="jobsPrevious()" ng-show="jobsCount > 20"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                    <button class="btn btn-sm btn-default" ng-click="jobsNext()" ng-show="jobsCount > 20"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p class="form-control-static" ng-hide="(jobs.length == 0) && (!loading.jobs)">{{jobsStart()}} to {{jobsEnd()}} of {{jobsCount}}</p>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="row row-toolbar">
@@ -158,6 +168,16 @@
                     </tr>
                 </tbody>
             </table>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-sm btn-default" ng-click="tasksPrevious()" ng-show="tasksCount > 20"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                    <button class="btn btn-sm btn-default" ng-click="tasksNext()" ng-show="tasksCount > 20"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p class="form-control-static" ng-hide="(tasks.length == 0) && (!loading.tasks)">{{tasksStart()}} to {{tasksEnd()}} of {{tasksCount}}</p>
+                </div>
+            </div>
         </div>
     </div>
     
