@@ -182,7 +182,6 @@ ol.getting-started li {
 
 
 footer {
-    border-top: solid 1px #000;
-    background-color: #444;
+    border-top: solid 1px #444;
     padding: 26px 0 20px 0;
 }
