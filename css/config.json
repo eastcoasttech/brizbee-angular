@@ -8,7 +8,7 @@
     "@gray-lighter": "lighten(@gray-base, 93.5%)",
     "@brand-primary": "#444",
     "@brand-success": "#71c837",
-    "@brand-info": "#edbe00",
+    "@brand-info": "#dbae00",
     "@brand-warning": "#ff6600",
     "@brand-danger": "#ff0000",
     "@body-bg": "#fff",
