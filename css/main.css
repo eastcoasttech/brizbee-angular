@@ -189,3 +189,7 @@ footer {
 a:link {
     text-decoration: underline;
 }
+
+a.btn:link {
+    text-decoration: underline;
+}
