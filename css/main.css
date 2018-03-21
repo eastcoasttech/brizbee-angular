@@ -12,26 +12,6 @@ body {
     margin-bottom: 5%;
 }
 
-.btn-green {
-    background-color: green;
-    color: white;
-}
-
-    .btn-green:hover {
-        background-color: lightgreen;
-        color: white;
-    }
-
-.btn-red {
-    background-color: red;
-    color: white;
-}
-
-    .btn-red:hover {
-        background-color: lightcoral;
-        color: white;
-    }
-
 table.table-noborder {
     border: none;
 }
@@ -82,10 +62,6 @@ input:focus {
 .row-toolbar {
     margin-bottom: 10px;
 }
-
-/* a:hover, a:focus, a:active {
-    text-decoration: none;
-} */
 
 .btn {
     text-transform: uppercase;
