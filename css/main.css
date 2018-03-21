@@ -8,6 +8,10 @@ body {
         overflow-y: scroll;
     }
 
+.navbar-default {
+    margin-bottom: 5%;
+}
+
 .btn-green {
     background-color: green;
     color: white;
@@ -184,6 +188,7 @@ ol.getting-started li {
 footer {
     border-top: solid 1px #ddd;
     padding: 26px 0 20px 0;
+    margin-top: 5%;
 }
 
 a:link {
