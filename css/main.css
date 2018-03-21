@@ -179,3 +179,10 @@ ol.getting-started li {
 .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
 }
+
+
+footer {
+    border-top: solid 1px #000;
+    background-color: #444;
+    padding: 10px 0 10px 0;
+}
