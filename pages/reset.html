@@ -19,13 +19,14 @@
                 <div class="panel-heading">Reset Password</div>
                 <div class="panel-body">
                     <form name="emailForm" ng-submit="sendResetEmail()" novalidate>
-                        <p>We will send an Email with a link to reset your password. Please provide us with the Email address for your account.</p>
+                        <p>We will send you an Email with a link to reset your password. Please provide us with the Email address for your account.</p>
                         <div class="form-group">
                             <input name="email_email_address" type="email" class="form-control" id="session_email_address" placeholder="Email Address" ng-model="session.EmailAddress" required ng-disabled="working.login" />
                             <p ng-show="emailForm.email_email_address.$invalid && !emailForm.email_email_address.$pristine" class="help-block">Your Email address is required.</p>
                         </div>
                         <button type="submit" class="btn btn-primary" ng-disabled="working.login || emailForm.$invalid">Send Reset Email <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.login"></i></button>
                         <p class="text-danger" ng-show="alert.login">{{alert.login}}</p>
+                        <div class="g-recaptcha" data-sitekey="6LckBk4UAAAAAKdTPZps6_azZZc5jxwufXRg16N2"></div>
                     </form>
                 </div>
             </div>
