@@ -8,7 +8,7 @@ body {
         overflow-y: scroll;
     }
 
-.navbar-default {
+.navbar {
     margin-bottom: 5%;
 }
 
@@ -175,6 +175,6 @@ a:hover {
     text-decoration: none;
 }
 
-a.btn:link {
+a.btn:link, .navbar a:link {
     text-decoration: none;
 }
