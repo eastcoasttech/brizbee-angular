@@ -190,6 +190,10 @@ a:link {
     text-decoration: underline;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 a.btn:link {
     text-decoration: none;
 }
