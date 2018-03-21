@@ -26,30 +26,30 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Sign Up for BRIZBEE</div>
                 <div class="panel-body">
-                    <form ng-submit="register()" ng-show="show.success == false">
+                    <form name="registerForm" ng-submit="register()" ng-show="show.success == false" novalidate>
                         <div class="form-group">
                             <label>Email Address</label>
-                            <input type="email" class="form-control" id="user_email_address" ng-model="user.EmailAddress" ng-disabled="working.register" required />
+                            <input type="email" name="user_email_address" class="form-control" id="user_email_address" ng-model="user.EmailAddress" ng-disabled="working.register" required />
+                            <p ng-show="registerForm.user_email_address.$invalid && !registerForm.user_email_address.$dirty" class="help-block">Your Email address is required.</p>
                         </div>
                         <div class="form-group">
                             <label>Your Name</label>
-                            <input type="text" class="form-control" ng-model="user.Name" ng-disabled="working.register" required />
+                            <input type="text" name="user_name" class="form-control" ng-model="user.Name" ng-disabled="working.register" required />
+                            <p ng-show="registerForm.user_name.$invalid && !registerForm.user_name.$dirty" class="help-block">Your name is required.</p>
                         </div>
                         <div class="form-group">
                             <label>Your Company Name</label>
-                            <input type="text" class="form-control" ng-model="organization.Name" ng-disabled="working.register" required />
+                            <input type="text" name="user_organization_name" class="form-control" ng-model="organization.Name" ng-disabled="working.register" required />
                             <p class="help-block">Ex. Martin Corporation, Bill's Auto Shop, First Baptist Church.</p>
+                            <p ng-show="registerForm.user_organization_name.$invalid && !registerForm.user_organization_name.$dirty" class="help-block">You must provide the name of your company or organization.</p>
                         </div>
-                        <!-- <div class="form-group">
-                            <label>Number</label>
-                            <input type="text" class="form-control" placeholder="Company Code" ng-model="organization.Code" ng-disabled="working.register" />
-                        </div> -->
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control" ng-model="user.Password" ng-disabled="working.register" required ng-minlength="8" />
+                            <input type="password" name="user_password" class="form-control" ng-model="user.Password" ng-disabled="working.register" required ng-minlength="8" />
                             <p class="help-block">Must be 8+ characters and include both numbers and letters.</p>
+                            <p ng-show="registerForm.user_password.$invalid && !registerForm.user_password.$dirty" class="help-block">A valid password is required.</p>
                         </div>
-                        <button type="submit" class="btn btn-primary" ng-disabled="working.register">Save and Start Tracking Time <i class="fa fa-arrow-circle-o-right" aria-hidden="true" ng-hide="working.register"></i><i class="fa fa-spinner fa-spin fa-fw" ng-show="working.register"></i></button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="working.register || registerForm.$invalid">Save and Start Tracking Time <i class="fa fa-arrow-circle-o-right" aria-hidden="true" ng-hide="working.register"></i><i class="fa fa-spinner fa-spin fa-fw" ng-show="working.register"></i></button>
                     </form>
 
                     <p class="text-center" ng-show="show.success == true">
