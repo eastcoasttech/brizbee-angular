@@ -1,0 +1,45 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+                <img alt="BRIZBEE Logo" src="/images/logo-32x32.png" style="height: 22px;">
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row" style="margin-top: 7%; margin-bottom: 7%;">
+        <div class="col-md-4 col-md-offset-4">
+            <p class="text-center" style="margin-bottom: 20%;">
+                <img src="../images/logo.png" alt="Brizby Logo" style="width: 70%;" />
+            </p>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">Reset Password</div>
+                <div class="panel-body">
+                    <form name="emailForm" ng-submit="sendResetEmail()" novalidate>
+                        <p>We will send an Email with a link to reset your password. Please provide us with the Email address for your account.</p>
+                        <div class="form-group">
+                            <input name="email_email_address" type="email" class="form-control" id="session_email_address" placeholder="Email Address" ng-model="session.EmailAddress" required ng-disabled="working.login" />
+                            <p ng-show="emailForm.email_email_address.$invalid && !emailForm.email_email_address.$pristine" class="help-block">Your Email address is required.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary" ng-disabled="working.login || emailForm.$invalid">Send Reset Email <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.login"></i></button>
+                        <p class="text-danger" ng-show="alert.login">{{alert.login}}</p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p class="text-right">
+            <a href="https://www.brizbee.com/getting-started.html" style="margin-right: 5px;">Getting Started</a>
+            <a href="https://www.brizbee.com/help.html" style="margin-right: 10px;">Help and Support</a>
+            <span class="text-muted">&copy; 2017 East Coast Technology Services, LLC</span>
+        </p>
+    </div>
+</footer>

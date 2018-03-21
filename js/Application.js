@@ -54,6 +54,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/pages/register.html',
             controller: 'RegisterController'
         }).
+        when('/reset', {
+            templateUrl: '/pages/reset.html',
+            controller: 'ResetController'
+        }).
         when('/setup', {
             templateUrl: '/pages/setup.html',
             controller: 'SetupController'
