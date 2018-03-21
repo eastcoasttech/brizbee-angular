@@ -191,5 +191,5 @@ a:link {
 }
 
 a.btn:link {
-    text-decoration: underline;
+    text-decoration: none;
 }
