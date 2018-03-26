@@ -23,11 +23,11 @@
                     <form name="pinForm" ng-submit="loginWithPin()" novalidate>
                         <div class="form-group">
                             <input type="text" name="session_pin_organization_code" class="form-control" id="session_pin_organization_code" placeholder="Organization Code" ng-model="session.PinOrganizationCode" required ng-disabled="working.login"/>
-                            <p ng-show="pinForm.session_pin_organization_code.$invalid && !pinForm.session_pin_organization_code.$untouched" class="text-danger">Your organization's code is required.</p>
+                            <p ng-show="pinForm.session_pin_organization_code.$invalid && !pinForm.session_pin_organization_code.$submitted" class="text-danger">Your organization's code is required.</p>
                         </div>
                         <div class="form-group">
                             <input type="password" name="session_pin_user_pin" class="form-control" placeholder="PIN Number" ng-model="session.PinUserPin" required ng-disabled="working.login"/>
-                            <p ng-show="pinForm.session_pin_user_pin.$invalid && !pinForm.session_pin_user_pin.$untouched" class="text-danger">Your pin number is required.</p>
+                            <p ng-show="pinForm.session_pin_user_pin.$invalid && !pinForm.session_pin_user_pin.$submitted" class="text-danger">Your pin number is required.</p>
                         </div>
                         <button type="submit" class="btn btn-primary" ng-disabled="working.login || pinForm.$invalid">Login <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.login"></i></button>
                     </form>
@@ -40,11 +40,11 @@
                     <form name="emailForm" ng-submit="loginWithEmail()" novalidate>
                         <div class="form-group">
                             <input name="session_email_address" type="email" class="form-control" id="session_email_address" placeholder="Email Address" ng-model="session.EmailAddress" required ng-disabled="working.login"/>
-                            <p ng-show="emailForm.session_email_address.$invalid && !emailForm.session_email_address.$untouched" class="text-danger">Your Email address is required.</p>
+                            <p ng-show="emailForm.session_email_address.$invalid && !emailForm.session_email_address.$submitted" class="text-danger">Your Email address is required.</p>
                         </div>
                         <div class="form-group">
                             <input name="session_email_password" type="password" class="form-control" placeholder="Password" ng-model="session.EmailPassword" required ng-disabled="working.login"/>
-                            <p ng-show="emailForm.session_email_password.$invalid && !emailForm.session_email_password.$untouched" class="text-danger">Your password is required.</p>
+                            <p ng-show="emailForm.session_email_password.$invalid && !emailForm.session_email_password.$submitted" class="text-danger">Your password is required.</p>
                         </div>
                         <button type="submit" class="btn btn-primary" ng-disabled="working.login || emailForm.$invalid">Login <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.login"></i></button>
                         <a href="#!/reset" class="btn btn-default" ng-disabled="working.login">Reset Password</a>
@@ -69,9 +69,12 @@
 <footer>
     <div class="container">
         <p class="text-right">
+            <a href="https://www.brizbee.com/download.html" style="margin-right: 5px;">Download QuickBooks Connector</a>
             <a href="https://www.brizbee.com/getting-started.html" style="margin-right: 5px;">Getting Started</a>
             <a href="https://www.brizbee.com/help.html" style="margin-right: 10px;">Help and Support</a>
-            <span class="text-muted">&copy; 2017 East Coast Technology Services, LLC</span>
+            <a href="https://www.brizbee.com/privacy.html" style="margin-right: 10px;">Privacy Policy</a>
+            <a href="https://www.brizbee.com/terms.html" style="margin-right: 10px;">Terms and Conditions</a>
+            <span class="text-muted">&copy; 2017 East Coast Technology Services, LLC. All rights reserved.</span>
         </p>
     </div>
 </footer>
