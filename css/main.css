@@ -1,7 +1,6 @@
 body {
     padding-top: 70px;
     overflow-y: scroll;
-    background-color: #f5f5f5;
 }
 
     body.modal-open {
@@ -165,6 +164,7 @@ footer {
     border-top: solid 1px #ddd;
     padding: 26px 0 20px 0;
     margin-top: 5%;
+    background-color: #f5f5f5;
 }
 
 a:link {
