@@ -23,11 +23,11 @@
                     <form name="pinForm" ng-submit="loginWithPin()" novalidate>
                         <div class="form-group">
                             <input type="text" name="session_pin_organization_code" class="form-control" id="session_pin_organization_code" placeholder="Organization Code" ng-model="session.PinOrganizationCode" required ng-disabled="working.login"/>
-                            <p ng-show="pinForm.session_pin_organization_code.$invalid && !pinForm.session_pin_organization_code.$submitted" class="text-danger">Your organization's code is required.</p>
+                            <p ng-show="pinForm.session_pin_organization_code.$invalid && pinForm.session_pin_organization_code.$submitted" class="text-danger">Your organization's code is required.</p>
                         </div>
                         <div class="form-group">
                             <input type="password" name="session_pin_user_pin" class="form-control" placeholder="PIN Number" ng-model="session.PinUserPin" required ng-disabled="working.login"/>
-                            <p ng-show="pinForm.session_pin_user_pin.$invalid && !pinForm.session_pin_user_pin.$submitted" class="text-danger">Your pin number is required.</p>
+                            <p ng-show="pinForm.session_pin_user_pin.$invalid && pinForm.session_pin_user_pin.$submitted" class="text-danger">Your pin number is required.</p>
                         </div>
                         <button type="submit" class="btn btn-primary" ng-disabled="working.login || pinForm.$invalid">Login <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.login"></i></button>
                     </form>
@@ -61,6 +61,7 @@
             </p>
             <p class="text-center" style="padding-bottom: 20px;">
                 <a href="#!/register" class="btn btn-lg btn-primary" style="padding-left: 2em; padding-right: 2em;">Start Tracking Time for FREE</a>
+                <br />
                 <small>No Credit Card Required.<br />Cancel Anytime.<br />Call us for questions and comments.</small>
             </p>
         </div>
