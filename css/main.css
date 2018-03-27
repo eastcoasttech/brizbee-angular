@@ -178,3 +178,7 @@ a:hover {
 a.btn:link, .navbar a:link {
     text-decoration: none;
 }
+
+a.btn:hover {
+    text-decoration: underline;
+}
