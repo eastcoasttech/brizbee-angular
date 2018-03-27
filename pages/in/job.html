@@ -41,12 +41,13 @@
             <div class="panel panel-default panel-kiosk">
                 <div class="panel-heading"><h2>What is your Job Number?</h2></div>
                 <div class="panel-body">
-                    <form ng-submit="searchJobs()">
+                    <form name="jobForm" ng-submit="searchJobs()" novalidate>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="job_number" placeholder="Job Number" ng-model="job.Number" ng-disabled="working.search" autocomplete="off" autofocus />
+                            <input type="text" name="job_job_number" class="form-control" id="job_number" placeholder="Job Number" ng-model="job.Number" ng-disabled="working.search" autocomplete="off" required autofocus />
+                            <p ng-show="jobForm.job_job_number.$invalid && jobForm.job_job_number.$submitted" class="text-danger">Your job number is required. The job number must match exactly, including leading-zeros.</p>
                         </div>
-                        <button type="submit" class="btn btn-block btn-lg btn-primary" ng-disabled="working.search">Continue</button>
-                        <a href="#!/status" class="btn btn-block btn-lg btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-block btn-lg btn-primary" ng-disabled="working.search || jobForm.$invalid">Continue</button>
+                        <a href="#!/status" class="btn btn-block btn-lg btn-default" ng-disabled="working.search">Cancel</a>
                     </form>
                 </div>
             </div>

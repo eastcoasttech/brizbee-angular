@@ -41,13 +41,13 @@
             <div class="panel panel-default panel-kiosk">
                 <div class="panel-heading"><h2>Please Confirm</h2></div>
                 <div class="panel-body">
-                    <form ng-submit="save()">
+                    <form ng-submit="save()" novalidate>
                         <p class="text-center" style="text-transform: uppercase;">You are <span class="text-success"><strong>PUNCHING IN</strong></span></p>
                         <p class="text-center" style="text-transform: uppercase;"><small>on job</small><br /><strong>{{selected.job.Number}} &ndash; {{selected.job.Name}}</strong></p>
                         <p class="text-center" style="text-transform: uppercase;"><small>for customer</small><br /><strong>{{selected.job.Customer.Number}} &ndash; {{selected.job.Customer.Name}}</strong></p>
                         <p class="text-center" style="text-transform: uppercase;"><small>doing task</small><br /><strong>{{selected.task.Number}} &ndash; {{selected.task.Name}}</strong></p>
-                        <button type="submit" class="btn btn-block btn-lg btn-primary" ng-disabled="working.search" autofocus>Save and Continue</button>
-                        <a href="#!/status" class="btn btn-block btn-lg btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-block btn-lg btn-primary" ng-disabled="working.save" autofocus>Save and Continue</button>
+                        <a href="#!/status" class="btn btn-block btn-lg btn-default" ng-disabled="working.save">Cancel</a>
                     </form>
                 </div>
             </div>

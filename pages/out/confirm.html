@@ -41,12 +41,12 @@
             <div class="panel panel-default panel-kiosk">
                 <div class="panel-heading"><h2>Please Confirm</h2></div>
                 <div class="panel-body">
-                    <form ng-submit="save()">
+                    <form ng-submit="save()" novalidate>
                         <p class="text-center" style="text-transform: uppercase; margin-top: 20px; margin-bottom: 30px;">
                             Are you sure you want to punch <span class="text-danger"><strong>OUT</strong></span>?
                         </p>
-                        <button type="submit" class="btn btn-block btn-lg btn-primary" autofocus>Save and Exit</button>
-                        <a href="#!/status" class="btn btn-block btn-lg btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-block btn-lg btn-primary" ng-disabled="working.save" autofocus>Save and Exit</button>
+                        <a href="#!/status" class="btn btn-block btn-lg btn-default" ng-disabled="working.save">Cancel</a>
                     </form>
                 </div>
             </div>

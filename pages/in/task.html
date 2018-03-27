@@ -41,12 +41,13 @@
             <div class="panel panel-default panel-kiosk">
                 <div class="panel-heading"><h2>What is your Task Number?</h2></div>
                 <div class="panel-body">
-                    <form ng-submit="searchTasks()">
+                    <form name="taskForm" ng-submit="searchTasks()" novalidate>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="task_number" placeholder="Task Number" ng-model="task.Number" ng-disabled="working.search" autocomplete="off" autofocus />
+                            <input type="text" name="task_task_number" class="form-control" id="task_number" placeholder="Task Number" ng-model="task.Number" ng-disabled="working.search" autocomplete="off" required autofocus />
+                            <p ng-show="taskForm.task_task_number.$invalid && taskForm.task_task_number.$submitted" class="text-danger">Your task number is required. The task number must match exactly, including leading-zeros.</p>
                         </div>
-                        <button type="submit" class="btn btn-block btn-lg btn-primary" ng-disabled="working.search">Continue</button>
-                        <a href="#!/status" class="btn btn-block btn-lg btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-block btn-lg btn-primary" ng-disabled="working.search || taskForm.$invalid">Continue</button>
+                        <a href="#!/status" class="btn btn-block btn-lg btn-default" ng-disabled="working.search">Cancel</a>
                     </form>
                 </div>
             </div>
