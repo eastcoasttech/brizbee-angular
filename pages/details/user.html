@@ -12,7 +12,7 @@
                     <p ng-show="userForm.user_email_address.$invalid && userForm.user_email_address.$submitted" class="text-danger">The Email address is required.</p>
                 </div>
                 <div class="form-group">
-                    <label>Name</label>
+                    <label>Full Name</label>
                     <input type="text" name="user_name" class="form-control" ng-model="user.Name" ng-disabled="working.save" required autofocus />
                     <p ng-show="userForm.user_name.$invalid && userForm.user_name.$submitted" class="text-danger">The name is required.</p>
                 </div>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label>Pin Number</label>
-                    <input type="text" name="user_pin_number" class="form-control" ng-model="user.Pin" ng-disabled="working.save" />
+                    <input type="number" name="user_pin_number" class="form-control" ng-model="user.Pin" ng-disabled="working.save" />
                 </div>
                 <div class="form-group">
                     <label>QuickBooks Employee</label>
