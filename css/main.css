@@ -165,6 +165,7 @@ footer {
     padding: 26px 0 20px 0;
     margin-top: 5%;
     background-color: #f5f5f5;
+    box-shadow: 0 50vh 0 50vh #000; /* forces to bottom */
 }
 
 a:link {
