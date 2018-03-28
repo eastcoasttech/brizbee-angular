@@ -11,18 +11,6 @@
 <div class="container">
     <div class="row" style="margin-top: 5%; margin-bottom: 5%;">
         <div class="col-md-5 col-sm-12 col-xs-12">
-            <p class="text-center" style="margin-top: 50px;">
-                <img src="../images/logo.png" alt="Brizby Logo" style="width: 70%;">
-            </p>
-            <h3>Getting Started is Easy!</h3>
-            <ol class="getting-started">
-                <li>Start Your 30 Day Free Trial</li>
-                <li>Add Employee Accounts</li>
-                <li>Start Punching In and Out</li>
-                <li>Commit Your Time Records and Export (optional)</li>
-            </ol>
-        </div>
-        <div class="col-md-5 col-md-offset-1 col-sm-12 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Sign Up for BRIZBEE</div>
                 <div class="panel-body">
@@ -49,7 +37,7 @@
                             <p class="help-block">Must be 8+ characters and include both numbers and letters.</p>
                             <p ng-show="registerForm.user_password.$invalid && registerForm.user_password.$submitted" class="text-danger">A valid password is required.</p>
                         </div>
-                        <button type="submit" class="btn btn-primary" ng-disabled="working.register || registerForm.$invalid">Save and Start Tracking Time <i class="fa fa-arrow-circle-o-right" aria-hidden="true" ng-hide="working.register"></i><i class="fa fa-spinner fa-spin fa-fw" ng-show="working.register"></i></button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="working.register || registerForm.$invalid">Start Tracking Time <i class="fa fa-arrow-circle-o-right" aria-hidden="true" ng-hide="working.register"></i><i class="fa fa-spinner fa-spin fa-fw" ng-show="working.register"></i></button>
                     </form>
 
                     <p class="text-center" ng-show="show.success == true" style="font-size: 20px; padding: 20px;">
@@ -60,6 +48,12 @@
                     </p>
                 </div>
             </div>
+        </div>
+        <div class="col-md-5 col-md-offset-1 col-sm-12 col-xs-12">
+            <p class="text-center" style="margin-top: 50px;">
+                <img src="../images/logo.png" alt="Brizby Logo" style="width: 70%;">
+            </p>
+            <h3>Start your free trial today. Getting started is easy. See the difference BRIZBEE makes!</h3>
         </div>
     </div>
 </div>
