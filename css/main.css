@@ -78,10 +78,12 @@ input:focus {
 
 .navbar-phone {
     font-weight: bold;
+    color: #444;
 }
 
     .navbar-phone a {
         font-weight: bold;
+        color: #444;
     }
 
 .panel-default h2 {
