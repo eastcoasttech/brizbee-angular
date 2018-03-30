@@ -14,10 +14,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="#!/status">Status</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/punches">Punches <span class="sr-only">(current)</span></a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/punches">Punches</a></li>
                 <li ng-show="current.user.Role == 'Administrator'"><a href="#!/jobs">Jobs and Customers</a></li>
                 <!-- <li ng-show="current.user.Role == 'Administrator'"><a href="#!/locations">Locations</a></li> -->
-                <li ng-show="current.user.Role == 'Administrator'" class="active"><a href="#!/users">Users</a></li>
+                <li ng-show="current.user.Role == 'Administrator'" class="active"><a href="#!/users">Users <span class="sr-only">(current)</span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -67,4 +67,14 @@
             </tr>
         </tbody>
     </table>
+            
+    <div class="row">
+        <div class="col-md-6">
+            <button class="btn btn-sm btn-default" ng-click="usersPrevious()" ng-show="usersCount > 20"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+            <button class="btn btn-sm btn-default" ng-click="usersNext()" ng-show="usersCount > 20"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+        </div>
+        <div class="col-md-6 text-right">
+            <p class="form-control-static" ng-hide="((users.length == 0) && (!loading.users)) || loading.users">{{usersStart()}} to {{usersEnd()}} of {{usersCount}}</p>
+        </div>
+    </div>
 </div>

@@ -78,7 +78,7 @@
                     <button class="btn btn-sm btn-default" ng-click="customersNext()" ng-show="customersCount > 20"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
                 </div>
                 <div class="col-md-6 text-right">
-                    <p class="form-control-static" ng-hide="(customers.length == 0) && (!loading.customers)">{{customersStart()}} to {{customersEnd()}} of {{customersCount}}</p>
+                    <p class="form-control-static" ng-hide="((customers.length == 0) && (!loading.customers)) || loading.customers">{{customersStart()}} to {{customersEnd()}} of {{customersCount}}</p>
                 </div>
             </div>
         </div>
@@ -127,7 +127,7 @@
                     <button class="btn btn-sm btn-default" ng-click="jobsNext()" ng-show="jobsCount > 20"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
                 </div>
                 <div class="col-md-6 text-right">
-                    <p class="form-control-static" ng-hide="(jobs.length == 0) && (!loading.jobs)">{{jobsStart()}} to {{jobsEnd()}} of {{jobsCount}}</p>
+                    <p class="form-control-static" ng-hide="((jobs.length == 0) && (!loading.jobs)) || loading.jobs">{{jobsStart()}} to {{jobsEnd()}} of {{jobsCount}}</p>
                 </div>
             </div>
         </div>
@@ -175,7 +175,7 @@
                     <button class="btn btn-sm btn-default" ng-click="tasksNext()" ng-show="tasksCount > 20"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
                 </div>
                 <div class="col-md-6 text-right">
-                    <p class="form-control-static" ng-hide="(tasks.length == 0) && (!loading.tasks)">{{tasksStart()}} to {{tasksEnd()}} of {{tasksCount}}</p>
+                    <p class="form-control-static" ng-hide="((tasks.length == 0) && (!loading.tasks)) || loading.tasks">{{tasksStart()}} to {{tasksEnd()}} of {{tasksCount}}</p>
                 </div>
             </div>
         </div>

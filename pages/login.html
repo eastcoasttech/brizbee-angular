@@ -39,7 +39,7 @@
             <div class="panel panel-default panel-login" ng-show="method == 'pin'">
                 <div class="panel-heading">Login with Your PIN</div>
                 <div class="panel-body">
-                    <form name="pinForm" ng-submit="loginWithPin()" novalidate>
+                    <form name="pinForm" ng-submit="loginWithPin()" autocomplete="off" novalidate>
                         <div class="form-group">
                             <input type="text" name="session_pin_organization_code" class="form-control" id="session_pin_organization_code" placeholder="Organization Code" ng-model="session.PinOrganizationCode" required ng-disabled="working.login"/>
                             <p ng-show="pinForm.session_pin_organization_code.$invalid && pinForm.session_pin_organization_code.$submitted" class="text-danger">Your organization's code is required.</p>
@@ -56,7 +56,7 @@
             <div class="panel panel-default panel-login" ng-show="method == 'email'">
                 <div class="panel-heading">Login with Email Address</div>
                 <div class="panel-body">
-                    <form name="emailForm" ng-submit="loginWithEmail()" novalidate>
+                    <form name="emailForm" ng-submit="loginWithEmail()" autocomplete="off" novalidate>
                         <div class="form-group">
                             <input name="session_email_address" type="email" class="form-control" id="session_email_address" placeholder="Email Address" ng-model="session.EmailAddress" required ng-disabled="working.login"/>
                             <p ng-show="emailForm.session_email_address.$invalid && emailForm.session_email_address.$submitted" class="text-danger">Your Email address is required.</p>
