@@ -27,7 +27,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
                     $scope.ok(true)
                 }, error => {
                     console.error(error)
-                })
+                });
         }
     }
 
@@ -44,19 +44,21 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             InAt: $scope.punch.InAt,
             TaskId: $scope.punch.task.Id,
             UserId: $scope.punch.user.Id
-        }
+        };
 
         // OutAt is optional when editing manually
         if ($scope.punch.has_out_at) {
             json.OutAt = $scope.punch.OutAt
         }
 
-        $http.post($rootScope.baseUrl + "odata/Punches", JSON.stringify(json))
-            .then(response => {
-                $scope.ok()
-            }, error => {
-                console.error(error)
-            })
+        if (confirm("Are you sure you want to save this new punch?")) {
+            $http.post($rootScope.baseUrl + "odata/Punches", JSON.stringify(json))
+                .then(response => {
+                    $scope.ok()
+                }, error => {
+                    console.error(error)
+                });
+        }
     };
 
     $scope.saveExistingPunch = function () {
@@ -64,21 +66,23 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             InAt: $scope.punch.InAt,
             TaskId: $scope.punch.task.Id,
             UserId: $scope.punch.user.Id
-        }
+        };
 
         // OutAt is optional when editing manually
         if ($scope.punch.has_out_at) {
-            json.OutAt = $scope.punch.OutAt
+            json.OutAt = $scope.punch.OutAt;
         } else {
-            json.OutAt = null
+            json.OutAt = null;
         }
 
-        $http.patch($rootScope.baseUrl + "odata/Punches(" + $scope.punch.Id + ")", JSON.stringify(json))
-            .then(response => {
-                $scope.ok()
-            }, error => {
-                console.error(error)
-            })
+        if (confirm("Are you sure you want to modify this punch?")) {
+            $http.patch($rootScope.baseUrl + "odata/Punches(" + $scope.punch.Id + ")", JSON.stringify(json))
+                .then(response => {
+                    $scope.ok()
+                }, error => {
+                    console.error(error)
+                });
+        }
     };
 
     $scope.ok = function () {

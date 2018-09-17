@@ -47,7 +47,7 @@
                             <button type="button" class="btn btn-default" ng-click="showNewPunch()"><i class="fa fa-clock-o" aria-hidden="true" style="margin-right: 5px;"></i> New Punch</button>
                         </div>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default" ng-click="showSplit()">Split Punches</button>
+                            <button type="button" class="btn btn-default" ng-click="showSplit()" ng-disabled="loading.punches || punchesCount == 0">Split Punches</button>
                         </div>
 <!--                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default" ng-click="export()"><i class="fa fa-file-excel-o" aria-hidden="true" style="margin-right: 5px;"></i> Export</button>

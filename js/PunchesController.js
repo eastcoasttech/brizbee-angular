@@ -67,8 +67,8 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         $scope.loading.punches = true
 
         // Filter by user
-        var filters = { in_at: { $gte: $rootScope.range.in_at,
-                                 $lte: $rootScope.range.out_at } }
+        var filters = { in_at: { $gte: $rootScope.range.InAt,
+                                 $lte: $rootScope.range.OutAt } }
         if ($scope.filters['user'].selected) {
             filters.user_id = { $in: $scope.filters['user'].users.map(x => x._id) }
         }
@@ -157,7 +157,27 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
             }, () => {
                 console.log('dismissed')
             })
-    }
+    };
+
+    $scope.showSplit = function () {
+        var instance = $uibModal.open({
+            templateUrl: '/pages/split.html',
+            controller: 'SplitController',
+            resolve: {
+                // filters: function () {
+                //     return $scope.filters
+                // }
+            }
+        });
+        
+        instance.result
+            .then((msg) => {
+                console.log(msg)
+                $scope.refreshPunches()
+            }, () => {
+                console.log('dismissed')
+            })
+    };
     
     $scope.showOutAtDatepicker = function () {
         $scope.datepicker.out_at.opened = true

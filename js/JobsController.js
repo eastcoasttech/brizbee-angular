@@ -6,6 +6,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
     $scope.loading = { customers: false, jobs: false, tasks: false }
     $scope.selected = {}
     $scope.tasks = []
+    $scope.tasksPageStart = 0
 
     $scope.customersEnd = function () {
         return $scope.customersPageStart + 20 < $scope.customersCount ? $scope.customersPageStart + 20 : $scope.customersCount;

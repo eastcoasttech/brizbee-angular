@@ -1,16 +1,49 @@
 <div class="modal-header">
-    <h3 class="modal-title" id="modal-title">Split Punches</h3>
+    <h3 class="modal-title">Split Punches</h3>
 </div>
 <form ng-submit="ok()">
-    <div class="modal-body" id="modal-body">
+    <div class="modal-body">
         <div class="row">
-            <div class="col-md-7">
-
+            <div class="col-md-10 col-md-offset-1">
+                <p>
+                    Split functionality allows you to take a set of employee
+                    punches and break them apart in certain ways in order to
+                    bill or pay at different rates. Any information about
+                    the punch is retained. <i><strong>However, this process
+                    cannot be reverted.</strong></i>
+                </p>
+                <p>This process will split punches between:<br /><span style="font-size: 125%;"><strong>{{split.inAtFormatted}}</strong> and<br /><strong>{{split.outAtFormatted}}</strong></span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7 col-md-offset-1">
+                <div class="radio">
+                    <label>
+                        <input type="radio" ng-model="split.type" value="minutes" checked>
+                        <strong>Split at Specific Number of Minutes</strong>
+                        <br />
+                        Ex. 40 hours of time is 2,400 minutes. Splitting at 2,400 minutes allows anything past 40 hours to be paid at a different rate (like overtime).
+                    </label>
+                </div>
+                <div class="form-group col-md-offset-2">
+                    <input type="number" class="form-control" ng-model="split.minutes" ng-disabled="working.save || split.type != 'minutes'" />
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" ng-model="split.type" value="time">
+                        <strong>Split at Specific Time</strong>
+                        <br />
+                        Ex. Splitting at 5pm would allow anything past that time to be billed or paid at a different rate.
+                    </label>
+                </div>
+                <div class="form-group col-md-offset-2">
+                    <div uib-timepicker ng-model="split.time" ng-change="changed()" hour-step="split.hstep" minute-step="split.mstep" ng-disabled="working.save || split.type != 'time'"></div>
+                </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="submit">OK</button>
+        <button class="btn btn-primary" type="submit" ng-disabled="working.save">OK</button>
         <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
     </div>
 </form>
