@@ -3,7 +3,7 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
     $scope.working = { save: false }
 
     $scope.save = function () {
-        $scope.working = true
+        $scope.working.save = true
 
         var json = {
             Name: $scope.organization.Name,
@@ -14,9 +14,9 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
             .then(response => {
                 $rootScope.current.user.Organization.Code = $scope.organization.Code
                 $rootScope.current.user.Organization.Name = $scope.organization.Name
-                $scope.working = false
+                $scope.working.save = false
             }, error => {
-                $scope.working = false
+                $scope.working.save = false
                 console.error(error)
             })
     }
