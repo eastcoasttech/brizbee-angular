@@ -17,6 +17,15 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
         }
     }
 
+    $scope.nextNumber = function () {
+        $http.post($rootScope.baseUrl + '/odata/Tasks/Default.NextNumber')
+            .then(response => {
+                $scope.task.Number = response.data
+            }, error => {
+                console.error(error)
+            })
+    }
+
     $scope.save = function () {
         if (task.Id == null) {
             $scope.saveNewTask()
@@ -65,4 +74,6 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     }
+    
+    $scope.nextNumber()
 });

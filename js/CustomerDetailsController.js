@@ -17,6 +17,15 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
         }
     }
     
+    $scope.nextNumber = function () {
+        $http.post($rootScope.baseUrl + '/odata/Customers/Default.NextNumber')
+            .then(response => {
+                $scope.customer.Number = response.data
+            }, error => {
+                console.error(error)
+            })
+    }
+    
     $scope.save = function () {
         if (customer.Id == null) {
             $scope.saveNewCustomer()
@@ -60,4 +69,6 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     }
+    
+    $scope.nextNumber()
 });

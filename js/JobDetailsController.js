@@ -18,6 +18,15 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
                 })
         }
     }
+    
+    $scope.nextNumber = function () {
+        $http.post($rootScope.baseUrl + '/odata/Jobs/Default.NextNumber')
+            .then(response => {
+                $scope.job.Number = response.data
+            }, error => {
+                console.error(error)
+            })
+    }
 
     $scope.save = function () {
         if (job.Id == null) {
@@ -83,5 +92,6 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
             })
     }
 
+    $scope.nextNumber()
     $scope.refreshTemplates()
 });
