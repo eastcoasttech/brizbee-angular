@@ -1,13 +1,15 @@
 app.controller('UsersController', function ($http, $rootScope, $scope, $uibModal, $window) {
     $scope.loading = { users: false }
     $scope.users = []
+    $scope.usersPageStart = 0
 
     $scope.refreshUsers = function () {
         $scope.users = []
         $scope.loading.users = true
-        $http.get($rootScope.baseUrl + "odata/Users?$orderby=EmailAddress")
+        $http.get($rootScope.baseUrl + "odata/Users?$count=true&$orderby=EmailAddress")
             .then(response => {
                 $scope.loading.users = false
+                $scope.usersCount = response.data["@odata.count"]
                 $scope.users = response.data.value
             }, error => {
                 $scope.loading.users = false
@@ -52,6 +54,24 @@ app.controller('UsersController', function ($http, $rootScope, $scope, $uibModal
             }, () => {
                 console.log('dismissed')
             })
+    }
+
+    $scope.usersEnd = function () {
+        return $scope.usersPageStart + 20 < $scope.usersCount ? $scope.usersPageStart + 20 : $scope.usersCount;
+    };
+
+    $scope.usersNext = function () {
+        $scope.usersPageStart = $scope.usersPageStart + 20
+        $scope.refreshUsers()
+    }
+    
+    $scope.usersPrevious = function () {
+        $scope.usersPageStart = $scope.usersPageStart - 20
+        $scope.refreshUsers()
+    }
+
+    $scope.usersStart = function () {
+        return $scope.usersPageStart + 1
     }
     
     $scope.refreshUsers()
