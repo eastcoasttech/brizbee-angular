@@ -20,7 +20,7 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     $scope.nextNumber = function () {
         $http.post($rootScope.baseUrl + '/odata/Tasks/Default.NextNumber')
             .then(response => {
-                $scope.task.Number = response.data
+                $scope.task.Number = response.data.value
             }, error => {
                 console.error(error)
             })

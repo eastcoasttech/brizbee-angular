@@ -20,7 +20,7 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
     $scope.nextNumber = function () {
         $http.post($rootScope.baseUrl + '/odata/Customers/Default.NextNumber')
             .then(response => {
-                $scope.customer.Number = response.data
+                $scope.customer.Number = response.data.value
             }, error => {
                 console.error(error)
             })

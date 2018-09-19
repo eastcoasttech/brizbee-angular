@@ -22,7 +22,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
     $scope.nextNumber = function () {
         $http.post($rootScope.baseUrl + '/odata/Jobs/Default.NextNumber')
             .then(response => {
-                $scope.job.Number = response.data
+                $scope.job.Number = response.data.value
             }, error => {
                 console.error(error)
             })
