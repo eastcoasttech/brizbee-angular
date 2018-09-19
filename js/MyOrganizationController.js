@@ -12,6 +12,8 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
 
         $http.patch($rootScope.baseUrl + "odata/Organizations(" + $scope.organization.Id + ")", JSON.stringify(json))
             .then(response => {
+                $rootScope.current.user.Organization.Code = $scope.organization.Code
+                $rootScope.current.user.Organization.Name = $scope.organization.Name
                 $scope.working = false
             }, error => {
                 $scope.working = false
