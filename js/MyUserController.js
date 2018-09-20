@@ -1,10 +1,11 @@
 app.controller('MyUserController', function ($http, $location, $rootScope, $scope, $window) {
+    $scope.messages = { saved: '' }
     $scope.show = { changePassword: false }
     $scope.user = angular.copy($rootScope.current.user)
     $scope.working = { save: false }
 
     $scope.save = function () {
-        $scope.working = true
+        $scope.working.save = true
 
         var json = {
             Name: $scope.user.Name,
@@ -18,9 +19,12 @@ app.controller('MyUserController', function ($http, $location, $rootScope, $scop
 
         $http.patch($rootScope.baseUrl + "odata/Users(" + $scope.user.Id + ")", JSON.stringify(json))
             .then(response => {
-                $scope.working = false
+                $scope.messages.saved = 'Changes were saved!'
+                $rootScope.current.user.Name = $scope.user.Name
+                $rootScope.current.user.Pin = $scope.user.Pin
+                $scope.working.save = false
             }, error => {
-                $scope.working = false
+                $scope.working.save = false
                 console.error(error)
             })
     }

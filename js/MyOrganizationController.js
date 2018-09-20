@@ -1,4 +1,5 @@
 app.controller('MyOrganizationController', function ($http, $location, $rootScope, $scope, $window) {
+    $scope.messages = { saved: '' }
     $scope.organization = angular.copy($rootScope.current.user.Organization)
     $scope.working = { save: false }
 
@@ -12,6 +13,7 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
 
         $http.patch($rootScope.baseUrl + "odata/Organizations(" + $scope.organization.Id + ")", JSON.stringify(json))
             .then(response => {
+                $scope.messages.saved = 'Changes were saved!'
                 $rootScope.current.user.Organization.Code = $scope.organization.Code
                 $rootScope.current.user.Organization.Name = $scope.organization.Name
                 $scope.working.save = false
