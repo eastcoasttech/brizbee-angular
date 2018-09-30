@@ -70,4 +70,7 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     }
+
+    // Allow numbers only
+    $("input.form-control-number").numeric()
 });

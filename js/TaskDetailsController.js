@@ -75,4 +75,7 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     }
+
+    // Allow numbers only
+    $("input.form-control-number").numeric()
 });

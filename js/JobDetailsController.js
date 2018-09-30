@@ -94,4 +94,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
     }
 
     $scope.refreshTemplates()
+
+    // Allow numbers only
+    $("input.form-control-number").numeric()
 });
