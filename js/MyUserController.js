@@ -31,4 +31,7 @@ app.controller('MyUserController', function ($http, $location, $rootScope, $scop
 
     // Scroll to top
     $window.scrollTo(0, 0)
+
+    // Allow numbers only
+    $("input.form-control-number").numeric()
 });

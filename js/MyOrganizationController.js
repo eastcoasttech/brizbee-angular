@@ -74,4 +74,7 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
 
     // Scroll to top
     $window.scrollTo(0, 0)
+
+    // Allow numbers only
+    $("input.form-control-number").numeric()
 });
