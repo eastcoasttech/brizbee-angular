@@ -2,8 +2,13 @@
 // (to prevent Cromium browsers change the value when scrolling)
 $(':input[type=number]').on('mousewheel',function(e){ $(this).blur(); });
 
+$("input.form-control-number").alphanum({
+    allowSpace         : false,
+    allowNumeric       : true
+});
+
 // Initialize Angular app
-var app = angular.module('brizbee', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngCookies', 'ui.utils.masks']);
+var app = angular.module('brizbee', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngCookies']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
