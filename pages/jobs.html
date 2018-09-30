@@ -39,10 +39,17 @@
     <div class="row">
         <div class="col-md-4">
             <div class="row row-toolbar">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default" ng-click="showNewCustomer()"><i class="fa fa-user" aria-hidden="true" style="margin-right: 5px;"></i> New Customer</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="btn-toolbar pull-right" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" ng-click="refreshCustomers()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </div>
@@ -85,10 +92,17 @@
         </div>
         <div class="col-md-4">
             <div class="row row-toolbar">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default" ng-click="showNewJob()" ng-disabled="selected.customer == null"><i class="fa fa-handshake-o" aria-hidden="true" style="margin-right: 5px;"></i> New Job</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="btn-toolbar pull-right" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" ng-click="refreshJobs()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </div>
@@ -134,10 +148,17 @@
         </div>
         <div class="col-md-4">
             <div class="row row-toolbar">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-default" ng-click="showNewTask()" ng-disabled="selected.job == null"><i class="fa fa-tasks" aria-hidden="true" style="margin-right: 5px;"></i> New Task</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="btn-toolbar pull-right" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" ng-click="refreshTasks()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </div>
