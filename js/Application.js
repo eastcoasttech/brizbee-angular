@@ -2,10 +2,7 @@
 // (to prevent Cromium browsers change the value when scrolling)
 $(':input[type=number]').on('mousewheel',function(e){ $(this).blur(); });
 
-$("input.form-control-number").alphanum({
-    allowSpace         : false,
-    allowNumeric       : true
-});
+$("input.form-control-number").numeric();
 
 // Initialize Angular app
 var app = angular.module('brizbee', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngCookies']);
