@@ -21,7 +21,7 @@ app.controller('ApplicationController', function ($cookies, $http, $location, $r
         $rootScope.auth.expiration = $cookies.get('BRIZBEE_AUTH_EXPIRATION')
         $rootScope.auth.token = $cookies.get('BRIZBEE_AUTH_TOKEN')
 
-        $http.get($rootScope.baseUrl + "/odata/Users(" + $rootScope.auth.userId + ")")
+        $http.get($rootScope.baseUrl + "/odata/Users(" + $rootScope.auth.userId + ")?$expand=Organization")
             .then(response => {
                 $rootScope.current = {}
                 $rootScope.current.user = response.data
