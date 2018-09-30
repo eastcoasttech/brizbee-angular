@@ -145,10 +145,13 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
                     return customer;
                 }
             }
-        });
-        
-        // Allow numbers only
-        $("input.form-control-number").numeric()
+        })
+
+        instance.opened
+            .then(() => {
+                // Allow numbers only
+                $("input.form-control-number").numeric()
+            })
 
         instance.result
             .then((deleted) => {
@@ -179,10 +182,13 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
                     return job;
                 }
             }
-        });
+        })
 
-        // Allow numbers only
-        $("input.form-control-number").numeric()
+        instance.opened
+            .then(() => {
+                // Allow numbers only
+                $("input.form-control-number").numeric()
+            })
 
         instance.result
             .then((deleted) => {
@@ -212,11 +218,14 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
                     return task;
                 }
             }
-        });
+        })
 
-        // Allow numbers only
-        $("input.form-control-number").numeric()
-        
+        instance.opened
+            .then(() => {
+                // Allow numbers only
+                $("input.form-control-number").numeric()
+            })
+
         instance.result
             .then((deleted) => {
                 if (deleted) {
@@ -237,14 +246,20 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
                     return {};
                 }
             }
-        });
+        })
+
+        instance.opened
+            .then(() => {
+                // Allow numbers only
+                $("input.form-control-number").numeric()
+            })
 
         instance.result
-        .then((deleted) => {
-            $scope.refreshCustomers()
-        }, () => {
-            console.log('dismissed')
-        });
+            .then((deleted) => {
+                $scope.refreshCustomers()
+            }, () => {
+                console.log('dismissed')
+            })
     };
 
     $scope.showNewJob = function () {
@@ -259,14 +274,20 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
                     return {};
                 }
             }
-        });
+        })
+
+        instance.opened
+            .then(() => {
+                // Allow numbers only
+                $("input.form-control-number").numeric()
+            })
 
         instance.result
-        .then((deleted) => {
-            $scope.refreshJobs()
-        }, () => {
-            console.log('dismissed')
-        });
+            .then((deleted) => {
+                $scope.refreshJobs()
+            }, () => {
+                console.log('dismissed')
+            })
     };
 
     $scope.showNewTask = function () {
@@ -281,14 +302,20 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
                     return {};
                 }
             }
-        });
+        })
+
+        instance.opened
+            .then(() => {
+                // Allow numbers only
+                $("input.form-control-number").numeric()
+            })
 
         instance.result
-        .then((deleted) => {
-            $scope.refreshTasks()
-        }, () => {
-            console.log('dismissed')
-        });
+            .then((deleted) => {
+                $scope.refreshTasks()
+            }, () => {
+                console.log('dismissed')
+            })
     };
 
     $scope.refreshCustomers()
