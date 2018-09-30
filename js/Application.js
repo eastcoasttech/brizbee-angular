@@ -3,7 +3,7 @@
 $(':input[type=number]').on('mousewheel',function(e){ $(this).blur(); });
 
 // Initialize Angular app
-var app = angular.module('brizby', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
+var app = angular.module('brizbee', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
