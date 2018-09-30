@@ -146,6 +146,9 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
                 }
             }
         });
+        
+        // Allow numbers only
+        $("input.form-control-number").numeric()
 
         instance.result
             .then((deleted) => {
@@ -178,6 +181,9 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
             }
         });
 
+        // Allow numbers only
+        $("input.form-control-number").numeric()
+
         instance.result
             .then((deleted) => {
                 if (deleted) {
@@ -208,6 +214,9 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
             }
         });
 
+        // Allow numbers only
+        $("input.form-control-number").numeric()
+        
         instance.result
             .then((deleted) => {
                 if (deleted) {

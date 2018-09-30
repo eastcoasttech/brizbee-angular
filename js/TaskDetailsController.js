@@ -78,7 +78,4 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     if (task.Id == null) {
         $scope.nextNumber()
     }
-
-    // Allow numbers only
-    $("input.form-control-number").numeric()
 });

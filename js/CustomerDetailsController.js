@@ -73,7 +73,4 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
     if (customer.Id == null) {
         $scope.nextNumber()
     }
-
-    // Allow numbers only
-    $("input.form-control-number").numeric()
 });
