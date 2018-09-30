@@ -1,12 +1,12 @@
 $.urlParam = function(name){
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href)
     if (results != null)
     {
-        return results[1] || 0;
+        return results[1] || 0
     }
     else
     {
-        return '';
+        return ''
     }
 }
 
@@ -29,20 +29,23 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                 EmailPassword: $scope.session.EmailPassword
             }
         }
-        $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", json)
+        $http.post($rootScope.baseUrl + "/odata/Users/Default.Authenticate", json)
             .then(response => {
                 // User exists, redirect to status
-                $rootScope.AuthExpiration = response.data.AuthExpiration
-                $rootScope.AuthToken = response.data.AuthToken
-                $rootScope.AuthUserId = response.data.AuthUserId
 
+                // Set the cookie
+                $cookieStore.put('BRIZBEE_AUTH_USER_ID', response.data.AuthUserId)
+                $cookieStore.put('BRIZBEE_AUTH_EXPIRATION', response.data.AuthExpiration)
+                $cookieStore.put('BRIZBEE_AUTH_TOKEN', response.data.AuthToken)
+
+                // Apply the http headers
                 $http.defaults.headers.common = {
                     'AUTH_USER_ID': response.data.AuthUserId,
                     'AUTH_EXPIRATION': response.data.AuthExpiration,
                     'AUTH_TOKEN': response.data.AuthToken
                 }
 
-                $http.get($rootScope.baseUrl + "odata/Users(" + response.data.AuthUserId + ")?$expand=Organization")
+                $http.get($rootScope.baseUrl + "/odata/Users(" + response.data.AuthUserId + ")?$expand=Organization")
                     .then(response2 => {
                         $rootScope.current.user = response2.data
                     }, error2 => {
@@ -73,9 +76,11 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
         $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", json)
             .then(response => {
                 // User exists, redirect to status
-                $rootScope.AuthExpiration = response.data.AuthExpiration
-                $rootScope.AuthToken = response.data.AuthToken
-                $rootScope.AuthUserId = response.data.AuthUserId
+
+                // Set the cookie
+                $cookieStore.put('BRIZBEE_AUTH_USER_ID', response.data.AuthUserId)
+                $cookieStore.put('BRIZBEE_AUTH_EXPIRATION', response.data.AuthExpiration)
+                $cookieStore.put('BRIZBEE_AUTH_TOKEN', response.data.AuthToken)
 
                 $http.defaults.headers.common = {
                     'AUTH_USER_ID': response.data.AuthUserId,
@@ -83,7 +88,7 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                     'AUTH_TOKEN': response.data.AuthToken
                 }
 
-                $http.get($rootScope.baseUrl + "odata/Users(" + response.data.AuthUserId + ")?$expand=Organization")
+                $http.get($rootScope.baseUrl + "/odata/Users(" + response.data.AuthUserId + ")?$expand=Organization")
                     .then(response2 => {
                         $rootScope.current.user = response2.data
                     }, error2 => {
