@@ -46,4 +46,10 @@ app.controller('ApplicationController', function ($cookies, $http, $location, $r
     $scope.showMomentDate = function (date, format) {
         return moment(date).format(format)
     }
+
+    // Disable mousewheel on a input number field when in focus
+    // (to prevent Cromium browsers change the value when scrolling)
+    $(':input[type=number]').on('mousewheel',function(e){ $(this).blur(); });
+
+    $("input.form-control-number").numeric();
 });
