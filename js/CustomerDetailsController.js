@@ -1,7 +1,6 @@
 app.controller('CustomerDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, customer) {
     if (customer.Id == null) {
         $scope.customer = {}
-        $scope.nextNumber()
     } else {
         $scope.customer = customer
     }
