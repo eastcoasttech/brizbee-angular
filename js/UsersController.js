@@ -26,7 +26,13 @@ app.controller('UsersController', function ($http, $rootScope, $scope, $uibModal
                     return user;
                 }
             }
-        });
+        })
+
+        instance.rendered
+            .then(() => {
+                // Allow numbers only
+                $("input.form-control-number").numeric()
+            })
 
         instance.result
             .then((msg) => {
@@ -45,7 +51,13 @@ app.controller('UsersController', function ($http, $rootScope, $scope, $uibModal
                     return {};
                 }
             }
-        });
+        })
+
+        instance.rendered
+            .then(() => {
+                // Allow numbers only
+                $("input.form-control-number").numeric()
+            })
 
         instance.result
             .then((msg) => {
