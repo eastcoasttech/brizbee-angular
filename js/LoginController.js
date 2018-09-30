@@ -10,7 +10,7 @@ $.urlParam = function(name){
     }
 }
 
-app.controller('LoginController', function ($http, $location, $rootScope, $routeParams, $scope, $window) {
+app.controller('LoginController', function ($cookies, $http, $location, $rootScope, $routeParams, $scope, $window) {
     $scope.messages = { error: '' }
     $scope.method = "pin"
     $scope.organization = {}
@@ -34,9 +34,9 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                 // User exists, redirect to status
 
                 // Set the cookie
-                $cookieStore.put('BRIZBEE_AUTH_USER_ID', response.data.AuthUserId)
-                $cookieStore.put('BRIZBEE_AUTH_EXPIRATION', response.data.AuthExpiration)
-                $cookieStore.put('BRIZBEE_AUTH_TOKEN', response.data.AuthToken)
+                $cookies.put('BRIZBEE_AUTH_USER_ID', response.data.AuthUserId)
+                $cookies.put('BRIZBEE_AUTH_EXPIRATION', response.data.AuthExpiration)
+                $cookies.put('BRIZBEE_AUTH_TOKEN', response.data.AuthToken)
 
                 // Apply the http headers
                 $http.defaults.headers.common = {
@@ -78,9 +78,9 @@ app.controller('LoginController', function ($http, $location, $rootScope, $route
                 // User exists, redirect to status
 
                 // Set the cookie
-                $cookieStore.put('BRIZBEE_AUTH_USER_ID', response.data.AuthUserId)
-                $cookieStore.put('BRIZBEE_AUTH_EXPIRATION', response.data.AuthExpiration)
-                $cookieStore.put('BRIZBEE_AUTH_TOKEN', response.data.AuthToken)
+                $cookies.put('BRIZBEE_AUTH_USER_ID', response.data.AuthUserId)
+                $cookies.put('BRIZBEE_AUTH_EXPIRATION', response.data.AuthExpiration)
+                $cookies.put('BRIZBEE_AUTH_TOKEN', response.data.AuthToken)
 
                 $http.defaults.headers.common = {
                     'AUTH_USER_ID': response.data.AuthUserId,
