@@ -1,6 +1,7 @@
 app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, job, task) {
     if (task.Id == null) {
         $scope.task = {}
+        $scope.nextNumber()
     } else {
         $scope.task = task
     }
@@ -74,6 +75,4 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     }
-    
-    $scope.nextNumber()
 });

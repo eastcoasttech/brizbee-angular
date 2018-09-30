@@ -1,0 +1,23 @@
+{
+  "name": "brizbee-angular",
+  "version": "1.0.0",
+  "description": "Repository for the BRIZBEE front-end.",
+  "main": "",
+  "dependencies": {
+    "angular-input-masks": "^4.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshuasmartin/brizbee-angular.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshuasmartin/brizbee-angular/issues"
+  },
+  "homepage": "https://github.com/joshuasmartin/brizbee-angular#readme"
+}

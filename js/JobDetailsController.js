@@ -2,6 +2,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
     $scope.loading = { templates: false }
     if (job.Id == null) {
         $scope.job = {}
+        $scope.nextNumber()
     } else {
         $scope.job = job
     }
@@ -92,6 +93,5 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
             })
     }
 
-    $scope.nextNumber()
     $scope.refreshTemplates()
 });
