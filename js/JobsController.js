@@ -147,7 +147,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
             }
         })
 
-        instance.opened
+        instance.rendered
             .then(() => {
                 // Allow numbers only
                 $("input.form-control-number").numeric()
@@ -184,7 +184,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
             }
         })
 
-        instance.opened
+        instance.rendered
             .then(() => {
                 // Allow numbers only
                 $("input.form-control-number").numeric()
@@ -220,7 +220,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
             }
         })
 
-        instance.opened
+        instance.rendered
             .then(() => {
                 // Allow numbers only
                 $("input.form-control-number").numeric()
@@ -248,7 +248,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
             }
         })
 
-        instance.opened
+        instance.rendered
             .then(() => {
                 // Allow numbers only
                 $("input.form-control-number").numeric()
@@ -276,7 +276,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
             }
         })
 
-        instance.opened
+        instance.rendered
             .then(() => {
                 // Allow numbers only
                 $("input.form-control-number").numeric()
@@ -304,7 +304,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
             }
         })
 
-        instance.opened
+        instance.rendered
             .then(() => {
                 // Allow numbers only
                 $("input.form-control-number").numeric()
