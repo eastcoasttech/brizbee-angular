@@ -43,7 +43,7 @@
                 <div class="panel-body">
                     <form name="taskForm" ng-submit="searchTasks()" novalidate>
                         <div class="form-group">
-                            <input type="text" name="task_task_number" class="form-control" id="task_number" placeholder="Task Number" ng-model="task.Number" ng-disabled="working.search" autocomplete="off" required autofocus ui-number-mask />
+                            <input type="text" name="task_task_number" class="form-control" id="task_number" placeholder="Task Number" ng-model="task.Number" ng-disabled="working.search" autocomplete="off" required autofocus ui-number-mask ui-hide-group-sep />
                             <p ng-show="taskForm.task_task_number.$invalid && taskForm.task_task_number.$submitted" class="text-danger">Your task number is required. The task number must match exactly, including leading-zeros.</p>
                             <p ng-show="errors.task_number_not_found" class="text-danger">That task number could not be found.</p>
                         </div>
