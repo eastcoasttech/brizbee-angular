@@ -22,4 +22,11 @@ app.controller('InTaskController', function ($http, $location, $rootScope, $scop
     // Focus on task number input and scroll to top
     $window.document.getElementById("task_number").focus()
     $window.scrollTo(0, 0)
+    
+
+    // Disable mousewheel on a input number field when in focus
+    // (to prevent Cromium browsers change the value when scrolling)
+    $(':input[type=number]').on('mousewheel',function(e){ $(this).blur(); });
+
+    $("input.form-control-number").numeric();
 });
