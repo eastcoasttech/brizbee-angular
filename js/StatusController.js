@@ -2,6 +2,7 @@ app.controller('StatusController', function ($http, $rootScope, $scope, $window)
     $scope.working = { status: true }
 
     $scope.refreshStatus = function () {
+        delete $rootScope.current.punch;
         $scope.working.status = true
 
         $http.get($rootScope.baseUrl + "odata/Punches/Default.Current?$expand=Task($expand=Job($expand=Customer))")

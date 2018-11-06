@@ -75,7 +75,6 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
 
         var sortParameter = {}
         sortParameter[$scope.sortType] = $scope.sortDirection
-        console.log(sortParameter)
 
         $http.get($rootScope.baseUrl + "odata/Punches?$count=true&$expand=User,Task($expand=Job($expand=Customer))&$top=20&$skip=" + $scope.punchesPageStart + "&$filter=InAt ge " + moment($rootScope.range.InAt).format("YYYY-MM-DDT00:00:00Z") + " and InAt le " + moment($rootScope.range.OutAt).format("YYYY-MM-DDT23:59:59Z"))
             .then(response => {
@@ -132,7 +131,6 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
 
         instance.result
             .then((msg) => {
-                console.log(msg)
                 $scope.refreshPunches()
             }, () => {
                 console.log('dismissed')
@@ -152,7 +150,6 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         
         instance.result
             .then((msg) => {
-                console.log(msg)
                 $scope.refreshPunches()
             }, () => {
                 console.log('dismissed')
@@ -185,6 +182,10 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
 
     $scope.showInAtDatepicker = function () {
         $scope.datepicker.in_at.opened = true
+    }
+
+    $scope.showNewCommit = function () {
+        $scope.active = 2
     }
 
     $scope.showNewPunch = function () {

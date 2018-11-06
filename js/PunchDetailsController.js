@@ -6,7 +6,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     if (punch.Id == null) {
         $scope.punch = {
             InAt: moment().startOf('day').toDate(),
-            OutAt: moment().endOf('day').toDate(),
+            OutAt: moment().endOf('day').millisecond(0).toDate(),
             has_out_at: true
         }
     } else {

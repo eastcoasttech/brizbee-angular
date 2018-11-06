@@ -48,14 +48,14 @@
 
                     <div ng-show="!working.status">
                         <div ng-show="current.punch">
-                            <p class="text-center" style="text-transform: uppercase;">You are <span class="text-success"><strong>PUNCHED IN</strong></span></p>
+                            <p class="text-center" style="text-transform: uppercase;">You are <span class="label label-success"><strong>PUNCHED IN</strong></span></p>
                             <p class="text-center" style="text-transform: uppercase;"><small>on job</small><br /><strong>{{current.punch.Task.Job.Number}} &ndash; {{current.punch.Task.Job.Name}}</strong></p>
                             <p class="text-center" style="text-transform: uppercase;"><small>for customer</small><br /><strong>{{current.punch.Task.Job.Customer.Number}} &ndash; {{current.punch.Task.Job.Customer.Name}}</strong></p>
                             <p class="text-center" style="text-transform: uppercase;"><small>doing task</small><br /><strong>{{current.punch.Task.Number}} &ndash; {{current.punch.Task.Name}}</strong></p>
                             <p class="text-center" style="text-transform: uppercase;"><small>since {{showMomentDate(current.punch.CreatedAt, 'MMM D, YYYY h:mm a')}}</small></p>
                         </div>
                         <div ng-show="!current.punch">
-                            <p class="text-center" style="text-transform: uppercase;">You are <span class="text-danger"><strong>PUNCHED OUT</strong></span></p>
+                            <p class="text-center" style="text-transform: uppercase;">You are <span class="label label-danger"><strong>PUNCHED OUT</strong></span></p>
                         </div>
                         <table class="table table-noborder">
                             <tbody>
