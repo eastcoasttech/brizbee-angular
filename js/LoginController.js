@@ -73,7 +73,7 @@ app.controller('LoginController', function ($cookies, $http, $location, $rootSco
                 PinUserPin: $scope.session.PinUserPin
             }
         }
-        $http.post($rootScope.baseUrl + "odata/Users/Default.Authenticate", json)
+        $http.post($rootScope.baseUrl + "/odata/Users/Default.Authenticate", json)
             .then(response => {
                 // User exists, redirect to status
 

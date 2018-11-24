@@ -14,7 +14,7 @@ app.controller('FiltersController', function ($http, $rootScope, $scope, $uibMod
     $scope.refreshCustomers = function () {
         $scope.customers = []
         $scope.loading.customers = true
-        $http.get($rootScope.baseUrl + "odata/Customers?$orderby=Id")
+        $http.get($rootScope.baseUrl + "/odata/Customers?$orderby=Id")
             .then(response => {
                 $scope.loading.customers = false
                 $scope.customers = response.data.value
@@ -33,7 +33,7 @@ app.controller('FiltersController', function ($http, $rootScope, $scope, $uibMod
         $scope.jobs = []
         $scope.tasks = []
         $scope.loading.jobs = true
-        $http.get($rootScope.baseUrl + "odata/Jobs?$orderby=Id&$filter=CustomerId eq " + $scope.filters['customer'].customer_id.Id)
+        $http.get($rootScope.baseUrl + "/odata/Jobs?$orderby=Id&$filter=CustomerId eq " + $scope.filters['customer'].customer_id.Id)
             .then(response => {
                 $scope.loading.jobs = false
                 $scope.jobs = response.data.value
@@ -51,7 +51,7 @@ app.controller('FiltersController', function ($http, $rootScope, $scope, $uibMod
 
         $scope.tasks = []
         $scope.loading.tasks = true
-        $http.get($rootScope.baseUrl + "odata/Tasks?$orderby=Id&$filter=JobId eq " + $scope.filters['job'].job_id.Id)
+        $http.get($rootScope.baseUrl + "/odata/Tasks?$orderby=Id&$filter=JobId eq " + $scope.filters['job'].job_id.Id)
             .then(response => {
                 $scope.loading.tasks = false
                 $scope.tasks = response.data.value
@@ -65,7 +65,7 @@ app.controller('FiltersController', function ($http, $rootScope, $scope, $uibMod
         console.log($scope.filters.user.users)
         $scope.users = []
         $scope.loading.users = true
-        $http.get($rootScope.baseUrl + "odata/Users?$orderby=Id")
+        $http.get($rootScope.baseUrl + "/odata/Users?$orderby=Id")
             .then(response => {
                 $scope.loading.users = false
                 $scope.users = response.data.value

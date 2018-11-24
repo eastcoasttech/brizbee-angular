@@ -17,7 +17,7 @@ app.controller('MyUserController', function ($http, $location, $rootScope, $scop
             json.Password = $scope.user.Password
         }
 
-        $http.patch($rootScope.baseUrl + "odata/Users(" + $scope.user.Id + ")", JSON.stringify(json))
+        $http.patch($rootScope.baseUrl + "/odata/Users(" + $scope.user.Id + ")", JSON.stringify(json))
             .then(response => {
                 $scope.messages.saved = 'Changes were saved!'
                 $rootScope.current.user.Name = $scope.user.Name

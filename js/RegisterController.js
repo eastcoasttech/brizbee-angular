@@ -19,7 +19,7 @@ app.controller('RegisterController', function ($http, $location, $rootScope, $sc
                 Password: $scope.user.Password
             }
         }
-        $http.post($rootScope.baseUrl + "odata/Users/Default.Register", json)
+        $http.post($rootScope.baseUrl + "/odata/Users/Default.Register", json)
             .then(response => {
                 $scope.working.register = false
                 $scope.show.success = true

@@ -22,7 +22,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
 
     $scope.delete = function () {
         if (confirm("Are you sure you want to delete this punch?")) {
-            $http.delete($rootScope.baseUrl + "odata/Punches(" + $scope.punch.Id + ")")
+            $http.delete($rootScope.baseUrl + "/odata/Punches(" + $scope.punch.Id + ")")
                 .then(response => {
                     $scope.ok(true)
                 }, error => {
@@ -52,7 +52,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         }
 
         if (confirm("Are you sure you want to save this new punch?")) {
-            $http.post($rootScope.baseUrl + "odata/Punches", JSON.stringify(json))
+            $http.post($rootScope.baseUrl + "/odata/Punches", JSON.stringify(json))
                 .then(response => {
                     $scope.ok()
                 }, error => {
@@ -76,7 +76,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         }
 
         if (confirm("Are you sure you want to modify this punch?")) {
-            $http.patch($rootScope.baseUrl + "odata/Punches(" + $scope.punch.Id + ")", JSON.stringify(json))
+            $http.patch($rootScope.baseUrl + "/odata/Punches(" + $scope.punch.Id + ")", JSON.stringify(json))
                 .then(response => {
                     $scope.ok()
                 }, error => {
@@ -96,7 +96,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     $scope.refreshCustomers = function () {
         $scope.customers = []
         $scope.loading.customers = true
-        $http.get($rootScope.baseUrl + "odata/Customers?$orderby=Id")
+        $http.get($rootScope.baseUrl + "/odata/Customers?$orderby=Id")
             .then(response => {
                 $scope.loading.customers = false
                 $scope.customers = response.data.value
@@ -121,7 +121,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         $scope.jobs = []
         $scope.tasks = []
         $scope.loading.jobs = true
-        $http.get($rootScope.baseUrl + "odata/Jobs?$orderby=Id&$filter=CustomerId eq " + $scope.punch.customer.Id)
+        $http.get($rootScope.baseUrl + "/odata/Jobs?$orderby=Id&$filter=CustomerId eq " + $scope.punch.customer.Id)
             .then(response => {
                 $scope.loading.jobs = false
                 $scope.jobs = response.data.value
@@ -144,7 +144,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
 
         $scope.tasks = []
         $scope.loading.tasks = true
-        $http.get($rootScope.baseUrl + "odata/Tasks?$orderby=Id&$filter=JobId eq " + $scope.punch.job.Id)
+        $http.get($rootScope.baseUrl + "/odata/Tasks?$orderby=Id&$filter=JobId eq " + $scope.punch.job.Id)
             .then(response => {
                 $scope.loading.tasks = false
                 $scope.tasks = response.data.value
@@ -162,7 +162,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     $scope.refreshUsers = function () {
         $scope.users = []
         $scope.loading.users = true
-        $http.get($rootScope.baseUrl + "odata/Users?$orderby=Id")
+        $http.get($rootScope.baseUrl + "/odata/Users?$orderby=Id")
             .then(response => {
                 $scope.loading.users = false
                 $scope.users = response.data.value

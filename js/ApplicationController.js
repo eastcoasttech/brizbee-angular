@@ -1,5 +1,5 @@
 app.controller('ApplicationController', function ($cookies, $http, $location, $rootScope, $scope) {
-    $rootScope.baseUrl = "https://brizbeeweb.azurewebsites.net/"
+    $rootScope.baseUrl = "https://brizbeeweb.azurewebsites.net"
     $rootScope.selected = {}
     $rootScope.current = {}
     $rootScope.range = {
@@ -36,14 +36,15 @@ app.controller('ApplicationController', function ($cookies, $http, $location, $r
     $scope.logout = function () {
         $http.defaults.headers.common = {}
         delete $rootScope.auth
-        $rootScope.current = {} //delete $rootScope.current;
+        $rootScope.current = {}
         $cookies.remove('BRIZBEE_AUTH_USER_ID')
         $cookies.remove('BRIZBEE_AUTH_EXPIRATION')
         $cookies.remove('BRIZBEE_AUTH_TOKEN')
         $location.path('/')
     }
 
-    $scope.showMomentDate = function (date, format) {
-        return moment(date).format(format)
+    $scope.formatMomentFromDate = function (date, format) {
+        // $rootScope.current.user.Organization.TimeZone
+        return moment(date).tz("America/New_York").format(format)
     }
 });

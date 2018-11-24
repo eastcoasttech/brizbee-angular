@@ -11,7 +11,7 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
             Code: $scope.organization.Code
         }
 
-        $http.patch($rootScope.baseUrl + "odata/Organizations(" + $scope.organization.Id + ")", JSON.stringify(json))
+        $http.patch($rootScope.baseUrl + "/odata/Organizations(" + $scope.organization.Id + ")", JSON.stringify(json))
             .then(response => {
                 $scope.messages.saved = 'Changes were saved!'
                 $rootScope.current.user.Organization.Code = $scope.organization.Code
@@ -63,7 +63,7 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
             StripeSourceId: source.id
         }
 
-        $http.patch($rootScope.baseUrl + "odata/Organizations(" + $scope.organization.Id + ")", JSON.stringify(json))
+        $http.patch($rootScope.baseUrl + "/odata/Organizations(" + $scope.organization.Id + ")", JSON.stringify(json))
             .then(response => {
                 $scope.working = false
             }, error => {

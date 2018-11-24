@@ -23,6 +23,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/pages/in/confirm.html',
             controller: 'InConfirmController'
         }).
+        when('/in/done', {
+            templateUrl: '/pages/in/done.html',
+            controller: 'InDoneController'
+        }).
         when('/in/job', {
             templateUrl: '/pages/in/job.html',
             controller: 'InJobController'
@@ -51,6 +55,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/pages/out/confirm.html',
             controller: 'OutConfirmController'
         }).
+        when('/out/done', {
+            templateUrl: '/pages/out/done.html',
+            controller: 'OutDoneController'
+        }).
         when('/punches', {
             templateUrl: '/pages/punches.html',
             controller: 'PunchesController'
@@ -58,6 +66,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         when('/register', {
             templateUrl: '/pages/register.html',
             controller: 'RegisterController'
+        }).
+        when('/reports', {
+            templateUrl: '/pages/reports.html',
+            controller: 'ReportsController'
         }).
         when('/reset', {
             templateUrl: '/pages/reset.html',

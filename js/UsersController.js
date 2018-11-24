@@ -6,7 +6,7 @@ app.controller('UsersController', function ($http, $rootScope, $scope, $uibModal
     $scope.refreshUsers = function () {
         $scope.users = []
         $scope.loading.users = true
-        $http.get($rootScope.baseUrl + "odata/Users?$count=true&$orderby=EmailAddress")
+        $http.get($rootScope.baseUrl + "/odata/Users?$count=true&$orderby=EmailAddress")
             .then(response => {
                 $scope.loading.users = false
                 $scope.usersCount = response.data["@odata.count"]

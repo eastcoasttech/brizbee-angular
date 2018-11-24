@@ -13,7 +13,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     $scope.export = function () {
         // var rows = ['User', 'In', 'Out', 'Customer', 'Job', 'Task', 'Committed']
 
-        $http.get($rootScope.baseUrl + "odata/Punches/CSV")
+        $http.get($rootScope.baseUrl + "/odata/Punches/CSV")
             .then(response => {
 
             }, error => {
@@ -52,7 +52,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     $scope.refreshCommits = function () {
         $scope.commits = []
         $scope.loading.commits = true
-        $http.get($rootScope.baseUrl + "odata/Commits?$orderby=InAt desc&$expand=User")
+        $http.get($rootScope.baseUrl + "/odata/Commits?$orderby=InAt desc&$expand=User")
             .then(response => {
                 $scope.loading.commits = false
                 $scope.commits = response.data.value
@@ -76,7 +76,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         var sortParameter = {}
         sortParameter[$scope.sortType] = $scope.sortDirection
 
-        $http.get($rootScope.baseUrl + "odata/Punches?$count=true&$expand=User,Task($expand=Job($expand=Customer))&$top=20&$skip=" + $scope.punchesPageStart + "&$filter=InAt ge " + moment($rootScope.range.InAt).format("YYYY-MM-DDT00:00:00Z") + " and InAt le " + moment($rootScope.range.OutAt).format("YYYY-MM-DDT23:59:59Z"))
+        $http.get($rootScope.baseUrl + "/odata/Punches?$count=true&$expand=User,Task($expand=Job($expand=Customer))&$top=20&$skip=" + $scope.punchesPageStart + "&$filter=InAt ge " + moment($rootScope.range.InAt).utc().format() + " and InAt le " + moment($rootScope.range.OutAt).utc().format())
             .then(response => {
                 $scope.loading.punches = false
                 $scope.punchesCount = response.data["@odata.count"]
@@ -100,14 +100,15 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     $scope.saveCommit = function () {
         $scope.working.commit = true
 
-        var json = { InAt: $rootScope.range.InAt, OutAt: $rootScope.range.OutAt }
-        $http.post($rootScope.baseUrl + "odata/Commits", JSON.stringify(json))
+        var json = { InAt: moment($rootScope.range.InAt).utc().format(), OutAt: moment($rootScope.range.OutAt).utc().format() }
+        $http.post($rootScope.baseUrl + "/odata/Commits", JSON.stringify(json))
             .then(response => {
                 // Refresh the punches and commits
                 $scope.refreshPunches()
                 $scope.refreshCommits()
                 $scope.working.commit = false
                 alert('Punches were successfully committed')
+                $scope.active = 1
             }, error => {
                 $scope.working.commit = false
                 if (error.data.error.message)
@@ -231,7 +232,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     $scope.undo = function (commit) {
         if (confirm("Are you sure you want to undo this commit? All the punches will be editable again?")) {
 
-            $http.post($rootScope.baseUrl + "odata/Commits(" + commit.Id + ")/Default.Undo")
+            $http.post($rootScope.baseUrl + "/odata/Commits(" + commit.Id + ")/Default.Undo")
                 .then(response => {
                     // Refresh the punches and commits
                     $scope.refreshPunches()

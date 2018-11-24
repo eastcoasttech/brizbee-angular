@@ -16,7 +16,7 @@
                 <li class="active"><a href="#!/status">Status</a></li>
                 <li ng-show="current.user.Role == 'Administrator'"><a href="#!/punches">Punches</a></li>
                 <li ng-show="current.user.Role == 'Administrator'"><a href="#!/jobs">Jobs and Customers</a></li>
-                <!-- <li ng-show="current.user.Role == 'Administrator'"><a href="#!/locations">Locations</a></li> -->
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/reports">Reports</a></li>
                 <li ng-show="current.user.Role == 'Administrator'"><a href="#!/users">Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -52,7 +52,7 @@
                             <p class="text-center" style="text-transform: uppercase;"><small>on job</small><br /><strong>{{current.punch.Task.Job.Number}} &ndash; {{current.punch.Task.Job.Name}}</strong></p>
                             <p class="text-center" style="text-transform: uppercase;"><small>for customer</small><br /><strong>{{current.punch.Task.Job.Customer.Number}} &ndash; {{current.punch.Task.Job.Customer.Name}}</strong></p>
                             <p class="text-center" style="text-transform: uppercase;"><small>doing task</small><br /><strong>{{current.punch.Task.Number}} &ndash; {{current.punch.Task.Name}}</strong></p>
-                            <p class="text-center" style="text-transform: uppercase;"><small>since {{showMomentDate(current.punch.CreatedAt, 'MMM D, YYYY h:mm a')}}</small></p>
+                            <p class="text-center" style="text-transform: uppercase;"><small>since {{formatMomentFromDate(current.punch.CreatedAt, 'MMM D, YYYY h:mm a')}}</small></p>
                         </div>
                         <div ng-show="!current.punch">
                             <p class="text-center" style="text-transform: uppercase;">You are <span class="label label-danger"><strong>PUNCHED OUT</strong></span></p>

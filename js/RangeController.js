@@ -3,11 +3,10 @@ app.controller('RangeController', function ($scope, $uibModalInstance, range) {
     $scope.range = angular.copy(range)
     
     $scope.ok = function () {
-        if (moment($scope.range.InAt).isAfter(moment($scope.range.OutAt))) {
-            
+        if (moment($scope.range.OutAt).isAfter(moment($scope.range.InAt))) {
+            $uibModalInstance.close($scope.range);
         }
         else {
-            $uibModalInstance.close($scope.range);
         }
     }
 

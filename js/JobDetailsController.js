@@ -10,7 +10,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
     
     $scope.delete = function () {
         if (confirm("Are you sure you want to delete this job and all it's tasks?")) {
-            $http.delete($rootScope.baseUrl + "odata/Jobs(" + $scope.job.Id + ")")
+            $http.delete($rootScope.baseUrl + "/odata/Jobs(" + $scope.job.Id + ")")
                 .then(response => {
                     $scope.ok(true)
                 }, error => {
@@ -43,7 +43,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
             QuickBooksCustomerJob: $scope.job.QuickBooksCustomerJob
         }
 
-        $http.patch($rootScope.baseUrl + "odata/Jobs(" + $scope.job.Id + ")", JSON.stringify(json))
+        $http.patch($rootScope.baseUrl + "/odata/Jobs(" + $scope.job.Id + ")", JSON.stringify(json))
             .then(response => {
                 $scope.ok(false)
             }, error => {
@@ -59,7 +59,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
             QuickBooksCustomerJob: $scope.job.QuickBooksCustomerJob
         }
 
-        $http.post($rootScope.baseUrl + "odata/Jobs", JSON.stringify(json))
+        $http.post($rootScope.baseUrl + "/odata/Jobs", JSON.stringify(json))
             .then(response => {
                 $scope.ok(false)
             }, error => {
@@ -82,7 +82,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
 
         $scope.templates = []
         $scope.loading.templates = true
-        $http.get($rootScope.baseUrl + "odata/TaskTemplates?$orderby=Name")
+        $http.get($rootScope.baseUrl + "/odata/TaskTemplates?$orderby=Name")
             .then(response => {
                 $scope.loading.templates = false
                 $scope.templates = response.data.value

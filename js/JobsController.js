@@ -66,7 +66,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
     $scope.refreshCustomers = function () {
         $scope.customers = []
         $scope.loading.customers = true
-        $http.get($rootScope.baseUrl + "odata/Customers?$count=true&$orderby=Number&$top=20&$skip=" + $scope.customersPageStart)
+        $http.get($rootScope.baseUrl + "/odata/Customers?$count=true&$orderby=Number&$top=20&$skip=" + $scope.customersPageStart)
             .then(response => {
                 $scope.loading.customers = false
                 $scope.customersCount = response.data["@odata.count"]
@@ -86,7 +86,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
         $scope.jobs = []
         $scope.tasks = []
         $scope.loading.jobs = true
-        $http.get($rootScope.baseUrl + "odata/Jobs?$count=true&$orderby=Number&$filter=CustomerId eq " + $scope.selected.customer.Id + "&$top=20&$skip=" + $scope.jobsPageStart)
+        $http.get($rootScope.baseUrl + "/odata/Jobs?$count=true&$orderby=Number&$filter=CustomerId eq " + $scope.selected.customer.Id + "&$top=20&$skip=" + $scope.jobsPageStart)
             .then(response => {
                 $scope.loading.jobs = false
                 $scope.jobsCount = response.data["@odata.count"]
@@ -104,7 +104,7 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
 
         $scope.tasks = []
         $scope.loading.tasks = true
-        $http.get($rootScope.baseUrl + "odata/Tasks?$count=true&$orderby=Number&$filter=JobId eq " + $scope.selected.job.Id + "&$top=20&$skip=" + $scope.tasksPageStart)
+        $http.get($rootScope.baseUrl + "/odata/Tasks?$count=true&$orderby=Number&$filter=JobId eq " + $scope.selected.job.Id + "&$top=20&$skip=" + $scope.tasksPageStart)
             .then(response => {
                 $scope.loading.tasks = false
                 $scope.tasksCount = response.data["@odata.count"]

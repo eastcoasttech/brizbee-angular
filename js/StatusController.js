@@ -5,7 +5,7 @@ app.controller('StatusController', function ($http, $rootScope, $scope, $window)
         delete $rootScope.current.punch;
         $scope.working.status = true
 
-        $http.get($rootScope.baseUrl + "odata/Punches/Default.Current?$expand=Task($expand=Job($expand=Customer))")
+        $http.get($rootScope.baseUrl + "/odata/Punches/Default.Current?$expand=Task($expand=Job($expand=Customer))")
             .then(response => {
                 if (response.data != null)
                 {

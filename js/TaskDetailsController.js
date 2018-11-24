@@ -8,7 +8,7 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     
     $scope.delete = function () {
         if (confirm("Are you sure you want to delete this task?")) {
-            $http.delete($rootScope.baseUrl + "odata/Tasks(" + $scope.task.Id + ")")
+            $http.delete($rootScope.baseUrl + "/odata/Tasks(" + $scope.task.Id + ")")
                 .then(response => {
                     $scope.ok(true)
                 }, error => {
@@ -42,7 +42,7 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
             QuickBooksServiceItem: $scope.task.QuickBooksServiceItem
         }
 
-        $http.patch($rootScope.baseUrl + "odata/Tasks(" + $scope.task.Id + ")", JSON.stringify(json))
+        $http.patch($rootScope.baseUrl + "/odata/Tasks(" + $scope.task.Id + ")", JSON.stringify(json))
             .then(response => {
                 $scope.ok(false)
             }, error => {
@@ -59,7 +59,7 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
             QuickBooksServiceItem: $scope.task.QuickBooksServiceItem
         }
 
-        $http.post($rootScope.baseUrl + "odata/Tasks", JSON.stringify(json))
+        $http.post($rootScope.baseUrl + "/odata/Tasks", JSON.stringify(json))
             .then(response => {
                 $scope.ok(false)
             }, error => {

@@ -3,11 +3,11 @@ app.controller('OutConfirmController', function ($http, $location, $rootScope, $
 
     $scope.save = function () {
         $scope.working.save = true
-        $http.post($rootScope.baseUrl + "odata/Punches/Default.PunchOut")
+        $http.post($rootScope.baseUrl + "/odata/Punches/Default.PunchOut")
             .then(response => {
                 if (response.data != null)
                 {
-                    $scope.logout()
+                    $location.path('/out/done')
                 }
             }, error => {
                 $scope.working.save = false

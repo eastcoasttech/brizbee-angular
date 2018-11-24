@@ -15,13 +15,13 @@ app.controller('SplitController', function ($http, $rootScope, $scope, $uibModal
         $scope.working.save = true;
         if (confirm("Are you sure you want to split the punches between " + $scope.split.inAtFormatted + " and " + $scope.split.outAtFormatted + "? This process cannot be reverted.")) {
             var json = {
-                InAt: $rootScope.range.InAt,
+                InAt: moment($rootScope.range.InAt).utc(),
                 Minutes: $scope.split.minutes.toString(),
-                OutAt: $rootScope.range.OutAt,
+                OutAt: moment($rootScope.range.OutAt).utc(),
                 Time: moment($scope.split.time).format("H:mm"),
                 Type: $scope.split.type
             };
-            $http.post($rootScope.baseUrl + "odata/Punches/Default.Split", JSON.stringify(json))
+            $http.post($rootScope.baseUrl + "/odata/Punches/Default.Split", JSON.stringify(json))
                 .then(response => {
                     $uibModalInstance.close('Success');
                 }, error => {

@@ -8,7 +8,7 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
             .then(response => {
                 if (response.data != null)
                 {
-                    $scope.logout()
+                    $location.path('/in/done')
                 }
             }, error => {
                 $scope.working.save = false

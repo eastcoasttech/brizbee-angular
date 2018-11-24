@@ -10,7 +10,7 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
     
     $scope.delete = function () {
         if (confirm("Are you sure you want to delete this user?")) {
-            $http.delete($rootScope.baseUrl + "odata/Users(" + $scope.user.Id + ")")
+            $http.delete($rootScope.baseUrl + "/odata/Users(" + $scope.user.Id + ")")
                 .then(response => {
                     $scope.ok(true)
                 }, error => {
@@ -40,7 +40,7 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
             json.Password = $scope.user.Password
         }
 
-        $http.patch($rootScope.baseUrl + "odata/Users(" + $scope.user.Id + ")", JSON.stringify(json))
+        $http.patch($rootScope.baseUrl + "/odata/Users(" + $scope.user.Id + ")", JSON.stringify(json))
             .then(response => {
                 $scope.ok()
             }, error => {
@@ -58,7 +58,7 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
             QuickBooksEmployee: $scope.user.QuickBooksEmployee
         }
 
-        $http.post($rootScope.baseUrl + "odata/Users", JSON.stringify(json))
+        $http.post($rootScope.baseUrl + "/odata/Users", JSON.stringify(json))
             .then(response => {
                 $scope.ok(false)
             }, error => {

@@ -5,7 +5,8 @@
   "main": "",
   "dependencies": {
     "angular-input-masks": "^4.2.1",
-    "jquery.alphanum": "^1.0.26"
+    "jquery.alphanum": "^1.0.26",
+    "moment-timezone": "^0.5.23"
   },
   "devDependencies": {},
   "scripts": {

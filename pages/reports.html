@@ -1,0 +1,40 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#!/status">
+                <img alt="BRIZBEE Logo" src="/images/icon-32x32.png" style="height: 22px;">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#!/status">Status</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/punches">Punches</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/jobs">Jobs and Customers</a></li>
+                <li ng-show="current.user.Role == 'Administrator'" class="active"><a href="#!/reports">Reports <span class="sr-only">(current)</span></a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/users">Users</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <p class="navbar-text navbar-phone">Punch In or Out @ <a href="tel:1-888-930-3044">1-888-930-3044</a></p>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{current.user.Name}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#!/my/user">Account Details</a></li>
+                        <li ng-show="current.user.Role == 'Administrator'"><a href="#!/my/organization">Organization Details</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="" ng-click="logout()">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <p><a class="btn btn-default" ng-href="{{baseUrl}}/api/Reports/PunchesByUser?Min={{formatMomentFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ssZ')}}&Max={{formatMomentFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ssZ')}}&UserIds=12&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">Punches by User</a></p>
+</div>
