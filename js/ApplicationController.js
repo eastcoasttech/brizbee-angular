@@ -47,4 +47,9 @@ app.controller('ApplicationController', function ($cookies, $http, $location, $r
         // $rootScope.current.user.Organization.TimeZone
         return moment(date).tz("America/New_York").format(format)
     }
+
+    $scope.formatMomentUtcFromDate = function (date, format) {
+        // $rootScope.current.user.Organization.TimeZone
+        return moment(date).tz("America/New_York").utc().format(format)
+    }
 });

@@ -44,6 +44,12 @@ app.controller('LoginController', function ($cookies, $http, $location, $rootSco
                     'AUTH_EXPIRATION': response.data.AuthExpiration,
                     'AUTH_TOKEN': response.data.AuthToken
                 }
+                
+                // Auth is used and links and such
+                $rootScope.auth = {}
+                $rootScope.auth.userId = $cookies.get('BRIZBEE_AUTH_USER_ID')
+                $rootScope.auth.expiration = $cookies.get('BRIZBEE_AUTH_EXPIRATION')
+                $rootScope.auth.token = $cookies.get('BRIZBEE_AUTH_TOKEN')
 
                 $http.get($rootScope.baseUrl + "/odata/Users(" + response.data.AuthUserId + ")?$expand=Organization")
                     .then(response2 => {

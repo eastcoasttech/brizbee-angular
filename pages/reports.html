@@ -36,5 +36,115 @@
 </nav>
 
 <div class="container">
-    <p><a class="btn btn-default" ng-href="{{baseUrl}}/api/Reports/PunchesByUser?Min={{formatMomentFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ssZ')}}&Max={{formatMomentFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ssZ')}}&UserIds=12&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">Punches by User</a></p>
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label>From</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup ng-model="range.InAt" is-open="datepicker.in_at.opened" datepicker-options="datepicker.options" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="showInAtDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label>To</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup ng-model="range.OutAt" is-open="datepicker.out_at.opened" datepicker-options="datepicker.options" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="showOutAtDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </form>
+
+            <hr />
+
+            <ul class="list-unstyled">
+                <li>
+                    <div class="panel panel-default panel-condensed">
+                        <div class="panel-body">
+                            <table class="table table-report">
+                                <tr>
+                                    <td class="col-md-1">
+                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    </td>
+                                    <td class="col-md-11">
+                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByUser?Min={{formatMomentUtcFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ss')}}&Max={{formatMomentUtcFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ss')}}&UserIds=12&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                                            <h4>
+                                                Punches by User
+                                            </h4>
+                                            <p><small>Lists the punches by user for each day in the range.</small></p>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="panel panel-default panel-condensed">
+                        <div class="panel-body">
+                            <table class="table table-report">
+                                <tr>
+                                    <td class="col-md-1">
+                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    </td>
+                                    <td class="col-md-11">
+                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByJob?Min={{formatMomentUtcFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ss')}}&Max={{formatMomentUtcFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ss')}}&UserIds=12&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                                            <h4>
+                                                Punches by Job and Task
+                                            </h4>
+                                            <p><small>Lists the punches by job and task for each day in the range.</small></p>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="panel panel-default panel-condensed">
+                        <div class="panel-body">
+                            <table class="table table-report">
+                                <tr>
+                                    <td class="col-md-1">
+                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    </td>
+                                    <td class="col-md-11">
+                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByDay?Min={{formatMomentUtcFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ss')}}&Max={{formatMomentUtcFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ss')}}&UserIds=12&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                                            <h4>
+                                                Punches by Day
+                                            </h4>
+                                            <p><small>Lists the punches by day for each day in the range.</small></p>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="panel panel-default panel-condensed" style="margin-top: 5%;">
+                        <div class="panel-body">
+                            <table class="table table-report">
+                                <tr>
+                                    <td class="col-md-1">
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                    </td>
+                                    <td class="col-md-11">
+                                        <h4>
+                                            Need a custom report?
+                                        </h4>
+                                        <p><small>We would be happy to build a custom report for your specific business needs. Please reach out to our support team at <a href="mailto:support@brizbee.com">support@brizbee.com</a></small></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
