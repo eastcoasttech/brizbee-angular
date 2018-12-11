@@ -6,8 +6,8 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     $scope.loading = { commits: false, punches: false }
     $scope.punches = []
     $scope.punchesPageStart = 0
-    $scope.sortDirection = 1
-    $scope.sortType = 'user_name'
+    $scope.sortDirection = 'asc'
+    $scope.sortType = 'User/Name'
     $scope.working = { commit: false }
 
     $scope.export = function () {
@@ -76,7 +76,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         var sortParameter = {}
         sortParameter[$scope.sortType] = $scope.sortDirection
 
-        $http.get($rootScope.baseUrl + "/odata/Punches?$count=true&$expand=User,Task($expand=Job($expand=Customer))&$top=20&$skip=" + $scope.punchesPageStart + "&$filter=InAt ge " + moment($rootScope.range.InAt).utc().format() + " and InAt le " + moment($rootScope.range.OutAt).utc().format())
+        $http.get($rootScope.baseUrl + "/odata/Punches?$count=true&$expand=User,Task($expand=Job($expand=Customer))&$top=20&$skip=" + $scope.punchesPageStart + "&$filter=InAt ge " + moment($rootScope.range.InAt).utc().format() + " and InAt le " + moment($rootScope.range.OutAt).utc().format() + '&$orderby=' + $scope.sortType + ' ' + $scope.sortDirection)
             .then(response => {
                 $scope.loading.punches = false
                 $scope.punchesCount = response.data["@odata.count"]
@@ -89,10 +89,10 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
 
     $scope.setSortType = function (sortType) {
         $scope.sortType = sortType
-        if ($scope.sortDirection == 1) {
-            $scope.sortDirection = -1
+        if ($scope.sortDirection == 'asc') {
+            $scope.sortDirection = 'desc'
         } else {
-            $scope.sortDirection = 1
+            $scope.sortDirection = 'asc'
         }
         $scope.refreshPunches()
     }

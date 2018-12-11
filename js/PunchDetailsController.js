@@ -42,12 +42,14 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     $scope.saveNewPunch = function () {
         var json = {
             InAt: $scope.punch.InAt,
+            SourceForInAt: 'Dashboard',
             TaskId: $scope.punch.task.Id,
             UserId: $scope.punch.user.Id
         };
 
         // OutAt is optional when editing manually
         if ($scope.punch.has_out_at) {
+            json.SourceForOutAt = 'Dashboard'
             json.OutAt = $scope.punch.OutAt
         }
 
