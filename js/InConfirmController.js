@@ -3,7 +3,7 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
 
     $scope.save = function () {
         $scope.working.save = true
-        var json = { TaskId: $rootScope.selected.task.Id }
+        var json = { TaskId: $rootScope.selected.task.Id, SourceForInAt: 'Web' }
         $http.post($rootScope.baseUrl + "/odata/Punches/Default.PunchIn", JSON.stringify(json))
             .then(response => {
                 if (response.data != null)

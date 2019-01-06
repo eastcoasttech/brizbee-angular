@@ -7,7 +7,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     $scope.punches = []
     $scope.punchesPageStart = 0
     $scope.sortDirection = 'asc'
-    $scope.sortType = 'User/Name'
+    $scope.sortType = 'InAt'
     $scope.working = { commit: false }
 
     $scope.export = function () {

@@ -1,7 +1,7 @@
-app.controller('StatusController', function ($http, $rootScope, $scope, $window) {
+app.controller('StatusController', function ($http, $interval, $rootScope, $scope, $window) {
     $scope.working = { status: true }
 
-    $scope.refreshStatus = function () {
+    function refreshStatus () {
         delete $rootScope.current.punch;
         $scope.working.status = true
 
@@ -18,7 +18,8 @@ app.controller('StatusController', function ($http, $rootScope, $scope, $window)
             })
     };
 
-    $scope.refreshStatus();
+    $interval(refreshStatus, 15000)
+    refreshStatus()
 
     // Scroll to top
     $window.scrollTo(0, 0)

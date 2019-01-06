@@ -151,7 +151,10 @@
                 <div class="col-md-8">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default" ng-click="showNewTask()" ng-disabled="selected.job == null"><i class="fa fa-tasks" aria-hidden="true" style="margin-right: 5px;"></i> New Task</button>
+                            <button type="button" class="btn btn-default" ng-click="showNewTask()" ng-disabled="selected.job == null"><i class="fa fa-tasks" aria-hidden="true"></i> New Task</button>
+                            <a class="btn btn-default" ng-disabled="selected.job == null" ng-href="{{baseUrl}}/api/Reports/TasksByJob?JobId={{selected.job.Id}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                                Download
+                            </a>
                         </div>
                     </div>
                 </div>

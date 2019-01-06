@@ -3,7 +3,8 @@ app.controller('OutConfirmController', function ($http, $location, $rootScope, $
 
     $scope.save = function () {
         $scope.working.save = true
-        $http.post($rootScope.baseUrl + "/odata/Punches/Default.PunchOut")
+        var json = { SourceForOutAt: 'Web' }
+        $http.post($rootScope.baseUrl + "/odata/Punches/Default.PunchOut", JSON.stringify(json))
             .then(response => {
                 if (response.data != null)
                 {
