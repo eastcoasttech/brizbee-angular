@@ -100,7 +100,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     $scope.saveCommit = function () {
         $scope.working.commit = true
 
-        var json = { InAt: moment($rootScope.range.InAt).utc().format(), OutAt: moment($rootScope.range.OutAt).utc().format() }
+        var json = { InAt: moment($rootScope.range.InAt).format("YYYY-MM-DD"), OutAt: moment($rootScope.range.OutAt).format("YYYY-MM-DD") }
         $http.post($rootScope.baseUrl + "/odata/Commits", JSON.stringify(json))
             .then(response => {
                 // Refresh the punches and commits
@@ -134,7 +134,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
             .then((msg) => {
                 $scope.refreshPunches()
             }, () => {
-                console.log('dismissed')
+                // dismissed
             })
     }
 
@@ -153,7 +153,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
             .then((msg) => {
                 $scope.refreshPunches()
             }, () => {
-                console.log('dismissed')
+                // dismissed
             })
     };
 
@@ -173,7 +173,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
                 console.log(msg)
                 $scope.refreshPunches()
             }, () => {
-                console.log('dismissed')
+                // dismissed
             })
     };
     
@@ -205,7 +205,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
                 console.log(msg)
                 $scope.refreshPunches()
             }, () => {
-                console.log('dismissed')
+                // dismissed
             })
     }
 
@@ -225,7 +225,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
                 $rootScope.range = range
                 $scope.refreshPunches()
             }, () => {
-                console.log('dismissed')
+                // dismissed
             })
     }
 

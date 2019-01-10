@@ -206,29 +206,32 @@
                 <div class="row">
                     <div class="col-md-5">
                         <p>Commits are used to lock your employee's punches from editing or deletion, whether accidental or malicious. Select a date range below to commit all the punches within the range. Commits can be undone later on if necessary.</p>
+                        <p class="text-danger"><strong>All times are in {{current.user.Organization.TimeZone}}</strong></p>
                     </div>
                 </div>
                 <hr />
                 <label>From</label>
                 <div class="row">
                     <div class="col-md-5 col-sm-12 col-xs-12">
-                        <p class="input-group">
+                        <p class="input-group" style="margin-bottom: 0;">
                             <input type="text" class="form-control" uib-datepicker-popup ng-model="range.InAt" is-open="datepicker.in_at.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save" />
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="showInAtDatepicker()" ng-disabled="working.commit"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
                         </p>
+                        <p class="text-muted"><small>at 12:00:00am</small></p>
                     </div>
                 </div>
                 <label>To</label>
                 <div class="row">
                     <div class="col-md-5 col-sm-12 col-xs-12">
-                        <p class="input-group">
+                        <p class="input-group" style="margin-bottom: 0;">
                             <input type="text" class="form-control" uib-datepicker-popup ng-model="range.OutAt" is-open="datepicker.out_at.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save" />
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="showOutAtDatepicker()" ng-disabled="working.commit"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
                         </p>
+                        <p class="text-muted"><small>at 11:59:59pm</small></p>
                     </div>
                 </div>
                 <hr />
