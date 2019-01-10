@@ -4,7 +4,15 @@
   "description": "Repository for the BRIZBEE front-end.",
   "main": "",
   "dependencies": {
+    "angular": "^1.7.3",
+    "angular-animate": "^1.7.3",
+    "angular-cookies": "^1.7.3",
     "angular-input-masks": "^4.2.1",
+    "angular-route": "^1.7.3",
+    "angular-touch": "^1.7.3",
+    "angular-ui-bootstrap": "^2.5.6",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.3.1",
     "jquery.alphanum": "^1.0.26",
     "moment-timezone": "^0.5.23"
   },

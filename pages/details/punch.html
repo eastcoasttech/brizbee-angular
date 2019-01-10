@@ -41,10 +41,11 @@
                 </div>
             </div>
         </div>
+        <p class="text-muted" ng-show="punch.SourceForInAt != null"><small><i>Source is {{punch.SourceForInAt}}</i></small></p>
         <hr />
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="punch.has_out_at" ng-disabled="working.save || punch.CommitId"> Has punch out timestamp?
+                <input type="checkbox" ng-model="punch.has_out_at" ng-disabled="working.save || punch.CommitId"> Has punch out?
             </label>
         </div>
         <label>Out</label>
@@ -63,6 +64,7 @@
                 </div>
             </div>
         </div>
+        <p class="text-muted" ng-show="punch.SourceForOutAt != null"><small><i>Source is {{punch.SourceForOutAt}}</i></small></p>
         <p class="text-danger" ng-show="punch.CommitId">
             This punch is not editable because it's included in a commit. You may undo the commit, but first ensure that the commit has not been exported to payroll software.
         </p>

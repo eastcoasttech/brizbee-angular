@@ -37,6 +37,11 @@
 </nav>
 
 <div class="container">
+    <ol class="breadcrumb">
+        <li><a href="#!/status">Status</a></li>
+        <li class="active">Punches</li>
+    </ol>
+    
     <uib-tabset active="active" type="pills">
         <uib-tab index="0" heading="Punches">
             <hr style="margin-top: 15px;" />
@@ -179,7 +184,7 @@
                     <tr ng-repeat="commit in commits">
                         <td>{{formatMomentFromDate(commit.InAt, 'YYYY-MM-DD')}}</td>
                         <td>{{formatMomentFromDate(commit.OutAt, 'YYYY-MM-DD')}}</td>
-                        <td>{{commit.punches_count}}</td>
+                        <td>{{commit.PunchCount}}</td>
                         <td>{{formatMomentFromDate(commit.CreatedAt, 'YYYY-MM-DD h:mm a')}}</td>
                         <td>{{commit.User.Name}}</td>
                         <td class="text-center"><a href="" ng-click="undo(commit)">Undo</a></td>

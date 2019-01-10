@@ -36,31 +36,13 @@
 </nav>
 
 <div class="container">
+    <ol class="breadcrumb">
+        <li><a href="#!/status">Status</a></li>
+        <li class="active">Reports</li>
+    </ol>
+    
     <div class="row">
-        <div class="col-md-6">
-            <form class="form-inline">
-                <div class="form-group">
-                    <label>From</label>
-                    <p class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup ng-model="range.InAt" is-open="datepicker.in_at.opened" datepicker-options="datepicker.options" close-text="Close" />
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="showInAtDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
-                    </p>
-                </div>
-                <div class="form-group">
-                    <label>To</label>
-                    <p class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup ng-model="range.OutAt" is-open="datepicker.out_at.opened" datepicker-options="datepicker.options" close-text="Close" />
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="showOutAtDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
-                    </p>
-                </div>
-            </form>
-
-            <hr />
-
+        <div class="col-md-7">
             <ul class="list-unstyled">
                 <li>
                     <div class="panel panel-default panel-condensed">
@@ -145,6 +127,78 @@
                     </div>
                 </li>
             </ul>
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">Report Filters and Options</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label>From</label>
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup ng-model="range.InAt" is-open="datepicker.in_at.opened" datepicker-options="datepicker.options" close-text="Close" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="showInAtDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>To</label>
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup ng-model="range.OutAt" is-open="datepicker.out_at.opened" datepicker-options="datepicker.options" close-text="Close" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="showOutAtDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Users</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" ng-model="include.users.scope" value="all" />
+                                    Include All Users
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" ng-model="include.users.scope" value="specific" />
+                                    Include Specific Users
+                                </label>
+                            </div>
+                            <div style="padding-left: 20px" ng-show="include.users.scope == 'specific'">
+                                <input type="text" class="form-control" ng-model="include.users.search" placeholder="Search and Add a User" ng-change="searchUsers()" ng-show="include.users.scope == 'specific'" />
+                                <p style="margin-top: 10px; margin-bottom: 0;" ng-show="include.users.results.length > 0"><strong>Search Results</strong></p>
+                                <ul class="list-unstyled" style="margin-top: 5px; margin-bottom: 5px;">
+                                    <li ng-repeat="user in include.users.results">{{user.Name}} - {{user.EmailAddress}} <a href="" ng-click="addUser(user)">Add</a></li>
+                                </ul>
+                                <p style="margin-top: 10px; margin-bottom: 0;" ng-show="include.users.list.length > 0"><strong>Selected Users</strong></p>
+                                <ul class="list-unstyled" style="margin-top: 5px; margin-bottom: 5px;">
+                                    <li ng-repeat="user in include.users.list">{{user.Name}} - {{user.EmailAddress}} <a href="" ng-click="removeUser(user)">Remove</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Jobs</label>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" ng-model="include.jobs.scope" value="all" />
+                                    Include All Jobs
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" ng-model="include.jobs.scope" value="specific" />
+                                    Include Specific Jobs
+                                </label>
+                            </div>
+                            <input type="text" class="form-control" ng-model="include.jobs.search" placeholder="Search and Add a Job" ng-change="searchJobs()" ng-show="include.jobs.scope == 'specific'" />
+                            <ul class="list-unstyled">
+                                <li ng-repeat="job in include.jobs.list">{{job.Number}} - {{job.Name}} <a href="">Remove</a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

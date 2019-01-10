@@ -3,13 +3,17 @@ html, body {
 }
 
 body {
-    padding-top: 70px;
+    padding-top: 80px;
     overflow-y: scroll;
 }
 
     body.modal-open {
         overflow-y: scroll;
     }
+
+ol.breadcrumb {
+    margin-bottom: 30px;
+}
 
 .navbar {
     margin-bottom: 5%;
