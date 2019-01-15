@@ -1,8 +1,12 @@
-app.controller('RegisterController', function ($http, $location, $rootScope, $scope, $window) {
+app.controller('RegisterController', function ($http, $location, $rootScope, $routeParams, $scope, $window) {
     $scope.user = {}
     $scope.organization = {}
     $scope.show = { success: false }
     $scope.working = { register: false }
+
+    if ($routeParams.EmailAddress != null) {
+        $scope.user.EmailAddress = $routeParams.EmailAddress
+    }
 
     $scope.register = function () {
         $scope.working.register = true
