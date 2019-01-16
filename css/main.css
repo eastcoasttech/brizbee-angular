@@ -270,3 +270,25 @@ a.btn:hover {
     overflow: auto;
     padding-bottom: 175px; /* this needs to be bigger than footer height*/
 }
+
+
+li.text-highlight a:link,
+li.text-highlight a:active,
+li.text-highlight a:visited,
+li.text-highlight a:hover {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #444;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 16px;
+}
+
+li.text-highlight:hover a:link,
+li.text-highlight:hover a:active,
+li.text-highlight:hover a:visited,
+li.text-highlight:hover a:hover {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #373737;
+}
