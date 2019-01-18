@@ -28,7 +28,7 @@ app.controller('ApplicationController', function ($cookies, $http, $location, $r
                 $rootScope.current.user = response.data
 
                 // Reset the document title, in case the session expired
-                $(document).prop('title', 'BRIZBEE - Time Tracking')
+                $(document).prop('title', 'BRIZBEE - Time Tracking and Employee Timesheet Software, Works with QuickBooks')
             }, error => {
                 $location.path("/")
             })

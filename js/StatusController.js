@@ -18,7 +18,7 @@ app.controller('StatusController', function ($http, $interval, $rootScope, $scop
             })
     };
 
-    $interval(refreshStatus, 30000)
+    $interval(refreshStatus, 15000)
     refreshStatus()
 
     // Scroll to top
