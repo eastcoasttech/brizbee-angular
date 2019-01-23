@@ -14,8 +14,9 @@ app.controller('RegisterController', function ($http, $location, $rootScope, $ro
         // Create the user and organization
         var json = {
             Organization: {
-                Code: $scope.organization.Code,
-                Name: $scope.organization.Name
+                // Code: $scope.organization.Code,
+                Name: $scope.organization.Name,
+                TimeZone: $scope.organization.TimeZone
             },
             User: {
                 EmailAddress: $scope.user.EmailAddress,
