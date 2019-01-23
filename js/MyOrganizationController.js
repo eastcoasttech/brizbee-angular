@@ -64,8 +64,12 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
         }
 
         $http.patch($rootScope.baseUrl + "/odata/Organizations(" + $scope.organization.Id + ")", JSON.stringify(json))
-            .then(response => {
-                $scope.working = false
+            .then(responseP => {
+                $http.get($rootScope.baseUrl + "/odata/Organizations(" + $scope.organization.Id + ")")
+                    .then(responseO => {
+                        $scope.organization = responseO.data
+                        $scope.working = false
+                    })
             }, error => {
                 $scope.working = false
                 console.error(error)
