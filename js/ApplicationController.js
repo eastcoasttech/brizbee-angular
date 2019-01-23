@@ -7,7 +7,7 @@ app.controller('ApplicationController', function ($cookies, $http, $location, $r
         InAt: moment().startOf('day').toDate(),
         OutAt: moment().endOf('day').toDate()
     }
-    $scope.timezones = moment.tz.names()
+    $rootScope.timezones = moment.tz.names()
     console.log(moment().startOf('day'))
     console.log(moment().startOf('day').toDate())
     console.log(moment().startOf('day').format())
