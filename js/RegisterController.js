@@ -1,6 +1,6 @@
 app.controller('RegisterController', function ($http, $location, $rootScope, $routeParams, $scope, $window) {
     $scope.user = {}
-    $scope.organization = {}
+    $scope.organization = { TimeZone: "Eastern Time (US & Canada)" }
     $scope.show = { success: false }
     $scope.working = { register: false }
 
