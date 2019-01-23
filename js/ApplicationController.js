@@ -7,12 +7,15 @@ app.controller('ApplicationController', function ($cookies, $http, $location, $r
         InAt: moment().startOf('day').toDate(),
         OutAt: moment().endOf('day').toDate()
     }
-    $rootScope.timezones = moment.tz.names()
-    console.log($rootScope.timezones)
     // console.log(moment().startOf('day'))
     // console.log(moment().startOf('day').toDate())
     // console.log(moment().startOf('day').format())
     // console.log(moment().utc().startOf('day').format())
+
+    $http.get($rootScope.baseUrl + "/odata/Organization/Default.TimeZones")
+        .then(response => {
+            $rootScope.timezones = response.data.value;
+        })
 
     if (($cookies.get("BRIZBEE_AUTH_USER_ID") != null) &&
         ($cookies.get("BRIZBEE_AUTH_USER_ID") != "null"))
