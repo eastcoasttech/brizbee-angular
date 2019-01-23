@@ -9,10 +9,10 @@ app.controller('ApplicationController', function ($cookies, $http, $location, $r
     }
     $rootScope.timezones = moment.tz.names()
     console.log($rootScope.timezones)
-    console.log(moment().startOf('day'))
-    console.log(moment().startOf('day').toDate())
-    console.log(moment().startOf('day').format())
-    console.log(moment().utc().startOf('day').format())
+    // console.log(moment().startOf('day'))
+    // console.log(moment().startOf('day').toDate())
+    // console.log(moment().startOf('day').format())
+    // console.log(moment().utc().startOf('day').format())
 
     if (($cookies.get("BRIZBEE_AUTH_USER_ID") != null) &&
         ($cookies.get("BRIZBEE_AUTH_USER_ID") != "null"))
