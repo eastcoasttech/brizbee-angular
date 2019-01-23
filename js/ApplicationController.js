@@ -12,7 +12,7 @@ app.controller('ApplicationController', function ($cookies, $http, $location, $r
     // console.log(moment().startOf('day').format())
     // console.log(moment().utc().startOf('day').format())
 
-    $http.get($rootScope.baseUrl + "/odata/Organization/Default.TimeZones")
+    $http.get($rootScope.baseUrl + "/odata/Organizations/Default.TimeZones")
         .then(response => {
             $rootScope.timezones = response.data.value;
         })
