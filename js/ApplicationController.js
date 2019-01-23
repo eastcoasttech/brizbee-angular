@@ -1,12 +1,17 @@
 app.controller('ApplicationController', function ($cookies, $http, $location, $rootScope, $scope) {
-    $rootScope.baseUrl = "https://brizbeeweb.azurewebsites.net"
-    // $rootScope.baseUrl = "http://localhost:54313"
+    // $rootScope.baseUrl = "https://brizbeeweb.azurewebsites.net"
+    $rootScope.baseUrl = "http://localhost:54313"
     $rootScope.selected = {}
     $rootScope.current = {}
     $rootScope.range = {
         InAt: moment().startOf('day').toDate(),
         OutAt: moment().endOf('day').toDate()
     }
+    $scope.timezones = moment.tz.names()
+    console.log(moment().startOf('day'))
+    console.log(moment().startOf('day').toDate())
+    console.log(moment().startOf('day').format())
+    console.log(moment().utc().startOf('day').format())
 
     if (($cookies.get("BRIZBEE_AUTH_USER_ID") != null) &&
         ($cookies.get("BRIZBEE_AUTH_USER_ID") != "null"))

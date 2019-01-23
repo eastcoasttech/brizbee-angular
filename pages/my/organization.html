@@ -52,6 +52,10 @@
                     <label>Organization Code (for login via Pin)</label>
                     <input type="text" class="form-control form-control-number" ng-model="organization.Code" ng-disabled="working.save" />
                 </div>
+                <div class="form-group">
+                    <label>Time Zone</label>
+                    <select class="form-control" ng-model="organization.TimeZone" ng-options="timezone.Name for timezone in timezones" ng-disabled="working.save"></select>
+                </div>
                 <button class="btn btn-primary" type="submit" ng-disabled="working.save">Save Changes</button>
                 <p class="text-success" ng-show="messages.saved">{{messages.saved}}</p>
             </div>

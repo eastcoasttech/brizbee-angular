@@ -53,7 +53,7 @@
                                         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     </td>
                                     <td class="col-md-11">
-                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByUser?Min={{formatMomentUtcFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ss')}}&Max={{formatMomentUtcFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ss')}}&UserIds=12&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByUser?Min={{formatMomentUtcFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ss')}}&Max={{formatMomentUtcFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ss')}}&JobScope={{include.jobs.scope}}&{{includedJobIds()}}&UserScope={{include.users.scope}}&{{includedUserIds()}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
                                             <h4>
                                                 Punches by User
                                             </h4>
@@ -74,7 +74,7 @@
                                         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     </td>
                                     <td class="col-md-11">
-                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByJob?Min={{formatMomentUtcFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ss')}}&Max={{formatMomentUtcFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ss')}}&UserIds=12&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByJob?Min={{formatMomentUtcFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ss')}}&Max={{formatMomentUtcFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ss')}}&JobScope={{include.jobs.scope}}&{{includedJobIds()}}&UserScope={{include.users.scope}}&{{includedUserIds()}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
                                             <h4>
                                                 Punches by Job and Task
                                             </h4>
@@ -95,7 +95,7 @@
                                         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     </td>
                                     <td class="col-md-11">
-                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByDay?Min={{formatMomentUtcFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ss')}}&Max={{formatMomentUtcFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ss')}}&UserIds=12&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByDay?Min={{formatMomentUtcFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ss')}}&Max={{formatMomentUtcFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ss')}}&JobScope={{include.jobs.scope}}&{{includedJobIds()}}&UserScope={{include.users.scope}}&{{includedUserIds()}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
                                             <h4>
                                                 Punches by Day
                                             </h4>
@@ -191,10 +191,17 @@
                                     Include Specific Jobs
                                 </label>
                             </div>
-                            <input type="text" class="form-control" ng-model="include.jobs.search" placeholder="Search and Add a Job" ng-change="searchJobs()" ng-show="include.jobs.scope == 'specific'" />
-                            <ul class="list-unstyled">
-                                <li ng-repeat="job in include.jobs.list">{{job.Number}} - {{job.Name}} <a href="">Remove</a></li>
-                            </ul>
+                            <div style="padding-left: 20px" ng-show="include.jobs.scope == 'specific'">
+                                <input type="text" class="form-control" ng-model="include.jobs.search" placeholder="Search and Add a Job" ng-change="searchJobs()" ng-show="include.jobs.scope == 'specific'" />
+                                <p style="margin-top: 10px; margin-bottom: 0;" ng-show="include.jobs.results.length > 0"><strong>Search Results</strong></p>
+                                <ul class="list-unstyled" style="margin-top: 5px; margin-bottom: 5px;">
+                                    <li ng-repeat="job in include.jobs.results">{{job.Number}} - {{job.Name}} <a href="" ng-click="addJob(job)">Add</a></li>
+                                </ul>
+                                <p style="margin-top: 10px; margin-bottom: 0;" ng-show="include.jobs.list.length > 0"><strong>Selected Jobs</strong></p>
+                                <ul class="list-unstyled" style="margin-top: 5px; margin-bottom: 5px;">
+                                    <li ng-repeat="job in include.jobs.list">{{job.Number}} - {{job.Name}} <a href="" ng-click="removeJob(job)">Remove</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </form>
                 </div>
