@@ -67,13 +67,13 @@
     <form id="payment-form">
         <div class="row">
             <div class="col-md-4">
-                <div class="form-group" ng-show="organization.StripeSourceId != null">
+                <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;" ng-show="organization.StripeSourceId != null">
                     <label for="card-element">
                         Current Card
                     </label>
                     <p>{{organization.StripeSourceCardBrand}} ending in {{organization.StripeSourceCardLast4}} expires {{organization.StripeSourceCardExpirationMonth}} &ndash; {{organization.StripeSourceCardExpirationYear}}</p>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
                     <label for="card-element">
                         Update Credit or Debit Card
                     </label>
