@@ -10,10 +10,13 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             has_out_at: true
         }
     } else {
+        console.log(moment.parseZone(punch.InAt))
+        console.log(moment.utc(punch.InAt))
+        console.log(moment.utc(punch.InAt).toDate())
         $scope.punch = punch
-        $scope.punch.InAt = moment(punch.InAt).toDate()
+        $scope.punch.InAt = moment.parseZone(punch.InAt).toDate()
         if ($scope.punch.OutAt != null) {
-            $scope.punch.OutAt = moment(punch.OutAt).toDate()
+            $scope.punch.OutAt = moment.parseZone(punch.OutAt).toDate()
             $scope.punch.has_out_at = true
         }
     }
