@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
                 <p class="input-group">
-                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.InAt" is-open="datepicker.InAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || punch.CommitId" datetimepicker-neutral-timezone />
+                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.InAt" is-open="datepicker.InAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || punch.CommitId" />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="showInAtDatepicker()" ng-disabled="working.save || punch.CommitId"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-3 col-sm-12 col-xs-12">
                 <div class="form-group">
-                    <div uib-timepicker ng-model="punch.InAt" show-meridian="true" show-spinners="false" show-seconds="false" ng-disabled="working.save || punch.CommitId" datetimepicker-neutral-timezone></div>
+                    <div uib-timepicker ng-model="punch.InAt" show-meridian="true" show-spinners="false" show-seconds="false" ng-disabled="working.save || punch.CommitId"></div>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
         <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
                 <p class="input-group">
-                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.OutAt" is-open="datepicker.OutAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || !punch.has_out_at || punch.CommitId" datetimepicker-neutral-timezone />
+                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.OutAt" is-open="datepicker.OutAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || !punch.has_out_at || punch.CommitId" />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="showOutAtDatepicker()" ng-disabled="working.save || !punch.has_out_at || punch.CommitId"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
@@ -60,7 +60,7 @@
             </div>
             <div class="col-md-3 col-sm-12 col-xs-12">
                 <div class="form-group">
-                    <div uib-timepicker ng-model="punch.OutAt" show-meridian="true" show-spinners="false" show-seconds="false" ng-disabled="working.save || !punch.has_out_at || punch.CommitId" datetimepicker-neutral-timezone></div>
+                    <div uib-timepicker ng-model="punch.OutAt" show-meridian="true" show-spinners="false" show-seconds="false" ng-disabled="working.save || !punch.has_out_at || punch.CommitId"></div>
                 </div>
             </div>
         </div>
