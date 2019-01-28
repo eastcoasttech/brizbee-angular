@@ -54,13 +54,16 @@ app.controller('ApplicationController', function ($cookies, $http, $location, $r
     }
 
     $scope.formatMomentFromDate = function (date, format) {
-        // $rootScope.current.user.Organization.TimeZone
-        // return moment(date).tz("America/New_York").format(format)
         return moment.parseZone(date).format(format)
     }
 
     $scope.formatMomentUtcFromDate = function (date, format) {
-        // $rootScope.current.user.Organization.TimeZone
-        return moment.parseZone(date).tz("America/New_York").utc().format(format)
+        return moment.parseZone(date).format(format)
+    }
+
+    $scope.formatMomentTimeZoneAsAbbreviation = function (timezone) {
+        if (timezone) {
+            return moment().tz(timezone).format('z')
+        }
     }
 });

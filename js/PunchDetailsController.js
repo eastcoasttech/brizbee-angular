@@ -11,22 +11,8 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         }
         console.log(moment().startOf('day').toDate())
     } else {
-        // console.log(moment.parseZone(punch.InAt))
-        // console.log(moment.utc(punch.InAt))
-        // console.log(moment.utc(punch.InAt).toDate())
         var timedifference = new Date().getTimezoneOffset()
-        console.log(new Date())
-        console.log(timedifference)
-
-
-
-
-        console.log(moment.parseZone(punch.InAt))
-        console.log(moment(punch.InAt))
-        console.log(moment(punch.InAt).utcOffset(timedifference).toDate())
-
-        // console.log(inAt.utcOffset(timedifference))
-        $scope.punch = punch
+        $scope.punch = angular.copy(punch)
         $scope.punch.InAt = moment(punch.InAt).add(timedifference, 'm').toDate()
         if ($scope.punch.OutAt != null) {
             $scope.punch.OutAt = moment(punch.OutAt).add(timedifference, 'm').toDate()

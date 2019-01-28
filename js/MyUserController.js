@@ -9,7 +9,8 @@ app.controller('MyUserController', function ($http, $location, $rootScope, $scop
 
         var json = {
             Name: $scope.user.Name,
-            Pin: $scope.user.Pin
+            Pin: $scope.user.Pin,
+            TimeZone: $scope.user.TimeZone
         }
 
         // Changing password is optional

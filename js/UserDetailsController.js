@@ -32,7 +32,8 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
             Name: $scope.user.Name,
             Role: $scope.user.Role,
             Pin: $scope.user.Pin,
-            QuickBooksEmployee: $scope.user.QuickBooksEmployee
+            QuickBooksEmployee: $scope.user.QuickBooksEmployee,
+            TimeZone: $scope.user.TimeZone
         }
 
         // Changing password is optional
@@ -55,7 +56,8 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
             Role: $scope.user.Role,
             Pin: $scope.user.Pin,
             Password: $scope.user.Password,
-            QuickBooksEmployee: $scope.user.QuickBooksEmployee
+            QuickBooksEmployee: $scope.user.QuickBooksEmployee,
+            TimeZone: $scope.user.TimeZone
         }
 
         $http.post($rootScope.baseUrl + "/odata/Users", JSON.stringify(json))

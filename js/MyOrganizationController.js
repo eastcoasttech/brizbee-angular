@@ -8,7 +8,8 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
 
         var json = {
             Name: $scope.organization.Name,
-            Code: $scope.organization.Code
+            Code: $scope.organization.Code,
+            TimeZone: $scope.organization.TimeZone
         }
 
         $http.patch($rootScope.baseUrl + "/odata/Organizations(" + $scope.organization.Id + ")", JSON.stringify(json))
