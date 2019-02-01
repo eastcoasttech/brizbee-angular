@@ -54,7 +54,7 @@
                 </div>
                 <div class="form-group">
                     <label>Default Time Zone</label>
-                    <select class="form-control" ng-model="user.TimeZone" ng-options="timezone for timezone in timezones" ng-disabled="working.save"></select>
+                    <select class="form-control" ng-model="user.TimeZone" ng-options="timezone.Id for timezone in timezones" ng-disabled="working.save"></select>
                     <p class="help-block">Any future punches will be in this time zone if you do not specify otherwise.</p>
                 </div>
                 <div class="form-group">
