@@ -57,14 +57,13 @@
                         </div>
                         <div class="form-group">
                             <label>Your Country</label>
-                            <select class="form-control" ng-model="organization.CountryCode" ng-options="country.CountryCode as country.Name for country in countries" ng-disabled="working.save"></select>
+                            <select class="form-control" ng-model="selected.CountryCode" ng-options="country.CountryCode as country.Name for country in countries" ng-disabled="working.save"></select>
                         </div>
                         <div class="form-group">
-                            <label>Your Time Zone</label>
-                            <select class="form-control" ng-model="organization.TimeZone" ng-options="timezone.Id for timezone in filteredTimeZones" ng-disabled="working.save"></select>
+                            <label>City in Your Time Zone</label>
+                            <select class="form-control" ng-model="user.TimeZone" ng-options="timezone.Id for timezone in filteredTimeZones" ng-disabled="working.save"></select>
                             <p class="help-block">
-                                Your punches will default to this time zone unless you specify
-                                otherwise.
+                                Your punches will default to this time zone unless you specify otherwise.
                             </p>
                         </div>
                         <button type="submit" class="btn btn-primary" ng-disabled="working.register || registerForm.$invalid">Start Tracking Time <i class="fa fa-arrow-circle-o-right" aria-hidden="true" ng-hide="working.register"></i><i class="fa fa-spinner fa-spin fa-fw" ng-show="working.register"></i></button>

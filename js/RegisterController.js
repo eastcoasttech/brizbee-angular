@@ -2,10 +2,11 @@ app.controller('RegisterController', function ($http, $location, $rootScope, $ro
     $scope.filteredTimeZones = []
     $scope.user = {}
     $scope.organization = {}
+    $scope.selected = {}
     $scope.show = { success: false }
     $scope.working = { register: false }
     
-    $scope.$watch('organization.CountryCode', function (newValue, oldValue, scope) {
+    $scope.$watch('selected.CountryCode', function (newValue, oldValue, scope) {
         // Update the list of time zones
         // whenever the country is changed
         $scope.refreshTimeZones();
@@ -16,15 +17,15 @@ app.controller('RegisterController', function ($http, $location, $rootScope, $ro
             var guessed = moment.tz.guess();
             if (guessed != null && guessed != '') {
                 var found = $scope.timezones[_.findIndex($scope.timezones, { Id: guessed })];
-                $scope.organization.CountryCode = found.CountryCode;
+                $scope.selected.CountryCode = found.CountryCode;
                 $timeout(function () {
-                    $scope.organization.TimeZone = found;
+                    $scope.user.TimeZone = found;
                 }, 10); // Delay to account for $watch setting to zero
             } else {
                 var found = $scope.timezones[_.findIndex($scope.timezones, { Id: 'America/New_York' })];
-                $scope.organization.CountryCode = found.CountryCode;
+                $scope.selected.CountryCode = found.CountryCode;
                 $timeout(function () {
-                    $scope.organization.TimeZone = found;
+                    $scope.user.TimeZone = found;
                 }, 10); // Delay to account for $watch setting to zero
             }
         }
@@ -36,11 +37,11 @@ app.controller('RegisterController', function ($http, $location, $rootScope, $ro
 
     $scope.refreshTimeZones = function () {
         $scope.filteredTimeZones = _.filter($scope.timezones, function (t) {
-            if (t.CountryCode == $scope.organization.CountryCode) {
+            if (t.CountryCode == $scope.selected.CountryCode) {
                 return t;
             }
         });
-        $scope.organization.TimeZone = $scope.filteredTimeZones[0];
+        $scope.user.TimeZone = $scope.filteredTimeZones[0];
     }
 
     $scope.register = function () {
@@ -50,12 +51,12 @@ app.controller('RegisterController', function ($http, $location, $rootScope, $ro
         var json = {
             Organization: {
                 Name: $scope.organization.Name,
-                TimeZone: $scope.organization.TimeZone
             },
             User: {
                 EmailAddress: $scope.user.EmailAddress,
                 Name: $scope.user.Name,
-                Password: $scope.user.Password
+                Password: $scope.user.Password,
+                TimeZone: $scope.user.TimeZone
             }
         }
         $http.post($rootScope.baseUrl + "/odata/Users/Default.Register", json)
