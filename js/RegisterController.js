@@ -56,7 +56,7 @@ app.controller('RegisterController', function ($http, $location, $rootScope, $ro
                 EmailAddress: $scope.user.EmailAddress,
                 Name: $scope.user.Name,
                 Password: $scope.user.Password,
-                TimeZone: $scope.user.TimeZone
+                TimeZone: $scope.user.TimeZone.Id
             }
         }
         $http.post($rootScope.baseUrl + "/odata/Users/Default.Register", json)
