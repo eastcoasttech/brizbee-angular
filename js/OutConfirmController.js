@@ -1,12 +1,15 @@
 app.controller('OutConfirmController', function ($http, $location, $rootScope, $scope, $window) {
+    $scope.options = {
+        Country: $rootScope.current.organization.Country,
+        OutAtTimeZone: $rootScope.current.user.TimeZone
+    }
+    $scope.show = { timezone: false }
     $scope.working = {}
 
     $scope.save = function () {
         $scope.working.save = true
         
-        var timezone = $rootScope.current.user.TimeZone
-        
-        var json = { SourceForOutAt: 'Web', OutAtTimeZone: timezone }
+        var json = { SourceForOutAt: 'Web', OutAtTimeZone: $scope.options.OutAtTimeZone }
         $http.post($rootScope.baseUrl + "/odata/Punches/Default.PunchOut", JSON.stringify(json))
             .then(response => {
                 if (response.data != null)

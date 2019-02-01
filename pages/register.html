@@ -56,9 +56,16 @@
                             <p ng-show="registerForm.user_password.$invalid && registerForm.user_password.$submitted" class="text-danger">A valid password is required.</p>
                         </div>
                         <div class="form-group">
-                            <label>Time Zone</label>
-                            <select class="form-control" ng-model="organization.TimeZone" ng-options="timezone for timezone in timezones" ng-disabled="working.save"></select>
-                            <p class="help-block">All of your employees' punches will be stored in this time zone.</p>
+                            <label>Your Country</label>
+                            <select class="form-control" ng-model="organization.CountryCode" ng-options="country.CountryCode as country.Name for country in countries" ng-disabled="working.save"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Your Time Zone</label>
+                            <select class="form-control" ng-model="organization.TimeZone" ng-options="timezone.Id for timezone in filteredTimeZones" ng-disabled="working.save"></select>
+                            <p class="help-block">
+                                Your punches will default to this time zone unless you specify
+                                otherwise.
+                            </p>
                         </div>
                         <button type="submit" class="btn btn-primary" ng-disabled="working.register || registerForm.$invalid">Start Tracking Time <i class="fa fa-arrow-circle-o-right" aria-hidden="true" ng-hide="working.register"></i><i class="fa fa-spinner fa-spin fa-fw" ng-show="working.register"></i></button>
                     </form>

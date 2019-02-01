@@ -1,12 +1,15 @@
 app.controller('InConfirmController', function ($http, $location, $rootScope, $scope, $window) {
+    $scope.options = {
+        Country: $rootScope.current.organization.Country,
+        OutAtTimeZone: $rootScope.current.user.TimeZone
+    }
+    $scope.show = { timezone: false }
     $scope.working = {}
 
     $scope.save = function () {
         $scope.working.save = true
 
-        var timezone = $rootScope.current.user.TimeZone
-        
-        var json = { TaskId: $rootScope.selected.task.Id, SourceForInAt: 'Web', InAtTimeZone: timezone }
+        var json = { TaskId: $rootScope.selected.task.Id, SourceForInAt: 'Web', InAtTimeZone: $scope.options.OutAtTimeZone }
         $http.post($rootScope.baseUrl + "/odata/Punches/Default.PunchIn", JSON.stringify(json))
             .then(response => {
                 if (response.data != null)
