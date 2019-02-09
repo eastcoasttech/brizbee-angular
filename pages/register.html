@@ -91,7 +91,6 @@
                             <button type="submit" class="btn btn-primary" ng-disabled="working.register || registerForm.$invalid">Start Tracking Time <i class="fa fa-arrow-circle-o-right" aria-hidden="true" ng-hide="working.register"></i><i class="fa fa-spinner fa-spin fa-fw" ng-show="working.register"></i></button>
                         </div>
                         <p class="text-center text-muted">No credit card required. Cancel anytime.</p>
-                        <a href="" ng-click="showPin()">Show Pin</a>
                     </form>
 
                     <!-- Step - Pin -->
@@ -108,7 +107,6 @@
                             <p class="help-block">This 4+ digit code is private and unique to each employee.</p>
                         </div>
                         <button type="submit" class="btn btn-primary" ng-disabled="working.pin || pinForm.$invalid">Save and Continue<i class="fa fa-spinner fa-spin fa-fw" ng-show="working.pin"></i></button>
-                        <a href="" ng-click="showUsers()">Show Pin</a>
                     </form>
 
                     <div class="fadeIn" ng-show="step.name == 'users'">
