@@ -23,8 +23,8 @@ app.controller('MyOrganizationController', function ($http, $location, $rootScop
                 console.error(error)
             })
     }
-
-    var stripe = Stripe('pk_test_TsCIFZTygn9DYAzEY3ElV2Ph');
+    
+    var stripe = Stripe('pk_live_OyZdMh0UpYPCgR8ecp4Hxq9D'); // pk_test_TsCIFZTygn9DYAzEY3ElV2Ph
     var elements = stripe.elements();
 
     // Create an instance of the card Element.
