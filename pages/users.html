@@ -40,54 +40,120 @@
         <li><a href="#!/status">Status</a></li>
         <li class="active">Users</li>
     </ol>
-    
-    <div class="row row-toolbar">
-        <div class="col-md-6">
-            <div class="btn-toolbar" role="toolbar">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default" ng-click="showNewUser()"><i class="fa fa-plus" aria-hidden="true" style="margin-right: 5px;"></i> New User</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="btn-toolbar pull-right" role="toolbar">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default" ng-click="refreshUsers()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!--List of Users-->
-    <table class="table table-bordered table-condensed">
-        <thead>
-            <tr>
-                <th class="col-md-3">Email Address</th>
-                <th class="col-md-4">Name</th>
-                <th class="col-md-3">Role</th>
-                <th class="col-md-2">Added</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="user in users" class="clickable" ng-click="showEditUser(user)">
-                <td><a href="">{{user.EmailAddress}}</a></td>
-                <td><a href="">{{user.Name}}</a></td>
-                <td><a href="">{{user.Role}}</a></td>
-                <td><a href="">{{showMomentDate(user.CreatedAt, 'YYYY-MM-DD h:mm a')}}</a></td>
-            </tr>
-            <tr ng-show="loading.users">
-                <td colspan="4"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
-            </tr>
-        </tbody>
-    </table>
-            
-    <div class="row">
-        <div class="col-md-6">
-            <button class="btn btn-sm btn-default" ng-click="usersPrevious()" ng-show="usersCount > 20"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
-            <button class="btn btn-sm btn-default" ng-click="usersNext()" ng-show="usersCount > 20"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-        </div>
-        <div class="col-md-6 text-right">
-            <p class="form-control-static" ng-hide="((users.length == 0) && (!loading.users)) || loading.users">{{usersStart()}} to {{usersEnd()}} of {{usersCount}}</p>
-        </div>
-    </div>
+    <uib-tabset active="active" type="pills">
+        <uib-tab index="0" heading="Who's Working">
+            <hr style="margin-top: 15px;" />
+
+            <div class="row row-toolbar">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <div class="btn-toolbar pull-right" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" ng-click="refreshCurrentPunches()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!--List of Punched In Users-->
+            <table class="table table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th class="col-md-2">Name</th>
+                        <th class="col-md-2">Customer</th>
+                        <th class="col-md-2">Job</th>
+                        <th class="col-md-3">Task</th>
+                        <th class="col-md-3">Since</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="punch in punches" class="success">
+                        <td>{{punch.User.Name}}</td>
+                        <td>{{punch.Task.Job.Customer.Number}} - {{punch.Task.Job.Customer.Name}}</td>
+                        <td>{{punch.Task.Job.Number}} - {{punch.Task.Job.Name}}</td>
+                        <td>{{punch.Task.Number}} - {{punch.Task.Name}}</td>
+                        <td>{{formatMomentFromDate(punch.InAt, 'YYYY-MM-DD h:mm a')}}</td>
+                    </tr>
+                    <tr ng-if="punches.length == 0 && !loading.punches">
+                        <td colspan="5">
+                            <p style="padding: 30px 30px 0 30px; font-size: 40px;">Nobody's Working <i class="fa fa-frown-o" aria-hidden="true"></i></p>
+                            <p style="padding: 0 30px 30px 30px;">Tell your users to punch in on the Web, the mobile app, or touch-tone phone at <a href="tel:1-888-930-3044">1-888-930-3044</a></p>
+                        </td>
+                    </tr>
+                    <tr ng-show="loading.punches">
+                        <td colspan="5"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+                    
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-sm btn-default" ng-click="punchesPrevious()" ng-show="punchesCount > 20"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                    <button class="btn btn-sm btn-default" ng-click="punchesNext()" ng-show="punchesCount > 20"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p class="form-control-static" ng-hide="((punches.length == 0) && (!loading.punches)) || loading.punches">{{punchesStart()}} to {{punchesEnd()}} of {{punchesCount}}</p>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="1" heading="All Users">
+            <hr style="margin-top: 15px;" />
+
+            <div class="row row-toolbar">
+                <div class="col-md-6">
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" ng-click="showNewUser()"><i class="fa fa-plus" aria-hidden="true" style="margin-right: 5px;"></i> New User</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="btn-toolbar pull-right" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default" ng-click="refreshUsers()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!--List of Users-->
+            <table class="table table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th class="col-md-3">Name</th>
+                        <th class="col-md-2">Email Address</th>
+                        <th class="col-md-1">Pin</th>
+                        <th class="col-md-2">Role</th>
+                        <th class="col-md-2">Default Time Zone</th>
+                        <th class="col-md-2">Added</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in users" class="clickable" ng-click="showEditUser(user)">
+                        <td><a href="">{{user.Name}}</a></td>
+                        <td><a href="">{{user.EmailAddress}}</a></td>
+                        <td><a href="">{{user.Pin}}</a></td>
+                        <td><a href="">{{user.Role}}</a></td>
+                        <td><a href="">{{user.TimeZone}}</a></td>
+                        <td><a href="">{{formatMomentFromDate(user.CreatedAt, 'YYYY-MM-DD h:mm a')}}</a></td>
+                    </tr>
+                    <tr ng-show="loading.users">
+                        <td colspan="5"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+                    
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-sm btn-default" ng-click="usersPrevious()" ng-show="usersCount > 20"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                    <button class="btn btn-sm btn-default" ng-click="usersNext()" ng-show="usersCount > 20"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p class="form-control-static" ng-hide="((users.length == 0) && (!loading.users)) || loading.users">{{usersStart()}} to {{usersEnd()}} of {{usersCount}}</p>
+                </div>
+            </div>
+        </uib-tab>
+    </uib-tabset>
 </div>

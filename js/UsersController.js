@@ -1,5 +1,7 @@
 app.controller('UsersController', function ($http, $rootScope, $scope, $uibModal, $window) {
-    $scope.loading = { users: false }
+    $scope.loading = { punches: false, users: false }
+    $scope.punches = []
+    $scope.punchesPageStart = 0
     $scope.users = []
     $scope.usersPageStart = 0
 
@@ -85,8 +87,41 @@ app.controller('UsersController', function ($http, $rootScope, $scope, $uibModal
     $scope.usersStart = function () {
         return $scope.usersPageStart + 1
     }
+
+    $scope.refreshPunches = function () {
+        $scope.punches = []
+        $scope.loading.punches = true
+        $http.get($rootScope.baseUrl + "/odata/Punches?$count=true&$orderby=User/Name&$filter=OutAt eq null&$expand=User,Task($expand=Job($expand=Customer))")
+            .then(response => {
+                $scope.loading.punches = false
+                $scope.punchesCount = response.data["@odata.count"]
+                $scope.punches = response.data.value
+            }, error => {
+                $scope.loading.punches = false
+                console.error(error)
+            })
+    }
+
+    $scope.punchesEnd = function () {
+        return $scope.punchesPageStart + 20 < $scope.punchesCount ? $scope.punchesPageStart + 20 : $scope.punchesCount;
+    };
+
+    $scope.punchesNext = function () {
+        $scope.punchesPageStart = $scope.punchesPageStart + 20
+        $scope.refreshPunches()
+    }
     
+    $scope.punchesPrevious = function () {
+        $scope.punchesPageStart = $scope.punchesPageStart - 20
+        $scope.refreshPunches()
+    }
+
+    $scope.punchesStart = function () {
+        return $scope.punchesPageStart + 1
+    }
+
     $scope.refreshUsers()
+    $scope.refreshPunches()
 
     // Scroll to top
     $window.scrollTo(0, 0)

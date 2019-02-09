@@ -1,9 +1,9 @@
 app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, customer, job) {
     $scope.loading = { templates: false }
     if (job.Id == null) {
-        $scope.job = {}
+        $scope.job = { }
     } else {
-        $scope.job = job
+        $scope.job = angular.copy(job)
     }
     $scope.templates = []
     $scope.working = { save: false }

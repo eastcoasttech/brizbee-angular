@@ -2,24 +2,26 @@
     <h3 class="modal-title" ng-if="customer.Id == null">New Customer</h3>
     <h3 class="modal-title" ng-if="customer.Id != null">Edit Customer</h3>
 </div>
-<form ng-submit="save()">
+<form name="customerForm" ng-submit="save()" autocomplete="off" novalidate>
     <div class="modal-body">
         <div class="row">
             <div class="col-md-7">
                 <div class="form-group">
                     <label>Number</label>
-                    <input type="text" class="form-control form-control-number" ng-model="customer.Number" ng-disabled="working.save" />
+                    <input type="text" name="customer_number" class="form-control form-control-number" ng-model="customer.Number" ng-disabled="working.save" required />
+                    <p ng-show="customerForm.customer_number.$invalid && customerForm.customer_number.$submitted" class="text-danger">The customer number is required.</p>
                 </div>
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" ng-model="customer.Name" ng-disabled="working.save" autofocus />
+                    <input type="text" name="customer_name" class="form-control" ng-model="customer.Name" ng-disabled="working.save" autofocus />
+                    <p ng-show="customerForm.customer_name.$invalid && customerForm.customer_name.$submitted" class="text-danger">The customer name is required.</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save" ng-if="customer.Id">Delete</button>
-        <button class="btn btn-primary" type="submit" ng-disabled="working.save">OK</button>
+        <button class="btn btn-primary" type="submit" ng-disabled="working.save || customerForm.$invalid">OK</button>
         <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.save">Cancel</button>
     </div>
 </form>

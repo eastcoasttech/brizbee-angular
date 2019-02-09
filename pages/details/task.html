@@ -2,17 +2,19 @@
     <h3 class="modal-title" ng-if="task.Id == null">New Task</h3>
     <h3 class="modal-title" ng-if="task.Id != null">Edit Task</h3>
 </div>
-<form ng-submit="save()">
+<form name="taskForm" ng-submit="save()" autocomplete="off" novalidate>
     <div class="modal-body">
         <div class="row">
             <div class="col-md-7">
                 <div class="form-group">
                     <label>Number</label>
-                    <input type="text" class="form-control form-control-number" ng-model="task.Number" ng-disabled="working.save" />
+                    <input type="text" name="task_number" class="form-control form-control-number" ng-model="task.Number" ng-disabled="working.save" required />
+                    <p ng-show="taskForm.task_number.$invalid && taskForm.task_number.$submitted" class="text-danger">The job number is required.</p>
                 </div>
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" ng-model="task.Name" ng-disabled="working.save" autofocus />
+                    <input type="text" name="task_name" class="form-control" ng-model="task.Name" ng-disabled="working.save" autofocus />
+                    <p ng-show="taskForm.task_name.$invalid && taskForm.task_name.$submitted" class="text-danger">The job name is required.</p>
                 </div>
                 <div class="form-group">
                     <label>QuickBooks Payroll Item</label>
@@ -29,7 +31,7 @@
     </div>
     <div class="modal-footer">
         <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save" ng-if="task.Id">Delete</button>
-        <button class="btn btn-primary" type="submit" ng-disabled="working.save">OK</button>
+        <button class="btn btn-primary" type="submit" ng-disabled="working.save || taskForm.$invalid">OK</button>
         <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.save">Cancel</button>
     </div>
 </form>

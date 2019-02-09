@@ -2,7 +2,7 @@
     <h3 class="modal-title" ng-if="punch.Id == null">New Punch</h3>
     <h3 class="modal-title" ng-if="punch.Id != null">Edit Punch</h3>
 </div>
-<form ng-submit="save()">
+<form name="punchForm" ng-submit="save()" autocomplete="off" novalidate>
     <div class="modal-body">
         <div class="row">
             <div class="col-md-7">

@@ -51,6 +51,7 @@
                 <div class="form-group">
                     <label>Organization Code (for login via Pin)</label>
                     <input type="text" class="form-control form-control-number" ng-model="organization.Code" ng-disabled="working.save" />
+                    <p class="help-block">This 4+ digit code is public and shared throughout your organization. Users can login via Organization Code and User Pin on the Web, mobile app, and BRIZBEE hotline.</p>
                 </div>
                 <button class="btn btn-primary" type="submit" ng-disabled="working.save">Save Changes</button>
                 <p class="text-success" ng-show="messages.saved">{{messages.saved}}</p>

@@ -28,11 +28,32 @@
 
 <div class="container">
     <div class="row" style="margin-top: 5%; margin-bottom: 5%;">
-        <div class="col-md-5 col-sm-12 col-xs-12">
+        <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
             <div class="panel panel-default" style="margin-bottom: 5px;">
-                <div class="panel-heading">Sign Up for BRIZBEE</div>
-                <div class="panel-body">
-                    <form name="registerForm" ng-submit="register()" ng-show="show.success == false" novalidate>
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-9">
+                            {{step.title}}
+                        </div>
+                        <div class="col-md-3 text-right">
+                            Step {{step.number}} of 3
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 35px;">
+                    <!-- Step - Welcome -->
+                    <div ng-show="step.name == 'welcome'">
+                        <p class="text-center" style="margin-top: 30px;">
+                            <img src="/images/logo.png" alt="BRIZBEE Logo" style="width: 30%;">
+                        </p>
+                        <h3 class="text-center" style="margin-top: 30px; line-height: 34px;">Let's get going with BRIZBEE!</h3>
+                        <div class="text-center text-muted" style="margin-top: 30px; margin-bottom: 30px; font-size: 30px;">
+                            <i class="fa fa-spinner fa-spin fa-fw"></i>
+                        </div>
+                    </div>
+
+                    <!-- Step - Register -->
+                    <form name="registerForm" ng-submit="register()" ng-show="step.name == 'register'" class="fadeIn" autocomplete="off" novalidate>
                         <div class="form-group">
                             <label>Email Address</label>
                             <input type="email" name="user_email_address" class="form-control" id="user_email_address" ng-model="user.EmailAddress" ng-disabled="working.register" required />
@@ -57,35 +78,80 @@
                         </div>
                         <div class="form-group">
                             <label>Your Country</label>
-                            <select class="form-control" ng-model="selected.CountryCode" ng-options="country.CountryCode as country.Name for country in countries" ng-disabled="working.save"></select>
+                            <select class="form-control" ng-model="selected.CountryCode" ng-options="country.CountryCode as country.Name for country in countries" ng-disabled="working.register"></select>
                         </div>
                         <div class="form-group">
                             <label>City in Your Time Zone</label>
-                            <select class="form-control" ng-model="user.TimeZone" ng-options="timezone.Id for timezone in filteredTimeZones" ng-disabled="working.save"></select>
+                            <select class="form-control" ng-model="user.TimeZone" ng-options="timezone.Id for timezone in filteredTimeZones" ng-disabled="working.register"></select>
                             <p class="help-block">
                                 Your punches will default to this time zone unless you specify otherwise.
                             </p>
                         </div>
-                        <button type="submit" class="btn btn-primary" ng-disabled="working.register || registerForm.$invalid">Start Tracking Time <i class="fa fa-arrow-circle-o-right" aria-hidden="true" ng-hide="working.register"></i><i class="fa fa-spinner fa-spin fa-fw" ng-show="working.register"></i></button>
+                        <div class="text-center" style="margin-top: 30px; margin-bottom: 30px;">
+                            <button type="submit" class="btn btn-primary" ng-disabled="working.register || registerForm.$invalid">Start Tracking Time <i class="fa fa-arrow-circle-o-right" aria-hidden="true" ng-hide="working.register"></i><i class="fa fa-spinner fa-spin fa-fw" ng-show="working.register"></i></button>
+                        </div>
+                        <p class="text-center text-muted">No credit card required. Cancel anytime.</p>
+                        <a href="" ng-click="showPin()">Show Pin</a>
                     </form>
 
-                    <p class="text-center" ng-show="show.success == true" style="font-size: 20px; padding: 20px;">
-                        Thank you for signing up! You should have received an Email with a link to confirm your account. Click the link and you're ready to go!
-                        <br />
-                        <br />
-                        <i class="fa fa-check-circle" aria-hidden="true" style="font-size: 300%;"></i>                        
-                    </p>
+                    <!-- Step - Pin -->
+                    <form name="pinForm" ng-submit="savePin()" ng-show="step.name == 'pin'" class="fadeIn" autocomplete="off" novalidate>
+                        <p style="padding-bottom: 20px;">Now, we just need to set your <strong>Organization Code</strong> and <strong>User PIN</strong> so that you can easily punch in and out on the Web, mobile app, or BRIZBEE hotline.</p>
+                        <div class="form-group">
+                            <label>Your Organization's Code</label>
+                            <input type="text" id="organization_code" name="organization_code" class="form-control form-control-number" style="width: 20%;" ng-model="organization.Code" minlength="4" maxlength="9" ng-disabled="working.pin" required />
+                            <p class="help-block">This 4+ digit code is public and shared throughout your organization.</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Your PIN Number</label>
+                            <input type="text" name="user_pin" class="form-control form-control-number" style="width: 20%;" ng-model="user.Pin" minlength="4" maxlength="9" ng-disabled="working.pin" required />
+                            <p class="help-block">This 4+ digit code is private and unique to each employee.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary" ng-disabled="working.pin || pinForm.$invalid">Save and Continue<i class="fa fa-spinner fa-spin fa-fw" ng-show="working.pin"></i></button>
+                        <a href="" ng-click="showUsers()">Show Pin</a>
+                    </form>
+
+                    <div class="fadeIn" ng-show="step.name == 'users'">
+                        <p>Finally, let's add your employees. You can always add more later if you don't want to do this right now.</p>
+                        
+                        <ul class="list-unstyled fadeIn" style="padding-top: 10px;" ng-show="new.users.length > 0">
+                            <li style="margin-top: 5px; margin-bottom: 5px; font-weight: bold;">Saved Employees</li>
+                            <li ng-repeat="user in new.users" class="fadeIn" style="margin-top: 5px; margin-bottom: 5px;">
+                                <i class="fa fa-check text-success" style="padding-right: 5px;"></i>
+                                {{user.Name}} <span ng-show="user.EmailAddress">&ndash; {{user.EmailAddress}}</span> &ndash; {{user.Pin}}
+                            </li>
+                        </ul>
+
+                        <hr />
+
+                        <form name="userForm" ng-submit="saveUser()" style="margin-bottom: 30px;" autocomplete="off" novalidate>
+                            <div class="form-group">
+                                <label>Employee Name</label>
+                                <input type="text" id="new_user_name" name="new_user_name" class="form-control" ng-model="new.user.Name" ng-disabled="working.user" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address (optional)</label>
+                                <input type="email" name="new_user_email_address" class="form-control" ng-model="new.user.EmailAddress" ng-disabled="working.user" />
+                            </div>
+                            <div class="form-group">
+                                <label>PIN Number</label>
+                                <input type="text" name="new_user_pin" class="form-control form-control-number" style="width: 20%;" ng-model="new.user.Pin" minlength="4" maxlength="9" ng-disabled="working.user" required />
+                                <p class="help-block">This 4+ digit code is private and unique to each employee.</p>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="margin-right: 10px;" ng-disabled="working.user || userForm.$invalid">Add Employee<i class="fa fa-spinner fa-spin fa-fw" ng-show="working.user"></i></button>
+                            <a href="#!/jobs" class="btn btn-primary">Continue to BRIZBEE</a>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <p class="text-muted">No credit card required. Cancel anytime.</p>
-            <p class="text-muted" style="margin-top: 20px;">Already have an account? <a href="#!/">Login Now</a></p>
+            <p class="text-muted" style="margin-top: 10px;">Need help? Email us at <a href="mailto:sales@brizbee.com">sales@brizbee.com</a> and we'll help you get started.</p>
         </div>
-        <div class="col-md-5 col-md-offset-1 col-sm-12 col-xs-12">
+        <!-- <div class="col-md-5 col-md-offset-1 col-sm-12 col-xs-12">
             <p class="text-center" style="margin-top: 30px;">
                 <img src="/images/logo.png" alt="BRIZBEE Logo" style="width: 70%;">
             </p>
             <h3 class="text-center" style="margin-top: 30px; line-height: 34px;">Start your free trial today. Getting started is easy. See the difference BRIZBEE makes!</h3>
             <p class="text-center" style="margin-top: 20px;"><img src="/images/screenshot-punch-in.png" alt="Screenshot of BRIZBEE" class="img-responsive"></p>
-        </div>
+        </div> -->
     </div>
 </div>

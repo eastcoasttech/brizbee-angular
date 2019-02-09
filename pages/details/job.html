@@ -2,22 +2,24 @@
     <h3 class="modal-title" ng-if="job.Id == null">New Job</h3>
     <h3 class="modal-title" ng-if="job.Id != null">Edit Job</h3>
 </div>
-<form ng-submit="save()">
+<form name="jobForm" ng-submit="save()" autocomplete="off" novalidate>
     <div class="modal-body">
         <div class="row">
             <div class="col-md-7">
                 <div class="form-group">
                     <label>Number</label>
-                    <input type="text" class="form-control form-control-number" ng-model="job.Number" ng-disabled="working.save" />
+                    <input type="text" name="job_number" class="form-control form-control-number" ng-model="job.Number" ng-disabled="working.save" required />
+                    <p ng-show="jobForm.job_number.$invalid && jobForm.job_number.$submitted" class="text-danger">The job number is required.</p>
                 </div>
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" ng-model="job.Name" ng-disabled="working.save" autofocus />
+                    <input type="text" name="job_name" class="form-control" ng-model="job.Name" ng-disabled="working.save" autofocus />
+                    <p ng-show="jobForm.job_name.$invalid && jobForm.job_name.$submitted" class="text-danger">The job name is required.</p>
                 </div>
                 <div class="form-group">
                     <label>QuickBooks Customer:Job</label>
                     <input type="text" class="form-control" ng-model="job.QuickBooksCustomerJob" ng-disabled="working.save" />
-                    <p class="help-block">Must match the Customer and Job in QuickBooks *exactly*</p>
+                    <p class="help-block">Must match the Customer and Job in QuickBooks <strong>exactly</strong></p>
                 </div>
                 <div class="form-group" ng-if="!job.Id">
                     <hr />
@@ -29,7 +31,7 @@
     </div>
     <div class="modal-footer">
         <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save" ng-if="job.Id">Delete</button>
-        <button class="btn btn-primary" type="submit" ng-disabled="working.save">OK</button>
+        <button class="btn btn-primary" type="submit" ng-disabled="working.save || jobForm.$invalid">OK</button>
         <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.save">Cancel</button>
     </div>
 </form>

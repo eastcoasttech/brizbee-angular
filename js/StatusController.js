@@ -7,11 +7,10 @@ app.controller('StatusController', function ($http, $interval, $rootScope, $scop
 
         $http.get($rootScope.baseUrl + "/odata/Punches/Default.Current?$expand=Task($expand=Job($expand=Customer))")
             .then(response => {
-                if (response.data != null)
-                {
-                    $rootScope.current.punch = response.data
-                    $scope.working.status = false
+                if (response.data.value && response.data.value.length > 0) {
+                    $rootScope.current.punch = response.data.value[0]
                 }
+                $scope.working.status = false
             }, error => {
                 console.error(error)
                 $scope.working.status = false

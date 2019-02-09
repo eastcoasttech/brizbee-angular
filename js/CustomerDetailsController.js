@@ -1,8 +1,8 @@
 app.controller('CustomerDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, customer) {
     if (customer.Id == null) {
-        $scope.customer = {}
+        $scope.customer = { }
     } else {
-        $scope.customer = customer
+        $scope.customer = angular.copy(customer)
     }
     $scope.working = { save: false }
 

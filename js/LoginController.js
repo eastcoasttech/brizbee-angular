@@ -10,7 +10,7 @@ $.urlParam = function(name){
     }
 }
 
-app.controller('LoginController', function ($cookies, $http, $location, $rootScope, $routeParams, $scope, $window) {
+app.controller('LoginController', function ($cookies, $http, $location, $rootScope, $routeParams, $scope, $timeout, $window) {
     $scope.messages = { error: '' }
     $scope.method = "pin"
     $scope.organization = {}
@@ -51,15 +51,15 @@ app.controller('LoginController', function ($cookies, $http, $location, $rootSco
                 $rootScope.auth.expiration = $cookies.get('BRIZBEE_AUTH_EXPIRATION')
                 $rootScope.auth.token = $cookies.get('BRIZBEE_AUTH_TOKEN')
 
+                // Get the user details
                 $http.get($rootScope.baseUrl + "/odata/Users(" + response.data.AuthUserId + ")?$expand=Organization")
                     .then(response2 => {
                         $rootScope.current.user = response2.data
+                        $location.path('/status')
                     }, error2 => {
                         $scope.working.login = false
                         console.error(error2)
                     })
-
-                $location.path('/status')
             }, error => {
                 $scope.working.login = false
                 $scope.messages.error = error.data.error.message
@@ -113,9 +113,15 @@ app.controller('LoginController', function ($cookies, $http, $location, $rootSco
         $scope.method = method
 
         if ($scope.method == "email") {
-            $window.document.getElementById("session_email_address").focus()
+            function focusEmailAddress () {
+                $window.document.getElementById("session_email_address").focus()
+            }
+            $timeout(focusEmailAddress, 10)
         } else {
-            $window.document.getElementById("session_pin_organization_code").focus()
+            function focusOrganizationCode () {
+                $window.document.getElementById("session_pin_organization_code").focus()
+            }
+            $timeout(focusOrganizationCode, 10)
         }
     }
     

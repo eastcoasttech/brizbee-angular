@@ -1,8 +1,8 @@
 app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, job, task) {
     if (task.Id == null) {
-        $scope.task = {}
+        $scope.task = { }
     } else {
-        $scope.task = task
+        $scope.task = angular.copy(task)
     }
     $scope.working = { save: false }
     

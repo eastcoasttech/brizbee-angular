@@ -4,7 +4,7 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
         $scope.show.changePassword = true
         $scope.user = { Role: "Standard" }
     } else {
-        $scope.user = user
+        $scope.user = angular.copy(user)
     }
     $scope.working = { save: false }
     
@@ -51,13 +51,16 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
 
     $scope.saveNewUser = function () {
         var json = {
-            EmailAddress: $scope.user.EmailAddress,
             Name: $scope.user.Name,
             Role: $scope.user.Role,
             Pin: $scope.user.Pin,
             Password: $scope.user.Password,
             QuickBooksEmployee: $scope.user.QuickBooksEmployee,
             TimeZone: $scope.user.TimeZone
+        }
+
+        if ($scope.user.EmailAddress != '') {
+            json.EmailAddress = $scope.user.EmailAddress
         }
 
         $http.post($rootScope.baseUrl + "/odata/Users", JSON.stringify(json))

@@ -292,3 +292,16 @@ li.text-highlight:hover a:hover {
     color: #ffffff;
     background-color: #373737;
 }
+
+.fadeIn.ng-hide-remove {
+    animation: fadeIn 1s;
+}
+
+.fadeIn.ng-enter {
+    animation: fadeIn 1s;
+}
+
+.fadeIn.ng-hide-add {
+    opacity: 0;
+    display: block !important;
+}

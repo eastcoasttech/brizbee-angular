@@ -9,7 +9,6 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             OutAt: moment().endOf('day').millisecond(0).toDate(),
             has_out_at: true
         }
-        console.log(moment().startOf('day').toDate())
     } else {
         var timedifference = new Date().getTimezoneOffset()
         $scope.punch = angular.copy(punch)

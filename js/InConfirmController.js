@@ -1,6 +1,6 @@
 app.controller('InConfirmController', function ($http, $location, $rootScope, $scope, $window) {
     $scope.options = {
-        Country: $rootScope.current.organization.Country,
+        Country: $rootScope.current.user.Organization.Country,
         OutAtTimeZone: $rootScope.current.user.TimeZone
     }
     $scope.show = { timezone: false }
