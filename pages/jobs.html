@@ -64,23 +64,24 @@
             <table class="table table-bordered table-condensed table-jobs">
                 <thead>
                     <tr>
-                        <th colspan="2">Customers <i class="fa fa-spinner fa-spin fa-fw" ng-show="loading.customers"></i></th>
+                        <th colspan="3">Customers <i class="fa fa-spinner fa-spin fa-fw" ng-show="loading.customers"></i></th>
+                    </tr>
+                    <tr>
+                        <th class="col-md-3">Number</th>
+                        <th class="col-md-6">Name</th>
+                        <th class="col-md-3"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="customer in customers" class="selectable" ng-class="{ 'selected' : selected.customer.Id == customer.Id }">
-                        <td ng-click="selectCustomer(customer)">
-                            <a href="">{{customer.Number}} &ndash; {{customer.Name}}</a>
-                            <!-- <br /> -->
-                            <!-- <small class="text-muted"># {{customer.number}} &mdash; Added {{showMomentDate(customer.created_at, 'MMM Do YY')}}</small> -->
-                        </td>
-                        <!-- <td class="col-md-1 text-right text-muted" style="vertical-align: middle;"><i class="fa fa-chevron-right" aria-hidden="true"></i></td> -->
+                        <td ng-click="selectCustomer(customer)"><a href="">{{customer.Number}}</a></td>
+                        <td ng-click="selectCustomer(customer)"><a href="">{{customer.Name}}</a></td>
                         <td class="col-md-1 text-right text-muted" style="vertical-align: middle;">
                             <a href="" ng-click="showEditCustomer(customer)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     <tr ng-show="customers.length == 0">
-                        <td colspan="2">No Customers</td>
+                        <td colspan="3">No Customers</td>
                     </tr>
                 </tbody>
             </table>
@@ -120,9 +121,9 @@
                         <th colspan="3">Jobs <i class="fa fa-spinner fa-spin fa-fw" ng-show="loading.jobs"></i></th>
                     </tr>
                     <tr>
-                        <th>Number</th>
-                        <th>Name</th>
-                        <th></th>
+                        <th class="col-md-3">Number</th>
+                        <th class="col-md-6">Name</th>
+                        <th class="col-md-3"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -134,10 +135,10 @@
                         </td>
                     </tr>
                     <tr ng-show="selected.customer == null">
-                        <td colspan="2">No Customer Selected</td>
+                        <td colspan="3">No Customer Selected</td>
                     </tr>
                     <tr ng-show="(jobs.length == 0) && (selected.customer != null)">
-                        <td colspan="2">No Jobs for Selected Customer</td>
+                        <td colspan="3">No Jobs for Selected Customer</td>
                     </tr>
                 </tbody>
             </table>
@@ -177,25 +178,27 @@
             <table class="table table-bordered table-condensed table-jobs">
                 <thead>
                     <tr>
-                        <th colspan="2">Tasks <i class="fa fa-spinner fa-spin fa-fw" ng-show="loading.tasks"></i></th>
+                        <th colspan="3">Tasks <i class="fa fa-spinner fa-spin fa-fw" ng-show="loading.tasks"></i></th>
+                    </tr>
+                    <tr>
+                        <th class="col-md-3">Number</th>
+                        <th class="col-md-6">Name</th>
+                        <th class="col-md-3"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="task in tasks" class="selectable" ng-class="{ 'selected' : selected.task.Id == task.Id }">
-                        <td ng-click="selectTask(task)">
-                            <a href="">{{task.Number}} &ndash; {{task.Name}}</a>
-                            <!-- <br />
-                            <small class="text-muted"># {{task.number}} &mdash; Added {{showMomentDate(task.created_at, 'MMM Do YY')}}</small> -->
-                        </td>
+                        <td ng-click="selectTask(task)"><a href="">{{task.Number}}</a></td>
+                        <td ng-click="selectTask(task)"><a href="">{{task.Name}}</a></td>
                         <td class="col-md-1 text-right text-muted" style="vertical-align: middle;">
                             <a href="" ng-click="showEditTask(task)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     <tr ng-show="selected.job == null">
-                        <td colspan="2">No Job Selected</td>
+                        <td colspan="3">No Job Selected</td>
                     </tr>
                     <tr ng-show="(tasks.length == 0) && (selected.job != null)">
-                        <td colspan="2">No Tasks for Selected Job</td>
+                        <td colspan="3">No Tasks for Selected Job</td>
                     </tr>
                 </tbody>
             </table>
