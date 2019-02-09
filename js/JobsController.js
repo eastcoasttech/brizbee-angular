@@ -71,6 +71,8 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
                 $scope.loading.customers = false
                 $scope.customersCount = response.data["@odata.count"]
                 $scope.customers = response.data.value
+                
+                $scope.selectCustomer($scope.customers[0])
             }, error => {
                 $scope.loading.customers = false
                 console.error(error)
@@ -91,6 +93,8 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
                 $scope.loading.jobs = false
                 $scope.jobsCount = response.data["@odata.count"]
                 $scope.jobs = response.data.value
+
+                $scope.selectJob($scope.jobs[0])
             }, error => {
                 $scope.loading.jobs = false
                 console.error(error)
@@ -109,6 +113,8 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
                 $scope.loading.tasks = false
                 $scope.tasksCount = response.data["@odata.count"]
                 $scope.tasks = response.data.value
+
+                $scope.selectTask($scope.tasks[0])
             }, error => {
                 $scope.loading.tasks = false
                 console.error(error)
