@@ -38,6 +38,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
 
     $scope.saveExistingJob = function () {
         var json = {
+            Description: $scope.job.Description,
             Name: $scope.job.Name,
             Number: $scope.job.Number,
             QuickBooksCustomerJob: $scope.job.QuickBooksCustomerJob
@@ -54,6 +55,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
     $scope.saveNewJob = function () {
         var json = {
             CustomerId: customer.Id,
+            Description: $scope.job.Description,
             Name: $scope.job.Name,
             Number: $scope.job.Number,
             QuickBooksCustomerJob: $scope.job.QuickBooksCustomerJob

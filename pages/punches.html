@@ -185,7 +185,7 @@
                         <td>{{formatMomentFromDate(commit.InAt, 'YYYY-MM-DD')}}</td>
                         <td>{{formatMomentFromDate(commit.OutAt, 'YYYY-MM-DD')}}</td>
                         <td>{{commit.PunchCount}}</td>
-                        <td>{{formatMomentFromDate(commit.CreatedAt, 'YYYY-MM-DD h:mm a')}}</td>
+                        <td>{{formatMomentFromDate(commit.CreatedAt, 'YYYY-MM-DD h:mm a', current.user.TimeZone)}}</td>
                         <td>{{commit.User.Name}}</td>
                         <td class="text-center"><a href="" ng-click="undo(commit)">Undo</a></td>
                     </tr>

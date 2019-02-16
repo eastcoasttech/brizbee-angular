@@ -76,7 +76,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         var sortParameter = {}
         sortParameter[$scope.sortType] = $scope.sortDirection
 
-        $http.get($rootScope.baseUrl + "/odata/Punches?$count=true&$expand=User,Task($expand=Job($expand=Customer))&$top=20&$skip=" + $scope.punchesPageStart + "&$filter=InAt ge " + moment($rootScope.range.InAt).utc().format() + " and InAt le " + moment($rootScope.range.OutAt).utc().format() + '&$orderby=' + $scope.sortType + ' ' + $scope.sortDirection)
+        $http.get($rootScope.baseUrl + "/odata/Punches?$count=true&$expand=User,Task($expand=Job($expand=Customer))&$top=20&$skip=" + $scope.punchesPageStart + "&$filter=InAt ge " + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + " and InAt le " + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + '&$orderby=' + $scope.sortType + ' ' + $scope.sortDirection)
             .then(response => {
                 $scope.loading.punches = false
                 $scope.punchesCount = response.data["@odata.count"]

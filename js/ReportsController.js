@@ -1,6 +1,10 @@
 app.controller('ReportsController', function ($http, $rootScope, $scope, $window) {
     $scope.datepicker = { in_at: {}, out_at: {}, options: {} }
-    $scope.include = { jobs: { list: [], scope: 'all', search: '' }, users: { list: [], scope: 'all', search: '' } }
+    $scope.include = {
+        jobs: { list: [], scope: 'all', search: '' },
+        users: { list: [], scope: 'all', search: '' },
+        committed: 'all'
+    }
 
     $scope.addJob = function (job) {
         $scope.include.jobs.list.push(job)

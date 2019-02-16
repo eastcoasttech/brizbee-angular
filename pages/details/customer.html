@@ -16,6 +16,10 @@
                     <input type="text" name="customer_name" class="form-control" ng-model="customer.Name" ng-disabled="working.save" autofocus />
                     <p ng-show="customerForm.customer_name.$invalid && customerForm.customer_name.$submitted" class="text-danger">The customer name is required.</p>
                 </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="customer_description" class="form-control" ng-model="customer.Description" ng-disabled="working.save"></textarea>
+                </div>
             </div>
         </div>
     </div>

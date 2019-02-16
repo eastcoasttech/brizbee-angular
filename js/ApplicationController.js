@@ -1,6 +1,6 @@
 app.controller('ApplicationController', function ($cookies, $http, $location, $rootScope, $scope) {
-    $rootScope.baseUrl = "https://brizbeeweb.azurewebsites.net"
-    // $rootScope.baseUrl = "http://localhost:54313"
+    // $rootScope.baseUrl = "https://brizbeeweb.azurewebsites.net"
+    $rootScope.baseUrl = "http://localhost:54313"
     $rootScope.selected = {}
     $rootScope.current = {}
     $rootScope.range = {
@@ -54,17 +54,11 @@ app.controller('ApplicationController', function ($cookies, $http, $location, $r
         $location.path('/')
     }
 
-    $scope.formatMomentFromDate = function (date, format) {
-        return moment.parseZone(date).format(format)
-    }
-
-    $scope.formatMomentUtcFromDate = function (date, format) {
-        return moment.parseZone(date).format(format)
-    }
-
-    $scope.formatMomentTimeZoneAsAbbreviation = function (timezone) {
-        if (timezone) {
-            return moment().tz(timezone).format('z')
+    $scope.formatMomentFromDate = function (date, format, timezone) {
+        if (timezone != null) {
+            return moment.parseZone(date).tz(timezone).format(format)
+        } else {
+            return moment.parseZone(date).format(format)
         }
     }
 });

@@ -36,6 +36,7 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
 
     $scope.saveExistingCustomer = function () {
         var json = {
+            Description: $scope.customer.Description,
             Name: $scope.customer.Name,
             Number: $scope.customer.Number
         }
@@ -50,6 +51,7 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
 
     $scope.saveNewCustomer = function () {
         var json = {
+            Description: $scope.customer.Description,
             Name: $scope.customer.Name,
             Number: $scope.customer.Number
         }

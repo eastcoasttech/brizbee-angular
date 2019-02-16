@@ -53,7 +53,7 @@
                                         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     </td>
                                     <td class="col-md-11">
-                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByUser?Min={{formatMomentUtcFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ss')}}&Max={{formatMomentUtcFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ss')}}&JobScope={{include.jobs.scope}}&{{includedJobIds()}}&UserScope={{include.users.scope}}&{{includedUserIds()}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByUser?Min={{formatMomentFromDate(range.InAt, 'YYYY-MM-DDTHH:mm:ss')}}&Max={{formatMomentFromDate(range.OutAt, 'YYYY-MM-DDTHH:mm:ss')}}&JobScope={{include.jobs.scope}}{{includedJobIds()}}&UserScope={{include.users.scope}}{{includedUserIds()}}&CommitStatus={{include.committed}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
                                             <h4>
                                                 Punches by User
                                             </h4>
@@ -74,7 +74,7 @@
                                         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     </td>
                                     <td class="col-md-11">
-                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByJob?Min={{formatMomentUtcFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ss')}}&Max={{formatMomentUtcFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ss')}}&JobScope={{include.jobs.scope}}&{{includedJobIds()}}&UserScope={{include.users.scope}}&{{includedUserIds()}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByJob?Min={{formatMomentFromDate(range.InAt, 'YYYY-MM-DDTHH:mm:ss')}}&Max={{formatMomentFromDate(range.OutAt, 'YYYY-MM-DDTHH:mm:ss')}}&JobScope={{include.jobs.scope}}{{includedJobIds()}}&UserScope={{include.users.scope}}{{includedUserIds()}}&CommitStatus={{include.committed}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
                                             <h4>
                                                 Punches by Job and Task
                                             </h4>
@@ -95,7 +95,7 @@
                                         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     </td>
                                     <td class="col-md-11">
-                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByDay?Min={{formatMomentUtcFromDate(range.InAt, 'YYYY-MM-DDThh:mm:ss')}}&Max={{formatMomentUtcFromDate(range.OutAt, 'YYYY-MM-DDThh:mm:ss')}}&JobScope={{include.jobs.scope}}&{{includedJobIds()}}&UserScope={{include.users.scope}}&{{includedUserIds()}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                                        <a ng-href="{{baseUrl}}/api/Reports/PunchesByDay?Min={{formatMomentFromDate(range.InAt, 'YYYY-MM-DDTHH:mm:ss')}}&Max={{formatMomentFromDate(range.OutAt, 'YYYY-MM-DDTHH:mm:ss')}}&JobScope={{include.jobs.scope}}{{includedJobIds()}}&UserScope={{include.users.scope}}{{includedUserIds()}}&CommitStatus={{include.committed}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
                                             <h4>
                                                 Punches by Day
                                             </h4>
@@ -202,6 +202,14 @@
                                     <li ng-repeat="job in include.jobs.list">{{job.Number}} - {{job.Name}} <a href="" ng-click="removeJob(job)">Remove</a></li>
                                 </ul>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Commit Status</label>
+                            <select ng-model="include.committed" class="form-control">
+                                <option value="only">Only Committed Punches</option>
+                                <option value="uncommitted">Only Uncommitted Punches</option>
+                                <option value="all">Both Committed and Uncommitted Punches</option>
+                            </select>
                         </div>
                     </form>
                 </div>
