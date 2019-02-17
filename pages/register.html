@@ -98,12 +98,12 @@
                         <p style="padding-bottom: 20px;">Now, we just need to set your <strong>Organization Code</strong> and <strong>User PIN</strong> so that you can easily punch in and out on the Web, mobile app, or BRIZBEE hotline.</p>
                         <div class="form-group">
                             <label>Your Organization's Code</label>
-                            <input type="text" id="organization_code" name="organization_code" class="form-control form-control-number" style="width: 20%;" ng-model="organization.Code" minlength="4" maxlength="9" ng-disabled="working.pin" required />
+                            <input type="text" id="organization_code" name="organization_code" class="form-control form-control-number" style="width: 50%;" ng-model="organization.Code" minlength="4" maxlength="9" ng-disabled="working.pin" required />
                             <p class="help-block">This 4+ digit code is public and shared throughout your organization.</p>
                         </div>
                         <div class="form-group">
                             <label>Your PIN Number</label>
-                            <input type="text" name="user_pin" class="form-control form-control-number" style="width: 20%;" ng-model="user.Pin" minlength="4" maxlength="9" ng-disabled="working.pin" required />
+                            <input type="text" name="user_pin" class="form-control form-control-number" style="width: 50%;" ng-model="user.Pin" minlength="4" maxlength="9" ng-disabled="working.pin" required />
                             <p class="help-block">This 4+ digit code is private and unique to each employee.</p>
                         </div>
                         <button type="submit" class="btn btn-primary" ng-disabled="working.pin || pinForm.$invalid">Save and Continue<i class="fa fa-spinner fa-spin fa-fw" ng-show="working.pin"></i></button>
