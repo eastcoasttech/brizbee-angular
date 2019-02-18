@@ -32,7 +32,6 @@ app.controller('LoginController', function ($cookies, $http, $location, $rootSco
         $http.post($rootScope.baseUrl + "/odata/Users/Default.Authenticate", json)
             .then(response => {
                 // User exists, redirect to status
-                console.log(response.data)
 
                 // Set the cookie
                 $cookies.put('BRIZBEE_AUTH_USER_ID', response.data.AuthUserId)
@@ -64,7 +63,7 @@ app.controller('LoginController', function ($cookies, $http, $location, $rootSco
             }, error => {
                 $scope.working.login = false
                 $scope.messages.error = error.data.error.message
-                console.error(error.data)
+                console.error(error.data.error.message)
             })
     }
 
