@@ -109,18 +109,18 @@ app.controller('RegisterController', function ($cookies, $http, $location, $root
                                 $scope.showPin()
                             }, detailsError => {
                                 $scope.working.register = false
+                                $scope.messages.error = detailsError.data.error.message
                                 console.error(detailsError)
-                                alert(detailsError)
                             })
                     }, loginError => {
                         $scope.working.register = false
+                        $scope.messages.error = loginError.data.error.message
                         console.error(loginError)
-                        alert(loginError)
                     })
             }, registerError => {
                 $scope.working.register = false
+                $scope.messages.error = registerError.data.error.message
                 console.error(registerError)
-                alert(registerError)
             })
     }
 

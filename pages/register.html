@@ -89,6 +89,7 @@
                         </div>
                         <div class="text-center" style="margin-top: 30px; margin-bottom: 30px;">
                             <button type="submit" class="btn btn-primary" ng-disabled="working.register || registerForm.$invalid">Start Tracking Time <i class="fa fa-arrow-circle-o-right" aria-hidden="true" ng-hide="working.register"></i><i class="fa fa-spinner fa-spin fa-fw" ng-show="working.register"></i></button>
+                            <p style="margin-top: 10px;" class="text-danger" ng-show="messages.error">{{messages.error}}</p>
                         </div>
                         <p class="text-center text-muted">No credit card required. Cancel anytime.</p>
                     </form>
