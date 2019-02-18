@@ -48,6 +48,7 @@
                             <p ng-show="pinForm.session_pin_user_pin.$invalid && pinForm.session_pin_user_pin.$submitted" class="text-danger">Your pin number is required.</p>
                         </div>
                         <button type="submit" class="btn btn-primary" ng-disabled="working.login || pinForm.$invalid">Login <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.login"></i></button>
+                        <p class="text-danger" ng-show="messages.error">{{messages.error}}</p>
                     </form>
                 </div>
             </div>
