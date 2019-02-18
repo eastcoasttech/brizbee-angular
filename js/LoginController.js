@@ -63,7 +63,7 @@ app.controller('LoginController', function ($cookies, $http, $location, $rootSco
             }, error => {
                 $scope.working.login = false
                 $scope.messages.error = error.data.error.message
-                console.error(error.data.error.message)
+                console.error(error)
             })
     }
 
@@ -105,6 +105,7 @@ app.controller('LoginController', function ($cookies, $http, $location, $rootSco
                 $location.path('/status')
             }, error => {
                 $scope.working.login = false
+                $scope.messages.error = error.data.error.message
                 console.error(error)
             })
     }
