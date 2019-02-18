@@ -63,7 +63,7 @@ app.controller('LoginController', function ($cookies, $http, $location, $rootSco
             }, error => {
                 $scope.working.login = false
                 $scope.messages.error = error.data.error.message
-                console.error(error)
+                console.error(error.data)
             })
     }
 
