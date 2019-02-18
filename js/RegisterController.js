@@ -1,5 +1,6 @@
 app.controller('RegisterController', function ($cookies, $http, $location, $rootScope, $routeParams, $scope, $timeout, $window) {
     $scope.filteredTimeZones = []
+    $scope.messages = { error: '' }
     $scope.new = { user: {}, users: [] }
     $scope.user = {}
     $scope.organization = {}
