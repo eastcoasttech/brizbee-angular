@@ -1,0 +1,52 @@
+<div class="modal-header">
+    <h3 class="modal-title" ng-if="timesheetEntry.Id == null">New Entry for {{user.Name}}</h3>
+    <h3 class="modal-title" ng-if="timesheetEntry.Id != null">Edit Entry for {{user.Name}}</h3>
+</div>
+<form name="timesheetEntryForm" ng-submit="save()" autocomplete="off" novalidate>
+    <div class="modal-body">
+        <label>Date</label>
+        <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12">
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup ng-model="timesheetEntry.EnteredAt" is-open="datepicker.EnteredAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="showEnteredAtDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-group">
+                    <label>Time</label>
+                    <input type="text" name="timesheet_entry_minutes" class="form-control" ng-model="timesheetEntry.Minutes" ng-disabled="working.save" autofocus />
+                </div>
+                <div class="form-group">
+                    <label>Notes</label>
+                    <textarea name="timesheet_entry_notes" class="form-control" ng-model="timesheetEntry.Notes" ng-disabled="working.save"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-group">
+                    <label>Customer</label>
+                    <select class="form-control" ng-model="timesheetEntry.customer" ng-options="customer.Name for customer in customers" ng-disabled="working.save"></select>
+                </div>
+                <div class="form-group">
+                    <label>Job</label>
+                    <select class="form-control" ng-model="timesheetEntry.job" ng-options="job.Name for job in jobs" ng-disabled="working.save"></select>
+                </div>
+                <div class="form-group">
+                    <label>Task</label>
+                    <select class="form-control" ng-model="timesheetEntry.task" ng-options="task.Name for task in tasks" ng-disabled="working.save"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save" ng-if="timesheetEntry.Id">Delete</button>
+        <button class="btn btn-primary" type="submit" ng-disabled="working.save || timesheetEntryForm.$invalid">OK</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.save">Cancel</button>
+    </div>
+</form>

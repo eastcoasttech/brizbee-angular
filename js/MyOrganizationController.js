@@ -1,21 +1,31 @@
 app.controller('MyOrganizationController', function ($http, $location, $rootScope, $scope, $window) {
     $scope.messages = { saved: '' }
-    $scope.organization = angular.copy($rootScope.current.user.Organization)
     $scope.working = { save: false }
+
+    $rootScope.$watch('current', function (newValue, oldValue, scope) {
+        if ("user" in newValue) {
+            $scope.organization = angular.copy(newValue.user.Organization)
+        }
+    })
 
     $scope.save = function () {
         $scope.working.save = true
 
         var json = {
-            Name: $scope.organization.Name,
-            Code: $scope.organization.Code,
-            TimeZone: $scope.organization.TimeZone
+            MinutesFormat: $scope.organization.MinutesFormat,
+            Name: $scope.organization.Name
+        }
+
+        // Only change the Code if necessary
+        if ($scope.organization.Code != $rootScope.current.user.Organization.Code) {
+            json.Code = $scope.organization.Code
         }
 
         $http.patch($rootScope.baseUrl + "/odata/Organizations(" + $scope.organization.Id + ")", JSON.stringify(json))
             .then(response => {
                 $scope.messages.saved = 'Changes were saved!'
                 $rootScope.current.user.Organization.Code = $scope.organization.Code
+                $rootScope.current.user.Organization.MinutesFormat = $scope.organization.MinutesFormat
                 $rootScope.current.user.Organization.Name = $scope.organization.Name
                 $scope.working.save = false
             }, error => {

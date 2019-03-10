@@ -13,11 +13,12 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#!/status">Status</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/punches">Punches</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/jobs">Jobs and Customers</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/reports">Reports</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/users">Users</a></li>
+                <li class="active"><a href="#!/status"><i class="fa fa-id-badge" aria-hidden="true"></i> Status <span class="sr-only">(current)</span></a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/punches"><i class="fa fa-clock-o" aria-hidden="true"></i> Punches</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/timesheets"><i class="fa fa-th-list" aria-hidden="true"></i> Timesheets</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/jobs"><i class="fa fa-truck" aria-hidden="true"></i> Jobs and Customers</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/reports"><i class="fa fa-line-chart" aria-hidden="true"></i> Reports</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/users"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <p class="navbar-text navbar-phone">Punch In or Out @ <a href="tel:1-888-930-3044">1-888-930-3044</a></p>

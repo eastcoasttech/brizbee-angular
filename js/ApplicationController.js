@@ -1,11 +1,11 @@
 app.controller('ApplicationController', function ($cookies, $http, $location, $rootScope, $scope) {
-    $rootScope.baseUrl = "https://brizbeeweb.azurewebsites.net"
+    $rootScope.baseUrl = "https://brizbee.gowitheast.com"
     // $rootScope.baseUrl = "http://localhost:54313"
     $rootScope.selected = {}
     $rootScope.current = {}
     $rootScope.range = {
-        InAt: moment().startOf('day').toDate(),
-        OutAt: moment().endOf('day').toDate()
+        InAt: moment().day(1).startOf('day').toDate(),
+        OutAt: moment().day(7).endOf('day').toDate()
     }
     
     $http.get($rootScope.baseUrl + "/odata/Organizations/Default.Countries")

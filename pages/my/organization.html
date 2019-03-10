@@ -13,11 +13,12 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#!/status">Status</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/punches">Punches</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/jobs">Jobs and Customers</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/reports">Reports</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/users">Users</a></li>
+                <li><a href="#!/status"><i class="fa fa-id-badge" aria-hidden="true"></i> Status</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/punches"><i class="fa fa-clock-o" aria-hidden="true"></i> Punches</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/timesheets"><i class="fa fa-th-list" aria-hidden="true"></i> Timesheets</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/jobs"><i class="fa fa-truck" aria-hidden="true"></i> Jobs and Customers</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/reports"><i class="fa fa-line-chart" aria-hidden="true"></i> Reports</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/users"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <p class="navbar-text navbar-phone">Punch In or Out @ <a href="tel:1-888-930-3044">1-888-930-3044</a></p>
@@ -41,16 +42,23 @@
         <li class="active">Organization Details</li>
     </ol>
 
-    <form ng-submit="save()">
+    <form ng-submit="save()" autocomplete="off">
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" ng-model="organization.Name" ng-disabled="working.save" autofocus />
+                    <input type="text" name="organization_name" class="form-control" ng-model="organization.Name" ng-disabled="working.save" required autofocus />
+                </div>
+                <div class="form-group">
+                    <label>Time Format</label>
+                    <select name="organization_minutes_format" class="form-control" ng-model="organization.MinutesFormat" ng-disabled="working.save" required>
+                        <option value="minutes">Minutes &ndash; 2:14</option>
+                        <option value="decimal">Decimal &ndash; 2.23</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Organization Code (for login via Pin)</label>
-                    <input type="text" class="form-control form-control-number" ng-model="organization.Code" ng-disabled="working.save" />
+                    <input type="text" name="organization_code" class="form-control form-control-number" ng-model="organization.Code" ng-disabled="working.save" />
                     <p class="help-block">This 4+ digit code is public and shared throughout your organization. Users can login via Organization Code and User Pin on the Web, mobile app, and BRIZBEE hotline.</p>
                 </div>
                 <button class="btn btn-primary" type="submit" ng-disabled="working.save">Save Changes</button>
@@ -61,7 +69,7 @@
 
     <h1>Billing Details</h1>
 
-    <form id="payment-form">
+    <form id="payment-form" autocomplete="off">
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;" ng-show="organization.StripeSourceId != null">

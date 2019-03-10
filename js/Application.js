@@ -83,6 +83,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/pages/status.html',
             controller: 'StatusController'
         }).
+        when('/timesheets', {
+            templateUrl: '/pages/timesheets.html',
+            controller: 'TimesheetsController'
+        }).
         when('/users', {
             templateUrl: '/pages/users.html',
             controller: 'UsersController'

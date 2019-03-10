@@ -19,6 +19,14 @@ ol.breadcrumb {
     margin-bottom: 5%;
 }
 
+.navbar-nav i.fa {
+    margin-right: 3px;
+}
+
+table.table-supercondensed {
+    font-size: 95%;
+}
+
 table.table-noborder {
     border: none;
 }

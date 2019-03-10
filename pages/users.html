@@ -13,11 +13,12 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#!/status">Status</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/punches">Punches</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/jobs">Jobs and Customers</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/reports">Reports</a></li>
-                <li ng-show="current.user.Role == 'Administrator'" class="active"><a href="#!/users">Users <span class="sr-only">(current)</span></a></li>
+                <li><a href="#!/status"><i class="fa fa-id-badge" aria-hidden="true"></i> Status</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/punches"><i class="fa fa-clock-o" aria-hidden="true"></i> Punches</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/timesheets"><i class="fa fa-th-list" aria-hidden="true"></i> Timesheets</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/jobs"><i class="fa fa-truck" aria-hidden="true"></i> Jobs and Customers</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/reports"><i class="fa fa-line-chart" aria-hidden="true"></i> Reports</a></li>
+                <li ng-show="current.user.Role == 'Administrator'" class="active"><a href="#!/users"><i class="fa fa-users" aria-hidden="true"></i> Users <span class="sr-only">(current)</span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <p class="navbar-text navbar-phone">Punch In or Out @ <a href="tel:1-888-930-3044">1-888-930-3044</a></p>
@@ -58,14 +59,14 @@
             </div>
         
             <!--List of Punched In Users-->
-            <table class="table table-bordered table-condensed">
+            <table class="table table-bordered table-condensed table-supercondensed">
                 <thead>
                     <tr>
                         <th class="col-md-2">Name</th>
-                        <th class="col-md-2">Customer</th>
-                        <th class="col-md-2">Job</th>
-                        <th class="col-md-3">Task</th>
-                        <th class="col-md-3">Since</th>
+                        <th>Customer</th>
+                        <th>Job</th>
+                        <th>Task</th>
+                        <th class="col-md-2">Since</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -119,15 +120,15 @@
             </div>
         
             <!--List of Users-->
-            <table class="table table-bordered table-condensed">
+            <table class="table table-bordered table-condensed table-supercondensed">
                 <thead>
                     <tr>
-                        <th class="col-md-3">Name</th>
-                        <th class="col-md-2">Email Address</th>
-                        <th class="col-md-1">Pin</th>
-                        <th class="col-md-2">Role</th>
-                        <th class="col-md-2">Default Time Zone</th>
-                        <th class="col-md-2">Added</th>
+                        <th style="width: 22%;">Name</th>
+                        <th style="width: 22%;">Email Address</th>
+                        <th style="width: 10%;">Pin</th>
+                        <th style="width: 10%;">Role</th>
+                        <th style="width: 21%;">Default Time Zone</th>
+                        <th style="width: 15%;">Added</th>
                     </tr>
                 </thead>
                 <tbody>

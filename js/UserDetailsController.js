@@ -31,9 +31,17 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
         var json = {
             Name: $scope.user.Name,
             Role: $scope.user.Role,
-            Pin: $scope.user.Pin,
             QuickBooksEmployee: $scope.user.QuickBooksEmployee,
-            TimeZone: $scope.user.TimeZone
+            TimeZone: $scope.user.TimeZone,
+            UsesTimesheets: $scope.user.UsesTimesheets,
+            UsesMobileClock: $scope.user.UsesMobileClock,
+            UsesTouchToneClock: $scope.user.UsesTouchToneClock,
+            UsesWebClock: $scope.user.UsesWebClock
+        }
+
+        // Only change the Pin if necessary
+        if ($scope.user.Pin != user.Pin) {
+            json.Pin = $scope.user.Pin
         }
 
         // Changing password is optional
@@ -56,7 +64,11 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
             Pin: $scope.user.Pin,
             Password: $scope.user.Password,
             QuickBooksEmployee: $scope.user.QuickBooksEmployee,
-            TimeZone: $scope.user.TimeZone
+            TimeZone: $scope.user.TimeZone,
+            UsesTimesheets: $scope.user.UsesTimesheets,
+            UsesMobileClock: $scope.user.UsesMobileClock,
+            UsesTouchToneClock: $scope.user.UsesTouchToneClock,
+            UsesWebClock: $scope.user.UsesWebClock
         }
 
         if ($scope.user.EmailAddress != '') {

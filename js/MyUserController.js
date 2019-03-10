@@ -1,16 +1,25 @@
 app.controller('MyUserController', function ($http, $location, $rootScope, $scope, $window) {
     $scope.messages = { saved: '' }
     $scope.show = { changePassword: false }
-    $scope.user = angular.copy($rootScope.current.user)
     $scope.working = { save: false }
+
+    $rootScope.$watch('current', function (newValue, oldValue, scope) {
+        if ("user" in newValue) {
+            $scope.user = angular.copy(newValue.user)
+        }
+    })
 
     $scope.save = function () {
         $scope.working.save = true
 
         var json = {
             Name: $scope.user.Name,
-            Pin: $scope.user.Pin,
             TimeZone: $scope.user.TimeZone
+        }
+
+        // Only change the Pin if necessary
+        if ($scope.user.Pin != $rootScope.current.user.Pin) {
+            json.Pin = $scope.user.Pin
         }
 
         // Changing password is optional
