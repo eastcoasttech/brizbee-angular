@@ -23,6 +23,14 @@ app.controller('TimesheetEntryDetailsController', function ($http, $rootScope, $
         }
     }
 
+    $scope.hoursFormat = function () {
+        if ($rootScope.current.user.Organization.MinutesFormat == 'minutes') {
+            return 'HH:MM';
+        } else if ($rootScope.current.user.Organization.MinutesFormat == 'decimal') {
+            return 'HH.MM';
+        }
+    }
+
     $scope.refreshCustomers = function () {
         $scope.customers = []
         $scope.loading.customers = true

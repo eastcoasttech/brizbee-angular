@@ -140,8 +140,8 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
 
     $scope.showFilters = function () {
         var instance = $uibModal.open({
-            templateUrl: '/pages/filters.html',
-            controller: 'FiltersController',
+            templateUrl: '/pages/filters/punches.html',
+            controller: 'PunchesFiltersController',
             resolve: {
                 filters: function () {
                     return $scope.filters

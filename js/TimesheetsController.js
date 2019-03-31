@@ -96,6 +96,25 @@ app.controller('TimesheetsController', function ($http, $rootScope, $scope, $uib
             })
     }
 
+    $scope.showFilters = function () {
+        var instance = $uibModal.open({
+            templateUrl: '/pages/filters/timesheets.html',
+            controller: 'TimesheetsFiltersController',
+            resolve: {
+                filters: function () {
+                    return $scope.filters
+                }
+            }
+        });
+        
+        instance.result
+            .then((msg) => {
+                $scope.refreshTimesheetEntries()
+            }, () => {
+                // dismissed
+            })
+    };
+
     $scope.showNewTimesheetEntry = function () {
         var instance = $uibModal.open({
             templateUrl: '/pages/details/timesheetEntry.html',

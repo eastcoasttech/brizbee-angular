@@ -1,4 +1,4 @@
-app.controller('FiltersController', function ($http, $rootScope, $scope, $uibModalInstance, filters) {
+app.controller('PunchesFiltersController', function ($http, $rootScope, $scope, $uibModalInstance, filters) {
     $scope.filters = filters
     $scope.loading = { customers: false, jobs: false, tasks: false }
 
@@ -7,7 +7,6 @@ app.controller('FiltersController', function ($http, $rootScope, $scope, $uibMod
     }
 
     $scope.ok = function () {
-        console.log($scope.filters)
         $uibModalInstance.close($scope.filters)
     }
 
@@ -62,7 +61,6 @@ app.controller('FiltersController', function ($http, $rootScope, $scope, $uibMod
     }
 
     $scope.refreshUsers = function () {
-        console.log($scope.filters.user.users)
         $scope.users = []
         $scope.loading.users = true
         $http.get($rootScope.baseUrl + "/odata/Users?$orderby=Id")
