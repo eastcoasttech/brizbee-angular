@@ -1,12 +1,12 @@
-app.controller('TimesheetEntryDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, timesheetEntry) {
+app.controller('TimesheetEntryDetailsController', function ($filter, $http, $rootScope, $scope, $uibModalInstance, $window, timesheetEntry) {
     if (timesheetEntry.Id == null) {
         $scope.timesheetEntry = {
             EnteredAt: moment().startOf('day').toDate()
         }
-        $scope.user = $rootScope.current.user
+        $scope.timesheetEntry.user = $rootScope.current.user
     } else {
         $scope.timesheetEntry = angular.copy(timesheetEntry)
-        $scope.user = $scope.timesheetEntry.User
+        // $scope.timesheetEntry.user = $scope.timesheetEntry.User
     }
     $scope.datepicker = { EnteredAt: {}, options: {} }
     $scope.loading = { customers: false, jobs: false, tasks: false }
@@ -34,7 +34,7 @@ app.controller('TimesheetEntryDetailsController', function ($http, $rootScope, $
     $scope.refreshCustomers = function () {
         $scope.customers = []
         $scope.loading.customers = true
-        $http.get($rootScope.baseUrl + "/odata/Customers?$orderby=Id")
+        $http.get($rootScope.baseUrl + "/odata/Customers?$orderby=Number")
             .then(response => {
                 $scope.loading.customers = false
                 $scope.customers = response.data.value
@@ -59,7 +59,7 @@ app.controller('TimesheetEntryDetailsController', function ($http, $rootScope, $
         $scope.jobs = []
         $scope.tasks = []
         $scope.loading.jobs = true
-        $http.get($rootScope.baseUrl + "/odata/Jobs?$orderby=Id&$filter=CustomerId eq " + $scope.timesheetEntry.customer.Id)
+        $http.get($rootScope.baseUrl + "/odata/Jobs?$orderby=Number&$filter=CustomerId eq " + $scope.timesheetEntry.customer.Id)
             .then(response => {
                 $scope.loading.jobs = false
                 $scope.jobs = response.data.value
@@ -82,7 +82,7 @@ app.controller('TimesheetEntryDetailsController', function ($http, $rootScope, $
 
         $scope.tasks = []
         $scope.loading.tasks = true
-        $http.get($rootScope.baseUrl + "/odata/Tasks?$orderby=Id&$filter=JobId eq " + $scope.timesheetEntry.job.Id)
+        $http.get($rootScope.baseUrl + "/odata/Tasks?$orderby=Number&$filter=JobId eq " + $scope.timesheetEntry.job.Id)
             .then(response => {
                 $scope.loading.tasks = false
                 $scope.tasks = response.data.value
@@ -93,6 +93,24 @@ app.controller('TimesheetEntryDetailsController', function ($http, $rootScope, $
                 }
             }, error => {
                 $scope.loading.tasks = false
+                console.error(error)
+            })
+    }
+
+    $scope.refreshUsers = function () {
+        $scope.users = []
+        $scope.loading.users = true
+        $http.get($rootScope.baseUrl + "/odata/Users?$orderby=Name")
+            .then(response => {
+                $scope.loading.users = false
+                $scope.users = response.data.value
+                if (!$scope.timesheetEntry.customer) {
+                    $scope.timesheetEntry.user = $scope.users[0]
+                } else {
+                    $scope.timesheetEntry.user = $filter('filter')($scope.users, { Id: $scope.timesheetEntry.user.Id }, true)[0]
+                }
+            }, error => {
+                $scope.loading.users = false
                 console.error(error)
             })
     }
@@ -112,7 +130,7 @@ app.controller('TimesheetEntryDetailsController', function ($http, $rootScope, $
             Minutes: $scope.timesheetEntry.Minutes,
             Notes: $scope.timesheetEntry.Notes,
             TaskId: $scope.timesheetEntry.task.Id,
-            UserId: $scope.user.Id
+            UserId: $scope.timesheetEntry.user.Id
         }
 
         if (confirm("Are you sure you want to modify this entry?")) {
@@ -132,7 +150,7 @@ app.controller('TimesheetEntryDetailsController', function ($http, $rootScope, $
             Minutes: $scope.timesheetEntry.Minutes,
             Notes: $scope.timesheetEntry.Notes,
             TaskId: $scope.timesheetEntry.task.Id,
-            UserId: $scope.user.Id
+            UserId: $scope.timesheetEntry.user.Id
         }
 
         $http.post($rootScope.baseUrl + "/odata/TimesheetEntries", JSON.stringify(json))
@@ -156,4 +174,5 @@ app.controller('TimesheetEntryDetailsController', function ($http, $rootScope, $
     }
 
     $scope.refreshCustomers()
+    $scope.refreshUsers()
 });

@@ -1,5 +1,5 @@
 app.controller('TimesheetsController', function ($http, $rootScope, $scope, $uibModal, $window) {
-    $scope.filters = { customer: {}, job: {}, task: {} }
+    $scope.filters = { user: {} }
     $scope.loading = { timesheetEntries: false }
     $scope.timesheetEntries = []
     $scope.timesheetEntriesPageStart = 0
@@ -43,12 +43,17 @@ app.controller('TimesheetsController', function ($http, $rootScope, $scope, $uib
     }
     
     $scope.refreshTimesheetEntries = function () {
+        if (!$scope.filters.user)
+        {
+            return;
+        }
+
         $scope.timesheetEntries = []
         $scope.loading.timesheetEntries = true
 
         // Filter by user
-        var filters = { in_at: { $gte: $rootScope.range.InAt,
-                                 $lte: $rootScope.range.OutAt } }
+        // var filters = { in_at: { $gte: $rootScope.range.InAt,
+        //                          $lte: $rootScope.range.OutAt } }
         // if ($scope.filters['user'].selected) {
         //     filters.user_id = { $in: $scope.filters['user'].users.map(x => x._id) }
         // }
@@ -56,7 +61,7 @@ app.controller('TimesheetsController', function ($http, $rootScope, $scope, $uib
         var sortParameter = {}
         sortParameter[$scope.sortType] = $scope.sortDirection
 
-        $http.get($rootScope.baseUrl + "/odata/TimesheetEntries?$count=true&$expand=User,Task($expand=Job($expand=Customer))&$top=20&$skip=" + $scope.timesheetEntriesPageStart + "&$filter=EnteredAt ge " + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + " and EnteredAt le " + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + '&$orderby=' + $scope.sortType + ' ' + $scope.sortDirection)
+        $http.get($rootScope.baseUrl + "/odata/TimesheetEntries?$count=true&$expand=User,Task($expand=Job($expand=Customer))&$top=20&$skip=" + $scope.timesheetEntriesPageStart + "&$filter=UserId eq " + $scope.filters.user.Id + "and EnteredAt ge " + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + " and EnteredAt le " + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + '&$orderby=' + $scope.sortType + ' ' + $scope.sortDirection)
             .then(response => {
                 $scope.loading.timesheetEntries = false
                 $scope.timesheetEntriesCount = response.data["@odata.count"]
@@ -101,14 +106,15 @@ app.controller('TimesheetsController', function ($http, $rootScope, $scope, $uib
             templateUrl: '/pages/filters/timesheets.html',
             controller: 'TimesheetsFiltersController',
             resolve: {
-                filters: function () {
-                    return $scope.filters
+                user: function () {
+                    return { Id: $scope.filters.user.Id, Name: $scope.filters.user.Name }
                 }
             }
         });
         
         instance.result
-            .then((msg) => {
+            .then((user) => {
+                $scope.filters.user = user
                 $scope.refreshTimesheetEntries()
             }, () => {
                 // dismissed

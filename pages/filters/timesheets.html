@@ -9,13 +9,12 @@
                     <td class="col-md-4" style="vertical-align: middle; border-top: none;">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" ng-model="filters.user.selected">
                                 Filter by User
                             </label>
                         </div>
                     </td>
                     <td class="col-md-8" style="vertical-align: middle; border-top: none;">
-                        <select class="form-control" ng-model="filters.user.users" ng-options="user.Name for user in users" ng-disabled="!filters.user.selected" autofocus multiple></select>
+                        <select class="form-control" ng-model="selected.user" ng-options="user.Id as user.Name for user in users" autofocus></select>
                     </td>
                 </tr>
             </tbody>

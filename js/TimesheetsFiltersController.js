@@ -1,13 +1,16 @@
-app.controller('TimesheetsFiltersController', function ($http, $rootScope, $scope, $uibModalInstance, filters) {
-    $scope.filters = filters
+app.controller('TimesheetsFiltersController', function ($http, $rootScope, $scope, $uibModalInstance, user) {
     $scope.loading = { users: false }
+    $scope.selected = { user: user.Id }
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel')
     }
 
     $scope.ok = function () {
-        $uibModalInstance.close($scope.filters)
+        var matched = _.findLast($scope.users, function(u) {
+            return u.Id == $scope.selected.user;
+        });
+        $uibModalInstance.close(matched)
     }
 
     $scope.refresh = function () {

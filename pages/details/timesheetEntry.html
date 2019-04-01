@@ -4,6 +4,14 @@
 </div>
 <form name="timesheetEntryForm" ng-submit="save()" autocomplete="off" novalidate>
     <div class="modal-body">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-group">
+                    <label>User</label>
+                    <select class="form-control" ng-model="timesheetEntry.user" ng-options="user.Id as user.Name for user in users" ng-disabled="working.save"></select>
+                </div>
+            </div>
+        </div>
         <label>Date</label>
         <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
