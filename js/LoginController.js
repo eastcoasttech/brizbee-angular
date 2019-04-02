@@ -56,6 +56,9 @@ app.controller('LoginController', function ($cookies, $http, $location, $rootSco
                     .then(response2 => {
                         $rootScope.current.user = response2.data
                         $location.path('/status')
+
+                        // Reset the document title, in case the session expired
+                        $(document).prop('title', 'Dashboard - BRIZBEE')
                     }, error2 => {
                         $scope.working.login = false
                         console.error(error2)
