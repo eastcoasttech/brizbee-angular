@@ -1,6 +1,5 @@
 app.controller('ApplicationController', function ($cookies, $http, $location, $rootScope, $scope) {
     $rootScope.baseUrl = "https://brizbee.gowitheast.com"
-    // $rootScope.baseUrl = "http://localhost:54313"
     $rootScope.selected = {}
     $rootScope.current = {}
     $rootScope.range = {
@@ -36,9 +35,6 @@ app.controller('ApplicationController', function ($cookies, $http, $location, $r
             .then(response => {
                 $rootScope.current = {}
                 $rootScope.current.user = response.data
-
-                // Reset the document title, in case the session expired
-                $(document).prop('title', 'Dashboard - BRIZBEE')
             }, error => {
                 $location.path("/")
             })

@@ -6,6 +6,9 @@ app.controller('TimesheetsController', function ($http, $rootScope, $scope, $uib
     $scope.sortDirection = 'asc'
     $scope.sortType = 'EnteredAt'
 
+    // Reset the document title, in case the session expired
+    $(document).prop('title', 'Dashboard - BRIZBEE')
+
     $rootScope.$watch('current', function (newValue, oldValue, scope) {
         $scope.filters.user = newValue.user
         $scope.refreshTimesheetEntries()

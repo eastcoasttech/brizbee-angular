@@ -5,6 +5,9 @@ app.controller('UsersController', function ($http, $rootScope, $scope, $uibModal
     $scope.users = []
     $scope.usersPageStart = 0
 
+    // Reset the document title, in case the session expired
+    $(document).prop('title', 'Dashboard - BRIZBEE')
+
     $scope.refreshUsers = function () {
         $scope.users = []
         $scope.loading.users = true

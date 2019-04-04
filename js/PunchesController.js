@@ -10,6 +10,9 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     $scope.sortType = 'InAt'
     $scope.working = { commit: false }
 
+    // Reset the document title, in case the session expired
+    $(document).prop('title', 'Dashboard - BRIZBEE')
+
     $scope.export = function () {
         // var rows = ['User', 'In', 'Out', 'Customer', 'Job', 'Task', 'Committed']
 

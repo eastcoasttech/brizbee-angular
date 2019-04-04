@@ -1,5 +1,8 @@
 app.controller('StatusController', function ($http, $interval, $rootScope, $scope, $window) {
     $scope.working = { status: true }
+    
+    // Reset the document title, in case the session expired
+    $(document).prop('title', 'Status - BRIZBEE')
 
     function refreshStatus () {
         delete $rootScope.current.punch;

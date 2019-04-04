@@ -8,6 +8,9 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
     $scope.tasks = []
     $scope.tasksPageStart = 0
 
+    // Reset the document title, in case the session expired
+    $(document).prop('title', 'Dashboard - BRIZBEE')
+
     $scope.customersEnd = function () {
         return $scope.customersPageStart + 20 < $scope.customersCount ? $scope.customersPageStart + 20 : $scope.customersCount;
     };

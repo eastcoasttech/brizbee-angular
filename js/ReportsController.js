@@ -6,6 +6,9 @@ app.controller('ReportsController', function ($http, $rootScope, $scope, $window
         committed: 'all'
     }
 
+    // Reset the document title, in case the session expired
+    $(document).prop('title', 'Dashboard - BRIZBEE')
+
     $scope.addJob = function (job) {
         $scope.include.jobs.list.push(job)
         if ($scope.include.jobs.results.length == 1) {
