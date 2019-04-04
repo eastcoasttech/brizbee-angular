@@ -17,6 +17,9 @@ app.controller('LoginController', function ($cookies, $http, $location, $rootSco
     $scope.user = {}
     $scope.working = { login: false }
 
+    // Reset the document title, in case the session expired
+    $(document).prop('title', 'BRIZBEE - Login or Sign Up for a Free 30 Day Trial')
+
     $scope.loginWithEmail = function () {
         // Authenticate the user with the email and password and
         // redirect to the status view

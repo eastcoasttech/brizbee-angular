@@ -8,6 +8,9 @@ app.controller('RegisterController', function ($cookies, $http, $location, $root
     $scope.step = {}
     $scope.working = { register: false }
 
+    // Reset the document title, in case the session expired
+    $(document).prop('title', 'BRIZBEE - Login or Sign Up for a Free 30 Day Trial')
+
     $("input.form-control-number").numeric()
     
     $scope.$watch('selected.CountryCode', function (newValue, oldValue, scope) {
