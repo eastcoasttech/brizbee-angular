@@ -1,7 +1,8 @@
 app.controller('TimesheetEntryDetailsController', function ($filter, $http, $rootScope, $scope, $uibModalInstance, $window, timesheetEntry) {
     if (timesheetEntry.Id == null) {
         $scope.timesheetEntry = {
-            EnteredAt: moment().startOf('day').toDate()
+            EnteredAt: moment().startOf('day').toDate(),
+            Minutes: 0
         }
         $scope.timesheetEntry.user = $rootScope.current.user
     } else {
@@ -20,14 +21,6 @@ app.controller('TimesheetEntryDetailsController', function ($filter, $http, $roo
                 }, error => {
                     console.error(error)
                 })
-        }
-    }
-
-    $scope.hoursFormat = function () {
-        if ($rootScope.current.user.Organization.MinutesFormat == 'minutes') {
-            return 'HH:MM';
-        } else if ($rootScope.current.user.Organization.MinutesFormat == 'decimal') {
-            return 'HH.MM';
         }
     }
 
