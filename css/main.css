@@ -190,6 +190,11 @@ ol.getting-started li {
     margin-bottom: 12px;
 }
 
+.panel-status {
+    border-top: none;
+    padding-top: 1em;
+}
+
 .panel-status h3 {
     font-weight: bold;
     margin-bottom: 10px;
@@ -210,6 +215,11 @@ ol.getting-started li {
 
 .panel-login {
     margin-bottom: 10px;
+}
+
+.header-status {
+    padding-bottom: 1em;
+    text-transform: uppercase;
 }
 
 /**
@@ -312,4 +322,12 @@ li.text-highlight:hover a:hover {
 .fadeIn.ng-hide-add {
     opacity: 0;
     display: block !important;
+}
+
+li.uib-tab a.nav-link {
+    text-decoration: none;
+}
+
+li.uib-tab a.nav-link i {
+    padding-right: 5px;
 }
