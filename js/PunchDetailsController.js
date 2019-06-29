@@ -52,9 +52,9 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
 
         // OutAt is optional when editing manually
         if ($scope.punch.has_out_at) {
-            json.SourceForOutAt = 'Dashboard'
             json.OutAt = moment($scope.punch.OutAt).subtract(timedifference, 'm').toDate()
             json.OutAtTimeZone = $scope.punch.OutAtTimeZone
+            json.SourceForOutAt = 'Dashboard'
         }
 
         if (confirm("Are you sure you want to save this new punch?")) {
@@ -80,10 +80,11 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         if ($scope.punch.has_out_at) {
             json.OutAt = moment($scope.punch.OutAt).subtract(timedifference, 'm').toDate()
             json.OutAtTimeZone = $scope.punch.OutAtTimeZone
+            json.SourceForOutAt = 'Dashboard'
         } else {
             json.OutAt = null
-            json.SourceForOutAt = null
             json.OutAtTimeZone = null
+            json.SourceForOutAt = null
         }
 
         if (confirm("Are you sure you want to modify this punch?")) {
