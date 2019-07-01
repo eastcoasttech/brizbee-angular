@@ -19,6 +19,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/pages/customers.html',
             controller: 'CustomersController'
         }).
+        when('/export', {
+            templateUrl: '/pages/export.html',
+            controller: 'ExportController'
+        }).
         when('/in/confirm', {
             templateUrl: '/pages/in/confirm.html',
             controller: 'InConfirmController'
