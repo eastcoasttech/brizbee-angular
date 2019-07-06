@@ -8,6 +8,15 @@ app.controller('ExportController', function ($http, $location, $rootScope, $rout
     $scope.refreshToken = $routeParams.refreshToken
     $scope.refreshTokenExpiresAt = $routeParams.refreshTokenExpiresAt
 
+    $scope.refreshCompanyInformation = function () {
+        $http.get("https://brizbee.gowitheast.com/api/QuickBooksOnline/CompanyInformation?realmId=" + $scope.realmId + "&accessToken=" + $scope.accessToken)
+            .then(response => {
+                console.log(response)
+            }, error => {
+                console.error(error)
+            })
+    }
+
     // Scroll to top
     $window.scrollTo(0, 0)
 })

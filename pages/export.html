@@ -50,6 +50,8 @@
     <p>Refresh Token: {{refreshToken}}</p>
     <p>Expires At: {{refreshTokenExpiresAt}}</p>
 
+    <button type="button" ng-click="refreshCompanyInformation()">Get Company Information</button>
+
     <form action="https://brizbee.gowitheast.com/api/QuickBooksOnline/Authenticate" method="POST">
         <input type="submit" value="Connect to QuickBooks Online" class="btn btn-primary">
     </form>
