@@ -8,6 +8,17 @@ app.controller('ExportController', function ($http, $location, $rootScope, $rout
     $scope.refreshToken = $routeParams.refreshToken
     $scope.refreshTokenExpiresAt = $routeParams.refreshTokenExpiresAt
 
+    function clearParams() {
+        $location.search('errorMessage', null)
+        $location.search('stateMessage', null)
+        $location.search('realmId', null)
+        $location.search('accessToken', null)
+        $location.search('accessTokenExpiresAt', null)
+        $location.search('refreshToken', null)
+        $location.search('refreshTokenExpiresAt', null)
+    }
+    clearParams()
+
     $scope.refreshCompanyInformation = function () {
         $http.get("https://brizbee.gowitheast.com/api/QuickBooksOnline/CompanyInformation?realmId=" + $scope.realmId + "&accessToken=" + $scope.accessToken)
             .then(response => {
