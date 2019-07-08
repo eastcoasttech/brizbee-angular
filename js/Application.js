@@ -19,9 +19,13 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/pages/customers.html',
             controller: 'CustomersController'
         }).
-        when('/export', {
-            templateUrl: '/pages/export.html',
-            controller: 'ExportController'
+        when('/export-file', {
+            templateUrl: '/pages/export-file.html',
+            controller: 'ExportFileController'
+        }).
+        when('/export-quickbooks-online', {
+            templateUrl: '/pages/export-quickbooks-online.html',
+            controller: 'ExportQuickBooksOnlineController'
         }).
         when('/in/confirm', {
             templateUrl: '/pages/in/confirm.html',
