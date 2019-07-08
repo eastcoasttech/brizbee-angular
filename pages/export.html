@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h3 class="modal-title">Export Punches</h3>
+</div>
+<form ng-submit="ok()">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <p>
+                    Click below to download the filtered punches:
+                </p>
+                <p>
+                    <a ng-href="{{baseUrl}}/api/Exports/Csv?CommitId={{commit.Id}}&Delimiter=,&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}" class="btn btn-primary">
+                        Comma Separated Values
+                        {{commit.InAt | date:'MMM dd, yyyy'}} &ndash; {{commit.OutAt | date:'MMM dd, yyyy'}}
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">Close</button>
+    </div>
+</form>

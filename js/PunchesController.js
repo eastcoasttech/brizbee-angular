@@ -13,17 +13,6 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     // Reset the document title, in case the session expired
     $(document).prop('title', 'Dashboard - BRIZBEE')
 
-    $scope.export = function () {
-        // var rows = ['User', 'In', 'Out', 'Customer', 'Job', 'Task', 'Committed']
-
-        $http.get($rootScope.baseUrl + "/odata/Punches/CSV")
-            .then(response => {
-
-            }, error => {
-                console.error(error)
-            })
-    }
-
     $scope.filterCount = function () {
         var count = 0
         angular.forEach($scope.filters, function (value, key) {
@@ -136,6 +125,25 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         instance.result
             .then((msg) => {
                 $scope.refreshPunches()
+            }, () => {
+                // dismissed
+            })
+    }
+
+    $scope.showExport = function () {
+        var instance = $uibModal.open({
+            templateUrl: '/pages/export.html',
+            controller: 'ExportController',
+            resolve: {
+                // filters: function () {
+                //     return $scope.filters
+                // }
+            }
+        });
+        
+        instance.result
+            .then((msg) => {
+                console.log(msg)
             }, () => {
                 // dismissed
             })
