@@ -70,7 +70,7 @@
                         <p>Select the committed punches that you would like to export:</p>
                         <ul class="list-unstyled">
                             <li ng-repeat="commit in commits" style="margin-bottom: 10px;">
-                                <a ng-href="/api/Exports/Csv?CommitId={{commit.Id}}&Delimiter=,&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}" class="btn btn-primary">{{commit.InAt | date:'MMM dd, yyyy'}} &ndash; {{commit.OutAt | date:'MMM dd, yyyy'}}</a>
+                                <a ng-href="{{baseUrl}}/api/Exports/Csv?CommitId={{commit.Id}}&Delimiter=,&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}" class="btn btn-primary">{{commit.InAt | date:'MMM dd, yyyy'}} &ndash; {{commit.OutAt | date:'MMM dd, yyyy'}}</a>
                                 <br />
                                 <small>Created by {{commit.User.Name}} at {{commit.CreatedAt | date:'MMM dd, yyyy HH:mm Z'}}</small>
                             </li>
