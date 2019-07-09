@@ -1,5 +1,7 @@
-app.controller('ExportController', function ($http, $rootScope, $scope, $uibModalInstance, range) {
+app.controller('ExportController', function ($http, $rootScope, $scope, $uibModalInstance, type, commit_id, range) {
+    $scope.commit_id = commit_id
     $scope.range = angular.copy(range)
+    $scope.type = type
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel')
