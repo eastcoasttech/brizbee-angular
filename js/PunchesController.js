@@ -135,9 +135,9 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
             templateUrl: '/pages/export.html',
             controller: 'ExportController',
             resolve: {
-                // filters: function () {
-                //     return $scope.filters
-                // }
+                range: function () {
+                    return $rootScope.range
+                }
             }
         });
         

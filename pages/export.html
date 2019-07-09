@@ -9,10 +9,13 @@
                     Click below to download the filtered punches:
                 </p>
                 <p>
-                    <a ng-href="{{baseUrl}}/api/Exports/Csv?CommitId={{commit.Id}}&Delimiter=,&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}" class="btn btn-primary">
-                        Comma Separated Values
-                        {{commit.InAt | date:'MMM dd, yyyy'}} &ndash; {{commit.OutAt | date:'MMM dd, yyyy'}}
+                    <a ng-href="{{baseUrl}}/api/Exports/Csv?InAt={{formatMomentFromDate(range.InAt, 'YYYY-MM-DDTHH:mm:ss')}}&OutAt={{formatMomentFromDate(range.OutAt, 'YYYY-MM-DDTHH:mm:ss')}}&Delimiter=,&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}" class="btn btn-primary">
+                        CSV File (Comma Separated Values)
                     </a>
+                    <br />
+                    <small>
+                        Can be opened in Microsoft Excel, LibreOffice, Google Docs, etc.
+                    </small>
                 </p>
             </div>
         </div>
