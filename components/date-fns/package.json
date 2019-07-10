@@ -1,4 +1,10 @@
 {
+  "_args": [
+    [
+      "date-fns@2.0.0-alpha.7",
+      "C:\\Users\\joshuasmartin\\source\\repos\\brizbee-angular"
+    ]
+  ],
   "_from": "date-fns@2.0.0-alpha.7",
   "_id": "date-fns@2.0.0-alpha.7",
   "_inBundle": false,
@@ -19,13 +25,11 @@
     "/angular-input-masks"
   ],
   "_resolved": "https://registry.npmjs.org/date-fns/-/date-fns-2.0.0-alpha.7.tgz",
-  "_shasum": "245ad16f95764eababfb2c0a41fd5d033c20e57a",
-  "_spec": "date-fns@2.0.0-alpha.7",
-  "_where": "C:\\Users\\joshuasmartin\\source\\repos\\brizbee-angular\\node_modules\\angular-input-masks",
+  "_spec": "2.0.0-alpha.7",
+  "_where": "C:\\Users\\joshuasmartin\\source\\repos\\brizbee-angular",
   "bugs": {
     "url": "https://github.com/date-fns/date-fns/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Sasha Koss",
@@ -37,7 +41,6 @@
     }
   ],
   "dependencies": {},
-  "deprecated": false,
   "description": "Modern JavaScript date utility library",
   "devDependencies": {
     "babel": "^6.5.2",

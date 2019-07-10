@@ -1,27 +1,31 @@
 {
-  "_from": "jquery.alphanum",
+  "_args": [
+    [
+      "jquery.alphanum@1.0.26",
+      "C:\\Users\\joshuasmartin\\source\\repos\\brizbee-angular"
+    ]
+  ],
+  "_from": "jquery.alphanum@1.0.26",
   "_id": "jquery.alphanum@1.0.26",
   "_inBundle": false,
   "_integrity": "sha512-0QA/jFoUjoPJzT9ltWc69Td/fSOqJIpAW+u29jC2USyIh+RiFYcxKduTPKasNdIj2Fdb2noeJ4eKbT+XJMnnwg==",
   "_location": "/jquery.alphanum",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "jquery.alphanum",
+    "raw": "jquery.alphanum@1.0.26",
     "name": "jquery.alphanum",
     "escapedName": "jquery.alphanum",
-    "rawSpec": "",
+    "rawSpec": "1.0.26",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "1.0.26"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/jquery.alphanum/-/jquery.alphanum-1.0.26.tgz",
-  "_shasum": "cd2b29e79369f00616d0fe0f7501ab86f5ef77d9",
-  "_spec": "jquery.alphanum",
+  "_spec": "1.0.26",
   "_where": "C:\\Users\\joshuasmartin\\source\\repos\\brizbee-angular",
   "author": {
     "name": "Kevin Sheedy"
@@ -29,8 +33,6 @@
   "bugs": {
     "url": "https://github.com/KevinSheedy/jquery.alphanum/issues"
   },
-  "bundleDependencies": false,
-  "deprecated": false,
   "description": "Restrict what characters that may be entered into text fields. Supports alphanumeric, alphabetic or numeric. Easy to use. Fully customisable. Cross Browser compatible.",
   "devDependencies": {
     "eslint": "^4.19.1",

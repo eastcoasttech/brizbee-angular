@@ -3,9 +3,12 @@
 $(':input[type=number]').on('mousewheel',function(e){ $(this).blur(); });
 
 // Initialize Angular app
-var app = angular.module('brizbee', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ui.utils.masks', 'ngCookies']);
+var app = angular.module('brizbee', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ui.utils.masks', 'ngCookies', 'LocalStorageModule']);
 
-app.config(['$routeProvider', function ($routeProvider) {
+app.config(function ($routeProvider, localStorageServiceProvider) {
+    localStorageServiceProvider
+        .setPrefix('brizbee')
+
     $routeProvider.
         when('/', {
             templateUrl: '/pages/login.html',
@@ -102,5 +105,4 @@ app.config(['$routeProvider', function ($routeProvider) {
         otherwise({
             redirectTo: '/'
         })
-    }
-]);
+});

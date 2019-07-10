@@ -68,27 +68,7 @@
                     </div>
                     <!-- Step - Choose a Commit -->
                     <div ng-show="step.name == 'commit'">
-                        <p>Select the committed punches that you would like to export:</p>
-                        <ul class="list-unstyled">
-                            <li style="margin-bottom: 10px;">
-                                <a href="" class="btn btn-primary" ng-click="exportTimesheet(1)">Jun 21, 2019 &ndash; Jun 29, 2019</a>
-                                <br />
-                                <small>Created by Joshua Shane Martin at 2019-07-07 5:32pm</small>
-                            </li>
-                            <li style="margin-bottom: 10px;" ng-click="exportTimesheet(2)">
-                                <a href="" class="btn btn-primary">Jun 13, 2019 &ndash; Jun 20, 2019</a>
-                                <br />
-                                <small>Created by Joshua Shane Martin at 2019-07-07 5:34pm</small>
-                            </li>
-                            <li style="margin-bottom: 10px;">
-                                <a href="" class="btn btn-primary" ng-click="exportTimesheet(3)">Jun 5, 2019 &ndash; Jun 12, 2019</a>
-                                <br />
-                                <small>Created by Joshua Shane Martin at 2019-07-07 5:36pm</small>
-                            </li>
-                            <li style="margin-top: 20px;">
-                                <a href="" ng-click="loadMoreCommits()">Load More</a>
-                            </li>
-                        </ul>
+                        <p>You are about to export punches from {{details.InAt}} thru {{details.OutAt}}<br />into the company {{details.CompanyName}}</p>
                         <div class="text-right">
                             <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
                         </div>

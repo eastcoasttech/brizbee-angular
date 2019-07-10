@@ -1,27 +1,31 @@
 {
-  "_from": "angular-input-masks@^4.2.1",
+  "_args": [
+    [
+      "angular-input-masks@4.2.1",
+      "C:\\Users\\joshuasmartin\\source\\repos\\brizbee-angular"
+    ]
+  ],
+  "_from": "angular-input-masks@4.2.1",
   "_id": "angular-input-masks@4.2.1",
   "_inBundle": false,
   "_integrity": "sha512-SHGItayfo5ciSZ0qNzToPeMl7S884oGwiEcSeNzRzFG5DTM5QU+SN0kIBryqVWO9ub8QW2TrzU5br9iWiMQwSA==",
   "_location": "/angular-input-masks",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "angular-input-masks@^4.2.1",
+    "raw": "angular-input-masks@4.2.1",
     "name": "angular-input-masks",
     "escapedName": "angular-input-masks",
-    "rawSpec": "^4.2.1",
+    "rawSpec": "4.2.1",
     "saveSpec": null,
-    "fetchSpec": "^4.2.1"
+    "fetchSpec": "4.2.1"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/angular-input-masks/-/angular-input-masks-4.2.1.tgz",
-  "_shasum": "03acf402c22997bbf55d88bfbdb396241c9bef84",
-  "_spec": "angular-input-masks@^4.2.1",
+  "_spec": "4.2.1",
   "_where": "C:\\Users\\joshuasmartin\\source\\repos\\brizbee-angular",
   "author": {
     "name": "igor.rafael@gmail.com"
@@ -29,13 +33,11 @@
   "bugs": {
     "url": "https://github.com/assisrafael/angular-input-masks/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "br-validations": "^0.3.1",
     "date-fns": "2.0.0-alpha.7",
     "string-mask": "^0.3.0"
   },
-  "deprecated": false,
   "description": "Personalized input masks for AngularJS",
   "devDependencies": {
     "angular": "^1.3.16",

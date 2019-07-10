@@ -1,13 +1,25 @@
-app.controller('ExportQuickBooksOnlineController', function ($http, $location, $rootScope, $routeParams, $sce, $scope, $timeout, $window) {
+app.controller('ExportQuickBooksOnlineController', function ($http, $location, $rootScope, $routeParams, $sce, $scope, $timeout, $window, localStorageService) {
     $scope.step = {}
 
-    $scope.errorMessage = $routeParams.errorMessage
-    $scope.stateMessage = $routeParams.stateMessage
-    $scope.realmId = $routeParams.realmId
-    $scope.accessToken = $routeParams.accessToken
-    $scope.accessTokenExpiresAt = $routeParams.accessTokenExpiresAt
-    $scope.refreshToken = $routeParams.refreshToken
-    $scope.refreshTokenExpiresAt = $routeParams.refreshTokenExpiresAt
+    $rootScope.$watch('range', function (newValue, oldValue, scope) {
+        if ("CommitId" in newValue) {
+            localStorageService.set('qbo_export_commit_id', newValue.CommitId)
+        }
+        if ("InAt" in newValue) {
+            localStorageService.set('qbo_export_in_at', newValue.InAt)
+        }
+        if ("OutAt" in newValue) {
+            localStorageService.set('qbo_export_out_at', newValue.OutAt)
+        }
+    })
+
+    localStorageService.set('qbo_export_error_message', $routeParams.errorMessage)
+    localStorageService.set('qbo_export_state_message', $routeParams.stateMessage)
+    localStorageService.set('qbo_export_realm_id', $routeParams.realmId)
+    localStorageService.set('qbo_export_access_token', $routeParams.accessToken)
+    localStorageService.set('qbo_export_access_token_expires_at', $routeParams.accessTokenExpiresAt)
+    localStorageService.set('qbo_export_refresh_token', $routeParams.refreshToken)
+    localStorageService.set('qbo_export_refresh_token_expires_at', $routeParams.refreshTokenExpiresAt)
 
     function clearParams() {
         // $location.search('errorMessage', null)

@@ -1,4 +1,10 @@
 {
+  "_args": [
+    [
+      "moment-timezone@0.5.25",
+      "C:\\Users\\joshuasmartin\\source\\repos\\brizbee-angular"
+    ]
+  ],
   "_from": "moment-timezone@0.5.25",
   "_id": "moment-timezone@0.5.25",
   "_inBundle": false,
@@ -16,12 +22,10 @@
     "fetchSpec": "0.5.25"
   },
   "_requiredBy": [
-    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/moment-timezone/-/moment-timezone-0.5.25.tgz",
-  "_shasum": "a11bfa2f74e088327f2cd4c08b3e7bdf55957810",
-  "_spec": "moment-timezone@0.5.25",
+  "_spec": "0.5.25",
   "_where": "C:\\Users\\joshuasmartin\\source\\repos\\brizbee-angular",
   "author": {
     "name": "Tim Wood",
@@ -31,11 +35,9 @@
   "bugs": {
     "url": "https://github.com/moment/moment-timezone/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "moment": ">= 2.9.0"
   },
-  "deprecated": false,
   "description": "Parse and display moments in any timezone.",
   "devDependencies": {
     "grunt": "^1.0.4",
