@@ -1,6 +1,6 @@
 app.controller('ExportQuickBooksOnlineController', function ($http, $location, $rootScope, $routeParams, $sce, $scope, $timeout, $window, localStorageService) {
     $scope.step = {}
-    $scope.details = { InAt: 'now', OutAt: 'later', CompanyName: 'East Coast Technology Services, LLC' }
+    $scope.details = { InAt: null, OutAt: null, CompanyName: 'East Coast Technology Services, LLC' }
 
     $rootScope.$watch('range', function (newValue, oldValue, scope) {
         if ("CommitId" in newValue) {
@@ -8,9 +8,11 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
         }
         if ("InAt" in newValue) {
             localStorageService.set('qbo_export_in_at', newValue.InAt)
+            $scope.details.InAt = newValue.InAt
         }
         if ("OutAt" in newValue) {
             localStorageService.set('qbo_export_out_at', newValue.OutAt)
+            $scope.details.OutAt = newValue.OutAt
         }
     })
 
@@ -39,12 +41,16 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
 
     $scope.confirm = function (commit_id) {
         // $scope.step = { name: 'status', number: '3', title: 'Please Wait' }
-        // $http.get("https://brizbee.gowitheast.com/api/QuickBooksOnline/CompanyInformation?realmId=" + $scope.realmId + "&accessToken=" + $scope.accessToken)
-        //     .then(response => {
-        //         console.log(response)
-        //     }, error => {
-        //         console.error(error)
-        //     })
+        var realmId = localStorageService.get('qbo_export_realm_id')
+        var accessToken = localStorageService.get('qbo_export_access_token')
+        var inAt = localStorageService.get('qbo_export_in_at')
+        var outAt = localStorageService.get('qbo_export_out_at')
+        $http.post("https://brizbee.gowitheast.com/api/QuickBooksOnline/TimeActivities?realmId=" + realmId + "&accessToken=" + accessToken + "&inAt=" + inAt + "&outAt=" + outAt)
+            .then(response => {
+                console.log(response)
+            }, error => {
+                console.error(error)
+            })
     }
 
     $scope.showWelcome = function () {
