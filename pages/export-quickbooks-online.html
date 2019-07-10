@@ -58,14 +58,11 @@
                 <div class="panel-body" style="padding: 35px;">
                     <!-- Step - Welcome -->
                     <div ng-show="step.name == 'welcome'">
-                        <p class="text-center" style="margin-top: 30px;">
-                            <img src="" alt="QuickBooks Online Logo" style="width: 30%;">
-                        </p>
-                        <form class="text-right"
+                        <form class="text-right col-md-8 col-md-offset-2"
                             action="{{trustedAction()}}"
                             method="POST">
-                            <button type="submit">
-                                <img src="/images/C2QB_white_btn_lg_default.png" alt="Connect to QuickBooks" />
+                            <button type="submit" style="width: 100%; border: none; background-color: transparent;">
+                                <img src="/images/C2QB_white_btn_lg_default.png" class="img-responsive" alt="Connect to QuickBooks" />
                             </button>
                         </form>
                     </div>
