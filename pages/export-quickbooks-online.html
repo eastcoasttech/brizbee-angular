@@ -62,7 +62,7 @@
                             <img src="" alt="QuickBooks Online Logo" style="width: 30%;">
                         </p>
                         <form class="text-right"
-                            action="https://brizbee.gowitheast.com/api/QuickBooksOnline/Authenticate?AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}"
+                            action="{{trustedAction()}}"
                             method="POST">
                             <button type="submit">
                                 <img src="/images/C2QB_white_btn_lg_default.png" alt="Connect to QuickBooks" />

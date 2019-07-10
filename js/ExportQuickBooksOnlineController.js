@@ -1,4 +1,4 @@
-app.controller('ExportQuickBooksOnlineController', function ($http, $location, $rootScope, $routeParams, $scope, $timeout, $window) {
+app.controller('ExportQuickBooksOnlineController', function ($http, $location, $rootScope, $routeParams, $sce, $scope, $timeout, $window) {
     $scope.step = {}
 
     $scope.errorMessage = $routeParams.errorMessage
@@ -38,6 +38,10 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
         $scope.step = { name: 'welcome', number: '1', title: 'Connect to QuickBooks Online' }
     }
     $scope.showWelcome()
+
+    $scope.trustedAction = function () {
+        return $sce.trustAsResourceUrl("https://brizbee.gowitheast.com/api/QuickBooksOnline/Authenticate?AuthUserId=" + $rootScope.auth.userId + "&AuthExpiration=" + $rootScope.auth.expiration + "&AuthToken=" + $rootScope.auth.token);
+    };
     
     // Step will be changed when QuickBooks Online API performs callback
     if ($routeParams.step && $routeParams.step == 'commit')
