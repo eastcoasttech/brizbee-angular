@@ -60,7 +60,9 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
     if ($routeParams.step && $routeParams.step == 'company')
     {
         $scope.step = { name: 'company', number: '2', title: 'Loading Company Details' }
-        $http.get("https://brizbee.gowitheast.com/api/QuickBooksOnline/CompanyInformation?realmId=" + $scope.realmId + "&accessToken=" + $scope.accessToken)
+        var realmId = localStorageService.get('qbo_export_realm_id')
+        var accessToken = localStorageService.get('qbo_export_access_token')
+        $http.get("https://brizbee.gowitheast.com/api/QuickBooksOnline/CompanyInformation?realmId=" + realmId + "&accessToken=" + accessToken)
             .then(response => {
                 $scope.details.CompanyName = response.data
                 $scope.step = { name: 'confirm', number: '3', title: 'Confirm the Export' }
