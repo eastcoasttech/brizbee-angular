@@ -1,5 +1,6 @@
 app.controller('ExportQuickBooksOnlineController', function ($http, $location, $rootScope, $routeParams, $sce, $scope, $timeout, $window, localStorageService) {
     $scope.step = {}
+    $scope.details = { InAt: 'now', OutAt: 'later', CompanyName: 'East Coast Technology Services, LLC' }
 
     $rootScope.$watch('range', function (newValue, oldValue, scope) {
         if ("CommitId" in newValue) {
@@ -36,8 +37,8 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
         $scope.showWelcome()
     }
 
-    $scope.exportTimesheet = function (commit_id) {
-        $scope.step = { name: 'status', number: '3', title: 'Please Wait' }
+    $scope.confirm = function (commit_id) {
+        // $scope.step = { name: 'status', number: '3', title: 'Please Wait' }
         // $http.get("https://brizbee.gowitheast.com/api/QuickBooksOnline/CompanyInformation?realmId=" + $scope.realmId + "&accessToken=" + $scope.accessToken)
         //     .then(response => {
         //         console.log(response)
@@ -52,13 +53,21 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
     $scope.showWelcome()
 
     $scope.trustedAction = function () {
-        return $sce.trustAsResourceUrl("https://brizbee.gowitheast.com/api/QuickBooksOnline/Authenticate?AuthUserId=" + $rootScope.auth.userId + "&AuthExpiration=" + $rootScope.auth.expiration + "&AuthToken=" + $rootScope.auth.token);
-    };
+        return $sce.trustAsResourceUrl("https://brizbee.gowitheast.com/api/QuickBooksOnline/Authenticate?AuthUserId=" + $rootScope.auth.userId + "&AuthExpiration=" + $rootScope.auth.expiration + "&AuthToken=" + $rootScope.auth.token)
+    }
     
     // Step will be changed when QuickBooks Online API performs callback
-    if ($routeParams.step && $routeParams.step == 'commit')
+    if ($routeParams.step && $routeParams.step == 'company')
     {
-        $scope.step = { name: 'commit', number: '2', title: 'Select Committed Punches' }
+        $scope.step = { name: 'company', number: '2', title: 'Loading Company Details' }
+        $http.get("https://brizbee.gowitheast.com/api/QuickBooksOnline/CompanyInformation?realmId=" + $scope.realmId + "&accessToken=" + $scope.accessToken)
+            .then(response => {
+                $scope.details.CompanyName = response.data
+                $scope.step = { name: 'confirm', number: '3', title: 'Confirm the Export' }
+            }, error => {
+                console.error(error)
+            })
+
         $timeout(function () {
             // $location.search('step', null) // Clear the route param
         }, 1000)

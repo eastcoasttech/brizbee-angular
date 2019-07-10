@@ -66,11 +66,21 @@
                             </button>
                         </form>
                     </div>
-                    <!-- Step - Choose a Commit -->
-                    <div ng-show="step.name == 'commit'">
-                        <p>You are about to export punches from {{details.InAt}} thru {{details.OutAt}}<br />into the company {{details.CompanyName}}</p>
+                    <!-- Step - Company -->
+                    <div ng-show="step.name == 'company'">
+                        <div class="text-center text-muted" style="margin-top: 30px; margin-bottom: 30px; font-size: 30px;">
+                            <i class="fa fa-spinner fa-spin fa-fw"></i>
+                        </div>
                         <div class="text-right">
                             <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+                        </div>
+                    </div>
+                    <!-- Step - Confirm -->
+                    <div ng-show="step.name == 'confirm'">
+                        <p>You are about to export punches from <strong>{{details.InAt}}</strong> thru <strong>{{details.OutAt}}</strong> into the company<br /><strong>{{details.CompanyName}}</strong></p>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+                            <button type="button" class="btn btn-primary" ng-click="confirm()">Confirm</button>
                         </div>
                     </div>
                     <!-- Step - Status -->
