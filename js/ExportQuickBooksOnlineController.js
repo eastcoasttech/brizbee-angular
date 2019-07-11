@@ -1,6 +1,7 @@
 app.controller('ExportQuickBooksOnlineController', function ($http, $location, $rootScope, $routeParams, $sce, $scope, $timeout, $window, localStorageService) {
     $scope.step = {}
     $scope.details = { InAt: null, OutAt: null, CompanyName: 'East Coast Technology Services, LLC' }
+    $scope.working = { export: false }
 
     $rootScope.$watch('range', function (newValue, oldValue, scope) {
         // if ("CommitId" in newValue) {
@@ -29,7 +30,7 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
     }
 
     $scope.confirm = function (commit_id) {
-        // $scope.step = { name: 'status', number: '3', title: 'Please Wait' }
+        $scope.working.export = true
         var realmId = localStorageService.get('qbo_export_realm_id')
         var accessToken = localStorageService.get('qbo_export_access_token')
         var inAt = localStorageService.get('qbo_export_in_at')
@@ -37,8 +38,10 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
         $http.post("https://brizbee.gowitheast.com/api/QuickBooksOnline/TimeActivities?realmId=" + realmId + "&accessToken=" + accessToken + "&inAt=" + inAt + "&outAt=" + outAt)
             .then(response => {
                 console.log(response)
+                $scope.working.export = false
             }, error => {
                 console.error(error)
+                $scope.working.export = false
             })
     }
 

@@ -84,8 +84,8 @@
                         </p>
                         <p>Are you sure you want to do this?</p>
                         <div class="text-right">
-                            <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-                            <button type="button" class="btn btn-primary" ng-click="confirm()">Confirm</button>
+                            <button type="button" class="btn btn-default" ng-click="cancel()" ng-disabled="working.export">Cancel</button>
+                            <button type="button" class="btn btn-primary" ng-click="confirm()" ng-disabled="working.export">Confirm</button>
                         </div>
                     </div>
                     <!-- Step - Status -->
