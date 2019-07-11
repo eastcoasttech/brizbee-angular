@@ -8,11 +8,11 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
         //     localStorageService.set('qbo_export_commit_id', newValue.CommitId)
         // }
         if ("InAt" in newValue) {
-            localStorageService.set('qbo_export_in_at', newValue.InAt)
+            localStorageService.set('qbo_export_in_at', formatMomentFromDate(newValue.InAt))
             $scope.details.InAt = newValue.InAt
         }
         if ("OutAt" in newValue) {
-            localStorageService.set('qbo_export_out_at', newValue.OutAt)
+            localStorageService.set('qbo_export_out_at', formatMomentFromDate(newValue.OutAt))
             $scope.details.OutAt = newValue.OutAt
         }
     })
