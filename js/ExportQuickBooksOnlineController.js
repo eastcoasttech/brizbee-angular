@@ -24,17 +24,6 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
     localStorageService.set('qbo_export_refresh_token', $routeParams.refreshToken)
     localStorageService.set('qbo_export_refresh_token_expires_at', $routeParams.refreshTokenExpiresAt)
 
-    function clearParams() {
-        // $location.search('errorMessage', null)
-        // $location.search('stateMessage', null)
-        // $location.search('realmId', null)
-        // $location.search('accessToken', null)
-        // $location.search('accessTokenExpiresAt', null)
-        // $location.search('refreshToken', null)
-        // $location.search('refreshTokenExpiresAt', null)
-    }
-    clearParams()
-
     $scope.cancel = function () {
         $scope.showWelcome()
     }
@@ -65,17 +54,22 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
     // Step will be changed when QuickBooks Online API performs callback
     if ($routeParams.step && $routeParams.step == 'company')
     {
+        // Load InAt from localStorage stored in previous request
         if (localStorageService.get('qbo_export_in_at'))
         {
             $rootScope.range.InAt = localStorageService.get('qbo_export_in_at')
         }
         
+        // Load OutAt from localStorage stored in previous request
         if (localStorageService.get('qbo_export_out_at'))
         {
             $rootScope.range.OutAt = localStorageService.get('qbo_export_out_at')
         }
 
+        // Set the step
         $scope.step = { name: 'company', number: '2', title: 'Loading Company Details' }
+
+        // Ask the server to get the company details from QBO
         var realmId = localStorageService.get('qbo_export_realm_id')
         var accessToken = localStorageService.get('qbo_export_access_token')
         $http.get("https://brizbee.gowitheast.com/api/QuickBooksOnline/CompanyInformation?realmId=" + realmId + "&accessToken=" + accessToken)
@@ -85,10 +79,6 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
             }, error => {
                 console.error(error)
             })
-
-        $timeout(function () {
-            // $location.search('step', null) // Clear the route param
-        }, 1000)
     }
 
     // Scroll to top
