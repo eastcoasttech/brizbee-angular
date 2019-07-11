@@ -3,9 +3,9 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
     $scope.details = { InAt: null, OutAt: null, CompanyName: 'East Coast Technology Services, LLC' }
 
     $rootScope.$watch('range', function (newValue, oldValue, scope) {
-        if ("CommitId" in newValue) {
-            localStorageService.set('qbo_export_commit_id', newValue.CommitId)
-        }
+        // if ("CommitId" in newValue) {
+        //     localStorageService.set('qbo_export_commit_id', newValue.CommitId)
+        // }
         if ("InAt" in newValue) {
             localStorageService.set('qbo_export_in_at', newValue.InAt)
             $scope.details.InAt = newValue.InAt
@@ -65,6 +65,16 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
     // Step will be changed when QuickBooks Online API performs callback
     if ($routeParams.step && $routeParams.step == 'company')
     {
+        if (localStorageService.get('qbo_export_in_at'))
+        {
+            $rootScope.range.InAt = localStorageService.get('qbo_export_in_at')
+        }
+        
+        if (localStorageService.get('qbo_export_out_at'))
+        {
+            $rootScope.range.OutAt = localStorageService.get('qbo_export_out_at')
+        }
+
         $scope.step = { name: 'company', number: '2', title: 'Loading Company Details' }
         var realmId = localStorageService.get('qbo_export_realm_id')
         var accessToken = localStorageService.get('qbo_export_access_token')
