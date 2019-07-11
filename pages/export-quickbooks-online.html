@@ -78,8 +78,8 @@
                     <!-- Step - Confirm -->
                     <div ng-show="step.name == 'confirm'">
                         <p>
-                            You are about to export punches from <strong>{{formatMomentFromDate(details.InAt)}}</strong>
-                            thru <strong>{{formatMomentFromDate(details.OutAt)}}</strong> into the company
+                            You are about to export punches from <strong>{{formatMomentFromDate(details.InAt, 'YYYY-MM-DD')}}</strong>
+                            thru <strong>{{formatMomentFromDate(details.OutAt, 'YYYY-MM-DD')}}</strong> into the company
                             <strong>{{details.CompanyName}}</strong> at QuickBooks Online.
                         </p>
                         <p>Are you sure you want to do this?</p>
