@@ -9,7 +9,24 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
     $scope.save = function () {
         $scope.working.save = true
 
-        var json = { TaskId: $rootScope.selected.task.Id, SourceForInAt: 'Web', InAtTimeZone: $scope.options.InAtTimeZone }
+        var latitude = null;
+        var longitude = null;
+
+        // Attempt to get the user's current location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+            });
+        }
+
+        var json = {
+            InAtTimeZone: $scope.options.InAtTimeZone,
+            LatitudeForInAt: latitude,
+            LongitudeForInAt: longitude,
+            SourceForInAt: 'Web',
+            TaskId: $rootScope.selected.task.Id
+        }
         $http.post($rootScope.baseUrl + "/odata/Punches/Default.PunchIn", JSON.stringify(json))
             .then(response => {
                 if (response.data != null)
