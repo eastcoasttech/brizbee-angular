@@ -9,17 +9,19 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
     $scope.save = function () {
         $scope.working.save = true
 
-        var latitude = null;
-        var longitude = null;
-
         // Attempt to get the user's current location
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
+                latitude = position.coords.latitude
+                longitude = position.coords.longitude
+                saveWithLocation(latitude, longitude)
             });
+        } else {
+            saveWithLocation(null, null)
         }
+    }
 
+    function saveWithLocation(latitude, longitude) {
         var json = {
             InAtTimeZone: $scope.options.InAtTimeZone,
             LatitudeForInAt: latitude,
