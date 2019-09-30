@@ -6,23 +6,6 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
     $scope.show = { timezone: false }
     $scope.working = {}
 
-    $scope.save = function () {
-        $scope.working.save = true
-
-        // Attempt to get the user's current location
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                latitude = position.coords.latitude
-                longitude = position.coords.longitude
-                console.log(latitude)
-                console.log(longitude)
-                saveWithLocation(latitude, longitude)
-            });
-        } else {
-            saveWithLocation(null, null)
-        }
-    }
-
     function saveWithLocation(latitude, longitude) {
         var json = {
             InAtTimeZone: $scope.options.InAtTimeZone,
@@ -41,6 +24,23 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
                 $scope.working.save = false
                 console.error(error)
             })
+    }
+
+    $scope.save = function () {
+        $scope.working.save = true
+
+        // Attempt to get the user's current location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                latitude = position.coords.latitude
+                longitude = position.coords.longitude
+                console.log(latitude)
+                console.log(longitude)
+                saveWithLocation(latitude, longitude)
+            });
+        } else {
+            saveWithLocation(null, null)
+        }
     }
 
     // Scroll to top
