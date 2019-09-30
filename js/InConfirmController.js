@@ -14,6 +14,8 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
             navigator.geolocation.getCurrentPosition(function (position) {
                 latitude = position.coords.latitude
                 longitude = position.coords.longitude
+                console.log(latitude)
+                console.log(longitude)
                 saveWithLocation(latitude, longitude)
             });
         } else {
