@@ -6,26 +6,6 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
     $scope.show = { timezone: false }
     $scope.working = {}
 
-    function saveWithLocation(latitude, longitude) {
-        var json = {
-            InAtTimeZone: $scope.options.InAtTimeZone,
-            LatitudeForInAt: latitude,
-            LongitudeForInAt: longitude,
-            SourceForInAt: 'Web',
-            TaskId: $rootScope.selected.task.Id
-        }
-        $http.post($rootScope.baseUrl + "/odata/Punches/Default.PunchIn", JSON.stringify(json))
-            .then(response => {
-                if (response.data != null)
-                {
-                    $location.path('/in/done')
-                }
-            }, error => {
-                $scope.working.save = false
-                console.error(error)
-            })
-    }
-
     $scope.save = function () {
         $scope.working.save = true
 
@@ -36,10 +16,42 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
                 longitude = position.coords.longitude
                 console.log(latitude)
                 console.log(longitude)
-                saveWithLocation(latitude, longitude)
+                var json = {
+                    InAtTimeZone: $scope.options.InAtTimeZone,
+                    LatitudeForInAt: latitude,
+                    LongitudeForInAt: longitude,
+                    SourceForInAt: 'Web',
+                    TaskId: $rootScope.selected.task.Id
+                }
+                $http.post($rootScope.baseUrl + "/odata/Punches/Default.PunchIn", JSON.stringify(json))
+                    .then(response => {
+                        if (response.data != null)
+                        {
+                            $location.path('/in/done')
+                        }
+                    }, error => {
+                        $scope.working.save = false
+                        console.error(error)
+                    })
             });
         } else {
-            saveWithLocation(null, null)
+            var json = {
+                InAtTimeZone: $scope.options.InAtTimeZone,
+                LatitudeForInAt: null,
+                LongitudeForInAt: null,
+                SourceForInAt: 'Web',
+                TaskId: $rootScope.selected.task.Id
+            }
+            $http.post($rootScope.baseUrl + "/odata/Punches/Default.PunchIn", JSON.stringify(json))
+                .then(response => {
+                    if (response.data != null)
+                    {
+                        $location.path('/in/done')
+                    }
+                }, error => {
+                    $scope.working.save = false
+                    console.error(error)
+                })
         }
     }
 
