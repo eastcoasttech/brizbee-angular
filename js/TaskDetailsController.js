@@ -7,11 +7,14 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     $scope.working = { save: false }
     
     $scope.delete = function () {
+        $scope.working.save = true
+        
         if (confirm("Are you sure you want to delete this task?")) {
             $http.delete($rootScope.baseUrl + "/odata/Tasks(" + $scope.task.Id + ")")
                 .then(response => {
                     $scope.ok(true)
                 }, error => {
+                    $scope.working.save = false
                     console.error(error)
                 })
         }
@@ -35,6 +38,8 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     }
 
     $scope.saveExistingTask = function () {
+        $scope.working.save = true
+
         var json = {
             Name: $scope.task.Name,
             Number: $scope.task.Number,
@@ -46,11 +51,14 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
             .then(response => {
                 $scope.ok(false)
             }, error => {
+                $scope.working.save = false
                 console.error(error)
             })
     }
 
     $scope.saveNewTask = function () {
+        $scope.working.save = true
+
         var json = {
             JobId: job.Id,
             Name: $scope.task.Name,
@@ -63,6 +71,7 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
             .then(response => {
                 $scope.ok(false)
             }, error => {
+                $scope.working.save = false
                 console.error(error)
             })
     }

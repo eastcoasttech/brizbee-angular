@@ -9,11 +9,14 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
     $scope.working = { save: false }
     
     $scope.delete = function () {
+        $scope.working.save = true
+
         if (confirm("Are you sure you want to delete this job and all it's tasks?")) {
             $http.delete($rootScope.baseUrl + "/odata/Jobs(" + $scope.job.Id + ")")
                 .then(response => {
                     $scope.ok(true)
                 }, error => {
+                    $scope.working.save = false
                     console.error(error)
                 })
         }
@@ -37,6 +40,8 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
     }
 
     $scope.saveExistingJob = function () {
+        $scope.working.save = true
+
         var json = {
             Description: $scope.job.Description,
             Name: $scope.job.Name,
@@ -48,11 +53,14 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
             .then(response => {
                 $scope.ok(false)
             }, error => {
+                $scope.working.save = false
                 console.error(error)
             })
     }
 
     $scope.saveNewJob = function () {
+        $scope.working.save = true
+        
         var json = {
             CustomerId: customer.Id,
             Description: $scope.job.Description,
@@ -65,6 +73,7 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
             .then(response => {
                 $scope.ok(false)
             }, error => {
+                $scope.working.save = false
                 console.error(error)
             })
     }

@@ -46,6 +46,10 @@ app.config(function ($routeProvider, localStorageServiceProvider) {
             templateUrl: '/pages/in/task.html',
             controller: 'InTaskController'
         }).
+        when('/timesheets/add', {
+            templateUrl: '/pages/timesheets/add.html',
+            controller: 'TimesheetsAddController'
+        }).
         when('/jobs', {
             templateUrl: '/pages/jobs.html',
             controller: 'JobsController'

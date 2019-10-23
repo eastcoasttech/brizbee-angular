@@ -7,11 +7,14 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
     $scope.working = { save: false }
 
     $scope.delete = function () {
+        $scope.working.save = true
+
         if (confirm("Are you sure you want to delete this customer?")) {
             $http.delete($rootScope.baseUrl + "/odata/Customers(" + $scope.customer.Id + ")")
                 .then(response => {
                     $scope.ok(true)
                 }, error => {
+                    $scope.working.save = false
                     console.error(error)
                 })
         }
@@ -35,6 +38,8 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
     }
 
     $scope.saveExistingCustomer = function () {
+        $scope.working.save = true
+
         var json = {
             Description: $scope.customer.Description,
             Name: $scope.customer.Name,
@@ -45,11 +50,14 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
             .then(response => {
                 $scope.ok(false)
             }, error => {
+                $scope.working.save = false
                 console.error(error)
             })
     }
 
     $scope.saveNewCustomer = function () {
+        $scope.working.save = true
+
         var json = {
             Description: $scope.customer.Description,
             Name: $scope.customer.Name,
@@ -60,6 +68,7 @@ app.controller('CustomerDetailsController', function ($http, $rootScope, $scope,
             .then(response => {
                 $scope.ok(false)
             }, error => {
+                $scope.working.save = false
                 console.error(error)
             })
     }

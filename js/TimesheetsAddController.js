@@ -1,27 +1,12 @@
-app.controller('TimesheetEntryDetailsController', function ($filter, $http, $rootScope, $scope, $uibModalInstance, $window, timesheetEntry) {
-    if (timesheetEntry.Id == null) {
-        $scope.timesheetEntry = {
-            EnteredAt: moment().startOf('day').toDate()
-        }
-        $scope.timesheetEntry.user = $rootScope.current.user
-    } else {
-        $scope.timesheetEntry = angular.copy(timesheetEntry)
-        $scope.timesheetEntry.user = { Id: $scope.timesheetEntry.UserId }
+app.controller('TimesheetsAddController', function ($http, $interval, $location, $rootScope, $scope, $window) {
+    $scope.timesheetEntry = {
+        EnteredAt: moment().startOf('day').toDate()
     }
+    
     $scope.datepicker = { EnteredAt: {}, options: {} }
     $scope.loading = { customers: false, jobs: false, tasks: false }
+    $scope.show = { notes: false }
     $scope.working = { save: false }
-    
-    $scope.delete = function () {
-        if (confirm("Are you sure you want to delete this entry?")) {
-            $http.delete($rootScope.baseUrl + "/odata/TimesheetEntries(" + $scope.timesheetEntry.Id + ")")
-                .then(response => {
-                    $scope.ok(true)
-                }, error => {
-                    console.error(error)
-                })
-        }
-    }
 
     $scope.refreshCustomers = function () {
         $scope.customers = []
@@ -89,66 +74,23 @@ app.controller('TimesheetEntryDetailsController', function ($filter, $http, $roo
             })
     }
 
-    $scope.refreshUsers = function () {
-        $scope.users = []
-        $scope.loading.users = true
-        $http.get($rootScope.baseUrl + "/odata/Users?$orderby=Name")
-            .then(response => {
-                $scope.loading.users = false
-                $scope.users = response.data.value
-                if (!$scope.timesheetEntry.customer) {
-                    $scope.timesheetEntry.user = $scope.users[0]
-                } else {
-                    $scope.timesheetEntry.user = $filter('filter')($scope.users, { Id: $scope.timesheetEntry.UserId }, true)[0]
-                }
-            }, error => {
-                $scope.loading.users = false
-                console.error(error)
-            })
-    }
-
     $scope.save = function () {
-        if (timesheetEntry.Id == null) {
-            $scope.saveNewTimesheetEntry()
-        } else {
-            $scope.saveExistingTimesheetEntry()
-        }
-    }
+        $scope.working.save = true
 
-    $scope.saveExistingTimesheetEntry = function () {
         var timedifference = new Date().getTimezoneOffset()
         var json = {
             EnteredAt: moment($scope.timesheetEntry.EnteredAt).subtract(timedifference, 'm').toDate(),
             Minutes: $scope.timesheetEntry.Minutes,
             Notes: $scope.timesheetEntry.Notes,
             TaskId: $scope.timesheetEntry.task.Id,
-            UserId: $scope.timesheetEntry.user.Id
-        }
-
-        if (confirm("Are you sure you want to modify this entry?")) {
-            $http.patch($rootScope.baseUrl + "/odata/TimesheetEntries(" + $scope.timesheetEntry.Id + ")", JSON.stringify(json))
-                .then(response => {
-                    $scope.ok(false)
-                }, error => {
-                    console.error(error)
-                })
-        }
-    }
-
-    $scope.saveNewTimesheetEntry = function () {
-        var timedifference = new Date().getTimezoneOffset()
-        var json = {
-            EnteredAt: moment($scope.timesheetEntry.EnteredAt).subtract(timedifference, 'm').toDate(),
-            Minutes: $scope.timesheetEntry.Minutes,
-            Notes: $scope.timesheetEntry.Notes,
-            TaskId: $scope.timesheetEntry.task.Id,
-            UserId: $scope.timesheetEntry.user.Id
+            UserId: $rootScope.current.user.Id
         }
 
         $http.post($rootScope.baseUrl + "/odata/TimesheetEntries", JSON.stringify(json))
             .then(response => {
-                $scope.ok(false)
+                $location.path('/status')
             }, error => {
+                $scope.working.save = false
                 console.error(error)
             })
     }
@@ -156,15 +98,10 @@ app.controller('TimesheetEntryDetailsController', function ($filter, $http, $roo
     $scope.showEnteredAtDatepicker = function () {
         $scope.datepicker.EnteredAt.opened = true
     }
-
-    $scope.ok = function (deleted) {
-        $uibModalInstance.close(deleted);
-    }
-
-    $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
-    }
-
+    
     $scope.refreshCustomers()
-    $scope.refreshUsers()
+
+    // Focus on task number input and scroll to top
+    // $window.document.getElementById("timesheet_entry_minutes").focus()
+    $window.scrollTo(0, 0)
 });

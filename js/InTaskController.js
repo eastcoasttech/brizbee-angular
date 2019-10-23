@@ -20,8 +20,7 @@ app.controller('InTaskController', function ($http, $location, $rootScope, $scop
             })
     }
 
-    // Focus on task number input and scroll to top
-    $window.document.getElementById("task_number").focus()
+    // Scroll to top
     $window.scrollTo(0, 0)
 
     // Allow numbers only

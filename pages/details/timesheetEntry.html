@@ -8,7 +8,7 @@
             <div class="col-md-7">
                 <div class="form-group">
                     <label>User</label>
-                    <select class="form-control" ng-model="timesheetEntry.user" ng-options="user.Id as user.Name for user in users" ng-disabled="working.save"></select>
+                    <select class="form-control" ng-model="timesheetEntry.user" ng-options="user as user.Name for user in users" ng-disabled="working.save"></select>
                 </div>
             </div>
         </div>

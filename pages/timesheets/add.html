@@ -1,0 +1,90 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#!/status">
+                <img alt="BRIZBEE Logo" src="/images/icon-32x32.png" style="height: 22px;">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#!/status"><i class="fa fa-id-badge" aria-hidden="true"></i> Status <span class="sr-only">(current)</span></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navbar-phone"><a href="tel:1-888-930-3044">Punch In or Out @ 1-888-930-3044</a></li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{current.user.Name}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#!/my/user">Account Details</a></li>
+                        <li><a href="#!/my/organization">Organization Details</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="" ng-click="logout()">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-12 col-xs-12">
+            <div class="panel panel-default panel-kiosk">
+                <div class="panel-heading"><h2>Add Timesheet Entry</h2></div>
+                <div class="panel-body">
+                    <form name="taskForm" ng-submit="save()" novalidate>
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup ng-model="timesheetEntry.EnteredAt" is-open="datepicker.EnteredAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="showEnteredAtDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                        <div class="form-group">
+                            <label>Hours</label>
+                            <input type="text" class="form-control"
+                                ng-model="timesheetEntry.Minutes"
+                                ng-disabled="working.save"
+                                placeholder="HH.MM"
+                                ui-number-mask autofocus
+                                id="timesheet_entry_minutes"
+                                ng-if="current.user.Organization.MinutesFormat == 'decimal'" />
+                            <input type="text" class="form-control"
+                                ng-model="timesheetEntry.Minutes"
+                                ng-disabled="working.save"
+                                placeholder="HH:MM"
+                                id="timesheet_entry_minutes"
+                                ui-time-mask="short" autofocus
+                                ng-if="current.user.Organization.MinutesFormat == 'minutes'" />
+                        </div>
+                        <div class="form-group">
+                            <label>Customer</label>
+                            <select class="form-control" ng-model="timesheetEntry.customer" ng-options="customer.Name for customer in customers" ng-disabled="working.save"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Job</label>
+                            <select class="form-control" ng-model="timesheetEntry.job" ng-options="job.Name for job in jobs" ng-disabled="working.save"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Task</label>
+                            <select class="form-control" ng-model="timesheetEntry.task" ng-options="task.Name for task in tasks" ng-disabled="working.save"></select>
+                        </div>
+                        <div class="form-group" ng-show="!show.notes">
+                            <a href="" ng-click="show.notes = true">Add Notes</a>
+                        </div>
+                        <div class="form-group" ng-show="show.notes">
+                            <label>Notes</label>
+                            <textarea name="timesheet_entry_notes" class="form-control" ng-model="timesheetEntry.Notes" ng-disabled="working.save"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-lg btn-primary" ng-disabled="working.save">Continue</button>
+                        <a href="#!/status" class="btn btn-block btn-lg btn-default" ng-disabled="working.save">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

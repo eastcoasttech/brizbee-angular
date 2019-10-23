@@ -21,7 +21,7 @@
                 <li ng-show="current.user.Role == 'Administrator'"><a href="#!/users"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <p class="navbar-text navbar-phone">Punch In or Out @ <a href="tel:1-888-930-3044">1-888-930-3044</a></p>
+                <li class="navbar-phone"><a href="tel:1-888-930-3044">Punch In or Out @ 1-888-930-3044</a></li>
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{current.user.Name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -61,6 +61,9 @@
                             <tbody>
                                 <tr>
                                     <td><a href="#!/in/task" class="btn btn-block btn-lg btn-success">Punch In</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#!/timesheets/add" class="btn btn-block btn-lg btn-default">Add Timesheet Entry</a></td>
                                 </tr>
                                 <tr ng-show="current.punch">
                                     <td><a href="#!/out/confirm" class="btn btn-block btn-lg btn-danger">Punch Out</a></td>
