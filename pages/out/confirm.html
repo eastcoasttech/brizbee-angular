@@ -50,7 +50,7 @@
                             <label>Your Time Zone</label>
                             <select class="form-control" ng-model="options.OutAtTimeZone" ng-options="timezone.Id as timezone.Id for timezone in timezones" ng-disabled="working.save"></select>
                         </div>
-                        <button type="submit" class="btn btn-block btn-lg btn-primary" ng-disabled="working.save" autofocus>Save and Exit</button>
+                        <button type="submit" class="btn btn-block btn-lg btn-primary" ng-disabled="working.save" autofocus>Continue</button>
                         <a ng-hide="show.timezone" href="" ng-click="show.timezone = true" class="btn btn-block btn-lg btn-default" ng-disabled="working.save">Change Time Zone</a>
                         <a href="#!/status" class="btn btn-block btn-lg btn-default" ng-disabled="working.save">Cancel</a>
                     </form>
