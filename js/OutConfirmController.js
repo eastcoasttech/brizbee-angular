@@ -3,7 +3,6 @@ app.controller('OutConfirmController', function ($http, $location, $rootScope, $
         Country: $rootScope.current.user.Organization.Country,
         OutAtTimeZone: $rootScope.current.user.TimeZone
     }
-    $scope.show = { timezone: false }
     $scope.working = {}
 
     $scope.save = function () {
@@ -28,6 +27,7 @@ app.controller('OutConfirmController', function ($http, $location, $rootScope, $
             save(null, null)
         }
     }
+    
     function currentPositionSuccess(position) {
         latitude = position.coords.latitude.toString()
         longitude = position.coords.longitude.toString()

@@ -3,7 +3,6 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
         Country: $rootScope.current.user.Organization.Country,
         InAtTimeZone: $rootScope.current.user.TimeZone
     }
-    $scope.show = { timezone: false }
     $scope.working = {}
 
     $scope.save = function () {

@@ -41,13 +41,12 @@
                         <p class="text-center" style="text-transform: uppercase; margin-top: 20px; margin-bottom: 30px;">
                             ARE YOU SURE YOU WANT TO PUNCH <span class="text-danger"><strong>OUT</strong></span>?
                         </p>
-                        <p ng-hide="show.timezone" class="text-center" style="text-transform: uppercase; margin-bottom: 40px;"><small>in time zone</small><br /><strong>{{current.user.TimeZone}}</strong></p>
                         <!-- <div class="form-group" ng-show="show.timezone" style="margin-bottom: 40px;">
                             <label>Your Country</label>
                             <select class="form-control" ng-model="options.Country" ng-options="country for country in countries" ng-disabled="working.save"></select>
                         </div> -->
                         <div class="form-group" ng-show="show.timezone" style="margin-bottom: 40px;">
-                            <label>Your Time Zone</label>
+                            <label>Time Zone</label>
                             <select class="form-control" ng-model="options.OutAtTimeZone" ng-options="timezone.Id as timezone.Id for timezone in timezones" ng-disabled="working.save"></select>
                         </div>
                         <button type="submit" class="btn btn-block btn-lg btn-primary" ng-disabled="working.save" autofocus>Continue</button>
