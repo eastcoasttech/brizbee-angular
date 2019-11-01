@@ -184,7 +184,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="commit in commits">
-                        <td>{{commit.Guid.Split('-')[4]}}</td>
+                        <td>{{commit.Guid.split('-')[4]}}</td>
                         <td>{{formatMomentFromDate(commit.InAt, 'YYYY-MM-DD')}}</td>
                         <td>{{formatMomentFromDate(commit.OutAt, 'YYYY-MM-DD')}}</td>
                         <td>{{commit.PunchCount}}</td>
