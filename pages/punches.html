@@ -172,7 +172,7 @@
             <table class="table table-bordered table-condensed">
                 <thead>
                     <tr>
-                        <th class="col-md-1">Name</th>
+                        <th class="col-md-1">Id</th>
                         <th class="col-md-2">From</th>
                         <th class="col-md-2">To</th>
                         <th class="col-md-1">Punches</th>
@@ -184,7 +184,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="commit in commits">
-                        <td>{{commit.Name}}</td>
+                        <td>{{commit.Guid.Split('-')[4]}}</td>
                         <td>{{formatMomentFromDate(commit.InAt, 'YYYY-MM-DD')}}</td>
                         <td>{{formatMomentFromDate(commit.OutAt, 'YYYY-MM-DD')}}</td>
                         <td>{{commit.PunchCount}}</td>
