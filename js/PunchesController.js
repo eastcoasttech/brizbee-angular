@@ -255,7 +255,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
                     $scope.refreshPunches()
                     $scope.refreshCommits()
                     $scope.working.commit = false
-                    alert('Punches were successfully committed')
+                    alert('The commit has been successfully reversed.')
                 }, error => {
                     console.error(error)
                 })
