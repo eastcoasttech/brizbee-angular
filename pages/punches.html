@@ -172,9 +172,10 @@
             <table class="table table-bordered table-condensed">
                 <thead>
                     <tr>
+                        <th class="col-md-1">Name</th>
                         <th class="col-md-2">From</th>
                         <th class="col-md-2">To</th>
-                        <th class="col-md-2">Punches</th>
+                        <th class="col-md-1">Punches</th>
                         <th class="col-md-2">Committed</th>
                         <th class="col-md-2">User</th>
                         <th class="col-md-1"></th>
@@ -183,19 +184,20 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="commit in commits">
+                        <td>{{commit.Name}}</td>
                         <td>{{formatMomentFromDate(commit.InAt, 'YYYY-MM-DD')}}</td>
                         <td>{{formatMomentFromDate(commit.OutAt, 'YYYY-MM-DD')}}</td>
                         <td>{{commit.PunchCount}}</td>
                         <td>{{formatMomentFromDate(commit.CreatedAt, 'YYYY-MM-DD h:mm a', current.user.TimeZone)}}</td>
                         <td>{{commit.User.Name}}</td>
-                        <td class="text-center"><a href="" ng-click="undo(commit)"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Undo</a></td>
-                        <td class="text-center"><a href="" ng-click="showExport('commit', commit.Id)"><i class="fa fa-undo" aria-hidden="true"></i> Export</a></td>
+                        <td class="text-center"><a href="" ng-click="undo(commit)"><i class="fa fa-undo" aria-hidden="true"></i> Undo</a></td>
+                        <td class="text-center"><a href="" ng-click="showExport('commit', commit.Id)"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</a></td>
                     </tr>
                     <tr ng-show="loading.commits">
-                        <td colspan="7"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+                        <td colspan="8"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
                     </tr>
                     <tr ng-show="(commits.length == 0) && (!loading.commits)">
-                        <td colspan="7">You Have Not Committed Any Punches Yet</td>
+                        <td colspan="8">You Have Not Committed Any Punches Yet</td>
                     </tr>
                 </tbody>
             </table>
