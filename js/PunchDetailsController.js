@@ -1,4 +1,4 @@
-app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $scope, $uibModalInstance, punch) {
+app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $scope, $uibModalInstance, $uibModal, punch) {
     $scope.customers = []
     $scope.datepicker = { InAt: {}, OutAt: {}, options: {} }
     $scope.jobs = []
@@ -197,6 +197,18 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
 
     $scope.showOutAtDatepicker = function () {
         $scope.datepicker.OutAt.opened = true
+    }
+    
+    $scope.showMap = function () {
+        var instance = $uibModal.open({
+            templateUrl: '/pages/details/map.html',
+            controller: 'MapController',
+            resolve: {
+                punch: function () {
+                    return $scope.punch;
+                }
+            }
+        });
     }
 
     $scope.refreshUsers()

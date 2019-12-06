@@ -32,6 +32,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
     <!--Stripe-->
     <script src="https://js.stripe.com/v3/"></script>
+    <!--Bing Maps-->
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=At47usxcIviRV6NCaPofJfjuTJLjoVhe4yWhJf2G0db1GpJP9jMLA4gK8mCxDOSY' async defer></script>
     <!--Bootstrap Styles-->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <!--Application Styles-->
@@ -54,6 +56,7 @@
     <script defer src="/js/LocationsController.js"></script>
     <script defer src="/js/LocationDetailsController.js"></script>
     <script defer src="/js/LoginController.js"></script>
+    <script defer src="/js/MapController.js"></script>
     <script defer src="/js/MyOrganizationController.js"></script>
     <script defer src="/js/MyUserController.js"></script>
     <script defer src="/js/OutConfirmController.js"></script>
@@ -83,7 +86,7 @@
         <div id="main" ng-view ng-controller="ApplicationController" ng-cloak></div>
     </div>
     <footer>
-        <div class="container hidden-xs hidden-sm">
+        <div class="container-fluid hidden-xs hidden-sm">
             <p class="text-right">
                 <a href="https://www.brizbee.com/download.html" style="margin-right: 5px;">Download QuickBooks Connector</a>
                 <a href="https://www.brizbee.com/getting-started.html" style="margin-right: 5px;">Getting Started</a>

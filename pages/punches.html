@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
@@ -36,7 +36,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container-fluid">
     <ol class="breadcrumb">
         <li><a href="#!/status">Status</a></li>
         <li class="active">Punches</li>
@@ -78,56 +78,59 @@
             <table class="table table-bordered table-condensed table-supercondensed table-selectable">
                 <thead>
                     <tr>
-                        <th style="width: 12%;">
+                        <th class="col-md-2">
                             <a href="" ng-click="setSortType('User/Name')">
                                 User
                                 <span ng-show="(sortType == 'User/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                                 <span ng-show="(sortType == 'User/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                             </a>
                         </th>
-                        <th style="width: 12%;">
+                        <th class="col-md-2">
                             <a href="" ng-click="setSortType('InAt')">
                                 In
                                 <span ng-show="(sortType == 'InAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                                 <span ng-show="(sortType == 'InAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                             </a>
                         </th>
-                        <th style="width: 12%;">
+                        <th class="col-md-2">
                             <a href="" ng-click="setSortType('OutAt')">
                                 Out
                                 <span ng-show="(sortType == 'OutAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                                 <span ng-show="(sortType == 'OutAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                             </a>
                         </th>
-                        <th style="width: 19%;">
+                        <th class="col-md-2">
                             <a href="" ng-click="setSortType('Task/Job/Customer/Name')">
                                 Customer
                                 <span ng-show="(sortType == 'Task/Job/Customer/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                                 <span ng-show="(sortType == 'Task/Job/Customer/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                             </a>
                         </th>
-                        <th style="width: 19%;">
+                        <th class="col-md-2">
                             <a href="" ng-click="setSortType('Task/Job/Name')">
                                 Job
                                 <span ng-show="(sortType == 'Task/Job/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                                 <span ng-show="(sortType == 'Task/Job/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                             </a>
                         </th>
-                        <th style="width: 19%;">
+                        <th class="col-md-2">
                             <a href="" ng-click="setSortType('Task/Name')">
                                 Task
                                 <span ng-show="(sortType == 'Task/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                                 <span ng-show="(sortType == 'Task/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                             </a>
                         </th>
-                        <th style="width: 7%;"><abbr title="Committed">Cmtd</abbr></th>
+                        <th>Committed</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="punch in punches" class="selectable" ng-class="{ 'danger' : punch.OutAt == null }" ng-click="showEditPunch(punch)">
+                    <tr ng-repeat="punch in punches" class="selectable" ng-class="{ 'warning' : punch.OutAt == null }" ng-click="showEditPunch(punch)">
                         <td><a href="">{{punch.User.Name}}</a></td>
                         <td><a href="">{{formatMomentFromDate(punch.InAt, 'YYYY-MM-DD h:mma')}}</a></td>
-                        <td><a href="" ng-if="punch.OutAt != null">{{formatMomentFromDate(punch.OutAt, 'YYYY-MM-DD h:mma')}}</a></td>
+                        <td>
+                            <a href="" ng-if="punch.OutAt != null">{{formatMomentFromDate(punch.OutAt, 'YYYY-MM-DD h:mma')}}</a>
+                            <span ng-if="punch.OutAt == null">STILL WORKING</span>
+                        </td>
                         <td><a href="">{{punch.Task.Job.Customer.Number}} &ndash; {{punch.Task.Job.Customer.Name}}</a></td>
                         <td><a href="">{{punch.Task.Job.Number}} &ndash; {{punch.Task.Job.Name}}</a></td>
                         <td><a href="">{{punch.Task.Number}} &ndash; {{punch.Task.Name}}</a></td>
