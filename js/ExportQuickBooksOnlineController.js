@@ -2,7 +2,7 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
     $scope.step = {}
     $scope.details = { InAt: null, OutAt: null, CompanyName: '' }
     $scope.loading = { commits: false }
-    $scope.selected = { commitId: null }
+    $scope.selected = { commit: null }
     $scope.working = { export: false }
 
     $rootScope.$watch('range', function (newValue, oldValue, scope) {
@@ -55,7 +55,7 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
             .then(response => {
                 $scope.loading.commits = false
                 $scope.commits = response.data.value
-                $scope.selected.commitId = $scope.commits[0].Id
+                $scope.selected.commit = $scope.commits[0]
             }, error => {
                 $scope.loading.commits = false
                 console.error(error)

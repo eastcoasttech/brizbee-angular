@@ -77,14 +77,19 @@
                     </div>
                     <!-- Step - Confirm -->
                     <div ng-show="step.name == 'confirm'">
+
+                        <p>Please select the commit for the punches you want to export:</p>
+
+                        <label>Commit to Export</label>
+                        <select class="form-control" ng-model="selected.commit" ng-options="commit as (commit.Guid | commitName) for commit in commits"></select>
+
+                        <hr />
+
                         <p>
-                            You are about to export punches from <strong>{{formatMomentFromDate(details.InAt, 'YYYY-MM-DD')}}</strong>
-                            thru <strong>{{formatMomentFromDate(details.OutAt, 'YYYY-MM-DD')}}</strong> into the company
+                            You are about to export punches from <strong>{{formatMomentFromDate(selected.commit.InAt, 'YYYY-MM-DD')}}</strong>
+                            thru <strong>{{formatMomentFromDate(selected.commit.OutAt, 'YYYY-MM-DD')}}</strong> into the company
                             <strong>{{details.CompanyName}}</strong> at QuickBooks Online.
                         </p>
-
-                        <label>Commit</label>
-                        <select class="form-control" ng-model="selected.commitId" ng-options="commit.Id as (commit.Guid | commitName) for commit in commits"></select>
 
                         <p>Are you sure you want to do this?</p>
                         <div class="text-right">
