@@ -86,7 +86,7 @@
                         <hr />
 
                         <p>
-                            You are about to export punches from <strong>{{formatMomentFromDate(selected.commit.InAt, 'YYYY-MM-DD')}}</strong>
+                            You are about to export <strong>{{selected.commit.PunchCount}}</strong> punches from <strong>{{formatMomentFromDate(selected.commit.InAt, 'YYYY-MM-DD')}}</strong>{{selected.commit.PunchCount}}</strong>>
                             thru <strong>{{formatMomentFromDate(selected.commit.OutAt, 'YYYY-MM-DD')}}</strong> into the company
                             <strong>{{details.CompanyName}}</strong> at QuickBooks Online.
                         </p>
