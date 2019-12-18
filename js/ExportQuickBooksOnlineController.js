@@ -32,6 +32,7 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
     }
 
     $scope.confirm = function (commit_id) {
+        $scope.step = { name: 'status', number: '4', title: 'Exporting...' }
         $scope.working.export = true
         var realmId = localStorageService.get('qbo_export_realm_id')
         var accessToken = localStorageService.get('qbo_export_access_token')
