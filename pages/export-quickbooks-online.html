@@ -82,6 +82,10 @@
                             thru <strong>{{formatMomentFromDate(details.OutAt, 'YYYY-MM-DD')}}</strong> into the company
                             <strong>{{details.CompanyName}}</strong> at QuickBooks Online.
                         </p>
+
+                        <label>Commit</label>
+                        <select class="form-control" ng-model="selected.commit" ng-options="commit.Id as commit.Name for commit in commits" autofocus></select>
+
                         <p>Are you sure you want to do this?</p>
                         <div class="text-right">
                             <button type="button" class="btn btn-default" ng-click="cancel()" ng-disabled="working.export">Cancel</button>

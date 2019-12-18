@@ -1,6 +1,8 @@
 app.controller('ExportQuickBooksOnlineController', function ($http, $location, $rootScope, $routeParams, $sce, $scope, $timeout, $window, localStorageService) {
     $scope.step = {}
-    $scope.details = { InAt: null, OutAt: null, CompanyName: 'East Coast Technology Services, LLC' }
+    $scope.details = { InAt: null, OutAt: null, CompanyName: '' }
+    $scope.loading = { commits: false }
+    $scope.selected = { commit: null }
     $scope.working = { export: false }
 
     $rootScope.$watch('range', function (newValue, oldValue, scope) {
@@ -35,7 +37,8 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
         var accessToken = localStorageService.get('qbo_export_access_token')
         var inAt = localStorageService.get('qbo_export_in_at')
         var outAt = localStorageService.get('qbo_export_out_at')
-        $http.post("https://brizbee.gowitheast.com/api/QuickBooksOnline/TimeActivities?realmId=" + realmId + "&accessToken=" + accessToken + "&inAt=" + inAt + "&outAt=" + outAt)
+        var commitId = localStorageService.get('qbo_export_commit_id')
+        $http.post("https://brizbee.gowitheast.com/api/QuickBooksOnline/TimeActivities?realmId=" + realmId + "&accessToken=" + accessToken + "&inAt=" + inAt + "&outAt=" + outAt + "&commitId=" + commitId)
             .then(response => {
                 console.log(response)
                 $scope.working.export = false
@@ -45,14 +48,27 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
             })
     }
 
-    $scope.showWelcome = function () {
-        $scope.step = { name: 'welcome', number: '1', title: 'Connect to QuickBooks Online' }
+    $scope.refreshCommits = function () {
+        $scope.commits = []
+        $scope.loading.commits = true
+        $http.get($rootScope.baseUrl + "/odata/Commits?$orderby=InAt desc")
+            .then(response => {
+                $scope.loading.commits = false
+                $scope.commits = response.data.Value
+            }, error => {
+                $scope.loading.commits = false
+                console.error(error)
+            })
     }
-    $scope.showWelcome()
 
     $scope.trustedAction = function () {
         return $sce.trustAsResourceUrl("https://brizbee.gowitheast.com/api/QuickBooksOnline/Authenticate?AuthUserId=" + $rootScope.auth.userId + "&AuthExpiration=" + $rootScope.auth.expiration + "&AuthToken=" + $rootScope.auth.token)
     }
+
+    $scope.showWelcome = function () {
+        $scope.step = { name: 'welcome', number: '1', title: 'Connect to QuickBooks Online' }
+    }
+    $scope.showWelcome()
     
     // Step will be changed when QuickBooks Online API performs callback
     if ($routeParams.step && $routeParams.step == 'company')
@@ -79,6 +95,9 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
             .then(response => {
                 $scope.details.CompanyName = response.data
                 $scope.step = { name: 'confirm', number: '3', title: 'Confirm the Export' }
+
+                // Refresh the list of commits for user to choose
+                $scope.refreshCommits();
             }, error => {
                 console.error(error)
             })
