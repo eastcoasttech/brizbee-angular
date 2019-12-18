@@ -55,6 +55,7 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
             .then(response => {
                 $scope.loading.commits = false
                 $scope.commits = response.data.value
+                $scope.selected.commit = $scope.commits[0]
             }, error => {
                 $scope.loading.commits = false
                 console.error(error)
