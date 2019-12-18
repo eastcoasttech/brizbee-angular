@@ -84,7 +84,7 @@
                         </p>
 
                         <label>Commit</label>
-                        <select class="form-control" ng-model="selected.commit" ng-options="commit.Id as commit.Name for commit in commits" autofocus></select>
+                        <select class="form-control" ng-model="selected.commit" ng-options="commit.Id as (commit.Name | commitName) for commit in commits" autofocus></select>
 
                         <p>Are you sure you want to do this?</p>
                         <div class="text-right">

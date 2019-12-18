@@ -110,3 +110,12 @@ app.config(function ($routeProvider, localStorageServiceProvider) {
             redirectTo: '/'
         })
 });
+
+app.filter('commitName', function () {
+    return function (value) {
+        if (!value) { return ''; }
+
+        // Split at dash and return last segment
+        return value.split('-')[4];
+    };
+});

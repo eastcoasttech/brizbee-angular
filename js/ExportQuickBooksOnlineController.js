@@ -54,7 +54,7 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
         $http.get($rootScope.baseUrl + "/odata/Commits?$orderby=InAt desc")
             .then(response => {
                 $scope.loading.commits = false
-                $scope.commits = response.data.Value
+                $scope.commits = response.data.value
             }, error => {
                 $scope.loading.commits = false
                 console.error(error)
