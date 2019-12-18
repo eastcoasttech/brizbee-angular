@@ -81,7 +81,7 @@
                         <p>Please select the commit for the punches you want to export:</p>
 
                         <label>Commit to Export</label>
-                        <select class="form-control" ng-model="selected.commit" ng-options="commit as (commit.Guid | commitName) for commit in commits"></select>
+                        <select class="form-control" ng-model="selected.commit" ng-options="commit as (commit | commitName) for commit in commits"></select>
 
                         <hr />
 

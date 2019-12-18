@@ -116,6 +116,6 @@ app.filter('commitName', function () {
         if (!value) { return ''; }
 
         // Split at dash and return last segment
-        return value.split('-')[4] + " - " + moment.parseZone(value.InAt).format('YYYY-MM-DD') + " thru " + moment.parseZone(value.OutAt).format('YYYY-MM-DD');
+        return value.Guid.split('-')[4] + " - " + moment.parseZone(value.InAt).format('YYYY-MM-DD') + " thru " + moment.parseZone(value.OutAt).format('YYYY-MM-DD');
     };
 });
