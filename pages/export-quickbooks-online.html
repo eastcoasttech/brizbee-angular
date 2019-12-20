@@ -89,9 +89,9 @@
                             <strong>{{formatMomentFromDate(selected.commit.InAt, 'YYYY-MM-DD')}}</strong>
                             thru <strong>{{formatMomentFromDate(selected.commit.OutAt, 'YYYY-MM-DD')}}</strong> into the company
                             <strong>{{details.CompanyName}}</strong> at QuickBooks Online.
-                        </p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
+                        </p>
 
-                        <p>Are you sure you want to do this?</p>
+                        <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Are you sure you want to do this?</p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
                         <div class="text-right">
                             <button type="button" class="btn btn-default" ng-click="cancel()" ng-disabled="working.export">Cancel</button>
                             <button type="button" class="btn btn-primary" ng-click="confirm()" ng-disabled="working.export">Confirm</button>
