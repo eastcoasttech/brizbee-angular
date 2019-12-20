@@ -99,16 +99,16 @@
                     </div>
                     <!-- Step - Status -->
                     <div ng-show="step.name == 'status'">
-                        <p>Your committed punches are being exported to QuickBooks Online...</p>
+                        <p class="text-center">Your committed punches are being exported to QuickBooks Online...</p>
                         <div class="text-center text-muted" style="margin-top: 30px; margin-bottom: 30px; font-size: 30px;">
                             <i class="fa fa-spinner fa-spin fa-fw"></i>
                         </div>
-                        <div class="text-right">
+                        <!-- <div class="text-right">
                             <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-                        </div>
+                        </div> -->
                     </div>
-                    <!-- Step - Errors -->
-                    <div ng-show="step.name == 'errors'">
+                    <!-- Step - Finished -->
+                    <div ng-show="step.name == 'finished'">
                         <div class="text-right">
                             <button type="button" class="btn btn-primary">Try Again</button>
                         </div>
