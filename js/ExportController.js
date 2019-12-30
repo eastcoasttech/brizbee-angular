@@ -2,6 +2,7 @@ app.controller('ExportController', function ($http, $rootScope, $scope, $uibModa
     $scope.commit_id = commit_id
     $scope.range = angular.copy(range)
     $scope.type = type
+    $scope.auth = $rootScope.auth
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel')
