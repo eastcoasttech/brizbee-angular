@@ -1,8 +1,12 @@
-app.controller('ExportController', function ($http, $rootScope, $scope, $uibModalInstance, type, commit_id, range) {
+app.controller('ExportController', function ($cookies, $scope, $uibModalInstance, type, commit_id, range) {
     $scope.commit_id = commit_id
     $scope.range = angular.copy(range)
     $scope.type = type
-    $scope.auth = $rootScope.auth
+    
+    $scope.auth = {}
+    $scope.auth.userId = $cookies.get('BRIZBEE_AUTH_USER_ID')
+    $scope.auth.expiration = $cookies.get('BRIZBEE_AUTH_EXPIRATION')
+    $scope.auth.token = $cookies.get('BRIZBEE_AUTH_TOKEN')
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel')
