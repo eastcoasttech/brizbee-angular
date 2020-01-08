@@ -107,6 +107,11 @@
                             <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
                         </div>
                     </div>
+                    <!-- Step - Errors -->
+                    <div ng-show="step.name == 'errors'">
+                        <p class="text-center" style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Export Failed</p>
+                        <p>{{errors}}</p>
+                    </div>
                     <!-- Step - Finished -->
                     <div ng-show="step.name == 'finished'">
                         <p class="text-center" style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Your punches have been successfully exported to QuickBooks Online.</p>

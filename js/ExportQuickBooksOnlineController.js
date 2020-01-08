@@ -47,7 +47,8 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
                 $scope.working.export = false
             }, error => {
                 // Move to finished step
-                $scope.step = { name: 'finished', number: '5', title: 'Finished' }
+                $scope.step = { name: 'errors', number: '5', title: 'Incomplete' }
+                $scope.errors = error.data
                 $scope.working.export = false
             })
     }
