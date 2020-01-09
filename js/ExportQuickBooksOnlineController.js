@@ -42,10 +42,12 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
         // var outAt = localStorageService.get('qbo_export_out_at')
         $http.post("https://brizbee.gowitheast.com/api/QuickBooksOnline/TimeActivities?realmId=" + realmId + "&accessToken=" + accessToken + "&commitId=" + $scope.selected.commit.Id) // "&inAt=" + inAt + "&outAt=" + outAt + 
             .then(response => {
+                console.log(response)
                 // Move to finished step
                 $scope.step = { name: 'finished', number: '5', title: 'Finished' }
                 $scope.working.export = false
             }, error => {
+                console.error(error)
                 // Move to finished step
                 $scope.step = { name: 'errors', number: '5', title: 'Incomplete' }
                 $scope.errors = error.data
