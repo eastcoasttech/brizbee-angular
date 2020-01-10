@@ -38,7 +38,7 @@ app.controller('QBOReverseController', function ($http, $rootScope, $routeParams
 
         var realmId = localStorageService.get('qbo_export_realm_id')
         var accessToken = localStorageService.get('qbo_export_access_token')
-        $http.post("https://brizbee.gowitheast.com/api/QuickBooksOnline/ReverseCommit?realmId=" + realmId + "&accessToken=" + accessToken + "&commitId=" + $scope.selected.commit.Id)
+        $http.post("https://brizbee.gowitheast.com/api/QuickBooksOnline/ReverseCommit?realmId=" + realmId + "&accessToken=" + accessToken + "&exportId=" + $scope.selected.export.Id)
             .then(response => {
                 console.log(response)
                 // Move to finished step
