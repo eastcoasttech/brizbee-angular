@@ -123,3 +123,12 @@ app.filter('commitName', function () {
         return value.Guid.split('-')[4] + " - " + moment.parseZone(value.InAt).format('YYYY-MM-DD') + " thru " + moment.parseZone(value.OutAt).format('YYYY-MM-DD');
     };
 });
+
+app.filter('exportName', function () {
+    return function (value) {
+        if (!value) { return ''; }
+
+        // Split at dash and return last segment
+        return value.Guid.split('-')[4] + " - " + moment.parseZone(value.InAt).format('YYYY-MM-DD') + " thru " + moment.parseZone(value.OutAt).format('YYYY-MM-DD');
+    };
+});
