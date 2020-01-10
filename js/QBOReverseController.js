@@ -53,16 +53,16 @@ app.controller('QBOReverseController', function ($http, $rootScope, $routeParams
             })
     }
 
-    $scope.refreshCommits = function () {
-        $scope.commits = []
-        $scope.loading.commits = true
-        $http.get($rootScope.baseUrl + "/odata/Commits?$orderby=InAt desc")
+    $scope.refreshExports = function () {
+        $scope.exports = []
+        $scope.loading.exports = true
+        $http.get($rootScope.baseUrl + "/odata/QuickBooksOnlineExports?$expand=Commit&$orderby=CreatedAt desc")
             .then(response => {
-                $scope.loading.commits = false
-                $scope.commits = response.data.value
-                $scope.selected.commit = $scope.commits[0]
+                $scope.loading.exports = false
+                $scope.exports = response.data.value
+                $scope.selected.export = $scope.exports[0]
             }, error => {
-                $scope.loading.commits = false
+                $scope.loading.exports = false
                 console.error(error)
             })
     }
@@ -102,8 +102,8 @@ app.controller('QBOReverseController', function ($http, $rootScope, $routeParams
                 $scope.details.CompanyName = response.data
                 $scope.step = { name: 'confirm', number: '3', title: 'Confirm the Export' }
 
-                // Refresh the list of commits for user to choose
-                $scope.refreshCommits();
+                // Refresh the list of exports for user to choose
+                $scope.refreshExports();
             }, error => {
                 console.error(error)
             })

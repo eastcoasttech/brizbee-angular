@@ -79,13 +79,13 @@
 
           <!-- Step - Confirm -->
           <div ng-show="step.name == 'confirm'">
-            <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Please select the commit for the punches you want to remove:</p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
-            <select class="form-control" ng-model="selected.commit" ng-options="commit as (commit | commitName) for commit in commits"></select>
+            <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Please select the export you would like to reverse:</p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
+            <select class="form-control" ng-model="selected.export" ng-options="export as (export | exportName) for export in exports"></select>
             <hr />
             <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
-              You are about to remove <strong>{{selected.commit.PunchCount}}</strong> punches from
-              <strong>{{formatMomentFromDate(selected.commit.InAt, 'YYYY-MM-DD')}}</strong>
-              thru <strong>{{formatMomentFromDate(selected.commit.OutAt, 'YYYY-MM-DD')}}</strong> from the company
+              You are about to reverse <strong>{{selected.export.Commit.PunchCount}}</strong> punches from
+              <strong>{{formatMomentFromDate(selected.export.Commit.InAt, 'YYYY-MM-DD')}}</strong>
+              thru <strong>{{formatMomentFromDate(selected.export.Commit.OutAt, 'YYYY-MM-DD')}}</strong> from the company
               <strong>{{details.CompanyName}}</strong> at QuickBooks Online.
             </p>
 
