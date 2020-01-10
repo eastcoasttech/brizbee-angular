@@ -87,7 +87,7 @@
                         <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
                             You are about to export <strong>{{selected.commit.PunchCount}}</strong> punches from
                             <strong>{{formatMomentFromDate(selected.commit.InAt, 'YYYY-MM-DD')}}</strong>
-                            thru <strong>{{formatMomentFromDate(selected.commit.OutAt, 'YYYY-MM-DD')}}</strong> into the company
+                            thru <strong>{{formatMomentFromDate(selected.commit.OutAt, 'YYYY-MM-DD')}}</strong> to the company
                             <strong>{{details.CompanyName}}</strong> at QuickBooks Online.
                         </p>
 
@@ -111,12 +111,15 @@
                     <div ng-show="step.name == 'errors'">
                         <p class="text-center" style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Export Failed</p>
                         <p>{{errors}}</p>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-primary">Try Again</button>
+                            <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+                        </div>
                     </div>
                     <!-- Step - Finished -->
                     <div ng-show="step.name == 'finished'">
                         <p class="text-center" style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Your punches have been successfully exported to QuickBooks Online.</p>
                         <div class="text-right">
-                            <button type="button" class="btn btn-default">Try Again</button>
                             <button type="button" class="btn btn-primary">Finish</button>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-app.controller('ExportQuickBooksOnlineController', function ($http, $location, $rootScope, $routeParams, $sce, $scope, $timeout, $window, localStorageService) {
+app.controller('QBOReverseController', function ($http, $rootScope, $routeParams, $sce, $scope, $window, localStorageService) {
     $scope.step = {}
     $scope.details = { InAt: null, OutAt: null, CompanyName: '' }
     $scope.loading = { commits: false }
@@ -33,23 +33,23 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
 
     $scope.confirm = function (commit_id) {
         // Move to status step
-        $scope.step = { name: 'status', number: '4', title: 'Exporting...' }
-        $scope.working.export = true
+        $scope.step = { name: 'status', number: '4', title: 'Reverting...' }
+        $scope.working.revert = true
 
         var realmId = localStorageService.get('qbo_export_realm_id')
         var accessToken = localStorageService.get('qbo_export_access_token')
-        $http.post("https://brizbee.gowitheast.com/api/QuickBooksOnline/ExportCommit?realmId=" + realmId + "&accessToken=" + accessToken + "&commitId=" + $scope.selected.commit.Id)
+        $http.post("https://brizbee.gowitheast.com/api/QuickBooksOnline/ReverseCommit?realmId=" + realmId + "&accessToken=" + accessToken + "&commitId=" + $scope.selected.commit.Id)
             .then(response => {
                 console.log(response)
                 // Move to finished step
                 $scope.step = { name: 'finished', number: '5', title: 'Finished' }
-                $scope.working.export = false
+                $scope.working.revert = false
             }, error => {
                 console.error(error)
                 // Move to finished step
                 $scope.step = { name: 'errors', number: '5', title: 'Failed' }
                 $scope.errors = error.data
-                $scope.working.export = false
+                $scope.working.revert = false
             })
     }
 
