@@ -30,6 +30,10 @@ app.config(function ($routeProvider, localStorageServiceProvider) {
             templateUrl: '/pages/export-quickbooks-online.html',
             controller: 'ExportQuickBooksOnlineController'
         }).
+        when('/qbo-reverse', {
+            templateUrl: '/pages/qbo-reverse.html',
+            controller: 'QBOReverseController'
+        }).
         when('/in/confirm', {
             templateUrl: '/pages/in/confirm.html',
             controller: 'InConfirmController'
