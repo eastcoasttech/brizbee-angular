@@ -76,6 +76,11 @@ app.controller('QBOReverseController', function ($http, $rootScope, $routeParams
     }
     $scope.showWelcome()
     
+    $scope.tryAgain = function () {
+        $scope.step = { name: 'confirm', number: '3', title: 'Confirm the Reverse' }
+        $scope.errors = null;
+    }
+
     // Step will be changed when QuickBooks Online API performs callback
     if ($routeParams.step && $routeParams.step == 'company')
     {
@@ -100,7 +105,7 @@ app.controller('QBOReverseController', function ($http, $rootScope, $routeParams
         $http.get("https://brizbee.gowitheast.com/api/QuickBooksOnline/CompanyInformation?realmId=" + realmId + "&accessToken=" + accessToken)
             .then(response => {
                 $scope.details.CompanyName = response.data
-                $scope.step = { name: 'confirm', number: '3', title: 'Confirm the Export' }
+                $scope.step = { name: 'confirm', number: '3', title: 'Confirm the Reverse' }
 
                 // Refresh the list of exports for user to choose
                 $scope.refreshExports();

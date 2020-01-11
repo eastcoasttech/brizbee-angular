@@ -112,7 +112,7 @@
             <p class="text-center" style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Revert Failed</p>
             <p>{{errors}}</p>
             <div class="text-right">
-              <button type="button" class="btn btn-primary">Try Again</button>
+              <button type="button" class="btn btn-primary" ng-click="tryAgain()">Try Again</button>
               <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
             </div>
           </div>
@@ -121,7 +121,7 @@
           <div ng-show="step.name == 'finished'">
             <p class="text-center" style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Your punches have been removed from QuickBooks Online.</p>
             <div class="text-right">
-              <button type="button" class="btn btn-primary">Finish</button>
+              <a ng-href="#!/punches" class="btn btn-primary">Finish</a>
             </div>
           </div>
         </div>
