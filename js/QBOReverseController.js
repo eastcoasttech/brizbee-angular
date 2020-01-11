@@ -56,7 +56,7 @@ app.controller('QBOReverseController', function ($http, $rootScope, $routeParams
     $scope.refreshExports = function () {
         $scope.exports = []
         $scope.loading.exports = true
-        $http.get($rootScope.baseUrl + "/odata/QuickBooksOnlineExports?$expand=Commit&$orderby=CreatedAt desc")
+        $http.get($rootScope.baseUrl + "/odata/QuickBooksOnlineExports?$filter=ReversedAt eq null&$expand=Commit&$orderby=CreatedAt desc")
             .then(response => {
                 $scope.loading.exports = false
                 $scope.exports = response.data.value
