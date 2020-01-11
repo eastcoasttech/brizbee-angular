@@ -1,4 +1,4 @@
-app.controller('ExportQuickBooksOnlineController', function ($http, $location, $rootScope, $routeParams, $sce, $scope, $timeout, $window, localStorageService) {
+app.controller('QBOExportController', function ($http, $location, $rootScope, $routeParams, $sce, $scope, $timeout, $window, localStorageService) {
     $scope.step = {}
     $scope.details = { InAt: null, OutAt: null, CompanyName: '' }
     $scope.loading = { commits: false }

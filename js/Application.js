@@ -26,9 +26,9 @@ app.config(function ($routeProvider, localStorageServiceProvider) {
             templateUrl: '/pages/export-file.html',
             controller: 'ExportFileController'
         }).
-        when('/export-quickbooks-online', {
-            templateUrl: '/pages/export-quickbooks-online.html',
-            controller: 'ExportQuickBooksOnlineController'
+        when('/qbo-export', {
+            templateUrl: '/pages/qbo-export.html',
+            controller: 'QBOExportController'
         }).
         when('/qbo-reverse', {
             templateUrl: '/pages/qbo-reverse.html',
