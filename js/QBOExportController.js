@@ -68,7 +68,7 @@ app.controller('QBOExportController', function ($http, $location, $rootScope, $r
     }
 
     $scope.trustedAction = function () {
-        return $sce.trustAsResourceUrl("https://brizbee.gowitheast.com/api/QuickBooksOnline/Authenticate?AuthUserId=" + $rootScope.auth.userId + "&AuthExpiration=" + $rootScope.auth.expiration + "&AuthToken=" + $rootScope.auth.token)
+        return $sce.trustAsResourceUrl("https://brizbee.gowitheast.com/api/QuickBooksOnline/Authenticate?route=qbo-export&AuthUserId=" + $rootScope.auth.userId + "&AuthExpiration=" + $rootScope.auth.expiration + "&AuthToken=" + $rootScope.auth.token)
     }
 
     $scope.showWelcome = function () {
