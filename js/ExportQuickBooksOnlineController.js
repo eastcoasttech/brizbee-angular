@@ -75,6 +75,11 @@ app.controller('ExportQuickBooksOnlineController', function ($http, $location, $
         $scope.step = { name: 'welcome', number: '1', title: 'Connect to QuickBooks Online' }
     }
     $scope.showWelcome()
+
+    $scope.tryAgain = function () {
+        $scope.step = { name: 'confirm', number: '3', title: 'Confirm the Export' }
+        $scope.errors = null;
+    }
     
     // Step will be changed when QuickBooks Online API performs callback
     if ($routeParams.step && $routeParams.step == 'company')
