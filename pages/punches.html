@@ -155,7 +155,72 @@
                 </div>
             </div>
         </uib-tab>
-        <uib-tab index="1" heading="Commits">
+        <uib-tab index="1" heading="Exports">
+            <hr style="margin-top: 15px;" />
+            
+            <!--Toolbar-->
+            <div class="row row-toolbar">
+                <div class="col-md-6">
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group" role="group">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--List of Exports-->
+            <table class="table table-bordered table-condensed table-supercondensed table-selectable">
+                <thead>
+                    <tr>
+                        <th class="col-md-2">
+                            <a href="" ng-click="setSortType('CreatedByUser/Name')">
+                                User
+                                <span ng-show="(sortType == 'CreatedByUser/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                                <span ng-show="(sortType == 'CreatedByUser/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                            </a>
+                        </th>
+                        <th class="col-md-2">
+                            <a href="" ng-click="setSortType('Commit/InAt')">
+                                In
+                                <span ng-show="(sortType == 'Commit/InAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                                <span ng-show="(sortType == 'Commit/InAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                            </a>
+                        </th>
+                        <th class="col-md-2">
+                            <a href="" ng-click="setSortType('Commit/OutAt')">
+                                Out
+                                <span ng-show="(sortType == 'Commit/OutAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                                <span ng-show="(sortType == 'Commit/OutAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="export in exports" class="selectable">
+                        <td><a href="">{{export.CreatedByUser.Name}}</a></td>
+                        <td><a href="">{{formatMomentFromDate(export.Commit.InAt, 'YYYY-MM-DD h:mma')}}</a></td>
+                        <td><a href="">{{formatMomentFromDate(export.Commit.OutAt, 'YYYY-MM-DD h:mma')}}</a></td>
+                    </tr>
+                    <tr ng-show="loading.exports">
+                        <td colspan="3"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+                    </tr>
+                    <tr ng-show="(exports.length == 0) && (!loading.exports)">
+                        <td colspan="3">No Exports</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-sm btn-default" ng-click="exportsPrevious()" ng-show="exportsCount > 20"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                    <button class="btn btn-sm btn-default" ng-click="exportsNext()" ng-show="exportsCount > 20"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p class="form-control-static" ng-hide="((exports.length == 0) && (!loading.exports)) || loading.exports">{{exportsStart()}} to {{exportsEnd()}} of {{exportsCount}}</p>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="2" heading="Commits">
             <hr style="margin-top: 15px;" />
 
             <!--Toolbar-->
@@ -205,8 +270,7 @@
                 </tbody>
             </table>
         </uib-tab>
-        <uib-tab index="2">
-            <uib-tab-heading>New Commit</uib-tab-heading>
+        <uib-tab index="3" heading="New Commit">
             <hr style="margin-top: 15px;" />
 
             <form ng-submit="saveCommit()">

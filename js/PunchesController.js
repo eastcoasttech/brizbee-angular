@@ -41,6 +41,24 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         return $scope.punchesPageStart + 1
     }
 
+    $scope.exportsEnd = function () {
+        return $scope.exportsPageStart + 20 < $scope.exportsCount ? $scope.exportsPageStart + 20 : $scope.exportsCount;
+    };
+
+    $scope.exportsNext = function () {
+        $scope.exportsPageStart = $scope.exportsPageStart + 20
+        $scope.refreshExports()
+    }
+    
+    $scope.exportsPrevious = function () {
+        $scope.exportsPageStart = $scope.exportsPageStart - 20
+        $scope.refreshExports()
+    }
+
+    $scope.exportsStart = function () {
+        return $scope.exportsPageStart + 1
+    }
+
     $scope.refreshCommits = function () {
         $scope.commits = []
         $scope.loading.commits = true
@@ -50,6 +68,19 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
                 $scope.commits = response.data.value
             }, error => {
                 $scope.loading.commits = false
+                console.error(error)
+            })
+    }
+
+    $scope.refreshExports = function () {
+        $scope.exports = []
+        $scope.loading.exports = true
+        $http.get($rootScope.baseUrl + "/odata/UuickBooksOnlineExports?$orderby=Commit/InAt desc&$expand=Commit,CreatedByUser")
+            .then(response => {
+                $scope.loading.exports = false
+                $scope.exports = response.data.value
+            }, error => {
+                $scope.loading.exports = false
                 console.error(error)
             })
     }
@@ -264,6 +295,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
 
     $scope.refreshCommits()
     $scope.refreshPunches()
+    $scope.refreshExports()
 
     // Scroll to top
     $window.scrollTo(0, 0)
