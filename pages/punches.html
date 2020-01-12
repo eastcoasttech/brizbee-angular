@@ -198,8 +198,8 @@
                 <tbody>
                     <tr ng-repeat="export in exports" class="selectable">
                         <td><a href="">{{export.CreatedByUser.Name}}</a></td>
-                        <td><a href="">{{formatMomentFromDate(export.Commit.InAt, 'YYYY-MM-DD h:mma')}}</a></td>
-                        <td><a href="">{{formatMomentFromDate(export.Commit.OutAt, 'YYYY-MM-DD h:mma')}}</a></td>
+                        <td><a href="">{{formatMomentFromDate(export.Commit.InAt, 'YYYY-MM-DD')}}</a></td>
+                        <td><a href="">{{formatMomentFromDate(export.Commit.OutAt, 'YYYY-MM-DD')}}</a></td>
                     </tr>
                     <tr ng-show="loading.exports">
                         <td colspan="3"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
