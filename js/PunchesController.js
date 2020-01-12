@@ -75,7 +75,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     $scope.refreshExports = function () {
         $scope.exports = []
         $scope.loading.exports = true
-        $http.get($rootScope.baseUrl + "/odata/UuickBooksOnlineExports?$orderby=Commit/InAt desc&$expand=Commit,CreatedByUser")
+        $http.get($rootScope.baseUrl + "/odata/QuickBooksOnlineExports?$orderby=Commit/InAt desc&$expand=Commit,CreatedByUser")
             .then(response => {
                 $scope.loading.exports = false
                 $scope.exports = response.data.value
