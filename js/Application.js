@@ -132,3 +132,12 @@ app.filter('exportName', function () {
         return value.Commit.Guid.split('-')[4] + " - " + moment.parseZone(value.Commit.InAt).format('YYYY-MM-DD') + " thru " + moment.parseZone(value.Commit.OutAt).format('YYYY-MM-DD');
     };
 });
+
+app.filter('exportGuid', function () {
+    return function (value) {
+        if (!value) { return ''; }
+
+        // Split at dash and return last segment
+        return value.Commit.Guid.split('-')[4];
+    };
+});

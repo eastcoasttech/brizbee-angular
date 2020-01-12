@@ -223,7 +223,7 @@
                     <tr ng-repeat="export in exports" class="selectable">
                         <td><a href="">{{export.CreatedByUser.Name}}</a></td>
                         <td><a href="">{{formatMomentFromDate(export.CreatedAt, 'YYYY-MM-DD h:mma')}}</a></td>
-                        <td><a href="">{{export | exportName}}</a></td>
+                        <td><a href="">{{export | exportGuid}}</a></td>
                         <td><a href="">{{formatMomentFromDate(export.Commit.InAt, 'YYYY-MM-DD')}}</a></td>
                         <td><a href="">{{formatMomentFromDate(export.Commit.OutAt, 'YYYY-MM-DD')}}</a></td>
                         <td><a href="">{{export.ReversedByUser.Name}}</a></td>
