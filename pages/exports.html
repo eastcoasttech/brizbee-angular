@@ -38,7 +38,7 @@
 <div class="container-fluid">
     <ul class="nav nav-pills">
         <li role="presentation"><a href="#!/punches">Punches</a></li>
-        <li role="presentation"><a href="#!/timesheets">Timesheets</a></li>
+        <li role="presentation"><a href="#!/timesheets">Manual Entries</a></li>
         <li role="presentation"><a href="#!/commits">Commits</a></li>
         <li role="presentation" class="active"><a href="#!/exports">Export History</a></li>
     </ul>
@@ -121,7 +121,7 @@
                 <td colspan="7"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
             </tr>
             <tr ng-show="(exports.length == 0) && (!loading.exports)">
-                <td colspan="7">You Do Not Have Any Exports</td>
+                <td colspan="7">You Have Not Exported Any Time Yet</td>
             </tr>
         </tbody>
     </table>
