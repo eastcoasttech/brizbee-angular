@@ -14,6 +14,10 @@ app.config(function ($routeProvider, localStorageServiceProvider) {
             templateUrl: '/pages/login.html',
             controller: 'LoginController'
         }).
+        when('/commits', {
+            templateUrl: '/pages/commits.html',
+            controller: 'CommitsController'
+        }).
         when('/confirm', {
             templateUrl: '/pages/confirm.html',
             controller: 'ConfirmController'
@@ -21,6 +25,10 @@ app.config(function ($routeProvider, localStorageServiceProvider) {
         when('/customers', {
             templateUrl: '/pages/customers.html',
             controller: 'CustomersController'
+        }).
+        when('/exports', {
+            templateUrl: '/pages/exports.html',
+            controller: 'ExportsController'
         }).
         when('/export-file', {
             templateUrl: '/pages/export-file.html',

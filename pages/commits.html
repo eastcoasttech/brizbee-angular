@@ -1,0 +1,97 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#!/status">
+                <img alt="BRIZBEE Logo" src="/images/icon-32x32.png" style="height: 22px;">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#!/status"><i class="fa fa-id-badge" aria-hidden="true"></i> Status</a></li>
+                <li ng-show="current.user.Role == 'Administrator'" class="active"><a href="#!/punches"><i class="fa fa-clock-o" aria-hidden="true"></i> Time <span class="sr-only">(current)</span></a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/jobs"><i class="fa fa-truck" aria-hidden="true"></i> Jobs and Customers</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/reports"><i class="fa fa-line-chart" aria-hidden="true"></i> Reports</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/users"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navbar-phone"><a href="tel:1-888-930-3044">Punch In or Out @ 1-888-930-3044</a></li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{current.user.Name}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#!/my/user">Account Details</a></li>
+                        <li ng-show="current.user.Role == 'Administrator'"><a href="#!/my/organization">Organization Details</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="" ng-click="logout()">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="#!/punches">Punches</a></li>
+        <li role="presentation"><a href="#!/timesheets">Timesheets</a></li>
+        <li role="presentation" class="active"><a href="#!/commits">Commits</a></li>
+        <li role="presentation"><a href="#!/exports">Export History</a></li>
+    </ul>
+
+    <hr />
+
+    <!--Toolbar-->
+    <div class="row row-toolbar">
+        <div class="col-md-6">
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" ng-click="showNewCommit()"><i class="fa fa-plus" aria-hidden="true" style="margin-right: 5px;"></i> New Commit</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" ng-click="refreshCommits()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+    <!--List of Commits-->
+    <table class="table table-bordered table-condensed">
+        <thead>
+            <tr>
+                <th class="col-md-1">Id</th>
+                <th class="col-md-2">From</th>
+                <th class="col-md-2">To</th>
+                <th class="col-md-1">Punches</th>
+                <th class="col-md-2">Committed</th>
+                <th class="col-md-2">User</th>
+                <th class="col-md-1"></th>
+                <th class="col-md-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="commit in commits">
+                <td>{{commit.Guid.split('-')[4]}}</td>
+                <td>{{formatMomentFromDate(commit.InAt, 'YYYY-MM-DD')}}</td>
+                <td>{{formatMomentFromDate(commit.OutAt, 'YYYY-MM-DD')}}</td>
+                <td>{{commit.PunchCount}}</td>
+                <td>{{formatMomentFromDate(commit.CreatedAt, 'YYYY-MM-DD h:mm a', current.user.TimeZone)}}</td>
+                <td>{{commit.User.Name}}</td>
+                <td class="text-center"><a href="" ng-click="undo(commit)"><i class="fa fa-undo" aria-hidden="true"></i> Undo</a></td>
+                <td class="text-center"><a href="" ng-click="showExport('commit', commit.Id)"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</a></td>
+            </tr>
+            <tr ng-show="loading.commits">
+                <td colspan="8"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+            </tr>
+            <tr ng-show="(commits.length == 0) && (!loading.commits)">
+                <td colspan="8">You Have Not Committed Any Punches Yet</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

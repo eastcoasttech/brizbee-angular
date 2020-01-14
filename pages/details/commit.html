@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h3 class="modal-title">New Commit</h3>
+</div>
+<form name="customerForm" ng-submit="save()" autocomplete="off" novalidate>
+    <div class="modal-body">
+        <p>Commits are used to lock your employee's punches from being edited or deleted, whether accidentally or maliciously. Select a date range below to commit all the punches within the range. Commits can be undone later on if necessary.</p>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-group">
+                    <label>From</label>
+                    <p class="input-group" style="margin-bottom: 0;">
+                        <input type="text" class="form-control" uib-datepicker-popup ng-model="range.InAt" is-open="datepicker.in_at.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="showInAtDatepicker()" ng-disabled="working.commit"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                    <p class="text-muted"><small>at 12:00:00am</small></p>
+                </div>
+                <div class="form-group">
+                    <label>To</label>
+                    <p class="input-group" style="margin-bottom: 0;">
+                        <input type="text" class="form-control" uib-datepicker-popup ng-model="range.OutAt" is-open="datepicker.out_at.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="showOutAtDatepicker()" ng-disabled="working.commit"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                    <p class="text-muted"><small>at 11:59:59pm</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" ng-disabled="working.save || customerForm.$invalid">OK</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.save">Cancel</button>
+    </div>
+</form>
