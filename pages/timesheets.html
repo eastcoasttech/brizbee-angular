@@ -71,57 +71,57 @@
     <table class="table table-bordered table-condensed table-supercondensed table-selectable">
         <thead>
             <tr>
-                <th style="width: 15%;">
+                <th class="col-md-2">
                     <a href="" ng-click="setSortType('EnteredAt')">
                         Date
                         <span ng-show="(sortType == 'EnteredAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'EnteredAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th style="width: 20%;">
+                <th class="col-md-1">
+                    <a href="" ng-click="setSortType('Minutes')">
+                        Hours : Minutes
+                        <span ng-show="(sortType == 'Minutes') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'Minutes') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                    </a>
+                </th>
+                <th class="col-md-2">
                     <a href="" ng-click="setSortType('Task/Job/Customer/Name')">
                         Customer
                         <span ng-show="(sortType == 'Task/Job/Customer/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'Task/Job/Customer/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th style="width: 20%;">
+                <th class="col-md-2">
                     <a href="" ng-click="setSortType('Task/Job/Name')">
                         Job
                         <span ng-show="(sortType == 'Task/Job/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'Task/Job/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th style="width: 20%;">
+                <th class="col-md-2">
                     <a href="" ng-click="setSortType('Task/Name')">
                         Task
                         <span ng-show="(sortType == 'Task/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'Task/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th style="width: 5%;">
-                    <a href="" ng-click="setSortType('Minutes')">
-                        Hours
-                        <span ng-show="(sortType == 'Minutes') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
-                        <span ng-show="(sortType == 'Minutes') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
-                    </a>
-                </th>
-                <th>
+                <th class="col-md-2">
                     <a href="" ng-click="setSortType('Notes')">
                         Notes
                         <span ng-show="(sortType == 'Notes') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'Notes') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
-                </th>
+                </th class="col-md-1">
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="timesheetEntry in timesheetEntries" class="selectable" ng-click="showEditTimesheetEntry(timesheetEntry)">
                 <td><a href="">{{formatMomentFromDate(timesheetEntry.EnteredAt, 'ddd, MMM DD YYYY')}}</a></td>
+                <td><a href="">{{formatMinutes(timesheetEntry.Minutes)}}</a></td>
                 <td><a href="">{{timesheetEntry.Task.Job.Customer.Number}} &ndash; {{timesheetEntry.Task.Job.Customer.Name}}</a></td>
                 <td><a href="">{{timesheetEntry.Task.Job.Number}} &ndash; {{timesheetEntry.Task.Job.Name}}</a></td>
                 <td><a href="">{{timesheetEntry.Task.Number}} &ndash; {{timesheetEntry.Task.Name}}</a></td>
-                <td><a href="">{{formatMinutes(timesheetEntry.Minutes)}}</a></td>
                 <td><a href="">{{timesheetEntry.Notes}}</a></td>
             </tr>
             <tr ng-show="loading.timesheetEntries">

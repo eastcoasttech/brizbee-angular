@@ -2,6 +2,7 @@ app.controller('TimesheetsAddController', function ($http, $interval, $location,
     $scope.timesheetEntry = {
         EnteredAt: moment().startOf('day').toDate()
     }
+    $scope.time = { hours: 0, minutes: 0 }
     
     $scope.datepicker = { EnteredAt: {}, options: {} }
     $scope.loading = { customers: false, jobs: false, tasks: false }
@@ -77,10 +78,13 @@ app.controller('TimesheetsAddController', function ($http, $interval, $location,
     $scope.save = function () {
         $scope.working.save = true
 
+        // Calculate minutes from inputs
+        var minutes = parseInt($scope.time.minutes) + (parseInt($scope.time.hours) * 60)
+
         var timedifference = new Date().getTimezoneOffset()
         var json = {
             EnteredAt: moment($scope.timesheetEntry.EnteredAt).subtract(timedifference, 'm').toDate(),
-            Minutes: $scope.timesheetEntry.Minutes,
+            Minutes: minutes,
             Notes: $scope.timesheetEntry.Notes,
             TaskId: $scope.timesheetEntry.task.Id,
             UserId: $rootScope.current.user.Id
@@ -101,7 +105,6 @@ app.controller('TimesheetsAddController', function ($http, $interval, $location,
     
     $scope.refreshCustomers()
 
-    // Focus on task number input and scroll to top
-    // $window.document.getElementById("timesheet_entry_minutes").focus()
+    // Scroll to top
     $window.scrollTo(0, 0)
 });
