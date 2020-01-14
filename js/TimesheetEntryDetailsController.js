@@ -8,6 +8,9 @@ app.controller('TimesheetEntryDetailsController', function ($filter, $http, $roo
     } else {
         $scope.timesheetEntry = angular.copy(timesheetEntry)
         $scope.timesheetEntry.user = { Id: $scope.timesheetEntry.UserId }
+        
+        var timedifference = new Date().getTimezoneOffset()
+        $scope.timesheetEntry.EnteredAt = moment($scope.timesheetEntry.EnteredAt).add(timedifference, 'm').toDate()
 
         // Calculate hours and minutes
         var hours = $scope.timesheetEntry.Minutes / 60;
@@ -123,10 +126,14 @@ app.controller('TimesheetEntryDetailsController', function ($filter, $http, $roo
     }
 
     $scope.saveExistingTimesheetEntry = function () {
+        // Calculate minutes from inputs
+        var minutes = parseInt($scope.time.minutes) + (parseInt($scope.time.hours) * 60)
+
+
         var timedifference = new Date().getTimezoneOffset()
         var json = {
             EnteredAt: moment($scope.timesheetEntry.EnteredAt).subtract(timedifference, 'm').toDate(),
-            Minutes: $scope.timesheetEntry.Minutes,
+            Minutes: minutes,
             Notes: $scope.timesheetEntry.Notes,
             TaskId: $scope.timesheetEntry.task.Id,
             UserId: $scope.timesheetEntry.user.Id
@@ -143,10 +150,14 @@ app.controller('TimesheetEntryDetailsController', function ($filter, $http, $roo
     }
 
     $scope.saveNewTimesheetEntry = function () {
+        // Calculate minutes from inputs
+        var minutes = parseInt($scope.time.minutes) + (parseInt($scope.time.hours) * 60)
+
+
         var timedifference = new Date().getTimezoneOffset()
         var json = {
             EnteredAt: moment($scope.timesheetEntry.EnteredAt).subtract(timedifference, 'm').toDate(),
-            Minutes: $scope.timesheetEntry.Minutes,
+            Minutes: minutes,
             Notes: $scope.timesheetEntry.Notes,
             TaskId: $scope.timesheetEntry.task.Id,
             UserId: $scope.timesheetEntry.user.Id
