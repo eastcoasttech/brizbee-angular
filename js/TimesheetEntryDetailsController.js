@@ -4,9 +4,16 @@ app.controller('TimesheetEntryDetailsController', function ($filter, $http, $roo
             EnteredAt: moment().startOf('day').toDate()
         }
         $scope.timesheetEntry.user = $rootScope.current.user
+        $scope.time = { hours: 0, minutes: 0 }
     } else {
         $scope.timesheetEntry = angular.copy(timesheetEntry)
         $scope.timesheetEntry.user = { Id: $scope.timesheetEntry.UserId }
+
+        // Calculate hours and minutes
+        var hours = $scope.timesheetEntry.Minutes / 60;
+        var minutes = $scope.timesheetEntry.Minutes % 60;
+
+        $scope.time = { hours: hours, minutes: minutes }
     }
     $scope.datepicker = { EnteredAt: {}, options: {} }
     $scope.loading = { customers: false, jobs: false, tasks: false }
