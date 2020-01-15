@@ -105,6 +105,7 @@
                         <span ng-show="(sortType == 'ReversedAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
+                <th colspan="col-md-1"></th>
             </tr>
         </thead>
         <tbody>
@@ -116,12 +117,13 @@
                 <td><a href="">{{formatMomentFromDate(export.Commit.OutAt, 'YYYY-MM-DD')}}</a></td>
                 <td><a href="">{{export.ReversedByUser.Name}}</a></td>
                 <td><a href="">{{formatMomentFromDate(export.ReversedAt, 'YYYY-MM-DD h:mma')}}</a></td>
+                <td class="text-center"><a href="" ng-click="reverse(export)"><i class="fa fa-undo" aria-hidden="true"></i> Undo</a></td>
             </tr>
             <tr ng-show="loading.exports">
-                <td colspan="7"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+                <td colspan="8"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
             </tr>
             <tr ng-show="(exports.length == 0) && (!loading.exports)">
-                <td colspan="7">You Have Not Exported Any Time Yet</td>
+                <td colspan="8">You Have Not Exported Any Time Yet</td>
             </tr>
         </tbody>
     </table>

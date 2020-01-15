@@ -74,11 +74,11 @@
                     <!-- Step - Confirm -->
                     <div ng-show="step.name == 'confirm'">
 
-                        <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Please select the commit for the punches you want to export:</p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
+                        <!-- <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Please select the commit for the punches you want to export:</p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
 
                         <select class="form-control" ng-model="selected.commit" ng-options="commit as (commit | commitName) for commit in commits"></select>
 
-                        <hr />
+                        <hr /> -->
 
                         <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
                             You are about to export <strong>{{selected.commit.PunchCount}}</strong> punches from

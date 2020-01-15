@@ -36,7 +36,7 @@ app.controller('LoginController', function ($cookies, $http, $location, $rootSco
             .then(response => {
                 // User exists, redirect to status
 
-                // Set the cookie
+                // Set the cookies for auth
                 $cookies.put('BRIZBEE_AUTH_USER_ID', response.data.AuthUserId)
                 $cookies.put('BRIZBEE_AUTH_EXPIRATION', response.data.AuthExpiration)
                 $cookies.put('BRIZBEE_AUTH_TOKEN', response.data.AuthToken)

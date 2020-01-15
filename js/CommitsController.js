@@ -50,17 +50,21 @@ app.controller('CommitsController', function ($http, $rootScope, $scope, $uibMod
                 // dismissed
             })
     }
-
-    $scope.showExport = function () {
+    
+    $scope.showExport = function (commit_id) {
         var instance = $uibModal.open({
             templateUrl: '/pages/modals/export.html',
             controller: 'ModalExportController',
-            resolve: { }
+            resolve: {
+                commit_id: function () {
+                    return commit_id
+                }
+            }
         });
         
         instance.result
-            .then((msg) => {
-                console.log(msg)
+            .then(() => {
+                // success
             }, () => {
                 // dismissed
             })

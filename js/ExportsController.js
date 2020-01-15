@@ -36,19 +36,13 @@ app.controller('ExportsController', function ($http, $rootScope, $scope, $uibMod
         return $scope.exportsPageStart + 1
     }
 
-    $scope.showExport = function (type, commit_id) {
+    $scope.showExport = function (commit_id) {
         var instance = $uibModal.open({
-            templateUrl: '/pages/export.html',
-            controller: 'ExportController',
+            templateUrl: '/pages/modals/export.html',
+            controller: 'ModalExportController',
             resolve: {
-                type: function () {
-                    return type
-                },
                 commit_id: function () {
                     return commit_id
-                },
-                range: function () {
-                    return $rootScope.range
                 }
             }
         });

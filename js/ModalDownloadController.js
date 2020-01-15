@@ -7,7 +7,7 @@ app.controller('ModalDownloadController', function ($cookies, $scope, $uibModalI
     $scope.auth.token = $cookies.get('BRIZBEE_AUTH_TOKEN')
 
     $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel')
+        $uibModalInstance.dismiss()
     }
 
     $scope.formatMomentFromDate = function (date, format, timezone) {
@@ -19,6 +19,6 @@ app.controller('ModalDownloadController', function ($cookies, $scope, $uibModalI
     }
 
     $scope.ok = function () {
-        $uibModalInstance.close('Success')
+        $uibModalInstance.close()
     }
 })

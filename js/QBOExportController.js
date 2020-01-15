@@ -67,6 +67,24 @@ app.controller('QBOExportController', function ($http, $location, $rootScope, $r
             })
     }
 
+    $scope.refreshCommit = function () {
+        $scope.loading.commits = true
+
+        // Load commit from localStorage stored previously
+        if (localStorageService.get('qbo_export_commit_id'))
+        {
+            var commit_id = localStorageService.get('qbo_export_commit_id')
+            $http.get($rootScope.baseUrl + "/odata/Commits(" + commit_id + ")")
+                .then(response => {
+                    $scope.loading.commits = false
+                    $scope.selected.commit = response.data
+                }, error => {
+                    $scope.loading.commits = false
+                    console.error(error)
+                })
+        }
+    }
+
     $scope.trustedAction = function () {
         return $sce.trustAsResourceUrl("https://brizbee.gowitheast.com/api/QuickBooksOnline/Authenticate?route=qbo-export&AuthUserId=" + $rootScope.auth.userId + "&AuthExpiration=" + $rootScope.auth.expiration + "&AuthToken=" + $rootScope.auth.token)
     }
@@ -108,7 +126,8 @@ app.controller('QBOExportController', function ($http, $location, $rootScope, $r
                 $scope.step = { name: 'confirm', number: '3', title: 'Confirm the Export' }
 
                 // Refresh the list of commits for user to choose
-                $scope.refreshCommits();
+                // $scope.refreshCommits();
+                $scope.refreshCommit()
             }, error => {
                 console.error(error)
             })
