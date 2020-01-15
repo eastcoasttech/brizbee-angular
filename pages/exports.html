@@ -116,7 +116,7 @@
                 <td>{{formatMomentFromDate(export.Commit.InAt, 'YYYY-MM-DD')}}</td>
                 <td>{{formatMomentFromDate(export.Commit.OutAt, 'YYYY-MM-DD')}}</td>
                 <td>{{export.ReversedByUser.Name}}</td>
-                <td>{{formatMomentFromDate(export.ReversedAt, 'YYYY-MM-DD h:mma')}}</td>
+                <td><span ng-if="!export.ReversedAt">{{formatMomentFromDate(export.ReversedAt, 'YYYY-MM-DD h:mma')}}</span></td>
                 <td class="text-center"><a href="" ng-click="reverse(export)"><i class="fa fa-undo" aria-hidden="true"></i> Undo</a></td>
             </tr>
             <tr ng-show="loading.exports">
