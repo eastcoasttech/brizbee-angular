@@ -77,14 +77,14 @@
                 <th class="col-md-1">
                     Commit
                 </th>
-                <th class="col-md-2">
+                <th class="col-md-1">
                     <a href="" ng-click="setSortType('Commit/InAt')">
                         In
                         <span ng-show="(sortType == 'Commit/InAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'Commit/InAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th class="col-md-2">
+                <th class="col-md-1">
                     <a href="" ng-click="setSortType('Commit/OutAt')">
                         Out
                         <span ng-show="(sortType == 'Commit/OutAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
@@ -110,13 +110,13 @@
         </thead>
         <tbody>
             <tr ng-repeat="export in exports" class="selectable">
-                <td><a href="">{{export.CreatedByUser.Name}}</a></td>
-                <td><a href="">{{formatMomentFromDate(export.CreatedAt, 'YYYY-MM-DD h:mma')}}</a></td>
-                <td><a href="">{{export | exportGuid}}</a></td>
-                <td><a href="">{{formatMomentFromDate(export.Commit.InAt, 'YYYY-MM-DD')}}</a></td>
-                <td><a href="">{{formatMomentFromDate(export.Commit.OutAt, 'YYYY-MM-DD')}}</a></td>
-                <td><a href="">{{export.ReversedByUser.Name}}</a></td>
-                <td><a href="">{{formatMomentFromDate(export.ReversedAt, 'YYYY-MM-DD h:mma')}}</a></td>
+                <td>{{export.CreatedByUser.Name}}</td>
+                <td>{{formatMomentFromDate(export.CreatedAt, 'YYYY-MM-DD h:mma')}}</td>
+                <td>{{export | exportGuid}}</td>
+                <td>{{formatMomentFromDate(export.Commit.InAt, 'YYYY-MM-DD')}}</td>
+                <td>{{formatMomentFromDate(export.Commit.OutAt, 'YYYY-MM-DD')}}</td>
+                <td>{{export.ReversedByUser.Name}}</td>
+                <td>{{formatMomentFromDate(export.ReversedAt, 'YYYY-MM-DD h:mma')}}</td>
                 <td class="text-center"><a href="" ng-click="reverse(export)"><i class="fa fa-undo" aria-hidden="true"></i> Undo</a></td>
             </tr>
             <tr ng-show="loading.exports">
