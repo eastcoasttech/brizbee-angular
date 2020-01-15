@@ -19,8 +19,8 @@ app.controller('ExportsController', function ($http, $rootScope, $scope, $uibMod
     }
 
     $scope.exportsEnd = function () {
-        return $scope.exportsPageStart + 20 < $scope.exportsCount ? $scope.exportsPageStart + 20 : $scope.exportsCount;
-    };
+        return $scope.exportsPageStart + 20 < $scope.exportsCount ? $scope.exportsPageStart + 20 : $scope.exportsCount
+    }
 
     $scope.exportsNext = function () {
         $scope.exportsPageStart = $scope.exportsPageStart + 20

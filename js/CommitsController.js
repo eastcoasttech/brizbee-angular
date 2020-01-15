@@ -1,8 +1,9 @@
 app.controller('CommitsController', function ($http, $rootScope, $scope, $uibModal, $window) {
     $scope.commits = []
     $scope.loading = { commits: false }
-    $scope.sortDirection = 'asc'
-    $scope.sortType = 'InAt'
+    $scope.commitsPageStart = 0
+    $scope.sortDirection = 'desc'
+    $scope.sortType = 'CreatedAt'
     $scope.working = { commit: false }
 
     // Reset the document title, in case the session expired
@@ -11,7 +12,7 @@ app.controller('CommitsController', function ($http, $rootScope, $scope, $uibMod
     $scope.refreshCommits = function () {
         $scope.commits = []
         $scope.loading.commits = true
-        $http.get($rootScope.baseUrl + "/odata/Commits?$orderby=InAt desc&$expand=User")
+        $http.get($rootScope.baseUrl + "/odata/Commits?$count=true&$expand=User&$top=20&$skip=" + $scope.commitsPageStart + "&$orderby=" + $scope.sortType + " " + $scope.sortDirection)
             .then(response => {
                 $scope.loading.commits = false
                 $scope.commits = response.data.value
@@ -29,6 +30,24 @@ app.controller('CommitsController', function ($http, $rootScope, $scope, $uibMod
             $scope.sortDirection = 'asc'
         }
         $scope.refreshCommits()
+    }
+
+    $scope.commitsEnd = function () {
+        return $scope.commitsPageStart + 20 < $scope.commitsCount ? $scope.commitsPageStart + 20 : $scope.commitsCount;
+    }
+
+    $scope.commitsNext = function () {
+        $scope.commitsPageStart = $scope.commitsPageStart + 20
+        $scope.refreshCommits()
+    }
+    
+    $scope.commitsPrevious = function () {
+        $scope.commitsPageStart = $scope.commitsPageStart - 20
+        $scope.refreshCommits()
+    }
+
+    $scope.commitsStart = function () {
+        return $scope.commitsPageStart + 1
     }
 
     $scope.showNewCommit = function () {
