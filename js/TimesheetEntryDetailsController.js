@@ -13,8 +13,8 @@ app.controller('TimesheetEntryDetailsController', function ($filter, $http, $roo
         $scope.timesheetEntry.EnteredAt = moment($scope.timesheetEntry.EnteredAt).add(timedifference, 'm').toDate()
 
         // Calculate hours and minutes
-        var hours = $scope.timesheetEntry.Minutes / 60;
-        var minutes = $scope.timesheetEntry.Minutes % 60;
+        var hours = Math.floor($scope.timesheetEntry.Minutes / 60)
+        var minutes = $scope.timesheetEntry.Minutes % 60
 
         $scope.time = { hours: hours, minutes: minutes }
     }
@@ -152,7 +152,6 @@ app.controller('TimesheetEntryDetailsController', function ($filter, $http, $roo
     $scope.saveNewTimesheetEntry = function () {
         // Calculate minutes from inputs
         var minutes = parseInt($scope.time.minutes) + (parseInt($scope.time.hours) * 60)
-
 
         var timedifference = new Date().getTimezoneOffset()
         var json = {
