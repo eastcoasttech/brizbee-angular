@@ -51,6 +51,21 @@ app.controller('CommitsController', function ($http, $rootScope, $scope, $uibMod
             })
     }
 
+    $scope.showExport = function () {
+        var instance = $uibModal.open({
+            templateUrl: '/pages/modals/export.html',
+            controller: 'ModalExportController',
+            resolve: { }
+        });
+        
+        instance.result
+            .then((msg) => {
+                console.log(msg)
+            }, () => {
+                // dismissed
+            })
+    }
+
     $scope.undo = function (commit) {
         if (confirm("Are you sure you want to undo this commit? All the punches will be editable again?")) {
 

@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h3 class="modal-title">Export Committed Punches</h3>
+</div>
+<form ng-submit="ok()">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <p>
+                    <a ng-href="#!/qbo-export" class="btn btn-primary" ng-click="ok()">
+                        QuickBooks Online
+                    </a>
+                    <br />
+                    <small>
+                        You will be redirected to login to QuickBooks Online.
+                    </small>
+                </p>
+                <p>
+                    <button class="btn btn-primary" disabled>
+                        QuickBooks Desktop
+                    </button>
+                    <br />
+                    <small>
+                        You must download and install the <a href="https://www.brizbee.com/download.html" target="_blank">QuickBooks Export Utility</a>
+                        on the computer where you use QuickBooks to export punches
+                        and timesheet entries into QuickBooks Desktop.
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">Close</button>
+    </div>
+</form>

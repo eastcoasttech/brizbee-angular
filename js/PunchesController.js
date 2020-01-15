@@ -117,17 +117,11 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
             })
     }
 
-    $scope.showExport = function (type, commit_id) {
+    $scope.showDownload = function () {
         var instance = $uibModal.open({
-            templateUrl: '/pages/export.html',
-            controller: 'ExportController',
+            templateUrl: '/pages/modals/download.html',
+            controller: 'ModalDownloadController',
             resolve: {
-                type: function () {
-                    return type
-                },
-                commit_id: function () {
-                    return commit_id
-                },
                 range: function () {
                     return $rootScope.range
                 }

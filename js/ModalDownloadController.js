@@ -1,7 +1,5 @@
-app.controller('ExportController', function ($cookies, $scope, $uibModalInstance, type, commit_id, range) {
-    $scope.commit_id = commit_id
+app.controller('ModalDownloadController', function ($cookies, $scope, $uibModalInstance, range) {
     $scope.range = angular.copy(range)
-    $scope.type = type
     
     $scope.auth = {}
     $scope.auth.userId = $cookies.get('BRIZBEE_AUTH_USER_ID')
