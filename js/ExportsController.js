@@ -2,8 +2,8 @@ app.controller('ExportsController', function ($http, $rootScope, $scope, $uibMod
     $scope.exports = []
     $scope.loading = { exports: false }
     $scope.exportsPageStart = 0
-    $scope.sortDirection = 'asc'
-    $scope.sortType = 'InAt'
+    $scope.sortDirection = 'desc'
+    $scope.sortType = 'CreatedAt'
 
     // Reset the document title, in case the session expired
     $(document).prop('title', 'Dashboard - BRIZBEE')
@@ -58,10 +58,11 @@ app.controller('ExportsController', function ($http, $rootScope, $scope, $uibMod
     $scope.refreshExports = function () {
         $scope.exports = []
         $scope.loading.exports = true
-        $http.get($rootScope.baseUrl + "/odata/QuickBooksOnlineExports?$orderby=Commit/InAt desc&$expand=Commit,CreatedByUser,ReversedByUser")
+        $http.get($rootScope.baseUrl + "/odata/QuickBooksOnlineExports?$count=true&$expand=Commit,CreatedByUser,ReversedByUser&$top=20&$skip=" + $scope.exportsPageStart + "&$orderby=" + $scope.sortType + " " + $scope.sortDirection)
             .then(response => {
                 $scope.loading.exports = false
                 $scope.exports = response.data.value
+                $scope.exportsCount = response.data['@odata.count']
             }, error => {
                 $scope.loading.exports = false
                 console.error(error)

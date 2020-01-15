@@ -45,6 +45,13 @@
 
     <hr />
 
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="#!/punches">QuickBooks Online Exports</a></li>
+        <li role="presentation"><a href="#!/timesheets">QuickBooks Desktop Exports</a></li>
+    </ul>
+
+    <hr />
+
     <!--Toolbar-->
     <div class="row row-toolbar">
         <div class="col-md-6">
@@ -75,7 +82,7 @@
                     </a>
                 </th>
                 <th class="col-md-1">
-                    Commit
+                    Commit Id
                 </th>
                 <th class="col-md-1">
                     <a href="" ng-click="setSortType('Commit/InAt')">
@@ -105,7 +112,7 @@
                         <span ng-show="(sortType == 'ReversedAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th colspan="col-md-1"></th>
+                <th class="col-md-1"></th>
             </tr>
         </thead>
         <tbody>
@@ -117,7 +124,7 @@
                 <td>{{formatMomentFromDate(export.Commit.OutAt, 'YYYY-MM-DD')}}</td>
                 <td>{{export.ReversedByUser.Name}}</td>
                 <td><span ng-if="export.ReversedAt">{{formatMomentFromDate(export.ReversedAt, 'YYYY-MM-DD h:mma')}}</span></td>
-                <td class="text-center"><a href="" ng-click="reverse(export)"><i class="fa fa-undo" aria-hidden="true"></i> Undo</a></td>
+                <td class="text-center"><a href="" ng-click="reverse(export)"><i class="fa fa-undo" aria-hidden="true"></i> Reverse</a></td>
             </tr>
             <tr ng-show="loading.exports">
                 <td colspan="8"><i class="fa fa-spinner fa-spin fa-fw"></i></td>

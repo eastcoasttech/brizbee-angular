@@ -65,14 +65,46 @@
     <table class="table table-bordered table-condensed">
         <thead>
             <tr>
-                <th class="col-md-1">Id</th>
-                <th class="col-md-2">From</th>
-                <th class="col-md-2">To</th>
-                <th class="col-md-1">Punches</th>
-                <th class="col-md-2">Committed</th>
-                <th class="col-md-2">User</th>
-                <th class="col-md-1"></th>
-                <th class="col-md-1"></th>
+                <th class="col-md-2">
+                    Id
+                </th>
+                <th class="col-md-1">
+                    <a href="" ng-click="setSortType('InAt')">
+                        From
+                        <span ng-show="(sortType == 'InAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'InAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                    </a>
+                </th>
+                <th class="col-md-1">
+                    <a href="" ng-click="setSortType('OutAt')">
+                        To
+                        <span ng-show="(sortType == 'OutAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'OutAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                    </a>
+                </th>
+                <th class="col-md-1">
+                    <a href="" ng-click="setSortType('PunchCount')">
+                        Punches
+                        <span ng-show="(sortType == 'PunchCount') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'PunchCount') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                    </a>
+                </th>
+                <th class="col-md-2">
+                    <a href="" ng-click="setSortType('CreatedAt')">
+                        Committed
+                        <span ng-show="(sortType == 'CreatedAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'CreatedAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                    </a>
+                </th>
+                <th class="col-md-2">
+                    <a href="" ng-click="setSortType('User/Name')">
+                        User
+                        <span ng-show="(sortType == 'User/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'User/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                    </a>
+                </th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -87,10 +119,10 @@
                 <td class="text-center"><a href="" ng-click="showExport(commit.Id)"><i class="fa fa-plug" aria-hidden="true"></i> Export</a></td>
             </tr>
             <tr ng-show="loading.commits">
-                <td colspan="7"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+                <td colspan="8"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
             </tr>
             <tr ng-show="(commits.length == 0) && (!loading.commits)">
-                <td colspan="7">You Have Not Committed Any Punches Yet</td>
+                <td colspan="8">You Have Not Committed Any Punches Yet</td>
             </tr>
         </tbody>
     </table>
