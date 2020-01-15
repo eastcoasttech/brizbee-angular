@@ -28,7 +28,7 @@ app.controller('CommitsController', function ($http, $rootScope, $scope, $uibMod
         } else {
             $scope.sortDirection = 'asc'
         }
-        $scope.refreshPunches()
+        $scope.refreshCommits()
     }
 
     $scope.showNewCommit = function () {

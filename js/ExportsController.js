@@ -15,7 +15,7 @@ app.controller('ExportsController', function ($http, $rootScope, $scope, $uibMod
         } else {
             $scope.sortDirection = 'asc'
         }
-        $scope.refreshPunches()
+        $scope.refreshExports()
     }
 
     $scope.exportsEnd = function () {
