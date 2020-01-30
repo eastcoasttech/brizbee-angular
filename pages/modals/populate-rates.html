@@ -30,9 +30,10 @@
                 <table class="table table-bordered table-condensed table-supercondensed">
                     <thead>
                         <tr>
-                            <th class="col-md-4">Option</th>
-                            <th class="col-md-3" colspan="2">Parameter</th>
-                            <th class="col-md-4">Alternate Rate</th>
+                            <th class="col-md-3">Option</th>
+                            <th class="col-md-2" colspan="2">Parameter</th>
+                            <th class="col-md-3">Base Rate</th>
+                            <th class="col-md-3">Alternate Rate</th>
                             <th class="col-md-1"></th>
                         </tr>
                     </thead>
@@ -56,10 +57,10 @@
                                 <div uib-timepicker ng-model="exception.time" show-spinners="false"></div>
                             </td>
                             <td class="text-center">
-                                <select class="form-control input-sm" ng-changed="refreshException()">
-                                    <option value="minutes">Hourly OT</option>
-                                    <option value="minutes">Hourly DT</option>
-                                </select>
+                                <select class="form-control input-sm" ng-options="rate.Name for rate in baseRates" ng-model="exception.baseRate" ng-change="refreshAlternateRates(exception)"></select>
+                            </td>
+                            <td class="text-center">
+                                <select class="form-control input-sm" ng-options="rate.Name for rate in exception.alternateRates" ng-model="exception.alternateRate"></select>
                             </td>
                             <td class="text-center" style="vertical-align: middle; font-size: 1.5em;">
                                 <a href="" ng-click="removeException($index)"><i class="fa fa-times-circle-o text-danger" aria-hidden="true"></i></a>
