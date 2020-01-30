@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h3 class="modal-title">Split Punches at Midnight</h3>
+</div>
+<form ng-submit="ok()">
+    <div class="modal-body">
+        <p>Your punches between {{split.inAtFormatted}} and {{split.outAtFormatted}} will be split at midnight.</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" ng-disabled="working.save">OK</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

@@ -53,11 +53,22 @@ app.controller('OutConfirmController', function ($http, $location, $rootScope, $
     }
 
     function save(latitude, longitude) {
+        // var ua = detect.parse(navigator.userAgent)
         var json = {
             SourceForOutAt: 'Web',
             OutAtTimeZone: $scope.options.OutAtTimeZone,
             LatitudeForOutAt: latitude,
-            LongitudeForOutAt: longitude
+            LongitudeForOutAt: longitude,
+            SourceHardware: 'Web',
+            SourceHostname: 'Unknown',
+            // SourceOperatingSystem: ua.os.family,
+            // SourceOperatingSystemVersion: ua.os.version,
+            // SourceBrowser: ua.browser.family,
+            // SourceBrowserVersion: ua.browser.version
+            SourceOperatingSystem: '',
+            SourceOperatingSystemVersion: '',
+            SourceBrowser: '',
+            SourceBrowserVersion: ''
         }
         $http.post($rootScope.baseUrl + "/odata/Punches/Default.PunchOut", JSON.stringify(json))
             .then(response => {

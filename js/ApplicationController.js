@@ -1,5 +1,6 @@
 app.controller('ApplicationController', function ($cookies, $http, $location, $rootScope, $scope) {
-    $rootScope.baseUrl = "https://brizbee.gowitheast.com"
+    // $rootScope.baseUrl = "https://brizbee.gowitheast.com"
+    $rootScope.baseUrl = "http://localhost:54313"
     $rootScope.selected = {}
     $rootScope.current = {}
     $rootScope.range = {
@@ -53,7 +54,7 @@ app.controller('ApplicationController', function ($cookies, $http, $location, $r
         $location.path('/')
     }
 
-    $scope.formatMomentFromDate = function (date, format, timezone) {
+    $rootScope.formatMomentFromDate = function (date, format, timezone) {
         if (timezone != null) {
             return moment.parseZone(date).tz(timezone).format(format)
         } else {

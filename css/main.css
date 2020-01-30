@@ -331,3 +331,21 @@ li.uib-tab a.nav-link {
 li.uib-tab a.nav-link i {
     padding-right: 5px;
 }
+
+table.uib-timepicker tr td input {
+    /* copied from input-sm */
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 0;
+}
+
+table.uib-timepicker tr td button {
+    /* copied from btn-sm */
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 0;
+    margin-left: 4px;
+}

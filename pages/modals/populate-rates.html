@@ -1,0 +1,106 @@
+<div class="modal-header">
+    <h3 class="modal-title">Populate Rates</h3>
+</div>
+<form ng-submit="ok()">
+    <div class="modal-body">
+        <uib-tabset>
+            <uib-tab index="0" heading="Payroll Rates">
+                <p style="margin-top: 1em;"><strong>Base Rates</strong></p style="margin-top: 1em;">
+                <table class="table table-bordered table-condensed table-supercondensed">
+                    <thead>
+                        <tr>
+                            <th class="col-md-6">Task</th>
+                            <th class="col-md-6">Base Payroll Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1000 - Consulting</td>
+                            <td>Regular Hourly</td>
+                        </tr>
+                        <tr>
+                            <td>1001 - Coding</td>
+                            <td>Regular Hourly</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p><strong>Exceptions</strong></p>
+
+                <table class="table table-bordered table-condensed table-supercondensed">
+                    <thead>
+                        <tr>
+                            <th class="col-md-4">Option</th>
+                            <th class="col-md-3" colspan="2">Parameter</th>
+                            <th class="col-md-4">Alternate Rate</th>
+                            <th class="col-md-1"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="exception in exceptions track by $index">
+                            <td>
+                                <select class="form-control input-sm" ng-model="exception.option">
+                                    <option>Punches Before</option>
+                                    <option>Punches After</option>
+                                    <option>After Quantity Per Day</option>
+                                    <option>After Quantity in Range</option>
+                                </select>
+                            </td>
+                            <td ng-if="exception.option == 'After Quantity Per Day' || exception.option == 'After Quantity in Range'" class="text-center">
+                                <input type="text" class="form-control form-control-number input-sm" placeholder="HH">
+                            </td>
+                            <td ng-if="exception.option == 'After Quantity Per Day' || exception.option == 'After Quantity in Range'" class="text-center">
+                                <input type="text" class="form-control form-control-number input-sm" placeholder="MM">
+                            </td>
+                            <td colspan="2" ng-if="exception.option == 'Punches Before' || exception.option == 'Punches After'" class="text-center">
+                                <div uib-timepicker ng-model="exception.time" show-spinners="false"></div>
+                            </td>
+                            <td class="text-center">
+                                <select class="form-control input-sm" ng-changed="refreshException()">
+                                    <option value="minutes">Hourly OT</option>
+                                    <option value="minutes">Hourly DT</option>
+                                </select>
+                            </td>
+                            <td class="text-center" style="vertical-align: middle; font-size: 1.5em;">
+                                <a href="" ng-click="removeException($index)"><i class="fa fa-times-circle-o text-danger" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        
+                <p><a href="" ng-click="addException()">Add Exception</a></p>
+            </uib-tab>
+            <uib-tab index="1" heading="Service Rates">
+                <p style="margin-top: 1em;"><strong>Base Rates</strong></p>
+                <table class="table table-bordered table-condensed table-supercondensed">
+                    <thead>
+                        <tr>
+                            <th class="col-md-6">Task</th>
+                            <th class="col-md-6">Base Service Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1000 - Consulting</td>
+                            <td>Regular Hourly</td>
+                        </tr>
+                        <tr>
+                            <td>1001 - Coding</td>
+                            <td>Regular Hourly</td>
+                        </tr>
+                    </tbody>
+                </table>
+        
+                <p><strong>Exceptions</strong></p>
+        
+                <p><a href="">Add Exception</a></p>
+            </uib-tab>
+        </uib-tabset>
+
+        <p class="text-danger" style="margin-top: 2em;">NOTE: This operation is permanent. Populate rates cannot be reversed. However, you can run Populate Rates multiple times and old rates will be overwritten.</p style="margin-top: 1em;">
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" ng-disabled="working.save">OK</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</form>
