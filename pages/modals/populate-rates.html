@@ -14,13 +14,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1000 - Consulting</td>
-                            <td>Regular Hourly</td>
-                        </tr>
-                        <tr>
-                            <td>1001 - Coding</td>
-                            <td>Regular Hourly</td>
+                        <tr ng-repeat="task in tasks">
+                            <td>{{task.Number}} - {{task.Name}}</td>
+                            <td>{{task.BasePayrollRate.Name}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -30,46 +26,58 @@
                 <table class="table table-bordered table-condensed table-supercondensed">
                     <thead>
                         <tr>
-                            <th class="col-md-3">Option</th>
-                            <th class="col-md-2" colspan="2">Parameter</th>
-                            <th class="col-md-3">Base Rate</th>
-                            <th class="col-md-3">Alternate Rate</th>
-                            <th class="col-md-1"></th>
+                            <th style="width: 20%;">Option</th>
+                            <th style="width: 25%;" colspan="2">Parameter</th>
+                            <th style="width: 25%;">Base Rate</th>
+                            <th style="width: 25%;">Alternate Rate</th>
+                            <th style="width: 5%;"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="exception in exceptions track by $index">
+                        <tr ng-repeat="exception in payrollExceptions track by $index">
                             <td>
                                 <select class="form-control input-sm" ng-model="exception.option">
-                                    <option>Punches Before</option>
-                                    <option>Punches After</option>
+                                    <option>Punches Before Time</option>
+                                    <option>Punches After Time</option>
                                     <option>After Quantity Per Day</option>
                                     <option>After Quantity in Range</option>
+                                    <option>Punches on Date</option>
                                 </select>
                             </td>
                             <td ng-if="exception.option == 'After Quantity Per Day' || exception.option == 'After Quantity in Range'" class="text-center">
-                                <input type="text" class="form-control form-control-number input-sm" placeholder="HH">
+                                <input type="text" class="form-control form-control-number input-sm" placeholder="Hours" ng-model="exception.quantity.hours" ui-number-mask="0" max="23">
                             </td>
                             <td ng-if="exception.option == 'After Quantity Per Day' || exception.option == 'After Quantity in Range'" class="text-center">
-                                <input type="text" class="form-control form-control-number input-sm" placeholder="MM">
+                                <input type="text" class="form-control form-control-number input-sm" placeholder="Minutes" ng-model="exception.quantity.minutes" ui-number-mask="0" max="59">
                             </td>
-                            <td colspan="2" ng-if="exception.option == 'Punches Before' || exception.option == 'Punches After'" class="text-center">
+                            <td colspan="2" ng-if="exception.option == 'Punches Before Time' || exception.option == 'Punches After Time'" class="text-center">
                                 <div uib-timepicker ng-model="exception.time" show-spinners="false"></div>
                             </td>
+                            <td colspan="2" ng-if="exception.option == 'Punches on Date'" class="text-center">
+                                <p class="input-group input-group-sm" style="margin: 0;">
+                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="exception.date" is-open="exception.opened" datepicker-options="datepicker.options" close-text="Close" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="showDatepicker(exception)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+                            </td>
                             <td class="text-center">
-                                <select class="form-control input-sm" ng-options="rate.Name for rate in baseRates" ng-model="exception.baseRate" ng-change="refreshAlternateRates(exception)"></select>
+                                <select class="form-control input-sm" ng-options="rate.Name for rate in basePayrollRates" ng-model="exception.baseRate" ng-change="refreshAlternateRates(exception)"></select>
                             </td>
                             <td class="text-center">
                                 <select class="form-control input-sm" ng-options="rate.Name for rate in exception.alternateRates" ng-model="exception.alternateRate"></select>
                             </td>
-                            <td class="text-center" style="vertical-align: middle; font-size: 1.5em;">
-                                <a href="" ng-click="removeException($index)"><i class="fa fa-times-circle-o text-danger" aria-hidden="true"></i></a>
+                            <td class="text-center" style="vertical-align: middle; font-size: 1.25em;">
+                                <a href="" ng-click="removePayrollException($index)"><i class="fa fa-times-circle-o text-danger" aria-hidden="true"></i></a>
                             </td>
+                        </tr>
+                        <tr ng-if="payrollExceptions.length == 0">
+                            <td colspan="6">No Exceptions Yet</td>
                         </tr>
                     </tbody>
                 </table>
         
-                <p><a href="" ng-click="addException()">Add Exception</a></p>
+                <p><a href="" ng-click="addPayrollException()">Add Exception</a></p>
             </uib-tab>
             <uib-tab index="1" heading="Service Rates">
                 <p style="margin-top: 1em;"><strong>Base Rates</strong></p>
@@ -81,27 +89,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1000 - Consulting</td>
-                            <td>Regular Hourly</td>
-                        </tr>
-                        <tr>
-                            <td>1001 - Coding</td>
-                            <td>Regular Hourly</td>
+                        <tr ng-repeat="task in tasks">
+                            <td>{{task.Number}} - {{task.Name}}</td>
+                            <td>{{task.BaseServiceRate.Name}}</td>
                         </tr>
                     </tbody>
                 </table>
         
                 <p><strong>Exceptions</strong></p>
         
-                <p><a href="">Add Exception</a></p>
+                <p><a href="" ng-click="addServiceException()">Add Exception</a></p>
             </uib-tab>
         </uib-tabset>
 
         <p class="text-danger" style="margin-top: 2em;">NOTE: This operation is permanent. Populate rates cannot be reversed. However, you can run Populate Rates multiple times and old rates will be overwritten.</p style="margin-top: 1em;">
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="submit" ng-disabled="working.save">OK</button>
+        <button class="btn btn-primary" type="submit" ng-disabled="working.save">Populate</button>
         <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
     </div>
 </form>
