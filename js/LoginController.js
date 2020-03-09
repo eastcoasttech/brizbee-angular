@@ -89,26 +89,36 @@ app.controller('LoginController', function ($cookies, $http, $location, $rootSco
             .then(response => {
                 // User exists, redirect to status
 
-                // Set the cookie
+                // Set the cookies for auth
                 $cookies.put('BRIZBEE_AUTH_USER_ID', response.data.AuthUserId)
                 $cookies.put('BRIZBEE_AUTH_EXPIRATION', response.data.AuthExpiration)
                 $cookies.put('BRIZBEE_AUTH_TOKEN', response.data.AuthToken)
 
+                // Apply the http headers
                 $http.defaults.headers.common = {
                     'AUTH_USER_ID': response.data.AuthUserId,
                     'AUTH_EXPIRATION': response.data.AuthExpiration,
                     'AUTH_TOKEN': response.data.AuthToken
                 }
 
-                $http.get($rootScope.baseUrl + "/odata/Users(" + response.data.AuthUserId + ")?$expand=Organization")
-                    .then(response2 => {
-                        $rootScope.current.user = response2.data
-                    }, error2 => {
-                        $scope.working.login = false
-                        console.error(error2)
-                    })
+                // Auth is used and links and such
+                $rootScope.auth = {}
+                $rootScope.auth.userId = $cookies.get('BRIZBEE_AUTH_USER_ID')
+                $rootScope.auth.expiration = $cookies.get('BRIZBEE_AUTH_EXPIRATION')
+                $rootScope.auth.token = $cookies.get('BRIZBEE_AUTH_TOKEN')
 
-                $location.path('/status')
+                // Get the user details
+                $http.get($rootScope.baseUrl + "/odata/Users(" + response.data.AuthUserId + ")?$expand=Organization")
+                .then(response2 => {
+                    $rootScope.current.user = response2.data
+                    $location.path('/status')
+
+                    // Reset the document title, in case the session expired
+                    $(document).prop('title', 'Dashboard - BRIZBEE')
+                }, error2 => {
+                    $scope.working.login = false
+                    console.error(error2)
+                })
             }, error => {
                 $scope.working.login = false
                 $scope.messages.error = error.data.error.message
