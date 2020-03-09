@@ -58,7 +58,7 @@ app.controller('QBDExportsController', function ($http, $rootScope, $scope, $uib
     $scope.refreshExports = function () {
         $scope.exports = []
         $scope.loading.exports = true
-        $http.get($rootScope.baseUrl + "/odata/QuickBooksDesktopExports?$count=true&$expand=Commit,CreatedByUser,ReversedByUser&$top=20&$skip=" + $scope.exportsPageStart + "&$orderby=" + $scope.sortType + " " + $scope.sortDirection)
+        $http.get($rootScope.baseUrl + "/odata/QuickBooksDesktopExports?$count=true&$expand=Commit,User&$top=20&$skip=" + $scope.exportsPageStart + "&$orderby=" + $scope.sortType + " " + $scope.sortDirection)
             .then(response => {
                 $scope.loading.exports = false
                 $scope.exports = response.data.value
