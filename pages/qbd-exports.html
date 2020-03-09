@@ -1,0 +1,147 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#!/status">
+                <img alt="BRIZBEE Logo" src="/images/icon-32x32.png" style="height: 22px;">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#!/status"><i class="fa fa-id-badge" aria-hidden="true"></i> Status</a></li>
+                <li ng-show="current.user.Role == 'Administrator'" class="active"><a href="#!/punches"><i class="fa fa-clock-o" aria-hidden="true"></i> Time <span class="sr-only">(current)</span></a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/jobs"><i class="fa fa-truck" aria-hidden="true"></i> Jobs and Customers</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/reports"><i class="fa fa-line-chart" aria-hidden="true"></i> Reports</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/users"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navbar-phone"><a href="tel:1-888-930-3044">Punch In or Out @ 1-888-930-3044</a></li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{current.user.Name}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#!/my/user">Account Details</a></li>
+                        <li ng-show="current.user.Role == 'Administrator'"><a href="#!/my/organization">Organization Details</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="" ng-click="logout()">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="#!/punches">Punches</a></li>
+        <li role="presentation"><a href="#!/timesheets">Manual Entries</a></li>
+        <li role="presentation"><a href="#!/commits">Commits</a></li>
+        <li role="presentation" class="active"><a href="#!/qbo-exports">Export History</a></li>
+    </ul>
+
+    <hr />
+
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="#!/qbo-exports">QuickBooks Online Exports</a></li>
+        <li role="presentation" class="active"><a href="#!/qbd-exports">QuickBooks Desktop Exports</a></li>
+    </ul>
+
+    <hr />
+
+    <!--Toolbar-->
+    <div class="row row-toolbar">
+        <div class="col-md-6">
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" ng-click="refreshExports()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--List of Exports-->
+    <table class="table table-bordered table-condensed">
+        <thead>
+            <tr>
+                <th class="col-md-2">
+                    <a href="" ng-click="setSortType('CreatedByUser/Name')">
+                        Exported By
+                        <span ng-show="(sortType == 'CreatedByUser/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'CreatedByUser/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                    </a>
+                </th>
+                <th class="col-md-2">
+                    <a href="" ng-click="setSortType('CreatedAt')">
+                        Exported At
+                        <span ng-show="(sortType == 'CreatedAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'CreatedAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                    </a>
+                </th>
+                <th class="col-md-1">
+                    Commit Id
+                </th>
+                <th class="col-md-1">
+                    <a href="" ng-click="setSortType('Commit/InAt')">
+                        In
+                        <span ng-show="(sortType == 'Commit/InAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'Commit/InAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                    </a>
+                </th>
+                <th class="col-md-1">
+                    <a href="" ng-click="setSortType('Commit/OutAt')">
+                        Out
+                        <span ng-show="(sortType == 'Commit/OutAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'Commit/OutAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                    </a>
+                </th>
+                <th class="col-md-2">
+                    <a href="" ng-click="setSortType('ReversedByUser/Name')">
+                        Reversed By
+                        <span ng-show="(sortType == 'ReversedByUser/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'ReversedByUser/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                    </a>
+                </th>
+                <th class="col-md-2">
+                    <a href="" ng-click="setSortType('ReversedAt')">
+                        Reversed At
+                        <span ng-show="(sortType == 'ReversedAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'ReversedAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                    </a>
+                </th>
+                <th class="col-md-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="export in exports">
+                <td>{{export.CreatedByUser.Name}}</td>
+                <td>{{formatMomentFromDate(export.CreatedAt, 'YYYY-MM-DD h:mma')}}</td>
+                <td>{{export | exportGuid}}</td>
+                <td>{{formatMomentFromDate(export.Commit.InAt, 'YYYY-MM-DD')}}</td>
+                <td>{{formatMomentFromDate(export.Commit.OutAt, 'YYYY-MM-DD')}}</td>
+                <td>{{export.ReversedByUser.Name}}</td>
+                <td><span ng-if="export.ReversedAt">{{formatMomentFromDate(export.ReversedAt, 'YYYY-MM-DD h:mma')}}</span></td>
+                <td class="text-center"><a href="" ng-click="reverse(export)"><i class="fa fa-undo" aria-hidden="true"></i> Reverse</a></td>
+            </tr>
+            <tr ng-show="loading.exports">
+                <td colspan="8"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+            </tr>
+            <tr ng-show="(exports.length == 0) && (!loading.exports)">
+                <td colspan="8">You Have Not Exported Any Time Yet</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <button class="btn btn-sm btn-default" ng-click="exportsPrevious()" ng-show="exportsCount > 20"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+            <button class="btn btn-sm btn-default" ng-click="exportsNext()" ng-show="exportsCount > 20"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+        </div>
+        <div class="col-md-6 text-right">
+            <p class="form-control-static" ng-hide="((exports.length == 0) && (!loading.exports)) || loading.exports">{{exportsStart()}} to {{exportsEnd()}} of {{exportsCount}}</p>
+        </div>
+    </div>
+</div>
