@@ -1,6 +1,6 @@
 app.controller('ApplicationController', function ($cookies, $http, $location, $rootScope, $scope) {
-    // $rootScope.baseUrl = "https://brizbee.gowitheast.com"
-    $rootScope.baseUrl = "http://localhost:54313"
+    $rootScope.baseUrl = "https://brizbee.gowitheast.com"
+    // $rootScope.baseUrl = "http://localhost:54313"
     $rootScope.selected = {}
     $rootScope.current = {}
     $rootScope.range = {
