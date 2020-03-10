@@ -1,4 +1,4 @@
-app.controller('PunchesController', function ($http, $rootScope, $scope, $uibModal, $window) {
+app.controller('PunchesController', function ($http, $location, $rootScope, $scope, $uibModal, $window) {
     $scope.active = 0
     $scope.commits = []
     $scope.datepicker = { in_at: {}, out_at: {}, options: {} }
@@ -215,7 +215,22 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
     }
 
     $scope.showNewCommit = function () {
-        $scope.active = 2
+        var instance = $uibModal.open({
+            templateUrl: '/pages/details/commit.html',
+            controller: 'CommitDetailsController',
+            resolve: {
+                commit: function () {
+                    return {};
+                }
+            }
+        });
+
+        instance.result
+            .then((msg) => {
+                $location.path('/commits')
+            }, () => {
+                // dismissed
+            })
     }
 
     $scope.showNewPunch = function () {
