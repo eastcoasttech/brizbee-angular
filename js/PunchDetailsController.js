@@ -9,6 +9,9 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             OutAt: moment().endOf('day').millisecond(0).toDate(),
             has_out_at: true
         }
+
+        console.log(moment().startOf('day').toDate());
+        console.log(moment().endOf('day').millisecond(0).toDate());
     } else {
         var timedifference = new Date().getTimezoneOffset()
         $scope.punch = angular.copy(punch)
@@ -17,6 +20,9 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             $scope.punch.OutAt = moment(punch.OutAt).add(timedifference, 'm').toDate()
             $scope.punch.has_out_at = true
         }
+
+        console.log(moment(punch.InAt).add(timedifference, 'm').toDate());
+        console.log(moment(punch.OutAt).add(timedifference, 'm').toDate());
     }
     $scope.tasks = []
     $scope.working = { save: false }
@@ -41,9 +47,9 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     };
 
     $scope.saveNewPunch = function () {
-        // var timedifference = new Date().getTimezoneOffset();
+        var timedifference = new Date().getTimezoneOffset();
         var json = {
-            InAt: moment($scope.punch.InAt).toDate(),
+            InAt: moment($scope.punch.InAt).subtract(timedifference, 'm').toDate(),
             InAtTimeZone: $scope.punch.InAtTimeZone,
             SourceForInAt: 'Dashboard',
             TaskId: $scope.punch.task.Id,
@@ -52,7 +58,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
 
         // OutAt is optional when editing manually
         if ($scope.punch.has_out_at) {
-            json.OutAt = moment($scope.punch.OutAt).toDate()
+            json.OutAt = moment($scope.punch.OutAt).subtract(timedifference, 'm').toDate()
             json.OutAtTimeZone = $scope.punch.OutAtTimeZone
             json.SourceForOutAt = 'Dashboard'
         }
