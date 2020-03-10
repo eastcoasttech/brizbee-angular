@@ -78,61 +78,63 @@
     <table class="table table-bordered table-condensed table-supercondensed table-selectable">
         <thead>
             <tr>
-                <th class="col-md-2">
+                <th style="width: 15%;">
                     <a href="" ng-click="setSortType('User/Name')">
                         User
                         <span ng-show="(sortType == 'User/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'User/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th class="col-md-1">
+                <th style="width: 10%;">
                     <a href="" ng-click="setSortType('InAt')">
                         In
                         <span ng-show="(sortType == 'InAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'InAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th class="col-md-1">
+                <th style="width: 10%;">
                     <a href="" ng-click="setSortType('OutAt')">
                         Out
                         <span ng-show="(sortType == 'OutAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'OutAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th class="col-md-2">
+                <th style="width: 15%;">
                     <a href="" ng-click="setSortType('Task/Job/Customer/Name')">
                         Customer
                         <span ng-show="(sortType == 'Task/Job/Customer/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'Task/Job/Customer/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th class="col-md-2">
+                <th style="width: 15%;">
                     <a href="" ng-click="setSortType('Task/Job/Name')">
                         Job
                         <span ng-show="(sortType == 'Task/Job/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'Task/Job/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th class="col-md-2">
+                <th style="width: 10%;">
                     <a href="" ng-click="setSortType('Task/Name')">
                         Task
                         <span ng-show="(sortType == 'Task/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'Task/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th class="col-md-1">
+                <th style="width: 10%;">
                     <a href="" ng-click="setSortType('PayrollRate/Name')">
                         Payroll Rate
                         <span ng-show="(sortType == 'PayrollRate/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'PayrollRate/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th class="col-md-1">
+                <th style="width: 10%;">
                     <a href="" ng-click="setSortType('ServiceRate/Name')">
                         Service Rate
                         <span ng-show="(sortType == 'ServiceRate/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'ServiceRate/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
+                </th>
+                <th style="width: 5%;">
                 </th>
             </tr>
         </thead>
@@ -149,13 +151,13 @@
                 <td><a href="">{{punch.Task.Number}} &ndash; {{punch.Task.Name}}</a></td>
                 <td><a href="">{{punch.ServiceRate.Name}}</a></td>
                 <td><a href="">{{punch.PayrollRate.Name}}</a></td>
-                <!-- <td class="text-center"><i class="fa fa-lock" aria-hidden="true" ng-if="punch.CommitId != null"></i></td> -->
+                <td class="text-center"><i class="fa fa-lock" aria-hidden="true" ng-if="punch.CommitId != null"></i></td>
             </tr>
             <tr ng-show="loading.punches">
-                <td colspan="8"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+                <td colspan="9"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
             </tr>
             <tr ng-show="(punches.length == 0) && (!loading.punches)">
-                <td colspan="8">No Punches for the Selected Date Range</td>
+                <td colspan="9">No Punches for the Selected Date Range</td>
             </tr>
         </tbody>
     </table>
