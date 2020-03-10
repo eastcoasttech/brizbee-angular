@@ -3,18 +3,14 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     $scope.datepicker = { InAt: {}, OutAt: {}, options: {} }
     $scope.jobs = []
     $scope.loading = { customers: false, jobs: false, tasks: false }
-    $scope.tasks = []
-    $scope.working = { save: false }
-    
-    var timedifference = new Date().getTimezoneOffset()
-
     if (punch.Id == null) {
         $scope.punch = {
-            InAt: moment().startOf('day').add(timedifference, 'm').toDate(),
-            OutAt: moment().endOf('day').millisecond(0).add(timedifference, 'm').toDate(),
+            InAt: moment().startOf('day').toDate(),
+            OutAt: moment().endOf('day').millisecond(0).toDate(),
             has_out_at: true
         }
     } else {
+        var timedifference = new Date().getTimezoneOffset()
         $scope.punch = angular.copy(punch)
         $scope.punch.InAt = moment(punch.InAt).add(timedifference, 'm').toDate()
         if ($scope.punch.OutAt != null) {
@@ -22,6 +18,8 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             $scope.punch.has_out_at = true
         }
     }
+    $scope.tasks = []
+    $scope.working = { save: false }
 
     $scope.delete = function () {
         if (confirm("Are you sure you want to delete this punch?")) {
@@ -43,9 +41,9 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     };
 
     $scope.saveNewPunch = function () {
-        var timedifference = new Date().getTimezoneOffset();
+        // var timedifference = new Date().getTimezoneOffset();
         var json = {
-            InAt: moment($scope.punch.InAt).subtract(timedifference, 'm').toDate(),
+            InAt: moment($scope.punch.InAt).toDate(),
             InAtTimeZone: $scope.punch.InAtTimeZone,
             SourceForInAt: 'Dashboard',
             TaskId: $scope.punch.task.Id,
@@ -54,7 +52,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
 
         // OutAt is optional when editing manually
         if ($scope.punch.has_out_at) {
-            json.OutAt = moment($scope.punch.OutAt).subtract(timedifference, 'm').toDate()
+            json.OutAt = moment($scope.punch.OutAt).toDate()
             json.OutAtTimeZone = $scope.punch.OutAtTimeZone
             json.SourceForOutAt = 'Dashboard'
         }
