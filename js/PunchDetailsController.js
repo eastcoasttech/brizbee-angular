@@ -5,13 +5,13 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     $scope.loading = { customers: false, jobs: false, tasks: false }
     if (punch.Id == null) {
         $scope.punch = {
-            InAt: moment().startOf('day').toDate(),
-            OutAt: moment().endOf('day').millisecond(0).toDate(),
+            InAt: moment().startOf('day').utc().toDate(),
+            OutAt: moment().endOf('day').utc().millisecond(0).toDate(),
             has_out_at: true
         }
 
-        console.log(moment().startOf('day').toDate());
-        console.log(moment().endOf('day').millisecond(0).toDate());
+        console.log(moment().startOf('day').utc().toDate());
+        console.log(moment().endOf('day').utc().millisecond(0).toDate());
     } else {
         var timedifference = new Date().getTimezoneOffset()
         $scope.punch = angular.copy(punch)
