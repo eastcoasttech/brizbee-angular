@@ -11,6 +11,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         }
     } else {
         var timedifference = new Date().getTimezoneOffset()
+        console.log(timedifference)
         $scope.punch = angular.copy(punch)
         $scope.punch.InAt = moment(punch.InAt).add(timedifference, 'm').toDate()
         if ($scope.punch.OutAt != null) {
