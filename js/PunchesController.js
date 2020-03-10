@@ -110,7 +110,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         });
 
         instance.result
-            .then((msg) => {
+            .then(() => {
                 $scope.refreshPunches()
             }, () => {
                 // dismissed
@@ -230,8 +230,7 @@ app.controller('PunchesController', function ($http, $rootScope, $scope, $uibMod
         });
 
         instance.result
-            .then((msg) => {
-                console.log(msg)
+            .then(() => {
                 $scope.refreshPunches()
             }, () => {
                 // dismissed

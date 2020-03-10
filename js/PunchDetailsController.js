@@ -3,31 +3,31 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     $scope.datepicker = { InAt: {}, OutAt: {}, options: {} }
     $scope.jobs = []
     $scope.loading = { customers: false, jobs: false, tasks: false }
+    $scope.tasks = []
+    $scope.working = { save: false }
+
     if (punch.Id == null) {
+        // var startOfDay = moment().startOf('day').millisecond(0);
+        // var startOfDayAsDate = new Date(startOfDay.year(), startOfDay.month(), startOfDay.date(), startOfDay.hour(), startOfDay.minute(), 0, 0);
+        
+        // var endOfDay = moment().endOf('day').millisecond(0);
+        // var endOfDayAsDate = new Date(endOfDay.year(), endOfDay.month(), endOfDay.date(), endOfDay.hour(), endOfDay.minute(), 0, 0);
+
         $scope.punch = {
-            InAt: moment().startOf('day').toDate(),
+            InAt: moment().startOf('day').millisecond(0).toDate(),
             OutAt: moment().endOf('day').millisecond(0).toDate(),
             has_out_at: true
         }
-
-        console.log(moment().startOf('day'));
-        console.log(moment().startOf('day').toDate());
-        console.log(moment().endOf('day').millisecond(0));
-        console.log(moment().endOf('day').millisecond(0).toDate());
     } else {
-        var timedifference = new Date().getTimezoneOffset()
+        var timedifference = new Date().getTimezoneOffset(); // Offset the browser time
+
         $scope.punch = angular.copy(punch)
         $scope.punch.InAt = moment(punch.InAt).add(timedifference, 'm').toDate()
         if ($scope.punch.OutAt != null) {
             $scope.punch.OutAt = moment(punch.OutAt).add(timedifference, 'm').toDate()
             $scope.punch.has_out_at = true
         }
-
-        console.log(moment(punch.InAt).add(timedifference, 'm').toDate());
-        console.log(moment(punch.OutAt).add(timedifference, 'm').toDate());
     }
-    $scope.tasks = []
-    $scope.working = { save: false }
 
     $scope.delete = function () {
         if (confirm("Are you sure you want to delete this punch?")) {
@@ -49,9 +49,8 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     };
 
     $scope.saveNewPunch = function () {
-        var timedifference = new Date().getTimezoneOffset();
         var json = {
-            InAt: moment($scope.punch.InAt).subtract(timedifference, 'm').toDate(),
+            InAt: moment($scope.punch.InAt).format('YYYY-MM-DDTHH:mm:00') + 'Z',
             InAtTimeZone: $scope.punch.InAtTimeZone,
             SourceForInAt: 'Dashboard',
             TaskId: $scope.punch.task.Id,
@@ -60,9 +59,9 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
 
         // OutAt is optional when editing manually
         if ($scope.punch.has_out_at) {
-            json.OutAt = moment($scope.punch.OutAt).subtract(timedifference, 'm').toDate()
-            json.OutAtTimeZone = $scope.punch.OutAtTimeZone
-            json.SourceForOutAt = 'Dashboard'
+            json.OutAt = moment($scope.punch.OutAt).format('YYYY-MM-DDTHH:mm:00') + 'Z';
+            json.OutAtTimeZone = $scope.punch.OutAtTimeZone;
+            json.SourceForOutAt = 'Dashboard';
         }
 
         if (confirm("Are you sure you want to save this new punch?")) {
@@ -106,11 +105,11 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     };
 
     $scope.ok = function () {
-        $uibModalInstance.close('Success')
+        $uibModalInstance.close()
     };
 
     $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel')
+        $uibModalInstance.dismiss()
     }
 
     $scope.refreshCustomers = function () {
