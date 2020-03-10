@@ -3,15 +3,18 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     $scope.datepicker = { InAt: {}, OutAt: {}, options: {} }
     $scope.jobs = []
     $scope.loading = { customers: false, jobs: false, tasks: false }
+    $scope.tasks = []
+    $scope.working = { save: false }
+    
+    var timedifference = new Date().getTimezoneOffset()
+
     if (punch.Id == null) {
         $scope.punch = {
-            InAt: moment().startOf('day').toDate(),
-            OutAt: moment().endOf('day').millisecond(0).toDate(),
+            InAt: moment().startOf('day').add(timedifference, 'm').toDate(),
+            OutAt: moment().endOf('day').millisecond(0).add(timedifference, 'm').toDate(),
             has_out_at: true
         }
     } else {
-        var timedifference = new Date().getTimezoneOffset()
-        console.log(timedifference)
         $scope.punch = angular.copy(punch)
         $scope.punch.InAt = moment(punch.InAt).add(timedifference, 'm').toDate()
         if ($scope.punch.OutAt != null) {
@@ -19,8 +22,6 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             $scope.punch.has_out_at = true
         }
     }
-    $scope.tasks = []
-    $scope.working = { save: false }
 
     $scope.delete = function () {
         if (confirm("Are you sure you want to delete this punch?")) {
