@@ -1,0 +1,60 @@
+<div class="modal-header">
+    <h3 class="modal-title" ng-if="rate.Id == null">New Rate</h3>
+    <h3 class="modal-title" ng-if="rate.Id != null">Edit Rate</h3>
+</div>
+<form name="rateForm" ng-submit="save()" autocomplete="off" novalidate>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="rate_name" class="form-control" ng-model="rate.Name" ng-disabled="working.save" placeholder="Ex. Regular Hourly" required autofocus />
+                    <p ng-show="rateForm.rate_name.$invalid && rateForm.rate_name.$submitted" class="text-danger">The rate name is required.</p>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="rate_type" ng-model="rate.Type" value="Payroll" ng-change="refreshRates()" />
+                        Payroll Rate
+                    </label>
+                    <p>
+                        <small>Employees will be paid this rate for any punches whose task specifies this rate.</small>
+                    </p>
+                    <label>
+                        <input type="radio" name="rate_type" ng-model="rate.Type" value="Service" ng-change="refreshRates()" />
+                        Service Rate
+                    </label>
+                    <p>
+                        <small>Customers will be charged this rate for any punches whose task specifies this rate.</small>
+                    </p>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="rate_scope" ng-model="rate.Scope" value="Base" />
+                        Base Rate
+                    </label>
+                    <p>
+                        <small>Ex. Regular Hourly for Payroll Rate, Regular Consulting for Service Rate</small>
+                    </p>
+                    <label>
+                        <input type="radio" name="rate_scope" ng-model="rate.Scope" value="Alternate" />
+                        Alternate Rate
+                    </label>
+                    <p>
+                        <small>Ex. Overtime Hourly for Payroll Rate, Overtime Consulting for Service Rate</small>
+                    </p>
+                    <div class="form-group">
+                        <label>Base Rate</label>
+                        <select class="form-control" ng-model="rate.ParentRate" ng-options="rate.Name for rate in rates" ng-required="rate.Scope == 'Alternate'" ng-disabled="working.save || rate.Scope == 'Base'"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save" ng-if="rate.Id">Delete</button>
+        <button class="btn btn-primary" type="submit" ng-disabled="working.save || rateForm.$invalid">OK</button>
+        <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.save">Cancel</button>
+    </div>
+</form>

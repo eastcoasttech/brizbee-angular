@@ -98,6 +98,10 @@ app.config(function ($routeProvider, localStorageServiceProvider) {
             templateUrl: '/pages/register.html',
             controller: 'RegisterController'
         }).
+        when('/rates', {
+            templateUrl: '/pages/rates.html',
+            controller: 'RatesController'
+        }).
         when('/reports', {
             templateUrl: '/pages/reports.html',
             controller: 'ReportsController'

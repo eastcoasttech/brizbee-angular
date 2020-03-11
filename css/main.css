@@ -349,3 +349,8 @@ table.uib-timepicker tr td button {
     border-radius: 0;
     margin-left: 4px;
 }
+
+.alert-sm {
+    font-size: 12px;
+    padding: 7px;
+}
