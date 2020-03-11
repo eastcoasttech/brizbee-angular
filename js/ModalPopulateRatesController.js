@@ -1,13 +1,12 @@
 app.controller('ModalPopulateRatesController', function ($http, $rootScope, $scope, $timeout, $uibModalInstance) {
-  // $scope.exceptions = [{ option: 'Punches Before', time: moment().startOf('day').add('17', 'h').toDate() }];
   $scope.basePayrollRates = [];
   $scope.alternatePayrollRates = [];
   $scope.exceptions = [];
   $scope.timepicker = { hstep: 1, mstep: 1 };
+  $scope.datepicker = {};
 
   $scope.addException = function () {
-    // $scope.exceptions.push({ option: 'Punches Before', time: moment().startOf('day').add('17', 'h').toDate() });
-    $scope.exceptions.push({ option: 'After Hours/Minutes in Range', hour: 40, BasePayrollRate: $scope.basePayrollRates[0] });
+    $scope.exceptions.push({ option: 'After Hours/Minutes in Range', hour: 40, BasePayrollRate: $scope.basePayrollRates[0], Date: new Date() });
 
     // Trigger the alternate rate to set default
     $scope.selectAlternateRate($scope.exceptions[$scope.exceptions.length - 1]);

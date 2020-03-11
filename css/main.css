@@ -27,6 +27,10 @@ table.table-supercondensed {
     font-size: 95%;
 }
 
+table.table-supercondensed tr td {
+    padding: 3px;
+}
+
 table.table-noborder {
     border: none;
 }

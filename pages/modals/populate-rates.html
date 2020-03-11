@@ -50,6 +50,7 @@
                                     <option>Punches After</option>
                                     <option>After Hours/Minutes Per Day</option>
                                     <option>After Hours/Minutes in Range</option>
+                                    <option>Punches on Specific Date</option>
                                 </select>
                             </td>
                             <td ng-if="exception.option == 'After Hours/Minutes Per Day' || exception.option == 'After Hours/Minutes in Range'" class="text-center">
@@ -60,6 +61,14 @@
                             </td>
                             <td colspan="2" ng-if="exception.option == 'Punches Before' || exception.option == 'Punches After'" class="text-center">
                                 <div uib-timepicker ng-model="exception.time" show-spinners="false"></div>
+                            </td>
+                            <td colspan="2" ng-if="exception.option == 'Punches on Specific Date'" class="text-center">
+                                <p class="input-group input-group-sm">
+                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="exception.Date" is-open="datepicker[$index].opened" datepicker-options="datepicker[$index].options" close-text="Close" />
+                                    <span class="input-group-btn input-group-btn-sm">
+                                        <button type="button" class="btn btn-default" ng-click="datepicker[$index].opened = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
                             </td>
                             <td class="text-center">
                                 <select class="form-control input-sm" ng-model="exception.BasePayrollRate" ng-options="rate.Name for rate in basePayrollRates" ng-change="selectAlternateRate(exception)">
