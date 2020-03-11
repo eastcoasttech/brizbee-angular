@@ -3,10 +3,13 @@
 </div>
 <form ng-submit="ok()">
     <div class="modal-body">
+        <p>
+            This function will populate the Payroll and Service Rates for the uncommited punches in the date range you have selected. Please note, only <strong>uncommitted punches</strong> will be populated.
+        </p>
         <uib-tabset>
             <uib-tab index="0" heading="Payroll Rates">
                 <p style="margin-top: 1em;"><strong>Base Rates</strong></p style="margin-top: 1em;">
-                <div class="alert alert-sm alert-warning" role="alert">These are the base rates for the punches you selected.</div>
+                <div class="alert alert-sm alert-info" role="alert">These are the base rates for the punches you selected.</div>
                 <table class="table table-bordered table-condensed table-supercondensed">
                     <thead>
                         <tr>
@@ -102,10 +105,10 @@
             </uib-tab>
         </uib-tabset>
 
-        <p class="text-danger" style="margin-top: 2em;">NOTE: This operation is permanent. Populate rates cannot be reversed. However, you can run Populate Rates multiple times and old rates will be overwritten.</p style="margin-top: 1em;">
+        <div class="alert alert-sm alert-info" role="alert"><strong>This operation is permanent and cannot be reversed.</strong> However, you can run Populate Rates multiple times and the rates will be overwritten.</div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="submit" ng-disabled="working.save">OK</button>
+        <button class="btn btn-primary" type="submit" ng-disabled="working.save">Perform Populate</button>
         <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
     </div>
 </form>
