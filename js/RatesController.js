@@ -9,7 +9,7 @@ app.controller('RatesController', function ($http, $rootScope, $scope, $uibModal
     $scope.refreshRates = function () {
         $scope.rates = []
         $scope.loading.rates = true
-        $http.get($rootScope.baseUrl + "/odata/Rates?$count=true&$orderby=Name&$expand=ParentRate")
+        $http.get($rootScope.baseUrl + "/odata/Rates?$count=true&$orderby=Type,Name&$expand=ParentRate")
             .then(response => {
                 $scope.loading.rates = false
                 $scope.ratesCount = response.data["@odata.count"]

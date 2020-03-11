@@ -70,9 +70,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="rate in rates" class="clickable" ng-click="showEditRate(rate)">
+            <tr ng-repeat="rate in rates" class="selectable" ng-click="showEditRate(rate)">
                 <td><a href="">{{rate.Name}}</a></td>
-                <td>{{rate.Type}}</td>
+                <td>
+                    <span ng-if="rate.Type == 'Payroll'"><i class="fa fa-money" aria-hidden="true" style="margin-right: 5px;"></i> {{rate.Type}}</span>
+                    <span ng-if="rate.Type == 'Service'"><i class="fa fa-handshake-o" aria-hidden="true" style="margin-right: 5px;"></i> {{rate.Type}}</span>
+                </td>
                 <td><span ng-if="rate.ParentRateId">{{rate.ParentRate.Name}}</span></td>
             </tr>
             <tr ng-show="loading.rates">
