@@ -359,3 +359,11 @@ table.uib-timepicker tr td button {
     padding: 7px;
     margin-bottom: 10px;
 }
+
+.tabset-rates .tab-content .tab-pane {
+    -webkit-animation: fadeIn 0.25s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadeIn 0.25s; /* Firefox < 16 */
+    -ms-animation: fadeIn 0.25s; /* Internet Explorer */
+    -o-animation: fadeIn 0.25s; /* Opera < 12.1 */
+    animation: fadeIn 0.25s;
+}

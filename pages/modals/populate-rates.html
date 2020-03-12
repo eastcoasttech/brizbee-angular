@@ -6,7 +6,7 @@
         <p>
             This function will populate the Payroll and Service Rates for the uncommited punches in the date range you have selected. Please note, only <strong>uncommitted punches</strong> will be populated.
         </p>
-        <uib-tabset>
+        <uib-tabset class="tabset-rates">
             <uib-tab index="0" heading="Payroll Rates">
                 <p style="margin-top: 1em;"><strong>Base Rates</strong></p style="margin-top: 1em;">
                 <div class="alert alert-sm alert-info" role="alert">These are the base rates for the punches you selected. All of the punches in the date range will be populated with these rates unless specified otherwise below.</div>
@@ -86,6 +86,8 @@
                 </table>
         
                 <p><a href="" ng-click="addPayrollException()">Add Exception</a></p>
+
+                <div class="alert alert-sm alert-info" role="alert"><strong>This operation is permanent and cannot be reversed.</strong> However, you can run Populate Rates multiple times and the rates will be overwritten.</div>
             </uib-tab>
             <uib-tab index="1" heading="Service Rates">
                 <p style="margin-top: 1em;"><strong>Base Rates</strong></p style="margin-top: 1em;">
@@ -166,10 +168,10 @@
                 </table>
         
                 <p><a href="" ng-click="addServiceException()">Add Exception</a></p>
+                
+        <div class="alert alert-sm alert-info" role="alert"><strong>This operation is permanent and cannot be reversed.</strong> However, you can run Populate Rates multiple times and the rates will be overwritten.</div>
             </uib-tab>
         </uib-tabset>
-
-        <div class="alert alert-sm alert-info" role="alert"><strong>This operation is permanent and cannot be reversed.</strong> However, you can run Populate Rates multiple times and the rates will be overwritten.</div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary" type="submit" ng-disabled="working.save">Perform Populate</button>
