@@ -9,7 +9,7 @@
         <uib-tabset>
             <uib-tab index="0" heading="Payroll Rates">
                 <p style="margin-top: 1em;"><strong>Base Rates</strong></p style="margin-top: 1em;">
-                <div class="alert alert-sm alert-info" role="alert">These are the base rates for the punches you selected.</div>
+                <div class="alert alert-sm alert-info" role="alert">These are the base rates for the punches you selected. All of the punches in the date range will be populated with these rates unless specified otherwise below.</div>
                 <table class="table table-bordered table-condensed table-supercondensed">
                     <thead>
                         <tr>
@@ -39,7 +39,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="exception in exceptions track by $index">
+                        <tr ng-repeat="exception in payrollExceptions track by $index">
                             <td class="text-center" style="vertical-align: middle; font-size: 1.5em;">
                                 <a href="" ng-click="movePayrollExceptionUp($index)" title="Move Priority Up"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
                                 <a href="" ng-click="movePayrollExceptionDown($index)" title="Move Priority Down"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
@@ -71,7 +71,7 @@
                                 </p>
                             </td>
                             <td class="text-center">
-                                <select class="form-control input-sm" ng-model="exception.BasePayrollRate" ng-options="rate.Name for rate in basePayrollRates" ng-change="selectAlternateRate(exception)">
+                                <select class="form-control input-sm" ng-model="exception.BasePayrollRate" ng-options="rate.Name for rate in basePayrollRates" ng-change="selectPayrollAlternateRate(exception)">
                                 </select>
                             </td>
                             <td class="text-center">
@@ -79,16 +79,17 @@
                                 </select>
                             </td>
                             <td class="text-center" style="vertical-align: middle; font-size: 1.5em;">
-                                <a href="" ng-click="removeException($index)" title="Remove Exception"><i class="fa fa-times-circle-o text-danger" aria-hidden="true"></i></a>
+                                <a href="" ng-click="removePayrollException($index)" title="Remove Exception"><i class="fa fa-times-circle-o text-danger" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
         
-                <p><a href="" ng-click="addException()">Add Exception</a></p>
+                <p><a href="" ng-click="addPayrollException()">Add Exception</a></p>
             </uib-tab>
             <uib-tab index="1" heading="Service Rates">
-                <p style="margin-top: 1em;"><strong>Base Rates</strong></p>
+                <p style="margin-top: 1em;"><strong>Base Rates</strong></p style="margin-top: 1em;">
+                <div class="alert alert-sm alert-info" role="alert">These are the base rates for the punches you selected. All of the punches in the date range will be populated with these rates unless specified otherwise below.</div>
                 <table class="table table-bordered table-condensed table-supercondensed">
                     <thead>
                         <tr>
@@ -97,20 +98,74 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1000 - Consulting</td>
-                            <td>Regular Hourly</td>
+                        <tr ng-repeat="task in tasks">
+                            <td>{{task.Number}} &ndash; {{task.Name}}</td>
+                            <td>{{task.BaseServiceRate.Name}}</td>
                         </tr>
+                    </tbody>
+                </table>
+                
+                <p><strong>Exceptions</strong></p>
+
+                <table class="table table-bordered table-condensed table-supercondensed">
+                    <thead>
                         <tr>
-                            <td>1001 - Coding</td>
-                            <td>Regular Hourly</td>
+                            <th style="width: 6%;"></th>
+                            <th style="width: 24%;">Option</th>
+                            <th style="width: 20%;" colspan="2">Parameter</th>
+                            <th style="width: 22%;">Match Base Rate</th>
+                            <th style="width: 22%;">Set Alternate Rate</th>
+                            <th style="width: 4%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="exception in serviceExceptions track by $index">
+                            <td class="text-center" style="vertical-align: middle; font-size: 1.5em;">
+                                <a href="" ng-click="moveServiceExceptionUp($index)" title="Move Priority Up"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+                                <a href="" ng-click="moveServiceExceptionDown($index)" title="Move Priority Down"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            </td>
+                            <td>
+                                <select class="form-control input-sm" ng-model="exception.option">
+                                    <option>Punches Before</option>
+                                    <option>Punches After</option>
+                                    <option>After Hours/Minutes Per Day</option>
+                                    <option>After Hours/Minutes in Range</option>
+                                    <option>Punches on Specific Date</option>
+                                </select>
+                            </td>
+                            <td ng-if="exception.option == 'After Hours/Minutes Per Day' || exception.option == 'After Hours/Minutes in Range'" class="text-center">
+                                <input type="text" class="form-control form-control-number input-sm" placeholder="Hours" ng-model="exception.hour">
+                            </td>
+                            <td ng-if="exception.option == 'After Hours/Minutes Per Day' || exception.option == 'After Hours/Minutes in Range'" class="text-center">
+                                <input type="text" class="form-control form-control-number input-sm" placeholder="Minutes" ng-model="exception.minute">
+                            </td>
+                            <td colspan="2" ng-if="exception.option == 'Punches Before' || exception.option == 'Punches After'" class="text-center">
+                                <div uib-timepicker ng-model="exception.time" show-spinners="false"></div>
+                            </td>
+                            <td colspan="2" ng-if="exception.option == 'Punches on Specific Date'" class="text-center">
+                                <p class="input-group input-group-sm">
+                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="exception.Date" is-open="datepicker[$index].opened" datepicker-options="datepicker[$index].options" close-text="Close" />
+                                    <span class="input-group-btn input-group-btn-sm">
+                                        <button type="button" class="btn btn-default" ng-click="datepicker[$index].opened = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+                            </td>
+                            <td class="text-center">
+                                <select class="form-control input-sm" ng-model="exception.BaseServiceRate" ng-options="rate.Name for rate in baseServiceRates" ng-change="selectServiceAlternateRate(exception)">
+                                </select>
+                            </td>
+                            <td class="text-center">
+                                <select class="form-control input-sm" ng-model="exception.AlternateServiceRate" ng-options="rate.Name for rate in alternateServiceRates | filter:filterAlternateRates(exception.BaseServiceRate)">
+                                </select>
+                            </td>
+                            <td class="text-center" style="vertical-align: middle; font-size: 1.5em;">
+                                <a href="" ng-click="removeServiceException($index)" title="Remove Exception"><i class="fa fa-times-circle-o text-danger" aria-hidden="true"></i></a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
         
-                <p><strong>Exceptions</strong></p>
-        
-                <p><a href="">Add Exception</a></p>
+                <p><a href="" ng-click="addServiceException()">Add Exception</a></p>
             </uib-tab>
         </uib-tabset>
 
