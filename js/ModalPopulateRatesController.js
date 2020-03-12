@@ -9,7 +9,7 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
   $scope.datepicker = {};
 
   $scope.addPayrollException = function () {
-    $scope.payrollExceptions.push({ option: 'After Hours/Minutes in Range', hour: 40, BasePayrollRate: $scope.basePayrollRates[0], Date: new Date() });
+    $scope.payrollExceptions.push({ option: 'After Hours/Minutes in Range', hour: 40, BasePayrollRate: $scope.basePayrollRates[0], date: new Date() });
 
     // Trigger the alternate rate to set default
     $scope.selectPayrollAlternateRate($scope.payrollExceptions[$scope.payrollExceptions.length - 1]);
@@ -19,7 +19,7 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
   };
   
   $scope.addServiceException = function () {
-    $scope.serviceExceptions.push({ option: 'After Hours/Minutes in Range', hour: 40, BaseServiceRate: $scope.baseServiceRates[0], Date: new Date() });
+    $scope.serviceExceptions.push({ option: 'After Hours/Minutes in Range', hour: 40, BaseServiceRate: $scope.baseServiceRates[0], date: new Date() });
 
     // Trigger the alternate rate to set default
     $scope.selectServiceAlternateRate($scope.serviceExceptions[$scope.serviceExceptions.length - 1]);
@@ -137,13 +137,68 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
    * Builds payload for populate rate options and sends them to the server.
    */
   $scope.ok = function () {
-    // for (var i = 0; i < $scope.payrollExceptions.length; i++) {
-    //   console.log($scope.payrollExceptions[i]);
-    // }
+    var populateRateOptions = [];
 
-    // for (var i = 0; i < $scope.serviceExceptions.length; i++) {
-    //   console.log($scope.serviceExceptions[i]);
-    // }
+    // Payroll exceptions
+    for (var i = 0; i < $scope.payrollExceptions.length; i++) {
+      var exception = $scope.payrollExceptions[i];
+      var basePayrollRateId = exception.BasePayrollRate.Id;
+      var alternatePayrollRateId = exception.AlternatePayrollRate.Id;
+
+      var option = {
+        BasePayrollRateId: basePayrollRateId,
+        AlternatePayrollRateId: alternatePayrollRateId,
+        Order: i
+      };
+
+      // Build the PopulateRateOption
+      switch (exception.option) {
+        case "Punches Before":
+          option.Type = "range";
+          option.RangeDirection = "before";
+          var time = moment(exception.time);
+          option.RangeMinutes = (parseInt(time.format("HH")) * 60) + parseInt(time.format("mm"));
+          break;
+        case "Punches After":
+          option.Type = "range";
+          option.RangeDirection = "after";
+          var time = moment(exception.time);
+          option.RangeMinutes = (parseInt(time.format("HH")) * 60) + parseInt(time.format("mm"));
+          break;
+        case "After Hours/Minutes in Day":
+          option.Type = "count";
+          option.CountScope = "day";
+          option.CountMinute = (parseInt(exception.hour) * 60) + parseInt(exception.minute);
+          break;
+        case "After Hours/Minutes in Range":
+          option.Type = "count";
+          option.CountScope = "total";
+          option.CountMinute = (parseInt(exception.hour) * 60) + parseInt(exception.minute);
+          break;
+        case "Punches on Specific Date":
+          option.Type = "date";
+          var date = moment(exception.date);
+          option.Date = date.format("YYYY-MM-DD");
+          break;
+      }
+
+      // Add to the list of populate rate options
+      populateRateOptions.push(option);
+    }
+
+    // Service exceptions
+    for (var i = 0; i < $scope.serviceExceptions.length; i++) {
+      var exception = $scope.serviceExceptions[i];
+      var baseServiceRateId = exception.BaseServiceRate.Id;
+      var alternateServiceRateId = exception.AlternateServiceRate.Id;
+      
+      var option = {
+        BaseServiceRateId: basePayrollRateId,
+        AlternateServiceRateId: alternatePayrollRateId
+      };
+    }
+
+    console.log(populateRateOptions);
 
     // $uibModalInstance.close();
   };

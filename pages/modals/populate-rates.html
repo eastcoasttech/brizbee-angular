@@ -27,7 +27,7 @@
                 
                 <p><strong>Exceptions</strong></p>
 
-                <table class="table table-bordered table-condensed table-supercondensed">
+                <table class="table table-bordered table-condensed table-supercondensed table-exceptions">
                     <thead>
                         <tr>
                             <th style="width: 6%;"></th>
@@ -64,7 +64,7 @@
                             </td>
                             <td colspan="2" ng-if="exception.option == 'Punches on Specific Date'" class="text-center">
                                 <p class="input-group input-group-sm">
-                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="exception.Date" is-open="datepicker[$index].opened" datepicker-options="datepicker[$index].options" close-text="Close" />
+                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="exception.date" is-open="datepicker[$index].opened" datepicker-options="datepicker[$index].options" close-text="Close" />
                                     <span class="input-group-btn input-group-btn-sm">
                                         <button type="button" class="btn btn-default" ng-click="datepicker[$index].opened = true"><i class="glyphicon glyphicon-calendar"></i></button>
                                     </span>
@@ -109,7 +109,7 @@
                 
                 <p><strong>Exceptions</strong></p>
 
-                <table class="table table-bordered table-condensed table-supercondensed">
+                <table class="table table-bordered table-condensed table-supercondensed table-exceptions">
                     <thead>
                         <tr>
                             <th style="width: 6%;"></th>
@@ -146,7 +146,7 @@
                             </td>
                             <td colspan="2" ng-if="exception.option == 'Punches on Specific Date'" class="text-center">
                                 <p class="input-group input-group-sm">
-                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="exception.Date" is-open="datepicker[$index].opened" datepicker-options="datepicker[$index].options" close-text="Close" />
+                                    <input type="text" class="form-control" uib-datepicker-popup ng-model="exception.date" is-open="datepicker[$index].opened" datepicker-options="datepicker[$index].options" close-text="Close" />
                                     <span class="input-group-btn input-group-btn-sm">
                                         <button type="button" class="btn btn-default" ng-click="datepicker[$index].opened = true"><i class="glyphicon glyphicon-calendar"></i></button>
                                     </span>

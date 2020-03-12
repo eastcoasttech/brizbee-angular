@@ -336,6 +336,10 @@ li.uib-tab a.nav-link i {
     padding-right: 5px;
 }
 
+table.uib-timepicker tr td {
+    padding: 0 3px 0 0;
+}
+
 table.uib-timepicker tr td input {
     /* copied from input-sm */
     height: 30px;
@@ -352,6 +356,10 @@ table.uib-timepicker tr td button {
     line-height: 1.5;
     border-radius: 0;
     margin-left: 4px;
+}
+
+table.table-exceptions tr td p.input-group-sm {
+    margin: 0;
 }
 
 .alert-sm {
