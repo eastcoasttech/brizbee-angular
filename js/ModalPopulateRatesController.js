@@ -142,45 +142,12 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
     // Payroll exceptions
     for (var i = 0; i < $scope.payrollExceptions.length; i++) {
       var exception = $scope.payrollExceptions[i];
-      var basePayrollRateId = exception.BasePayrollRate.Id;
-      var alternatePayrollRateId = exception.AlternatePayrollRate.Id;
-
-      var option = {
-        BasePayrollRateId: basePayrollRateId,
-        AlternatePayrollRateId: alternatePayrollRateId,
-        Order: i
-      };
 
       // Build the PopulateRateOption
-      switch (exception.option) {
-        case "Punches Before":
-          option.Type = "range";
-          option.RangeDirection = "before";
-          var time = moment(exception.time);
-          option.RangeMinutes = (parseInt(time.format("HH")) * 60) + parseInt(time.format("mm"));
-          break;
-        case "Punches After":
-          option.Type = "range";
-          option.RangeDirection = "after";
-          var time = moment(exception.time);
-          option.RangeMinutes = (parseInt(time.format("HH")) * 60) + parseInt(time.format("mm"));
-          break;
-        case "After Hours/Minutes in Day":
-          option.Type = "count";
-          option.CountScope = "day";
-          option.CountMinute = (parseInt(exception.hour) * 60) + parseInt(exception.minute);
-          break;
-        case "After Hours/Minutes in Range":
-          option.Type = "count";
-          option.CountScope = "total";
-          option.CountMinute = (parseInt(exception.hour) * 60) + parseInt(exception.minute);
-          break;
-        case "Punches on Specific Date":
-          option.Type = "date";
-          var date = moment(exception.date);
-          option.Date = date.format("YYYY-MM-DD");
-          break;
-      }
+      var option = buildPopulateRateOption(exception);
+      option.BasePayrollRateId = exception.BasePayrollRate.Id;
+      option.AlternatePayrollRateId = exception.AlternatePayrollRate.Id;
+      option.Order = i;
 
       // Add to the list of populate rate options
       populateRateOptions.push(option);
@@ -189,19 +156,57 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
     // Service exceptions
     for (var i = 0; i < $scope.serviceExceptions.length; i++) {
       var exception = $scope.serviceExceptions[i];
-      var baseServiceRateId = exception.BaseServiceRate.Id;
-      var alternateServiceRateId = exception.AlternateServiceRate.Id;
       
-      var option = {
-        BaseServiceRateId: basePayrollRateId,
-        AlternateServiceRateId: alternatePayrollRateId
-      };
+      // Build the PopulateRateOption
+      var option = buildPopulateRateOption(exception);
+      option.BaseServiceRateId = exception.BaseServiceRate.Id;
+      option.AlternateServiceRateId = exception.AlternateServiceRate.Id;
+      option.Order = i;
+
+      // Add to the list of populate rate options
+      populateRateOptions.push(option);
     }
 
     console.log(populateRateOptions);
 
     // $uibModalInstance.close();
   };
+
+  function buildPopulateRateOption (exception) {
+    var option = {};
+
+    switch (exception.option) {
+      case "Punches Before":
+        option.Type = "range";
+        option.RangeDirection = "before";
+        var time = moment(exception.time);
+        option.RangeMinutes = (parseInt(time.format("H")) * 60) + parseInt(time.format("m"));
+        break;
+      case "Punches After":
+        option.Type = "range";
+        option.RangeDirection = "after";
+        var time = moment(exception.time);
+        option.RangeMinutes = (parseInt(time.format("H")) * 60) + parseInt(time.format("m"));
+        break;
+      case "After Hours/Minutes in Day":
+        option.Type = "count";
+        option.CountScope = "day";
+        option.CountMinute = (parseInt(exception.hour) * 60) + parseInt(exception.minute);
+        break;
+      case "After Hours/Minutes in Range":
+        option.Type = "count";
+        option.CountScope = "total";
+        option.CountMinute = (parseInt(exception.hour) * 60) + parseInt(exception.minute);
+        break;
+      case "Punches on Specific Date":
+        option.Type = "date";
+        var date = moment(exception.date);
+        option.Date = date.format("YYYY-MM-DD");
+        break;
+    }
+
+    return option;
+  }
 
   $scope.movePayrollExceptionUp = function (idx) {
     if (idx > 0) {
