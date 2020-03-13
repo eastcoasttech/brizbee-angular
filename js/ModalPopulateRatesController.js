@@ -7,6 +7,7 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
   $scope.serviceExceptions = [];
   $scope.timepicker = { hstep: 1, mstep: 1 };
   $scope.datepicker = {};
+  $scope.working = { ok: false };
 
   $scope.addPayrollException = function () {
     $scope.payrollExceptions.push({ option: 'After Hours/Minutes in Range', hour: 40, BasePayrollRate: $scope.basePayrollRates[0], date: new Date() });
@@ -137,6 +138,8 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
    * Builds payload for populate rate options and sends them to the server.
    */
   $scope.ok = function () {
+    $scope.working.ok = true;
+
     var populateRateOptions = [];
 
     // Payroll exceptions
@@ -161,15 +164,25 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
       var option = buildPopulateRateOption(exception);
       option.BaseServiceRateId = exception.BaseServiceRate.Id;
       option.AlternateServiceRateId = exception.AlternateServiceRate.Id;
-      option.Order = i;
+      option.Order = $scope.payrollExceptions.length + i; // Service exceptions take secondary priority
 
       // Add to the list of populate rate options
       populateRateOptions.push(option);
     }
 
-    console.log(populateRateOptions);
-
-    // $uibModalInstance.close();
+    var json = {
+      Options: {
+        Options: populateRateOptions,
+        InAt: $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DD'),
+        OutAt: $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DD')
+      }
+    };
+    $http.post($rootScope.baseUrl + "/odata/Punches/Default.PopulateRates", JSON.stringify(json))
+      .then(response => {
+        $uibModalInstance.close();
+      }, error => {
+        $scope.working.ok = false;
+      });
   };
 
   function buildPopulateRateOption (exception) {

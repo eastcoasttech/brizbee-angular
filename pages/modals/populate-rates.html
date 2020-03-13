@@ -174,7 +174,7 @@
         </uib-tabset>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="submit" ng-disabled="working.save">Perform Populate</button>
-        <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-primary" type="submit" ng-disabled="working.ok">Perform Populate <i class="fa fa-spinner fa-spin fa-fw" ng-show="working.ok"></i></button>
+        <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.ok">Cancel</button>
     </div>
 </form>
