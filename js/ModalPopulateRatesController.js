@@ -201,7 +201,7 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
         var time = moment(exception.time);
         option.RangeMinutes = (parseInt(time.format("H")) * 60) + parseInt(time.format("m"));
         break;
-      case "After Hours/Minutes in Day":
+      case "After Hours/Minutes Per Day":
         option.Type = "count";
         option.CountScope = "day";
         option.CountMinute = (parseInt(exception.hour) * 60) + parseInt(exception.minute);
