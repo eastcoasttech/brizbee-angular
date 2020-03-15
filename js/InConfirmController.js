@@ -18,8 +18,8 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
                 // Setting it to 0 forces the device to retrieve the position.
                 // http://stackoverflow.com/questions/3397585/navigator-geolocation-getcurrentposition-sometimes-works-sometimes-doesnt
                 {
-                    maximumAge: 15000,
-                    timeout: 30000,
+                    maximumAge: 15000, // 15 seconds
+                    timeout: 30000, // 30 seconds
                     enableHighAccuracy: false
                 }
             );

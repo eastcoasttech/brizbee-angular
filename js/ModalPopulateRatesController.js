@@ -204,12 +204,28 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
       case "After Hours/Minutes Per Day":
         option.Type = "count";
         option.CountScope = "day";
-        option.CountMinute = (parseInt(exception.hour) * 60) + parseInt(exception.minute);
+        var exceptionHour = 0;
+        var exceptionMinute = 0;
+        if (typeof exception.hour !== 'undefined') {
+          exceptionHour = parseInt(exception.hour) * 60;
+        }
+        if (typeof exception.minute !== 'undefined') {
+          exceptionMinute = parseInt(exception.minute);
+        }
+        option.CountMinute = exceptionHour + exceptionMinute;
         break;
       case "After Hours/Minutes in Range":
         option.Type = "count";
         option.CountScope = "total";
-        option.CountMinute = (parseInt(exception.hour) * 60) + parseInt(exception.minute);
+        var exceptionHour = 0;
+        var exceptionMinute = 0;
+        if (typeof exception.hour !== 'undefined') {
+          exceptionHour = parseInt(exception.hour) * 60;
+        }
+        if (typeof exception.minute !== 'undefined') {
+          exceptionMinute = parseInt(exception.minute);
+        }
+        option.CountMinute = exceptionHour + exceptionMinute;
         break;
       case "Punches on Specific Date":
         option.Type = "date";
