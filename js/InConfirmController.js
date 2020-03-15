@@ -53,10 +53,11 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
     }
 
     function save(latitude, longitude) {
-        // if (detect)
-        // {
-        //     var ua = detect.parse(navigator.userAgent)
-        // }
+        // Platform detection
+        var browserName = platform.name; // 'Safari'
+        var browserVersion = platform.version; // '5.1'
+        var operatingSystem = platform.os; // 'iOS 5.0'
+
         var json = {
             InAtTimeZone: $scope.options.InAtTimeZone,
             LatitudeForInAt: latitude,
@@ -65,14 +66,10 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
             TaskId: $rootScope.selected.task.Id,
             SourceHardware: 'Web',
             SourceHostname: 'Unknown',
-            // SourceOperatingSystem: ua.os.family,
-            // SourceOperatingSystemVersion: ua.os.version,
-            // SourceBrowser: ua.browser.family,
-            // SourceBrowserVersion: ua.browser.version,
-            SourceOperatingSystem: '',
+            SourceOperatingSystem: operatingSystem,
             SourceOperatingSystemVersion: '',
-            SourceBrowser: '',
-            SourceBrowserVersion: ''
+            SourceBrowser: browserName,
+            SourceBrowserVersion: browserVersion
         }
         $http.post($rootScope.baseUrl + "/odata/Punches/Default.PunchIn", JSON.stringify(json))
             .then(response => {
