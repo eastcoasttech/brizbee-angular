@@ -56,7 +56,8 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
         // Platform detection
         var browserName = platform.name; // 'Safari'
         var browserVersion = platform.version; // '5.1'
-        var operatingSystem = platform.os; // 'iOS 5.0'
+        var operatingSystem = platform.os.family; // 'iOS'
+        var operatingSystemVersion = platform.os.version + platform.os.architecture == 64 ? ' 64-bit' : ''; // 5.0
 
         var json = {
             InAtTimeZone: $scope.options.InAtTimeZone,
@@ -65,7 +66,7 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
             TaskId: $rootScope.selected.task.Id,
             SourceHardware: 'Web',
             SourceOperatingSystem: operatingSystem,
-            SourceOperatingSystemVersion: "N/A",
+            SourceOperatingSystemVersion: operatingSystemVersion,
             SourceBrowser: browserName,
             SourceBrowserVersion: browserVersion
         }

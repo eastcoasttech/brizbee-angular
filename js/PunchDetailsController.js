@@ -52,14 +52,15 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         // Platform detection
         var browserName = platform.name; // 'Safari'
         var browserVersion = platform.version; // '5.1'
-        var operatingSystem = platform.os; // 'iOS 5.0'
+        var operatingSystem = platform.os.family; // 'iOS'
+        var operatingSystemVersion = platform.os.version + platform.os.architecture == 64 ? ' 64-bit' : ''; // 5.0
         
         var json = {
             InAt: moment($scope.punch.InAt).format('YYYY-MM-DDTHH:mm:00') + 'Z',
             InAtTimeZone: $scope.punch.InAtTimeZone,
             InAtSourceHardware: "Dashboard",
             InAtSourceOperatingSystem: operatingSystem,
-            InAtSourceOperatingSystemVersion: "N/A",
+            InAtSourceOperatingSystemVersion: operatingSystemVersion,
             InAtSourceBrowser: browserName,
             InAtSourceBrowserVersion: browserVersion,
             TaskId: $scope.punch.task.Id,
@@ -72,7 +73,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             json.OutAtTimeZone = $scope.punch.OutAtTimeZone;
             json.OutAtSourceHardware = "Dashboard";
             json.InAtSourceOperatingSystem = operatingSystem;
-            json.InAtSourceOperatingSystemVersion = "N/A";
+            json.InAtSourceOperatingSystemVersion = operatingSystemVersion;
             json.InAtSourceBrowser = browserName;
             json.InAtSourceBrowserVersion = browserVersion;
         }
@@ -91,7 +92,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         // Platform detection
         var browserName = platform.name; // 'Safari'
         var browserVersion = platform.version; // '5.1'
-        var operatingSystem = platform.os; // 'iOS 5.0'
+        var operatingSystem = platform.os.toString(); // 'iOS 5.0'
 
         var timedifference = new Date().getTimezoneOffset();
         var json = {
