@@ -72,10 +72,10 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             json.OutAt = moment($scope.punch.OutAt).format('YYYY-MM-DDTHH:mm:00') + 'Z';
             json.OutAtTimeZone = $scope.punch.OutAtTimeZone;
             json.OutAtSourceHardware = "Dashboard";
-            json.InAtSourceOperatingSystem = operatingSystem;
-            json.InAtSourceOperatingSystemVersion = operatingSystemVersion;
-            json.InAtSourceBrowser = browserName;
-            json.InAtSourceBrowserVersion = browserVersion;
+            json.OutAtSourceOperatingSystem = operatingSystem;
+            json.OutAtSourceOperatingSystemVersion = operatingSystemVersion;
+            json.OutAtSourceBrowser = browserName;
+            json.OutAtSourceBrowserVersion = browserVersion;
         }
 
         if (confirm("Are you sure you want to save this new punch?")) {
