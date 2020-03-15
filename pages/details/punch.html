@@ -8,19 +8,19 @@
             <div class="col-md-7">
                 <div class="form-group">
                     <label>User</label>
-                    <select class="form-control" ng-model="punch.user" ng-options="user.Name for user in users" ng-disabled="working.save || punch.CommitId" autofocus></select>
+                    <select class="form-control" ng-model="punch.user" ng-options="user.Name for user in users" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users" autofocus></select>
                 </div>
                 <div class="form-group">
                     <label>Customer</label>
-                    <select class="form-control" ng-model="punch.customer" ng-options="customer.Name for customer in customers" ng-change="refreshJobs()" ng-disabled="working.save || punch.CommitId"></select>
+                    <select class="form-control" ng-model="punch.customer" ng-options="customer.Name for customer in customers" ng-change="refreshJobs()" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
                 </div>
                 <div class="form-group">
                     <label>Job</label>
-                    <select class="form-control" ng-model="punch.job" ng-options="job.Name for job in jobs" ng-disabled="working.save || punch.CommitId"></select>
+                    <select class="form-control" ng-model="punch.job" ng-options="job.Name for job in jobs" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
                 </div>
                 <div class="form-group">
                     <label>Task</label>
-                    <select class="form-control" ng-model="punch.task" ng-options="task.Name for task in tasks" ng-disabled="working.save || punch.CommitId"></select>
+                    <select class="form-control" ng-model="punch.task" ng-options="task.Name for task in tasks" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
                 </div>
             </div>
         </div>
@@ -29,48 +29,48 @@
         <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
                 <p class="input-group">
-                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.InAt" is-open="datepicker.InAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || punch.CommitId" />
+                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.InAt" is-open="datepicker.InAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users" />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="showInAtDatepicker()" ng-disabled="working.save || punch.CommitId"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default" ng-click="showInAtDatepicker()" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </p>
             </div>
             <div class="col-md-3 col-sm-12 col-xs-12">
                 <div class="form-group">
-                    <div uib-timepicker ng-model="punch.InAt" show-meridian="true" show-spinners="false" show-seconds="false" ng-disabled="working.save || punch.CommitId"></div>
+                    <div uib-timepicker ng-model="punch.InAt" show-meridian="true" show-spinners="false" show-seconds="false" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></div>
                 </div>
             </div>
         </div>
         <div class="form-group">
             <label>Time Zone</label>
-            <select class="form-control" ng-model="punch.InAtTimeZone" ng-options="timezone.Id as timezone.Id for timezone in timezones" ng-disabled="working.save || punch.CommitId"></select>
+            <select class="form-control" ng-model="punch.InAtTimeZone" ng-options="timezone.Id as timezone.Id for timezone in timezones" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
         </div>
         <p class="text-muted" ng-show="punch.SourceForInAt != null"><small><i>Source is {{punch.SourceForInAt}}</i></small></p>
         <hr />
         <div class="checkbox">
             <label>
-                <input type="checkbox" ng-model="punch.has_out_at" ng-disabled="working.save || punch.CommitId"> Has punch out?
+                <input type="checkbox" ng-model="punch.has_out_at" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"> Has punch out?
             </label>
         </div>
         <label>Out</label>
         <div class="row">
             <div class="col-md-5 col-sm-12 col-xs-12">
                 <p class="input-group">
-                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.OutAt" is-open="datepicker.OutAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || !punch.has_out_at || punch.CommitId" />
+                    <input type="text" class="form-control" uib-datepicker-popup ng-model="punch.OutAt" is-open="datepicker.OutAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || !punch.has_out_at || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users" />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="showOutAtDatepicker()" ng-disabled="working.save || !punch.has_out_at || punch.CommitId"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default" ng-click="showOutAtDatepicker()" ng-disabled="working.save || !punch.has_out_at || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </p>
             </div>
             <div class="col-md-3 col-sm-12 col-xs-12">
                 <div class="form-group">
-                    <div uib-timepicker ng-model="punch.OutAt" show-meridian="true" show-spinners="false" show-seconds="false" ng-disabled="working.save || !punch.has_out_at || punch.CommitId"></div>
+                    <div uib-timepicker ng-model="punch.OutAt" show-meridian="true" show-spinners="false" show-seconds="false" ng-disabled="working.save || !punch.has_out_at || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></div>
                 </div>
             </div>
         </div>
         <div class="form-group">
             <label>Time Zone</label>
-            <select class="form-control" ng-model="punch.OutAtTimeZone" ng-options="timezone.Id as timezone.Id for timezone in timezones" ng-disabled="working.save || !punch.has_out_at || punch.CommitId"></select>
+            <select class="form-control" ng-model="punch.OutAtTimeZone" ng-options="timezone.Id as timezone.Id for timezone in timezones" ng-disabled="working.save || !punch.has_out_at || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
         </div>
         <p class="text-muted" ng-show="punch.SourceForOutAt != null"><small><i>Source is {{punch.SourceForOutAt}}</i></small></p>
         <p><a href="" ng-click="showMap()">Show Map</a></p>
@@ -79,8 +79,8 @@
         </p>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save || punch.CommitId" ng-if="punch.Id">Delete</button>
-        <button class="btn btn-primary" type="submit" ng-disabled="working.save || punch.CommitId">OK</button>
+        <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users" ng-if="punch.Id">Delete</button>
+        <button class="btn btn-primary" type="submit" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users">OK</button>
         <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.save">Cancel</button>
     </div>
 </form>

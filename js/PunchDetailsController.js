@@ -2,7 +2,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     $scope.customers = []
     $scope.datepicker = { InAt: {}, OutAt: {}, options: {} }
     $scope.jobs = []
-    $scope.loading = { customers: false, jobs: false, tasks: false }
+    $scope.loading = { customers: false, jobs: false, tasks: false, users: false }
     $scope.tasks = []
     $scope.working = { save: false }
 
