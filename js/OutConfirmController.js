@@ -59,14 +59,12 @@ app.controller('OutConfirmController', function ($http, $location, $rootScope, $
         var operatingSystem = platform.os; // 'iOS 5.0'
         
         var json = {
-            SourceForOutAt: 'Web',
             OutAtTimeZone: $scope.options.OutAtTimeZone,
             LatitudeForOutAt: latitude,
             LongitudeForOutAt: longitude,
             SourceHardware: 'Web',
-            SourceHostname: 'Unknown',
             SourceOperatingSystem: operatingSystem,
-            SourceOperatingSystemVersion: '',
+            SourceOperatingSystemVersion: "N/A",
             SourceBrowser: browserName,
             SourceBrowserVersion: browserVersion
         }

@@ -49,10 +49,19 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     };
 
     $scope.saveNewPunch = function () {
+        // Platform detection
+        var browserName = platform.name; // 'Safari'
+        var browserVersion = platform.version; // '5.1'
+        var operatingSystem = platform.os; // 'iOS 5.0'
+        
         var json = {
             InAt: moment($scope.punch.InAt).format('YYYY-MM-DDTHH:mm:00') + 'Z',
             InAtTimeZone: $scope.punch.InAtTimeZone,
-            SourceForInAt: 'Dashboard',
+            InAtSourceHardware: "Dashboard",
+            InAtSourceOperatingSystem: operatingSystem,
+            InAtSourceOperatingSystemVersion: "N/A",
+            InAtSourceBrowser: browserName,
+            InAtSourceBrowserVersion: browserVersion,
             TaskId: $scope.punch.task.Id,
             UserId: $scope.punch.user.Id
         };
@@ -61,7 +70,11 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         if ($scope.punch.has_out_at) {
             json.OutAt = moment($scope.punch.OutAt).format('YYYY-MM-DDTHH:mm:00') + 'Z';
             json.OutAtTimeZone = $scope.punch.OutAtTimeZone;
-            json.SourceForOutAt = 'Dashboard';
+            json.OutAtSourceHardware = "Dashboard";
+            json.InAtSourceOperatingSystem = operatingSystem;
+            json.InAtSourceOperatingSystemVersion = "N/A";
+            json.InAtSourceBrowser = browserName;
+            json.InAtSourceBrowserVersion = browserVersion;
         }
 
         if (confirm("Are you sure you want to save this new punch?")) {
@@ -75,23 +88,27 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     };
 
     $scope.saveExistingPunch = function () {
+        // Platform detection
+        var browserName = platform.name; // 'Safari'
+        var browserVersion = platform.version; // '5.1'
+        var operatingSystem = platform.os; // 'iOS 5.0'
+
         var timedifference = new Date().getTimezoneOffset();
         var json = {
             InAt: moment($scope.punch.InAt).subtract(timedifference, 'm').toDate(),
             InAtTimeZone: $scope.punch.InAtTimeZone,
             TaskId: $scope.punch.task.Id,
             UserId: $scope.punch.user.Id
+            // Do not change source details
         };
 
         // OutAt is optional when editing manually
         if ($scope.punch.has_out_at) {
             json.OutAt = moment($scope.punch.OutAt).subtract(timedifference, 'm').toDate()
             json.OutAtTimeZone = $scope.punch.OutAtTimeZone
-            json.SourceForOutAt = 'Dashboard'
         } else {
             json.OutAt = null
             json.OutAtTimeZone = null
-            json.SourceForOutAt = null
         }
 
         if (confirm("Are you sure you want to modify this punch?")) {

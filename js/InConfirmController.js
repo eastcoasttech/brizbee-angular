@@ -62,12 +62,10 @@ app.controller('InConfirmController', function ($http, $location, $rootScope, $s
             InAtTimeZone: $scope.options.InAtTimeZone,
             LatitudeForInAt: latitude,
             LongitudeForInAt: longitude,
-            SourceForInAt: 'Web',
             TaskId: $rootScope.selected.task.Id,
             SourceHardware: 'Web',
-            SourceHostname: 'Unknown',
             SourceOperatingSystem: operatingSystem,
-            SourceOperatingSystemVersion: '',
+            SourceOperatingSystemVersion: "N/A",
             SourceBrowser: browserName,
             SourceBrowserVersion: browserVersion
         }
