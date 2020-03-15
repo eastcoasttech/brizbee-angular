@@ -53,7 +53,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         var browserName = platform.name; // 'Safari'
         var browserVersion = platform.version; // '5.1'
         var operatingSystem = platform.os.family; // 'iOS'
-        var operatingSystemVersion = platform.os.version + platform.os.architecture == 64 ? ' 64-bit' : ''; // 5.0
+        var operatingSystemVersion = platform.os.version + (platform.os.architecture == 64 ? ' 64-bit' : ''); // 5.0
         
         var json = {
             InAt: moment($scope.punch.InAt).format('YYYY-MM-DDTHH:mm:00') + 'Z',
