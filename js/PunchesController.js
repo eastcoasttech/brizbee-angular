@@ -5,7 +5,8 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
     $scope.filters = { customer: {}, job: {}, task: {}, user: { users: [] } }
     $scope.loading = { commits: false, punches: false }
     $scope.punches = []
-    $scope.punchesPageStart = 0
+    $scope.punchesPageStart = 0;
+    $scope.punchesPageCount = 200;
     $scope.sortDirection = 'asc'
     $scope.sortType = 'InAt'
     $scope.working = { commit: false }
@@ -24,16 +25,16 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
     }
     
     $scope.punchesEnd = function () {
-        return $scope.punchesPageStart + 20 < $scope.punchesCount ? $scope.punchesPageStart + 20 : $scope.punchesCount;
+        return $scope.punchesPageStart + $scope.punchesPageCount < $scope.punchesCount ? $scope.punchesPageStart + $scope.punchesPageCount : $scope.punchesCount;
     };
 
     $scope.punchesNext = function () {
-        $scope.punchesPageStart = $scope.punchesPageStart + 20
+        $scope.punchesPageStart = $scope.punchesPageStart + $scope.punchesPageCount
         $scope.refreshPunches()
     }
     
     $scope.punchesPrevious = function () {
-        $scope.punchesPageStart = $scope.punchesPageStart - 20
+        $scope.punchesPageStart = $scope.punchesPageStart - $scope.punchesPageCount
         $scope.refreshPunches()
     }
 
@@ -55,7 +56,7 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
         var sortParameter = {}
         sortParameter[$scope.sortType] = $scope.sortDirection
 
-        $http.get($rootScope.baseUrl + "/odata/Punches?$count=true&$expand=User,ServiceRate,PayrollRate,Task($expand=Job($expand=Customer))&$top=20&$skip=" + $scope.punchesPageStart + "&$filter=InAt ge " + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + " and InAt le " + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + '&$orderby=' + $scope.sortType + ' ' + $scope.sortDirection)
+        $http.get($rootScope.baseUrl + "/odata/Punches?$count=true&$expand=User,ServiceRate,PayrollRate,Task($expand=Job($expand=Customer))&$top=" + $scope.punchesPageCount + "&$skip=" + $scope.punchesPageStart + "&$filter=InAt ge " + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + " and InAt le " + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + '&$orderby=' + $scope.sortType + ' ' + $scope.sortDirection)
             .then(response => {
                 $scope.loading.punches = false
                 $scope.punchesCount = response.data["@odata.count"]
