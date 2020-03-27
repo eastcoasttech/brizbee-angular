@@ -48,6 +48,12 @@ app.controller('RegisterController', function ($cookies, $http, $location, $root
         $scope.user.EmailAddress = $routeParams.EmailAddress
     }
 
+    if ($routeParams.PlanId != null) {
+        if ($routeParams.PlanId <= 4) {
+            $scope.organization.PlanId = $routeParams.PlanId
+        }
+    }
+
     $scope.refreshTimeZones = function () {
         $scope.filteredTimeZones = _.filter($scope.timezones, function (t) {
             if (t.CountryCode == $scope.selected.CountryCode) {
