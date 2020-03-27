@@ -3,7 +3,7 @@ app.controller('RegisterController', function ($cookies, $http, $location, $root
     $scope.messages = { error: '' }
     $scope.new = { user: {}, users: [] }
     $scope.user = {}
-    $scope.organization = {}
+    $scope.organization = { PlanId: 1 }
     $scope.selected = {}
     $scope.step = {}
     $scope.working = { register: false }
