@@ -49,8 +49,8 @@ app.controller('RegisterController', function ($cookies, $http, $location, $root
     }
 
     if ($routeParams.PlanId != null) {
-        if ($routeParams.PlanId <= 4) {
-            $scope.organization.PlanId = $routeParams.PlanId
+        if (parseInt($routeParams.PlanId) <= 4) {
+            $scope.organization.PlanId = $routeParams.PlanId.toString()
         }
     }
 
