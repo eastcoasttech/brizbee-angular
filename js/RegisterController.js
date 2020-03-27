@@ -71,6 +71,7 @@ app.controller('RegisterController', function ($cookies, $http, $location, $root
             Organization: {
                 Name: $scope.organization.Name,
                 Code: Math.floor((Math.random() * 99999) + 10000).toString(),
+                PlanId: parseInt($scope.organization.PlanId)
             },
             User: {
                 EmailAddress: $scope.user.EmailAddress,
