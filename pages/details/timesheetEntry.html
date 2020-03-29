@@ -1,6 +1,6 @@
 <div class="modal-header">
-    <h3 class="modal-title" ng-if="timesheetEntry.Id == null">New Manual Entry for {{timesheetEntry.user.Name}}</h3>
-    <h3 class="modal-title" ng-if="timesheetEntry.Id != null">Edit Manual Entry for {{timesheetEntry.user.Name}}</h3>
+    <h3 class="modal-title" ng-if="timesheetEntry.Id == null">New Time Entry for {{timesheetEntry.user.Name}}</h3>
+    <h3 class="modal-title" ng-if="timesheetEntry.Id != null">Edit Time Entry for {{timesheetEntry.user.Name}}</h3>
 </div>
 <form name="timesheetEntryForm" ng-submit="save()" autocomplete="off" novalidate>
     <div class="modal-body">
@@ -31,7 +31,7 @@
                             <label>Hours</label>
                             <input type="text" class="form-control"
                                 ng-model="time.hours"
-                                ng-disabled="working.save"
+                                ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"
                                 placeholder="0"
                                 ui-number-mask="0" min="0" max="23" autofocus />
                         </div>
@@ -39,7 +39,7 @@
                             <label>Minutes</label>
                             <input type="text" class="form-control"
                                 ng-model="time.minutes"
-                                ng-disabled="working.save"
+                                ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"
                                 placeholder="0"
                                 ui-number-mask="0" min="0" max="59" />
                         </div>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <label>Notes</label>
-                    <textarea name="timesheet_entry_notes" class="form-control" ng-model="timesheetEntry.Notes" ng-disabled="working.save"></textarea>
+                    <textarea name="timesheet_entry_notes" class="form-control" ng-model="timesheetEntry.Notes" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></textarea>
                 </div>
             </div>
         </div>
@@ -55,22 +55,22 @@
             <div class="col-md-7">
                 <div class="form-group">
                     <label>Customer</label>
-                    <select class="form-control" ng-model="timesheetEntry.customer" ng-options="customer.Name for customer in customers" ng-disabled="working.save"></select>
+                    <select class="form-control" ng-model="timesheetEntry.customer" ng-options="customer.Name for customer in customers" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></select>
                 </div>
                 <div class="form-group">
                     <label>Job</label>
-                    <select class="form-control" ng-model="timesheetEntry.job" ng-options="job.Name for job in jobs" ng-disabled="working.save"></select>
+                    <select class="form-control" ng-model="timesheetEntry.job" ng-options="job.Name for job in jobs" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></select>
                 </div>
                 <div class="form-group">
                     <label>Task</label>
-                    <select class="form-control" ng-model="timesheetEntry.task" ng-options="task.Name for task in tasks" ng-disabled="working.save"></select>
+                    <select class="form-control" ng-model="timesheetEntry.task" ng-options="task.Name for task in tasks" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></select>
                 </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save" ng-if="timesheetEntry.Id">Delete</button>
-        <button class="btn btn-primary" type="submit" ng-disabled="working.save || timesheetEntryForm.$invalid">OK</button>
+        <button class="btn btn-danger pull-left" type="button" ng-click="delete()" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks" ng-if="timesheetEntry.Id">Delete</button>
+        <button class="btn btn-primary" type="submit" ng-disabled="working.save || timesheetEntryForm.$invalid || loading.customers || loading.jobs || loadings.tasks">OK</button>
         <button class="btn btn-default" type="button" ng-click="cancel()" ng-disabled="working.save">Cancel</button>
     </div>
 </form>
