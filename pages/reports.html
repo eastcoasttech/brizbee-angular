@@ -42,7 +42,9 @@
     </ol>
     
     <div class="row">
-        <div class="col-md-7">
+
+        <!-- Column 1 -->
+        <div class="col-md-4">
             <ul class="list-unstyled">
                 <li>
                     <div class="panel panel-default panel-condensed">
@@ -128,7 +130,78 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-5">
+
+        <!-- Column 2 -->
+        <div class="col-md-4">
+            <ul class="list-unstyled">
+                <li>
+                    <div class="panel panel-default panel-condensed">
+                        <div class="panel-body">
+                            <table class="table table-report">
+                                <tr>
+                                    <td class="col-md-1">
+                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    </td>
+                                    <td class="col-md-11">
+                                        <a ng-href="{{baseUrl}}/api/Reports/TimeEntriesByUser?Min={{formatMomentFromDate(range.InAt, 'YYYY-MM-DDTHH:mm:ss')}}&Max={{formatMomentFromDate(range.OutAt, 'YYYY-MM-DDTHH:mm:ss')}}&JobScope={{include.jobs.scope}}{{includedJobIds()}}&UserScope={{include.users.scope}}{{includedUserIds()}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                                            <h4>
+                                                Time Entries by User
+                                            </h4>
+                                            <p><small>Lists the time entries by user for each day in the range.</small></p>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="panel panel-default panel-condensed">
+                        <div class="panel-body">
+                            <table class="table table-report">
+                                <tr>
+                                    <td class="col-md-1">
+                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    </td>
+                                    <td class="col-md-11">
+                                        <a ng-href="{{baseUrl}}/api/Reports/TimeEntriesByJob?Min={{formatMomentFromDate(range.InAt, 'YYYY-MM-DDTHH:mm:ss')}}&Max={{formatMomentFromDate(range.OutAt, 'YYYY-MM-DDTHH:mm:ss')}}&JobScope={{include.jobs.scope}}{{includedJobIds()}}&UserScope={{include.users.scope}}{{includedUserIds()}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                                            <h4>
+                                                Time Entries by Job and Task
+                                            </h4>
+                                            <p><small>Lists the time entries by job and task for each day in the range.</small></p>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="panel panel-default panel-condensed">
+                        <div class="panel-body">
+                            <table class="table table-report">
+                                <tr>
+                                    <td class="col-md-1">
+                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    </td>
+                                    <td class="col-md-11">
+                                        <a ng-href="{{baseUrl}}/api/Reports/TimeEntriesByDay?Min={{formatMomentFromDate(range.InAt, 'YYYY-MM-DDTHH:mm:ss')}}&Max={{formatMomentFromDate(range.OutAt, 'YYYY-MM-DDTHH:mm:ss')}}&JobScope={{include.jobs.scope}}{{includedJobIds()}}&UserScope={{include.users.scope}}{{includedUserIds()}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                                            <h4>
+                                                Time Entries by Day
+                                            </h4>
+                                            <p><small>Lists the time entries by day for each day in the range.</small></p>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">Report Filters and Options</div>
                 <div class="panel-body">
@@ -203,8 +276,9 @@
                                 </ul>
                             </div>
                         </div>
+                        <hr />
                         <div class="form-group">
-                            <label>Commit Status</label>
+                            <label>Commit Status (Only Applies to Punch Reports)</label>
                             <select ng-model="include.committed" class="form-control">
                                 <option value="only">Only Committed Punches</option>
                                 <option value="uncommitted">Only Uncommitted Punches</option>
