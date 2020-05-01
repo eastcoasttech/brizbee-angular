@@ -55,11 +55,11 @@
             <div class="col-md-7">
                 <div class="form-group">
                     <label>Customer</label>
-                    <select class="form-control" ng-model="timesheetEntry.customer" ng-options="customer.Name for customer in customers" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></select>
+                    <select class="form-control" ng-model="timesheetEntry.customer" ng-options="customer.Name for customer in customers" ng-change="refreshJobs()" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></select>
                 </div>
                 <div class="form-group">
                     <label>Job</label>
-                    <select class="form-control" ng-model="timesheetEntry.job" ng-options="job.Name for job in jobs" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></select>
+                    <select class="form-control" ng-model="timesheetEntry.job" ng-options="job.Name for job in jobs" ng-change="refreshTasks()" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></select>
                 </div>
                 <div class="form-group">
                     <label>Task</label>
