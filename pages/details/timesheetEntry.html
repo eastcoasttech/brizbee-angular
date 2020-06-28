@@ -1,6 +1,6 @@
 <div class="modal-header">
-    <h3 class="modal-title" ng-if="timesheetEntry.Id == null">New Time Entry for {{timesheetEntry.user.Name}}</h3>
-    <h3 class="modal-title" ng-if="timesheetEntry.Id != null">Edit Time Entry for {{timesheetEntry.user.Name}}</h3>
+    <h3 class="modal-title" ng-if="timesheetEntry.Id == null">New Time Card for {{timesheetEntry.user.Name}}</h3>
+    <h3 class="modal-title" ng-if="timesheetEntry.Id != null">Edit Time Card for {{timesheetEntry.user.Name}}</h3>
 </div>
 <form name="timesheetEntryForm" ng-submit="save()" autocomplete="off" novalidate>
     <div class="modal-body">

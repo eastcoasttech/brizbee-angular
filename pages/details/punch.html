@@ -73,7 +73,7 @@
             <select class="form-control" ng-model="punch.OutAtTimeZone" ng-options="timezone.Id as timezone.Id for timezone in timezones" ng-disabled="working.save || !punch.has_out_at || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
         </div>
         <p class="text-muted" ng-show="punch.SourceForOutAt != null"><small><i>Source is {{punch.SourceForOutAt}}</i></small></p>
-        <p><a href="" ng-click="showMap()">Show Map</a></p>
+        <!-- <p><a href="" ng-click="showMap()">Show Map</a></p> -->
         <p class="text-danger" ng-show="punch.CommitId">
             This punch is not editable because it's included in a commit. You may undo the commit, but first ensure that the commit has not been exported to payroll software.
         </p>
