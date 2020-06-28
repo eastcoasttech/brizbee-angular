@@ -51,7 +51,6 @@ app.controller('TimesheetsController', function ($http, $rootScope, $scope, $uib
             return;
         }
 
-        $scope.timesheetEntries = []
         $scope.loading.timesheetEntries = true
 
         // Filter by user

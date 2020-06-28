@@ -87,6 +87,13 @@
                     </a>
                 </th>
                 <th class="col-md-2">
+                    <a href="" ng-click="setSortType('Notes')">
+                        Notes
+                        <span ng-show="(sortType == 'Notes') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'Notes') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                    </a>
+                </th>
+                <th class="col-md-2">
                     <a href="" ng-click="setSortType('User/Name')">
                         User
                         <span ng-show="(sortType == 'User/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
@@ -114,30 +121,23 @@
                         <span ng-show="(sortType == 'Task/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th class="col-md-2">
-                    <a href="" ng-click="setSortType('Notes')">
-                        Notes
-                        <span ng-show="(sortType == 'Notes') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
-                        <span ng-show="(sortType == 'Notes') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
-                    </a>
-                </th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="timesheetEntry in timesheetEntries" class="selectable" ng-click="showEditTimesheetEntry(timesheetEntry)">
                 <td><a href="">{{formatMomentFromDate(timesheetEntry.EnteredAt, 'ddd, MMM DD YYYY')}}</a></td>
                 <td><a href="">{{formatMinutes(timesheetEntry.Minutes)}}</a></td>
+                <td><a href="">{{timesheetEntry.Notes | characters:30 :true}}</a></td>
                 <td><a href="">{{timesheetEntry.User.Name}}</a></td>
                 <td><a href="">{{timesheetEntry.Task.Job.Customer.Number}} &ndash; {{timesheetEntry.Task.Job.Customer.Name}}</a></td>
                 <td><a href="">{{timesheetEntry.Task.Job.Number}} &ndash; {{timesheetEntry.Task.Job.Name}}</a></td>
                 <td><a href="">{{timesheetEntry.Task.Number}} &ndash; {{timesheetEntry.Task.Name}}</a></td>
-                <td><a href="">{{timesheetEntry.Notes}}</a></td>
             </tr>
             <tr ng-show="loading.timesheetEntries">
-                <td colspan="6"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+                <td colspan="7"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
             </tr>
             <tr ng-show="(timesheetEntries.length == 0) && (!loading.timesheetEntries)">
-                <td colspan="6">No Timesheet Entries for the Selected Date Range</td>
+                <td colspan="7">No Timesheet Entries for the Selected Date Range</td>
             </tr>
         </tbody>
     </table>

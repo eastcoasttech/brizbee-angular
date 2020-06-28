@@ -2,7 +2,7 @@ app.controller('TimesheetsAddController', function ($http, $interval, $location,
     $scope.timesheetEntry = {
         EnteredAt: moment().startOf('day').toDate()
     }
-    $scope.time = { hours: 0, minutes: 0 }
+    $scope.time = { hours: "0", minutes: "0" }
     
     $scope.datepicker = { EnteredAt: {}, options: {} }
     $scope.loading = { customers: false, jobs: false, tasks: false }
@@ -14,13 +14,13 @@ app.controller('TimesheetsAddController', function ($http, $interval, $location,
         $scope.loading.customers = true
         $http.get($rootScope.baseUrl + "/odata/Customers?$orderby=Number")
             .then(response => {
-                $scope.loading.customers = false
                 $scope.customers = response.data.value
                 if (!$scope.timesheetEntry.customer) {
                     $scope.timesheetEntry.customer = $scope.customers[0]
                 } else {
                     $scope.timesheetEntry.customer = $filter('filter')($scope.customers, { Id: $scope.timesheetEntry.customer.Id }, true)[0]
                 }
+                $scope.loading.customers = false
                 $scope.refreshJobs()
             }, error => {
                 $scope.loading.customers = false
@@ -39,13 +39,13 @@ app.controller('TimesheetsAddController', function ($http, $interval, $location,
         $scope.loading.jobs = true
         $http.get($rootScope.baseUrl + "/odata/Jobs?$orderby=Number&$filter=CustomerId eq " + $scope.timesheetEntry.customer.Id)
             .then(response => {
-                $scope.loading.jobs = false
                 $scope.jobs = response.data.value
                 if (!$scope.timesheetEntry.job) {
                     $scope.timesheetEntry.job = $scope.jobs[0]
                 } else {
                     $scope.timesheetEntry.job = $filter('filter')($scope.jobs, { Id: $scope.timesheetEntry.job.Id }, true)[0]
                 }
+                $scope.loading.jobs = false
                 $scope.refreshTasks()
             }, error => {
                 $scope.loading.jobs = false
@@ -62,13 +62,13 @@ app.controller('TimesheetsAddController', function ($http, $interval, $location,
         $scope.loading.tasks = true
         $http.get($rootScope.baseUrl + "/odata/Tasks?$orderby=Number&$filter=JobId eq " + $scope.timesheetEntry.job.Id)
             .then(response => {
-                $scope.loading.tasks = false
                 $scope.tasks = response.data.value
                 if (!$scope.timesheetEntry.task) {
                     $scope.timesheetEntry.task = $scope.tasks[0]
                 } else {
                     $scope.timesheetEntry.task = $filter('filter')($scope.tasks, { Id: $scope.timesheetEntry.task.Id }, true)[0]
                 }
+                $scope.loading.tasks = false
             }, error => {
                 $scope.loading.tasks = false
                 console.error(error)

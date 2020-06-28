@@ -35,9 +35,10 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4 col-sm-12 col-xs-12">
             <div class="panel panel-default panel-kiosk">
-                <div class="panel-heading"><h2>New Time Entry</h2></div>
+                <div class="panel-heading"><h2>Add Time Card</h2></div>
                 <div class="panel-body">
                     <form name="entryForm" ng-submit="save()" novalidate>
+                        <label>Date</label>
                         <p class="input-group">
                             <input type="text" class="form-control" uib-datepicker-popup ng-model="timesheetEntry.EnteredAt" is-open="datepicker.EnteredAt.opened" datepicker-options="datepicker.options" close-text="Close" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks" />
                             <span class="input-group-btn">
@@ -48,41 +49,117 @@
                             <div class="row">
                                 <div class="col-md-3 col-sm-12 col-xs-12">
                                     <label>Hours</label>
-                                    <input type="text" class="form-control"
-                                        ng-model="time.hours"
-                                        ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"
-                                        placeholder="0"
-                                        ui-number-mask="0" min="0" max="23" autofocus />
+                                    <select class="form-control input-lg" ng-model="time.hours" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks" autofocus>
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-3 col-sm-12 col-xs-12">
                                     <label>Minutes</label>
-                                    <input type="text" class="form-control"
-                                        ng-model="time.minutes"
-                                        ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"
-                                        placeholder="0"
-                                        ui-number-mask="0" min="0" max="59" />
+                                    <select class="form-control input-lg" ng-model="time.minutes" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks" autofocus>
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                        <option>24</option>
+                                        <option>25</option>
+                                        <option>26</option>
+                                        <option>27</option>
+                                        <option>28</option>
+                                        <option>29</option>
+                                        <option>30</option>
+                                        <option>31</option>
+                                        <option>32</option>
+                                        <option>33</option>
+                                        <option>34</option>
+                                        <option>35</option>
+                                        <option>36</option>
+                                        <option>37</option>
+                                        <option>38</option>
+                                        <option>39</option>
+                                        <option>40</option>
+                                        <option>41</option>
+                                        <option>42</option>
+                                        <option>43</option>
+                                        <option>44</option>
+                                        <option>45</option>
+                                        <option>46</option>
+                                        <option>47</option>
+                                        <option>48</option>
+                                        <option>49</option>
+                                        <option>50</option>
+                                        <option>51</option>
+                                        <option>52</option>
+                                        <option>53</option>
+                                        <option>54</option>
+                                        <option>55</option>
+                                        <option>56</option>
+                                        <option>57</option>
+                                        <option>58</option>
+                                        <option>59</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Customer</label>
-                            <select class="form-control" ng-model="timesheetEntry.customer" ng-options="customer.Name for customer in customers" ng-change="refreshJobs()" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></select>
+                            <select class="form-control" ng-model="timesheetEntry.customer" ng-options="customer.Number + ' - ' + customer.Name for customer in customers" ng-change="refreshJobs()" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></select>
                         </div>
                         <div class="form-group">
                             <label>Job</label>
-                            <select class="form-control" ng-model="timesheetEntry.job" ng-options="job.Name for job in jobs" ng-change="refreshTasks()" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></select>
+                            <select class="form-control" ng-model="timesheetEntry.job" ng-options="job.Number + ' - ' + job.Name for job in jobs" ng-change="refreshTasks()" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></select>
                         </div>
                         <div class="form-group">
                             <label>Task</label>
-                            <select class="form-control" ng-model="timesheetEntry.task" ng-options="task.Name for task in tasks" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></select>
-                        </div>
-                        <div class="form-group" ng-show="!show.notes">
-                            <a href="" ng-click="show.notes = true">Add Notes</a>
+                            <select class="form-control" ng-model="timesheetEntry.task" ng-options="task.Number + ' - ' + task.Name for task in tasks" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></select>
                         </div>
                         <div class="form-group" ng-show="show.notes">
                             <label>Notes</label>
                             <textarea name="timesheet_entry_notes" class="form-control" ng-model="timesheetEntry.Notes" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks"></textarea>
                         </div>
+                        <button type="button" class="btn btn-block btn-lg btn-default" ng-click="show.notes = true" ng-show="!show.notes" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks">Add Notes</button>
                         <button type="submit" class="btn btn-block btn-lg btn-primary" ng-disabled="working.save || loading.customers || loading.jobs || loadings.tasks">Continue</button>
                         <a href="#!/status" class="btn btn-block btn-lg btn-default" ng-disabled="working.save">Cancel</a>
                     </form>
