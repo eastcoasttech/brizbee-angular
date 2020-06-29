@@ -28,7 +28,10 @@ app.controller('QBOExportController', function ($http, $location, $rootScope, $r
     localStorageService.set('qbo_export_refresh_token_expires_at', $routeParams.refreshTokenExpiresAt)
 
     $scope.cancel = function () {
-        $scope.showWelcome()
+        var result = $window.confirm("Are you sure you want to cancel the export?");
+        if (result == true) {
+            $location.path('/commits')
+        }
     }
 
     $scope.confirm = function (commit_id) {
