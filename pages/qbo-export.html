@@ -73,20 +73,18 @@
                     </div>
                     <!-- Step - Confirm -->
                     <div ng-show="step.name == 'confirm'">
-
-                        <!-- <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Please select the commit for the punches you want to export:</p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
-
-                        <select class="form-control" ng-model="selected.commit" ng-options="commit as (commit | commitName) for commit in commits"></select>
-
-                        <hr /> -->
-
                         <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
-                            You are about to export <strong>{{selected.commit.PunchCount}}</strong> punches from
-                            <strong>{{formatMomentFromDate(selected.commit.InAt, 'YYYY-MM-DD')}}</strong>
-                            thru <strong>{{formatMomentFromDate(selected.commit.OutAt, 'YYYY-MM-DD')}}</strong> to the company
-                            <strong>{{details.CompanyName}}</strong> at QuickBooks Online.
+                            You are about to export
                         </p>
-
+                        <p style="font-size: 2em;">
+                            <strong>{{selected.commit.PunchCount}}</strong> punches
+                        </p>
+                        <p style="font-size: 2em;">
+                            <strong>{{formatMomentFromDate(selected.commit.InAt, 'YYYY-MM-DD')}}</strong> thru <strong>{{formatMomentFromDate(selected.commit.OutAt, 'YYYY-MM-DD')}}</strong>
+                        </p>
+                        <p style="font-size: 2em;">
+                            to the company <strong>{{details.CompanyName}}</strong>
+                        </p>
                         <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Are you sure you want to do this?</p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
                         <div class="text-right">
                             <button type="button" class="btn btn-default" ng-click="cancel()" ng-disabled="working.export">Cancel</button>
