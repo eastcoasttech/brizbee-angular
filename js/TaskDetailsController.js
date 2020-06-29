@@ -1,4 +1,4 @@
-app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $uibModalInstance, $window, job, task) {
+app.controller('TaskDetailsController', function ($filter, $http, $rootScope, $scope, $uibModalInstance, $window, job, task) {
     if (task.Id == null) {
         $scope.task = { }
     } else {
@@ -28,6 +28,44 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
                 console.error(error)
             })
     }
+    
+    $scope.refreshPayrollRates = function () {
+        $scope.basePayrollRates = []
+
+        // Filter by type
+        $http.get($rootScope.baseUrl + "/odata/Rates?$orderby=Name&$filter=ParentRateId eq null and Type eq 'Payroll'")
+            .then(response => {
+                $scope.basePayrollRates = response.data.value
+                $scope.basePayrollRates.splice(0, 0, { Name: 'None', Id: null })
+
+                if (!$scope.task.BasePayrollRateId) {
+                    $scope.task.BasePayrollRate = $scope.basePayrollRates[0] // Select first rate
+                } else {
+                    $scope.task.BasePayrollRate = $filter('filter')($scope.basePayrollRates, { Id: $scope.task.BasePayrollRateId }, true)[0]
+                }
+            }, error => {
+                console.error(error)
+            })
+    }
+    
+    $scope.refreshServiceRates = function () {
+        $scope.baseServiceRates = []
+
+        // Filter by type
+        $http.get($rootScope.baseUrl + "/odata/Rates?$orderby=Name&$filter=ParentRateId eq null and Type eq 'Service'")
+            .then(response => {
+                $scope.baseServiceRates = response.data.value
+                $scope.baseServiceRates.splice(0, 0, { Name: 'None', Id: null })
+
+                if (!$scope.task.BaseServiceRateId) {
+                    $scope.task.BaseServiceRate = $scope.baseServiceRates[0] // Select first rate
+                } else {
+                    $scope.task.BaseServiceRate = $filter('filter')($scope.baseServiceRates, { Id: $scope.task.BaseServiceRateId }, true)[0]
+                }
+            }, error => {
+                console.error(error)
+            })
+    }
 
     $scope.save = function () {
         if (task.Id == null) {
@@ -43,8 +81,8 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
         var json = {
             Name: $scope.task.Name,
             Number: $scope.task.Number,
-            QuickBooksPayrollItem: $scope.task.QuickBooksPayrollItem,
-            QuickBooksServiceItem: $scope.task.QuickBooksServiceItem
+            BasePayrollRateId: $scope.task.BasePayrollRate.Id,
+            BaseServiceRateId: $scope.task.BaseServiceRate.Id
         }
 
         $http.patch($rootScope.baseUrl + "/odata/Tasks(" + $scope.task.Id + ")", JSON.stringify(json))
@@ -63,8 +101,8 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
             JobId: job.Id,
             Name: $scope.task.Name,
             Number: $scope.task.Number,
-            QuickBooksPayrollItem: $scope.task.QuickBooksPayrollItem,
-            QuickBooksServiceItem: $scope.task.QuickBooksServiceItem
+            BasePayrollRateId: $scope.task.BasePayrollRate.Id,
+            BaseServiceRateId: $scope.task.BaseServiceRate.Id
         }
 
         $http.post($rootScope.baseUrl + "/odata/Tasks", JSON.stringify(json))
@@ -87,4 +125,7 @@ app.controller('TaskDetailsController', function ($http, $rootScope, $scope, $ui
     if (task.Id == null) {
         $scope.nextNumber()
     }
+
+    $scope.refreshPayrollRates()
+    $scope.refreshServiceRates()
 });
