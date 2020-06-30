@@ -8,25 +8,35 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
   $scope.timepicker = { hstep: 1, mstep: 1 };
   $scope.datepicker = {};
   $scope.working = { ok: false };
+  $scope.loading = {
+    baseServiceRates: true,
+    alternateServiceRates: true,
+    basePayrollRates: true,
+    alternatePayrollRates: true
+  };
 
   $scope.addPayrollException = function () {
-    $scope.payrollExceptions.push({ option: 'After Hours/Minutes in Range', hour: 40, BasePayrollRate: $scope.basePayrollRates[0], date: new Date() });
-
-    // Trigger the alternate rate to set default
-    $scope.selectPayrollAlternateRate($scope.payrollExceptions[$scope.payrollExceptions.length - 1]);
-
-    // Allow numbers only, must be applied every time
-    $("input.form-control-number").numeric();
+    if ($scope.basePayrollRates.length != 0) {
+      $scope.payrollExceptions.push({ option: 'After Hours/Minutes in Range', hour: 40, BasePayrollRate: $scope.basePayrollRates[0], date: new Date() });
+  
+      // Trigger the alternate rate to set default
+      $scope.selectPayrollAlternateRate($scope.payrollExceptions[$scope.payrollExceptions.length - 1]);
+  
+      // Allow numbers only, must be applied every time
+      $("input.form-control-number").numeric();
+    }
   };
   
   $scope.addServiceException = function () {
-    $scope.serviceExceptions.push({ option: 'After Hours/Minutes in Range', hour: 40, BaseServiceRate: $scope.baseServiceRates[0], date: new Date() });
-
-    // Trigger the alternate rate to set default
-    $scope.selectServiceAlternateRate($scope.serviceExceptions[$scope.serviceExceptions.length - 1]);
-
-    // Allow numbers only, must be applied every time
-    $("input.form-control-number").numeric();
+    if ($scope.baseServiceRates.length != 0) {
+      $scope.serviceExceptions.push({ option: 'After Hours/Minutes in Range', hour: 40, BaseServiceRate: $scope.baseServiceRates[0], date: new Date() });
+  
+      // Trigger the alternate rate to set default
+      $scope.selectServiceAlternateRate($scope.serviceExceptions[$scope.serviceExceptions.length - 1]);
+  
+      // Allow numbers only, must be applied every time
+      $("input.form-control-number").numeric();
+    }
   };
 
   /**
@@ -53,14 +63,17 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
    * and adds a default payroll rate exception.
    */
   $scope.refreshBasePayrollRates = function () {
+    $scope.loading.basePayrollRates = true;
     $http.get($rootScope.baseUrl + "/odata/Rates/Default.BasePayrollRatesForPunches(InAt='" + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DD') + "',OutAt='" + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DD') + "')?$count=true")
       .then(response => {
         $scope.basePayrollRates = response.data.value;
+        $scope.loading.basePayrollRates = false;
 
         // Add the first exception
         $scope.addPayrollException();
       }, error => {
-        console.error(error)
+        console.error(error);
+        $scope.loading.basePayrollRates = false;
       });
   };
 
@@ -68,11 +81,14 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
    * Refreshes the list of alternate payroll rates from the server.
    */
   $scope.refreshAlternatePayrollRates = function () {
+    $scope.loading.alternatePayrollRates = true;
     $http.get($rootScope.baseUrl + "/odata/Rates/Default.AlternatePayrollRatesForPunches(InAt='" + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DD') + "',OutAt='" + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DD') + "')?$count=true")
       .then(response => {
         $scope.alternatePayrollRates = response.data.value;
+        $scope.loading.alternatePayrollRates = false;
       }, error => {
-        console.error(error)
+        console.error(error);
+        $scope.loading.alternatePayrollRates = false;
       });
   };
 
@@ -81,14 +97,17 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
    * and adds a default service rate exception.
    */
   $scope.refreshBaseServiceRates = function () {
+    $scope.loading.baseServiceRates = true;
     $http.get($rootScope.baseUrl + "/odata/Rates/Default.BaseServiceRatesForPunches(InAt='" + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DD') + "',OutAt='" + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DD') + "')?$count=true")
       .then(response => {
         $scope.baseServiceRates = response.data.value;
+        $scope.loading.baseServiceRates = false;
 
         // Add the first exception
         $scope.addServiceException();
       }, error => {
-        console.error(error)
+        console.error(error);
+        $scope.loading.baseServiceRates = false;
       });
   };
 
@@ -96,11 +115,14 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
    * Refreshes the list of alternate service rates from the server.
    */
   $scope.refreshAlternateServiceRates = function () {
+    $scope.loading.alternateServiceRates = true;
     $http.get($rootScope.baseUrl + "/odata/Rates/Default.AlternateServiceRatesForPunches(InAt='" + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DD') + "',OutAt='" + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DD') + "')?$count=true")
       .then(response => {
         $scope.alternateServiceRates = response.data.value;
+        $scope.loading.alternateServiceRates = false;
       }, error => {
-        console.error(error)
+        console.error(error);
+        $scope.loading.alternateServiceRates = false;
       });
   };
 

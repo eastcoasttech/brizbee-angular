@@ -22,6 +22,12 @@
                             <td>{{task.Number}} &ndash; {{task.Name}}</td>
                             <td>{{task.BasePayrollRate.Name}}</td>
                         </tr>
+                        <tr ng-show="loading.basePayrollRates">
+                            <td colspan="2"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+                        </tr>
+                        <tr ng-show="(tasks.length == 0) && (!loading.basePayrollRates)">
+                            <td colspan="2">No Base Rates for the Punches</td>
+                        </tr>
                     </tbody>
                 </table>
                 
@@ -82,6 +88,9 @@
                                 <a href="" ng-click="removePayrollException($index)" title="Remove Exception"><i class="fa fa-times-circle-o text-danger" aria-hidden="true"></i></a>
                             </td>
                         </tr>
+                        <tr ng-show="serviceExceptions.length == 0">
+                            <td colspan="6">None</td>
+                        </tr>
                     </tbody>
                 </table>
         
@@ -103,6 +112,12 @@
                         <tr ng-repeat="task in tasks">
                             <td>{{task.Number}} &ndash; {{task.Name}}</td>
                             <td>{{task.BaseServiceRate.Name}}</td>
+                        </tr>
+                        <tr ng-show="loading.baseServiceRates">
+                            <td colspan="2"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+                        </tr>
+                        <tr ng-show="(tasks.length == 0) && (!loading.baseServiceRates)">
+                            <td colspan="2">No Base Rates for the Punches</td>
                         </tr>
                     </tbody>
                 </table>
@@ -163,6 +178,9 @@
                             <td class="text-center" style="vertical-align: middle; font-size: 1.5em;">
                                 <a href="" ng-click="removeServiceException($index)" title="Remove Exception"><i class="fa fa-times-circle-o text-danger" aria-hidden="true"></i></a>
                             </td>
+                        </tr>
+                        <tr ng-show="serviceExceptions.length == 0">
+                            <td colspan="6">None</td>
                         </tr>
                     </tbody>
                 </table>
