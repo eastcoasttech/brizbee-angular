@@ -4,7 +4,7 @@
 <form ng-submit="ok()">
     <div class="modal-body">
         <p>
-            This function will populate the Payroll and Service Rates for the uncommited punches in the date range you have selected. Please note, only <strong>uncommitted punches</strong> will be populated.
+            This function will populate the Payroll and Customer Rates for the uncommited punches in the date range you have selected. Please note, only <strong>uncommitted punches</strong> will be populated.
         </p>
         <uib-tabset class="tabset-rates">
             <uib-tab index="0" heading="Payroll Rates">
@@ -98,14 +98,14 @@
 
                 <div class="alert alert-sm alert-info" role="alert"><strong>This operation is permanent and cannot be reversed.</strong> However, you can run Populate Rates multiple times and the rates will be overwritten.</div>
             </uib-tab>
-            <uib-tab index="1" heading="Service Rates">
+            <uib-tab index="1" heading="Customer Rates">
                 <p style="margin-top: 1em;"><strong>Base Rates</strong></p style="margin-top: 1em;">
                 <div class="alert alert-sm alert-info" role="alert">These are the base rates for the punches you selected. All of the punches in the date range will be populated with these rates unless specified otherwise below.</div>
                 <table class="table table-bordered table-condensed table-supercondensed">
                     <thead>
                         <tr>
                             <th class="col-md-6">Task</th>
-                            <th class="col-md-6">Base Service Rate</th>
+                            <th class="col-md-6">Base Customer Rate</th>
                         </tr>
                     </thead>
                     <tbody>
