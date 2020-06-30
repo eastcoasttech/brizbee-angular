@@ -79,10 +79,10 @@
                 <td><span ng-if="rate.ParentRateId">{{rate.ParentRate.Name}}</span></td>
             </tr>
             <tr ng-show="loading.rates">
-                <td colspan="2"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+                <td colspan="3"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
             </tr>
             <tr ng-show="(rates.length == 0) && (!loading.rates)">
-                <td colspan="9">You haven't added any rates.</td>
+                <td colspan="3">You haven't added any rates.</td>
             </tr>
         </tbody>
     </table>
