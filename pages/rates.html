@@ -73,8 +73,8 @@
             <tr ng-repeat="rate in rates" class="selectable" ng-click="showEditRate(rate)">
                 <td><a href="">{{rate.Name}}</a></td>
                 <td>
-                    <span ng-if="rate.Type == 'Payroll'"><i class="fa fa-money" aria-hidden="true" style="margin-right: 5px;"></i> {{rate.Type}}</span>
-                    <span ng-if="rate.Type == 'Service'"><i class="fa fa-handshake-o" aria-hidden="true" style="margin-right: 5px;"></i> {{rate.Type}}</span>
+                    <span ng-if="rate.Type == 'Payroll'"><i class="fa fa-money" aria-hidden="true" style="margin-right: 5px;"></i> Payroll</span>
+                    <span ng-if="rate.Type == 'Service'"><i class="fa fa-handshake-o" aria-hidden="true" style="margin-right: 5px;"></i> Customer</span>
                 </td>
                 <td><span ng-if="rate.ParentRateId">{{rate.ParentRate.Name}}</span></td>
             </tr>
