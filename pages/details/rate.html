@@ -49,6 +49,24 @@
                         <select class="form-control" ng-model="rate.ParentRate" ng-options="rate.Name for rate in rates" ng-required="rate.Scope == 'Alternate'" ng-disabled="working.save || rate.Scope == 'Base'"></select>
                     </div>
                 </div>
+                <hr />
+                <div class="form-group">
+                    <label>QuickBooks Online Payroll Item</label>
+                    <input type="text" class="form-control" ng-model="rate.QBOPayrollItem" ng-disabled="working.save" placeholder="Must match the QuickBooks Online Payroll Item exactly" />
+                </div>
+                <div class="form-group">
+                    <label>QuickBooks Online Service Item</label>
+                    <input type="text" class="form-control" ng-model="rate.QBOServiceItem" ng-disabled="working.save" placeholder="Must match the QuickBooks Online Service Item exactly" />
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label>QuickBooks Desktop Payroll Item</label>
+                    <input type="text" class="form-control" ng-model="rate.QBDPayrollItem" ng-disabled="working.save" placeholder="Must match the QuickBooks Desktop Payroll Item exactly" />
+                </div>
+                <div class="form-group">
+                    <label>QuickBooks Desktop Service Item</label>
+                    <input type="text" class="form-control" ng-model="rate.QBDServiceItem" ng-disabled="working.save" placeholder="Must match the QuickBooks Desktop Service Item exactly" />
+                </div>
             </div>
         </div>
     </div>

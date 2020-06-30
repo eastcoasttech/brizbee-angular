@@ -53,7 +53,11 @@ app.controller('RateDetailsController', function ($http, $rootScope, $scope, $ui
         $scope.working.save = true
 
         var json = {
-            Name: $scope.rate.Name
+            Name: $scope.rate.Name,
+            QBOPayrollItem: $scope.rate.QBOPayrollItem,
+            QBOServiceItem: $scope.rate.QBOServiceItem,
+            QBDPayrollItem: $scope.rate.QBDPayrollItem,
+            QBDServiceItem: $scope.rate.QBDServiceItem
         }
 
         $http.patch($rootScope.baseUrl + "/odata/Rates(" + $scope.rate.Id + ")", JSON.stringify(json))
@@ -70,7 +74,11 @@ app.controller('RateDetailsController', function ($http, $rootScope, $scope, $ui
 
         var json = {
             Name: $scope.rate.Name,
-            Type: $scope.rate.Type
+            Type: $scope.rate.Type,
+            QBOPayrollItem: $scope.rate.QBOPayrollItem,
+            QBOServiceItem: $scope.rate.QBOServiceItem,
+            QBDPayrollItem: $scope.rate.QBDPayrollItem,
+            QBDServiceItem: $scope.rate.QBDServiceItem
         }
 
         // May be an alternate rate with a parent rate
