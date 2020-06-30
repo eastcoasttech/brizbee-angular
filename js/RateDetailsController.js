@@ -3,6 +3,11 @@ app.controller('RateDetailsController', function ($http, $rootScope, $scope, $ui
         $scope.rate = { "Scope" : "Base", "Type" : "Payroll" };
     } else {
         $scope.rate = angular.copy(rate);
+        if ($scope.rate.ParentRateId == null) {
+            $scope.rate.Scope = "Base";
+        } else {
+            $scope.rate.Scope = "Alternate";
+        }
     }
     $scope.working = { save: false };
     
