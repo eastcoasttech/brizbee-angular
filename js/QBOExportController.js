@@ -50,7 +50,7 @@ app.controller('QBOExportController', function ($http, $location, $rootScope, $r
             }, error => {
                 console.error(error)
                 // Move to finished step
-                $scope.step = { name: 'errors', number: '5', title: 'Failed' }
+                $scope.step = { name: 'errors', number: '4', title: 'Failed' }
                 $scope.errors = error.data.Message
                 $scope.working.export = false
             })
