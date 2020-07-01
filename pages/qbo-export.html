@@ -85,7 +85,7 @@
                         <p style="font-size: 2em;">
                             to the company <strong>{{details.CompanyName}}</strong>
                         </p>
-                        <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Are you sure you want to do this?</p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
+                        <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Are you sure you want to do this?</p>
                         <div class="text-right">
                             <button type="button" class="btn btn-default" ng-click="cancel()" ng-disabled="working.export">Cancel</button>
                             <button type="button" class="btn btn-primary" ng-click="confirm()" ng-disabled="working.export">Confirm</button>
@@ -93,7 +93,9 @@
                     </div>
                     <!-- Step - Status -->
                     <div ng-show="step.name == 'status'">
-                        <p class="text-center" style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Your punches are being exported to QuickBooks Online...</p>
+                        <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
+                            Your punches are being exported to QuickBooks Online...
+                        </p>
                         <div class="text-center text-muted" style="margin-top: 1em; margin-bottom: 1em; font-size: 1em;">
                             <i class="fa fa-spinner fa-spin fa-fw"></i>
                         </div>
@@ -103,8 +105,11 @@
                     </div>
                     <!-- Step - Errors -->
                     <div ng-show="step.name == 'errors'">
-                        <p class="text-center" style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Export Failed</p>
-                        <p>{{errors}}</p>
+                        <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
+                            Export Failed:
+                        </p>
+                        <p style="font-size: 2em;">{{errors}}</p>
+                        <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Please correct the errors and try again. <a href="https://www.brizbee.com/help.html">You can always reach out to us for help.</a></p>
                         <div class="text-right">
                             <button type="button" class="btn btn-primary" ng-click="tryAgain()">Try Again</button>
                             <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
@@ -112,7 +117,9 @@
                     </div>
                     <!-- Step - Finished -->
                     <div ng-show="step.name == 'finished'">
-                        <p class="text-center" style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">Your punches have been successfully exported to QuickBooks Online.</p>
+                        <p style="margin-top: 1em; margin-bottom: 1em; font-size: 1.25em;">
+                            Your punches have been successfully exported to QuickBooks Online.
+                        </p>
                         <div class="text-right">
                             <a ng-href="#!/punches" class="btn btn-primary">Finish</a>
                         </div>
