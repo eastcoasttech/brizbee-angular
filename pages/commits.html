@@ -51,7 +51,7 @@
         <div class="col-md-6">
             <div class="btn-toolbar" role="toolbar">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default" ng-click="showNewCommit()"><i class="fa fa-plus" aria-hidden="true" style="margin-right: 5px;"></i> New Commit</button>
+                    <button type="button" class="btn btn-default" ng-click="showNewCommit()"><i class="fa fa-plus" aria-hidden="true" style="margin-right: 5px;"></i> Lock Punches</button>
                 </div>
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-default" ng-click="refreshCommits()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
@@ -92,7 +92,7 @@
                 </th>
                 <th class="col-md-2">
                     <a href="" ng-click="setSortType('CreatedAt')">
-                        Committed
+                        Locked
                         <span ng-show="(sortType == 'CreatedAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'CreatedAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>

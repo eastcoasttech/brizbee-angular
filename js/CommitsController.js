@@ -90,14 +90,14 @@ app.controller('CommitsController', function ($http, $rootScope, $scope, $uibMod
     }
 
     $scope.undo = function (commit) {
-        if (confirm("Are you sure you want to undo this commit? All the punches will be editable again?")) {
+        if (confirm("Are you sure you want to undo this lock? All the punches will be editable again?")) {
 
             $http.post($rootScope.baseUrl + "/odata/Commits(" + commit.Id + ")/Default.Undo")
                 .then(response => {
                     // Refresh the commits
                     $scope.refreshCommits()
                     $scope.working.commit = false
-                    alert('The commit has been successfully reversed.')
+                    alert('The punch lock has been successfully reversed.')
                 }, error => {
                     console.error(error)
                 })
