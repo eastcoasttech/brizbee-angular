@@ -62,7 +62,7 @@
                 <div class="form-group" ng-show="rate.Type == 'Payroll'">
                     <label>QuickBooks Desktop Payroll Item</label>
                     <input type="text" class="form-control" ng-model="rate.QBDPayrollItem" ng-disabled="working.save" placeholder="Must match the QuickBooks Desktop Payroll Item exactly" />
-                    <p class="help-block">This is the name of your item in Lists > Payroll Item List in QuickBooks</p>
+                    <p class="help-block">This is the name of your item in Lists > Payroll Item List in QuickBooks. The employee should have a rate of pay in QuickBooks for the Payroll Item in the Employee Details.</p>
                 </div>
                 <div class="form-group" ng-show="rate.Type == 'Service'">
                     <label>QuickBooks Desktop Service Item</label>
