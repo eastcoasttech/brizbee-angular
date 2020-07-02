@@ -278,11 +278,11 @@
                         </div>
                         <hr />
                         <div class="form-group">
-                            <label>Commit Status (Only Applies to Punch Reports)</label>
+                            <label>Status (Only Applies to Punch Reports)</label>
                             <select ng-model="include.committed" class="form-control">
-                                <option value="only">Only Committed Punches</option>
-                                <option value="uncommitted">Only Uncommitted Punches</option>
-                                <option value="all">Both Committed and Uncommitted Punches</option>
+                                <option value="only">Only Locked Punches</option>
+                                <option value="uncommitted">Only Unlocked Punches</option>
+                                <option value="all">Both Locked and Unlocked Punches</option>
                             </select>
                         </div>
                     </form>

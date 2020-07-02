@@ -75,7 +75,7 @@
         <p class="text-muted" ng-show="punch.SourceForOutAt != null"><small><i>Source is {{punch.SourceForOutAt}}</i></small></p>
         <!-- <p><a href="" ng-click="showMap()">Show Map</a></p> -->
         <p class="text-danger" ng-show="punch.CommitId">
-            This punch is not editable because it's included in a commit. You may undo the commit, but first ensure that the commit has not been exported to payroll software.
+            This punch is not editable because it has been locked. You may reverse the lock, but first ensure that the punches have not been exported to payroll software.
         </p>
     </div>
     <div class="modal-footer">
