@@ -50,22 +50,24 @@
                     </div>
                 </div>
                 <hr />
-                <div class="form-group">
+                <!-- <div class="form-group" ng-show="rate.Type == 'Payroll'">
                     <label>QuickBooks Online Payroll Item</label>
                     <input type="text" class="form-control" ng-model="rate.QBOPayrollItem" ng-disabled="working.save" placeholder="Must match the QuickBooks Online Payroll Item exactly" />
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-show="rate.Type == 'Service'">
                     <label>QuickBooks Online Service Item</label>
                     <input type="text" class="form-control" ng-model="rate.QBOServiceItem" ng-disabled="working.save" placeholder="Must match the QuickBooks Online Service Item exactly" />
                 </div>
-                <hr />
-                <div class="form-group">
+                <hr /> -->
+                <div class="form-group" ng-show="rate.Type == 'Payroll'">
                     <label>QuickBooks Desktop Payroll Item</label>
                     <input type="text" class="form-control" ng-model="rate.QBDPayrollItem" ng-disabled="working.save" placeholder="Must match the QuickBooks Desktop Payroll Item exactly" />
+                    <p class="help-block">This is the name of your item in Lists > Payroll Item List in QuickBooks</p>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-show="rate.Type == 'Service'">
                     <label>QuickBooks Desktop Service Item</label>
                     <input type="text" class="form-control" ng-model="rate.QBDServiceItem" ng-disabled="working.save" placeholder="Must match the QuickBooks Desktop Service Item exactly" />
+                    <p class="help-block">This is the name of your item in Lists > Item List in QuickBooks. The item must be of type "Service"</p>
                 </div>
             </div>
         </div>
