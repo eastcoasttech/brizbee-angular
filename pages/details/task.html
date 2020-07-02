@@ -26,6 +26,8 @@
                     <input type="text" class="form-control" ng-model="task.QuickBooksServiceItem" ng-disabled="working.save" />
                     <p class="help-block">Must match the Service Item in QuickBooks *exactly*</p>
                 </div> -->
+                <hr />
+                <p>Punches for this task will use these rates by default. These are an employee's or customer's default rate. Overtime, double time, holiday, and all other rates you have are linked to these rates.</p>
                 <div class="form-group">
                     <label>Base Payroll Rate</label>
                     <select class="form-control" ng-model="task.BasePayrollRate" ng-options="rate.Name for rate in basePayrollRates" ng-disabled="working.save"></select>
