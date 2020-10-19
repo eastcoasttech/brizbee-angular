@@ -5,13 +5,13 @@ app.controller('InTaskController', function ($http, $location, $rootScope, $scop
 
     $scope.searchTasks = function () {
         $scope.working.search = true
-        $http.get($rootScope.baseUrl + "/odata/Tasks?$expand=Job($expand=Customer)&$filter=Number eq '" + $scope.task.Number + "'")
+        $http.get($rootScope.baseUrl + "/odata/Tasks/Search(Number='" + $scope.task.Number + "')")
             .then(response => {
-                if (response.data.value.length == 0) {
+                if (response.data.length == 0) {
                     $scope.errors.task_number_not_found = true
                     $scope.working.search = false
                 } else {
-                    $rootScope.selected.task = response.data.value[0]
+                    $rootScope.selected.task = response.data
                     $location.path('/in/confirm')
                 }
             }, error => {
