@@ -68,38 +68,38 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th class="col-md-2">
+                <!-- <th class="col-md-2">
                     <a href="" ng-click="setSortType('CreatedByUser/Name')">
                         Exported By
                         <span ng-show="(sortType == 'CreatedByUser/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'CreatedByUser/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
-                </th>
-                <th class="col-md-2">
+                </th> -->
+                <th class="col-md-3">
                     <a href="" ng-click="setSortType('CreatedAt')">
                         Exported At
                         <span ng-show="(sortType == 'CreatedAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'CreatedAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th class="col-md-2">
+                <th class="col-md-3">
                     Lock Id
                 </th>
-                <th class="col-md-1">
+                <th class="col-md-3">
                     <a href="" ng-click="setSortType('Commit/InAt')">
                         In
                         <span ng-show="(sortType == 'Commit/InAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'Commit/InAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th class="col-md-1">
+                <th class="col-md-3">
                     <a href="" ng-click="setSortType('Commit/OutAt')">
                         Out
                         <span ng-show="(sortType == 'Commit/OutAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'Commit/OutAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
-                <th class="col-md-2">
+                <!-- <th class="col-md-2">
                     <a href="" ng-click="setSortType('ReversedByUser/Name')">
                         Reversed By
                         <span ng-show="(sortType == 'ReversedByUser/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
@@ -112,25 +112,25 @@
                         <span ng-show="(sortType == 'ReversedAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
                         <span ng-show="(sortType == 'ReversedAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
-                </th>
+                </th> -->
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="export in exports">
-                <td>{{export.CreatedByUser.Name}}</td>
+                <!-- <td>{{export.CreatedByUser.Name}}</td> -->
                 <td>{{formatMomentFromDate(export.CreatedAt, 'YYYY-MM-DD h:mma')}}</td>
                 <td>{{export | exportGuid}}</td>
                 <td>{{formatMomentFromDate(export.Commit.InAt, 'YYYY-MM-DD')}}</td>
                 <td>{{formatMomentFromDate(export.Commit.OutAt, 'YYYY-MM-DD')}}</td>
-                <td>{{export.ReversedByUser.Name}}</td>
-                <td><span ng-if="export.ReversedAt">{{formatMomentFromDate(export.ReversedAt, 'YYYY-MM-DD h:mma')}}</span></td>
+                <!-- <td>{{export.ReversedByUser.Name}}</td> -->
+                <!-- <td><span ng-if="export.ReversedAt">{{formatMomentFromDate(export.ReversedAt, 'YYYY-MM-DD h:mma')}}</span></td> -->
                 <!-- <td class="text-center"><a href="" ng-click="reverse(export)"><i class="fa fa-undo" aria-hidden="true"></i> Reverse</a></td> -->
             </tr>
             <tr ng-show="loading.exports">
-                <td colspan="7"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+                <td colspan="4"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
             </tr>
             <tr ng-show="(exports.length == 0) && (!loading.exports)">
-                <td colspan="7">You Have Not Exported Any Time to QuickBooks Desktop Yet</td>
+                <td colspan="4">You Have Not Exported Any Time to QuickBooks Desktop Yet</td>
             </tr>
         </tbody>
     </table>

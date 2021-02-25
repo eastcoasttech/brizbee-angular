@@ -222,7 +222,7 @@ app.controller('TimesheetEntryDetailsController', function ($filter, $http, $roo
             EnteredAt: moment().startOf('day').toDate()
         }
         $scope.timesheetEntry.user = $rootScope.current.user
-        $scope.time = { hours: 0, minutes: 0 }
+        $scope.time = { hours: "0", minutes: "0" }
 
         // Refresh and set default user, customer, job, and task
         $scope.refreshUsers()
@@ -240,7 +240,7 @@ app.controller('TimesheetEntryDetailsController', function ($filter, $http, $roo
         var hours = Math.floor($scope.timesheetEntry.Minutes / 60)
         var minutes = $scope.timesheetEntry.Minutes % 60
 
-        $scope.time = { hours: hours, minutes: minutes }
+        $scope.time = { hours: hours.toString(), minutes: minutes.toString() }
 
         // Refresh the task, job, and customer
         $scope.refreshForTask($scope.timesheetEntry.TaskId)
