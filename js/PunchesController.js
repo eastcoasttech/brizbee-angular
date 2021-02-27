@@ -41,6 +41,19 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
     $scope.punchesStart = function () {
         return $scope.punchesPageStart + 1
     }
+
+    $scope.refreshCount = function () {
+        var ms = 0;
+        for (var i = 0; i < $scope.punches.length; i++) {
+            var inAt = moment($scope.punches[i].InAt)
+            var outAt = moment($scope.punches[i].OutAt)
+            ms += outAt.diff(inAt)
+        }
+        var minutes = moment.duration(ms).asMinutes()
+        hours = Math.floor(minutes / 60)
+        remainder = minutes % 60
+        $scope.count = hours.toString() + " hours and " + remainder.toString() + " minutes"
+    }
     
     $scope.refreshPunches = function () {
         $scope.punches = []
@@ -61,6 +74,7 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
                 $scope.loading.punches = false
                 $scope.punchesCount = response.data["@odata.count"]
                 $scope.punches = response.data.value
+                $scope.refreshCount()
             }, error => {
                 $scope.loading.punches = false
                 console.error(error)
@@ -169,7 +183,6 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
         
         instance.result
             .then((msg) => {
-                console.log(msg)
                 $scope.refreshPunches()
             }, () => {
                 // dismissed
