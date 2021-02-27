@@ -44,6 +44,16 @@ app.controller('TimesheetsController', function ($http, $rootScope, $scope, $uib
     $scope.timesheetEntriesStart = function () {
         return $scope.timesheetEntriesPageStart + 1
     }
+
+    $scope.refreshCount = function () {
+        var minutes = 0;
+        for (var i = 0; i < $scope.timesheetEntries.length; i++) {
+            minutes += $scope.timesheetEntries[i].Minutes
+        }
+        hours = Math.floor(minutes / 60)
+        remainder = minutes % 60
+        $scope.count = hours.toString() + " hours and " + remainder.toString() + " minutes"
+    }
     
     $scope.refreshTimesheetEntries = function () {
         if (!$scope.filters.user)
@@ -68,8 +78,10 @@ app.controller('TimesheetsController', function ($http, $rootScope, $scope, $uib
                 $scope.loading.timesheetEntries = false
                 $scope.timesheetEntriesCount = response.data["@odata.count"]
                 $scope.timesheetEntries = response.data.value
+                $scope.refreshCount()
             }, error => {
                 $scope.loading.timesheetEntries = false
+                $scope.refreshCount()
                 console.error(error)
             })
     }

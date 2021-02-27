@@ -77,6 +77,7 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
                 $scope.refreshCount()
             }, error => {
                 $scope.loading.punches = false
+                $scope.refreshCount()
                 console.error(error)
             })
     }
