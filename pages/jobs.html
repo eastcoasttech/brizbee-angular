@@ -14,10 +14,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="#!/status"><i class="fa fa-id-badge" aria-hidden="true"></i> Status</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/punches"><i class="fa fa-clock-o" aria-hidden="true"></i> Time</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/punches" id="lnk_punches"><i class="fa fa-clock-o" aria-hidden="true"></i> Time</a></li>
                 <li ng-show="current.user.Role == 'Administrator'" class="active"><a href="#!/jobs"><i class="fa fa-truck" aria-hidden="true"></i> Jobs and Customers <span class="sr-only">(current)</span></a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/reports"><i class="fa fa-line-chart" aria-hidden="true"></i> Reports</a></li>
-                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/users"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/reports" id="lnk_reports"><i class="fa fa-line-chart" aria-hidden="true"></i> Reports</a></li>
+                <li ng-show="current.user.Role == 'Administrator'"><a href="#!/users" id="lnk_users"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-phone"><a href="tel:1-888-930-3044">Punch In or Out @ 1-888-930-3044</a></li>
@@ -47,7 +47,7 @@
                 <div class="col-md-8">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default" ng-click="showNewCustomer()"><i class="fa fa-user" aria-hidden="true" style="margin-right: 5px;"></i> New Customer</button>
+                            <button type="button" class="btn btn-default" id="btn_new_customer" ng-click="showNewCustomer()"><i class="fa fa-user" aria-hidden="true" style="margin-right: 5px;"></i> New Customer</button>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                 <div class="col-md-8">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default" ng-click="showNewJob()" ng-disabled="selected.customer == null"><i class="fa fa-truck" aria-hidden="true" style="margin-right: 5px;"></i> New Job</button>
+                            <button type="button" class="btn btn-default" id="btn_new_job" ng-click="showNewJob()" ng-disabled="selected.customer == null"><i class="fa fa-truck" aria-hidden="true" style="margin-right: 5px;"></i> New Job</button>
                         </div>
                     </div>
                 </div>
@@ -158,8 +158,8 @@
                 <div class="col-md-8">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default" ng-click="showNewTask()" ng-disabled="selected.job == null"><i class="fa fa-check-square-o" aria-hidden="true"></i> New Task</button>
-                            <a class="btn btn-default" ng-disabled="selected.job == null" ng-href="{{baseUrl}}/api/Reports/TasksByJob?JobId={{selected.job.Id}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
+                            <button type="button" class="btn btn-default" id="btn_new_task" ng-click="showNewTask()" ng-disabled="selected.job == null"><i class="fa fa-check-square-o" aria-hidden="true"></i> New Task</button>
+                            <a class="btn btn-default" id="btn_download" ng-disabled="selected.job == null" ng-href="{{baseUrl}}/api/Reports/TasksByJob?JobId={{selected.job.Id}}&AuthUserId={{auth.userId}}&AuthExpiration={{auth.expiration}}&AuthToken={{auth.token}}">
                                 Download
                             </a>
                         </div>

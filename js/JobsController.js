@@ -331,4 +331,44 @@ app.controller('JobsController', function ($http, $rootScope, $scope, $uibModal,
     
     // Scroll to top
     $window.scrollTo(0, 0)
+
+    // Instance the tour
+    var tour = new Tour({
+        steps: [
+        {
+            element: "#btn_new_customer",
+            title: "Add a New Customer",
+            content: "A customer is exactly what it sounds like - your individual customers - or your own business. Normally, you will create a Customer for each of your actual customers. However, you can also create a Customer to track time for tasks performed for your own business, like Internal, or to track time for employees doing work that you don't need to bill."
+        }, {
+            element: "#btn_new_job",
+            title: "Add a Job for the Customer",
+            content: "Jobs represent units of work for a Customer. For some customers, you will have multiple jobs every time you have a new project. However, if you need to track time for your own business or for general employment, you can create a job for that. Ex. Fabricate Widget or General"
+        }, {
+            element: "#btn_new_task",
+            title: "Add Tasks for the Job",
+            content: "Tasks let you track time for individual parts of a project or job. Ex. Welding, Assembly, Cleaning, or Sales"
+        }, {
+            element: "#btn_download",
+            title: "Download Task Sheet",
+            content: "Download this PDF and allow your employees to punch in by scanning the barcodes from the mobile apps."
+        }, {
+            element: "#lnk_punches",
+            title: "See Punches and Time Cards",
+            content: "When you're ready, go here to see how and when you employees punched in or added time cards."
+        }, {
+            element: "#lnk_reports",
+            title: "Download Reports",
+            content: "Go here to download PDF reports of your employees punches and time cards for a given range of time, and for a single customer or all customers."
+        }, {
+            element: "#lnk_users",
+            title: "Add Additional Users",
+            content: "Additional employees can always be added. Contact us if you need to upgrade your plan."
+        }
+    ]});
+    
+    // Initialize the tour
+    tour.init();
+    
+    // Start the tour
+    tour.start();
 });
