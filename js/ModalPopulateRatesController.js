@@ -186,7 +186,7 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
       var option = buildPopulateRateOption(exception);
 
       // Do not attempt to populate if either of the rates are null
-      if (exception.BaseServiceRate == null || exception.AlternateServiceRate == null)
+      if (typeof(exception.BaseServiceRate !== 'undefined') || typeof(exception.AlternateServiceRate !== 'undefined'))
       {
         alert("One or more of your rates are not specified!");
         $scope.working.ok = false;
