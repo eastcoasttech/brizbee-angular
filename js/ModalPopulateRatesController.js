@@ -184,6 +184,13 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
       
       // Build the PopulateRateOption
       var option = buildPopulateRateOption(exception);
+
+      // Do not attempt to populate if either of the rates are null
+      if (exception.BaseServiceRate == null || exception.AlternateServiceRate == null)
+      {
+        continue;
+      }
+
       option.BaseServiceRateId = exception.BaseServiceRate.Id;
       option.AlternateServiceRateId = exception.AlternateServiceRate.Id;
       option.Order = $scope.payrollExceptions.length + i; // Service exceptions take secondary priority
