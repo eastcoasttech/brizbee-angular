@@ -170,6 +170,15 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
 
       // Build the PopulateRateOption
       var option = buildPopulateRateOption(exception);
+
+      // Do not attempt to populate if either of the rates are null
+      if (typeof(exception.BasePayrollRate !== 'undefined') || typeof(exception.AlternatePayrollRate !== 'undefined'))
+      {
+        alert("One or more of your rates are not specified!");
+        $scope.working.ok = false;
+        return;
+      }
+
       option.BasePayrollRateId = exception.BasePayrollRate.Id;
       option.AlternatePayrollRateId = exception.AlternatePayrollRate.Id;
       option.Order = i;
