@@ -189,6 +189,7 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
       if (exception.BaseServiceRate == null || exception.AlternateServiceRate == null)
       {
         alert("One or more of your rates are not specified!");
+        $scope.working.ok = false;
         return;
       }
 
