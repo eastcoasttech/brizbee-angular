@@ -188,7 +188,8 @@ app.controller('ModalPopulateRatesController', function ($http, $rootScope, $sco
       // Do not attempt to populate if either of the rates are null
       if (exception.BaseServiceRate == null || exception.AlternateServiceRate == null)
       {
-        continue;
+        alert("One or more of your rates are not specified!");
+        return;
       }
 
       option.BaseServiceRateId = exception.BaseServiceRate.Id;
