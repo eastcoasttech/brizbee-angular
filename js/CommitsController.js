@@ -16,6 +16,7 @@ app.controller('CommitsController', function ($http, $rootScope, $scope, $uibMod
             .then(response => {
                 $scope.loading.commits = false
                 $scope.commits = response.data.value
+                $scope.commitsCount = response.data['@odata.count']
             }, error => {
                 $scope.loading.commits = false
                 console.error(error)
