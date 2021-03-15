@@ -45,7 +45,13 @@
             <label>Time Zone</label>
             <select class="form-control" ng-model="punch.InAtTimeZone" ng-options="timezone.Id as timezone.Id for timezone in timezones" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
         </div>
-        <p class="text-muted" ng-show="punch.SourceForInAt != null"><small><i>Source is {{punch.SourceForInAt}}</i></small></p>
+        <div ng-show="punch.Id != null">
+            <p class="text-muted" style="margin: 0;"><strong>Hardware</strong> {{punch.InAtSourceHardware}} <span ng-if="punch.InAtSourceHardware != 'Phone'"><strong>Hostname</strong> {{punch.InAtSourceHostname}}</span></p>
+            <p class="text-muted" style="margin: 0;" ng-if="punch.InAtSourceHardware != 'Phone'"><strong>IP Address</strong> {{punch.InAtSourceIpAddress}}</p>
+            <p class="text-muted" style="margin: 0;" ng-if="punch.InAtSourceHardware != 'Phone'"><strong>OS</strong> {{punch.InAtSourceOperatingSystem}} {{punch.InAtSourceOperatingSystemVersion}}</p>
+            <p class="text-muted" style="margin: 0;" ng-if="punch.InAtSourceHardware == 'Web' || punch.InAtSourceHardware == 'Dashboard'"><strong>Browser</strong> {{punch.InAtSourceBrowser}} {{punch.InAtSourceBrowserVersion}}</p>
+            <p class="text-muted" style="margin: 0;" ng-if="punch.InAtSourceHardware == 'Phone'"><strong>Phone</strong> {{punch.InAtSourcePhoneNumber}}</p>
+        </div>
         <hr />
         <div class="checkbox">
             <label>
@@ -72,7 +78,13 @@
             <label>Time Zone</label>
             <select class="form-control" ng-model="punch.OutAtTimeZone" ng-options="timezone.Id as timezone.Id for timezone in timezones" ng-disabled="working.save || !punch.has_out_at || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
         </div>
-        <p class="text-muted" ng-show="punch.SourceForOutAt != null"><small><i>Source is {{punch.SourceForOutAt}}</i></small></p>
+        <div ng-show="punch.Id != null && punch.OutAt != null">
+            <p class="text-muted" style="margin: 0;"><strong>Hardware</strong> {{punch.OutAtSourceHardware}} <span ng-if="punch.OutAtSourceHardware != 'Phone'"><strong>Hostname</strong> {{punch.OutAtSourceHostname}}</span></p>
+            <p class="text-muted" style="margin: 0;" ng-if="punch.OutAtSourceHardware != 'Phone'"><strong>IP Address</strong> {{punch.OutAtSourceIpAddress}}</p>
+            <p class="text-muted" style="margin: 0;" ng-if="punch.OutAtSourceHardware != 'Phone'"><strong>OS</strong> {{punch.OutAtSourceOperatingSystem}} {{punch.OutAtSourceOperatingSystemVersion}}</p>
+            <p class="text-muted" style="margin: 0;" ng-if="punch.OutAtSourceHardware == 'Web' || punch.OutAtSourceHardware == 'Dashboard'"><strong>Browser</strong> {{punch.OutAtSourceBrowser}} {{punch.OutAtSourceBrowserVersion}}</p>
+            <p class="text-muted" style="margin: 0;" ng-if="punch.OutAtSourceHardware == 'Phone'"><strong>Phone</strong> {{punch.OutAtSourcePhoneNumber}}</p>
+        </div>
         <!-- <p><a href="" ng-click="showMap()">Show Map</a></p> -->
         <p class="text-danger" ng-show="punch.CommitId">
             This punch is not editable because it has been locked. You may reverse the lock, but first ensure that the punches have not been exported to payroll software.
