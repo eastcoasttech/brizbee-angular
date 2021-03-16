@@ -36,7 +36,8 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
             UsesTimesheets: $scope.user.UsesTimesheets,
             UsesMobileClock: $scope.user.UsesMobileClock,
             UsesTouchToneClock: $scope.user.UsesTouchToneClock,
-            UsesWebClock: $scope.user.UsesWebClock
+            UsesWebClock: $scope.user.UsesWebClock,
+            AllowedPhoneNumbers: $scope.user.AllowedPhoneNumbers
         }
 
         // Only change the Pin if necessary
@@ -68,7 +69,8 @@ app.controller('UserDetailsController', function ($http, $rootScope, $scope, $ui
             UsesTimesheets: $scope.user.UsesTimesheets,
             UsesMobileClock: $scope.user.UsesMobileClock,
             UsesTouchToneClock: $scope.user.UsesTouchToneClock,
-            UsesWebClock: $scope.user.UsesWebClock
+            UsesWebClock: $scope.user.UsesWebClock,
+            AllowedPhoneNumbers: $scope.user.AllowedPhoneNumbers
         }
 
         if ($scope.user.EmailAddress != '') {
