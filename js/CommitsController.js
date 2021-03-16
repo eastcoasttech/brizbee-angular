@@ -98,7 +98,7 @@ app.controller('CommitsController', function ($http, $rootScope, $scope, $uibMod
                     // Refresh the commits
                     $scope.refreshCommits()
                     $scope.working.commit = false
-                    alert('The punch lock has been successfully reversed.')
+                    alert('The punches have been unlocked.')
                 }, error => {
                     console.error(error)
                 })

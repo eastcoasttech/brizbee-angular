@@ -102,7 +102,7 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
                 $scope.refreshPunches()
                 $scope.refreshCommits()
                 $scope.working.commit = false
-                alert('Punches were successfully committed')
+                alert('Punches were successfully locked.')
                 $scope.active = 1
             }, error => {
                 $scope.working.commit = false
@@ -288,7 +288,7 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
     }
 
     $scope.undo = function (commit) {
-        if (confirm("Are you sure you want to undo this commit? All the punches will be editable again?")) {
+        if (confirm("Are you sure you want to undo this lock? All the punches will be editable again?")) {
 
             $http.post($rootScope.baseUrl + "/odata/Commits(" + commit.Id + ")/Default.Undo")
                 .then(response => {
@@ -296,7 +296,7 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
                     $scope.refreshPunches()
                     $scope.refreshCommits()
                     $scope.working.commit = false
-                    alert('The commit has been successfully reversed.')
+                    alert('The punches have been unlocked.')
                 }, error => {
                     console.error(error)
                 })
