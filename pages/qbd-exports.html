@@ -119,7 +119,7 @@
             <tr ng-repeat="export in exports">
                 <!-- <td>{{export.CreatedByUser.Name}}</td> -->
                 <td>{{formatMomentFromDate(export.CreatedAt, 'YYYY-MM-DD h:mma')}}</td>
-                <td>{{export | exportGuid}}</td>
+                <td>{{export.CommitId}}</td>
                 <td>{{formatMomentFromDate(export.Commit.InAt, 'YYYY-MM-DD')}}</td>
                 <td>{{formatMomentFromDate(export.Commit.OutAt, 'YYYY-MM-DD')}}</td>
                 <!-- <td>{{export.ReversedByUser.Name}}</td> -->
