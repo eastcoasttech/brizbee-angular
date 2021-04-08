@@ -25,6 +25,11 @@
                     <input type="text" class="form-control" ng-model="job.QuickBooksCustomerJob" ng-disabled="working.save" />
                     <p class="help-block">Must match the Customer and Job in QuickBooks <strong>exactly</strong></p>
                 </div>
+                <div class="form-group">
+                    <label>QuickBooks Class</label>
+                    <input type="text" class="form-control" ng-model="job.QuickBooksClass" ng-disabled="working.save" />
+                    <p class="help-block">Must match the Class in QuickBooks <strong>exactly</strong></p>
+                </div>
                 <!-- <div class="form-group" ng-if="!job.Id">
                     <hr />
                     <label>Create Tasks from Template</label>

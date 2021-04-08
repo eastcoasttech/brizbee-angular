@@ -46,7 +46,8 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
             Description: $scope.job.Description,
             Name: $scope.job.Name,
             Number: $scope.job.Number,
-            QuickBooksCustomerJob: $scope.job.QuickBooksCustomerJob
+            QuickBooksCustomerJob: $scope.job.QuickBooksCustomerJob,
+            QuickBooksClass: $scope.job.QuickBooksClass
         }
 
         $http.patch($rootScope.baseUrl + "/odata/Jobs(" + $scope.job.Id + ")", JSON.stringify(json))
@@ -66,7 +67,8 @@ app.controller('JobDetailsController', function ($http, $rootScope, $scope, $uib
             Description: $scope.job.Description,
             Name: $scope.job.Name,
             Number: $scope.job.Number,
-            QuickBooksCustomerJob: $scope.job.QuickBooksCustomerJob
+            QuickBooksCustomerJob: $scope.job.QuickBooksCustomerJob,
+            QuickBooksClass: $scope.job.QuickBooksClass
         }
 
         $http.post($rootScope.baseUrl + "/odata/Jobs", JSON.stringify(json))
