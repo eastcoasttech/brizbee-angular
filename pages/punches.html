@@ -82,46 +82,49 @@
     <table class="table table-bordered table-condensed table-supercondensed">
         <thead>
             <tr>
-                <th style="width: 15%;">
-                    <a href="" ng-click="setSortType('User/Name')">
+                <th style="width: 10%;">
+                    <a href="" ng-click="setSortType('Users/Name')">
                         User
-                        <span ng-show="(sortType == 'User/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
-                        <span ng-show="(sortType == 'User/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                        <span ng-show="(sortType == 'Users/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'Users/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
                 <th style="width: 10%;">
-                    <a href="" ng-click="setSortType('InAt')">
+                    <a href="" ng-click="setSortType('Punches/InAt')">
                         In
-                        <span ng-show="(sortType == 'InAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
-                        <span ng-show="(sortType == 'InAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                        <span ng-show="(sortType == 'Punches/InAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'Punches/InAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
                 <th style="width: 10%;">
-                    <a href="" ng-click="setSortType('OutAt')">
+                    <a href="" ng-click="setSortType('Punches/OutAt')">
                         Out
-                        <span ng-show="(sortType == 'OutAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
-                        <span ng-show="(sortType == 'OutAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                        <span ng-show="(sortType == 'Punches/OutAt') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'Punches/OutAt') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
+                <th style="width: 5%;">
+                    Running
+                </th>
                 <th style="width: 15%;">
-                    <a href="" ng-click="setSortType('Task/Job/Customer/Name')">
+                    <a href="" ng-click="setSortType('Customers/Name')">
                         Customer
-                        <span ng-show="(sortType == 'Task/Job/Customer/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
-                        <span ng-show="(sortType == 'Task/Job/Customer/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                        <span ng-show="(sortType == 'Customers/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'Customers/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
                 <th style="width: 15%;">
-                    <a href="" ng-click="setSortType('Task/Job/Name')">
+                    <a href="" ng-click="setSortType('Jobs/Name')">
                         Job
-                        <span ng-show="(sortType == 'Task/Job/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
-                        <span ng-show="(sortType == 'Task/Job/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                        <span ng-show="(sortType == 'Jobs/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'Jobs/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
                 <th style="width: 10%;">
-                    <a href="" ng-click="setSortType('Task/Name')">
+                    <a href="" ng-click="setSortType('Tasks/Name')">
                         Task
-                        <span ng-show="(sortType == 'Task/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
-                        <span ng-show="(sortType == 'Task/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
+                        <span ng-show="(sortType == 'Tasks/Name') && (sortDirection == 'asc')" class="fa fa-caret-up"></span>
+                        <span ng-show="(sortType == 'Tasks/Name') && (sortDirection == 'desc')" class="fa fa-caret-down"></span>
                     </a>
                 </th>
                 <th style="width: 10%;">
@@ -150,6 +153,7 @@
                     <a href="" ng-if="punch.OutAt != null">{{formatMomentFromDate(punch.OutAt, 'YYYY-MM-DD h:mma')}}</a>
                     <span ng-if="punch.OutAt == null">STILL WORKING</span>
                 </td>
+                <td><a href="">{{formatMinutes(punch.CumulativeMinutes)}}</a></td>
                 <td><a href="">{{punch.Task.Job.Customer.Number}} &ndash; {{punch.Task.Job.Customer.Name}}</a></td>
                 <td><a href="">{{punch.Task.Job.Number}} &ndash; {{punch.Task.Job.Name}}</a></td>
                 <td><a href="">{{punch.Task.Number}} &ndash; {{punch.Task.Name}}</a></td>
@@ -158,10 +162,10 @@
                 <td class="text-center"><i class="fa fa-lock" aria-hidden="true" ng-if="punch.CommitId != null"></i></td>
             </tr>
             <tr ng-show="loading.punches">
-                <td colspan="9"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
+                <td colspan="10"><i class="fa fa-spinner fa-spin fa-fw"></i></td>
             </tr>
             <tr ng-show="(punches.length == 0) && (!loading.punches)">
-                <td colspan="9">No Punches for the Selected Date Range</td>
+                <td colspan="10">No Punches for the Selected Date Range</td>
             </tr>
         </tbody>
     </table>

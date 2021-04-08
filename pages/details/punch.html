@@ -8,19 +8,19 @@
             <div class="col-md-7">
                 <div class="form-group">
                     <label>User</label>
-                    <select class="form-control" ng-model="punch.user" ng-options="user.Name for user in users" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users" autofocus></select>
+                    <select class="form-control" ng-model="punch.User" ng-options="user.Name for user in users" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users" autofocus></select>
                 </div>
                 <div class="form-group">
                     <label>Customer</label>
-                    <select class="form-control" ng-model="punch.customer" ng-options="customer.Name for customer in customers" ng-change="refreshJobs()" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
+                    <select class="form-control" ng-model="punch.Customer" ng-options="customer.Name for customer in customers" ng-change="refreshJobs()" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
                 </div>
                 <div class="form-group">
                     <label>Job</label>
-                    <select class="form-control" ng-model="punch.job" ng-options="job.Name for job in jobs" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
+                    <select class="form-control" ng-model="punch.Job" ng-options="job.Name for job in jobs" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
                 </div>
                 <div class="form-group">
                     <label>Task</label>
-                    <select class="form-control" ng-model="punch.task" ng-options="task.Name for task in tasks" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
+                    <select class="form-control" ng-model="punch.Task" ng-options="task.Name for task in tasks" ng-disabled="working.save || punch.CommitId || loading.customers || loading.jobs || loadings.tasks || loading.users"></select>
                 </div>
             </div>
         </div>

@@ -7,12 +7,6 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     $scope.working = { save: false }
 
     if (punch.Id == null) {
-        // var startOfDay = moment().startOf('day').millisecond(0);
-        // var startOfDayAsDate = new Date(startOfDay.year(), startOfDay.month(), startOfDay.date(), startOfDay.hour(), startOfDay.minute(), 0, 0);
-        
-        // var endOfDay = moment().endOf('day').millisecond(0);
-        // var endOfDayAsDate = new Date(endOfDay.year(), endOfDay.month(), endOfDay.date(), endOfDay.hour(), endOfDay.minute(), 0, 0);
-
         $scope.punch = {
             InAt: moment().startOf('day').millisecond(0).toDate(),
             OutAt: moment().endOf('day').millisecond(0).toDate(),
@@ -22,6 +16,8 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         var timedifference = new Date().getTimezoneOffset(); // Offset the browser time
 
         $scope.punch = angular.copy(punch)
+        $scope.punch.Job = $scope.punch.Task.Job
+        $scope.punch.Customer = $scope.punch.Task.Job.Customer
         $scope.punch.InAt = moment(punch.InAt).add(timedifference, 'm').toDate()
         if ($scope.punch.OutAt != null) {
             $scope.punch.OutAt = moment(punch.OutAt).add(timedifference, 'm').toDate()
@@ -63,8 +59,8 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             InAtSourceOperatingSystemVersion: operatingSystemVersion,
             InAtSourceBrowser: browserName,
             InAtSourceBrowserVersion: browserVersion,
-            TaskId: $scope.punch.task.Id,
-            UserId: $scope.punch.user.Id
+            TaskId: $scope.punch.Task.Id,
+            UserId: $scope.punch.User.Id
         };
 
         // OutAt is optional when editing manually
@@ -98,8 +94,8 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         var json = {
             InAt: moment($scope.punch.InAt).subtract(timedifference, 'm').toDate(),
             InAtTimeZone: $scope.punch.InAtTimeZone,
-            TaskId: $scope.punch.task.Id,
-            UserId: $scope.punch.user.Id
+            TaskId: $scope.punch.Task.Id,
+            UserId: $scope.punch.User.Id
             // Do not change source details
         };
 
@@ -133,14 +129,14 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     $scope.refreshCustomers = function () {
         $scope.customers = []
         $scope.loading.customers = true
-        $http.get($rootScope.baseUrl + "/odata/Customers?$orderby=Id")
+        $http.get($rootScope.baseUrl + "/odata/Customers?$orderby=Number")
             .then(response => {
                 $scope.loading.customers = false
                 $scope.customers = response.data.value
-                if (!$scope.punch.customer) {
-                    $scope.punch.customer = $scope.customers[0]
+                if (!$scope.punch.Customer) {
+                    $scope.punch.Customer = $scope.customers[0]
                 } else {
-                    $scope.punch.customer = $filter('filter')($scope.customers, { Id: $scope.punch.customer.Id }, true)[0]
+                    $scope.punch.Customer = $filter('filter')($scope.customers, { Id: $scope.punch.Task.Job.Customer.Id }, true)[0]
                 }
                 $scope.refreshJobs()
             }, error => {
@@ -150,7 +146,7 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     }
 
     $scope.refreshJobs = function () {
-        if ($scope.punch.customer == null)
+        if ($scope.punch.Customer == null)
         {
             return;
         }
@@ -158,14 +154,14 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
         $scope.jobs = []
         $scope.tasks = []
         $scope.loading.jobs = true
-        $http.get($rootScope.baseUrl + "/odata/Jobs?$orderby=Id&$filter=CustomerId eq " + $scope.punch.customer.Id)
+        $http.get($rootScope.baseUrl + "/odata/Jobs?$orderby=Number&$filter=CustomerId eq " + $scope.punch.Customer.Id)
             .then(response => {
                 $scope.loading.jobs = false
                 $scope.jobs = response.data.value
-                if (!$scope.punch.job) {
-                    $scope.punch.job = $scope.jobs[0]
+                if (!$scope.punch.Job) {
+                    $scope.punch.Job = $scope.jobs[0]
                 } else {
-                    $scope.punch.job = $filter('filter')($scope.jobs, { Id: $scope.punch.job.Id }, true)[0]
+                    $scope.punch.Job = $filter('filter')($scope.jobs, { Id: $scope.punch.Task.Job.Id }, true)[0]
                 }
                 $scope.refreshTasks()
             }, error => {
@@ -175,20 +171,20 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
     };
 
     $scope.refreshTasks = function () {
-        if ($scope.punch.job == null) {
+        if ($scope.punch.Job == null) {
             return;
         }
 
         $scope.tasks = []
         $scope.loading.tasks = true
-        $http.get($rootScope.baseUrl + "/odata/Tasks?$orderby=Id&$filter=JobId eq " + $scope.punch.job.Id)
+        $http.get($rootScope.baseUrl + "/odata/Tasks?$orderby=Number&$filter=JobId eq " + $scope.punch.Job.Id)
             .then(response => {
                 $scope.loading.tasks = false
                 $scope.tasks = response.data.value
-                if (!$scope.punch.task) {
-                    $scope.punch.task = $scope.tasks[0]
+                if (!$scope.punch.Task) {
+                    $scope.punch.Task = $scope.tasks[0]
                 } else {
-                    $scope.punch.task = $filter('filter')($scope.tasks, { Id: $scope.punch.task.Id }, true)[0]
+                    $scope.punch.Task = $filter('filter')($scope.tasks, { Id: $scope.punch.Task.Id }, true)[0]
                 }
             }, error => {
                 $scope.loading.tasks = false
@@ -203,12 +199,12 @@ app.controller('PunchDetailsController', function ($filter, $http, $rootScope, $
             .then(response => {
                 $scope.loading.users = false
                 $scope.users = response.data.value
-                if (!$scope.punch.user) {
-                    $scope.punch.user = $scope.users[0]
-                    $scope.punch.InAtTimeZone = $scope.punch.user.TimeZone
-                    $scope.punch.OutAtTimeZone = $scope.punch.user.TimeZone
+                if (!$scope.punch.User) {
+                    $scope.punch.User = $scope.users[0]
+                    $scope.punch.InAtTimeZone = $scope.punch.User.TimeZone
+                    $scope.punch.OutAtTimeZone = $scope.punch.User.TimeZone
                 } else {
-                    $scope.punch.user = $filter('filter')($scope.users, { Id: $scope.punch.user.Id }, true)[0]
+                    $scope.punch.User = $filter('filter')($scope.users, { Id: $scope.punch.User.Id }, true)[0]
                 }
             }, error => {
                 $scope.loading.users = false

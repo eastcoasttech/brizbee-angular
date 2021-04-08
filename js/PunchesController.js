@@ -8,7 +8,7 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
     $scope.punchesPageStart = 0;
     $scope.punchesPageCount = 200;
     $scope.sortDirection = 'asc'
-    $scope.sortType = 'InAt'
+    $scope.sortType = 'Punches/InAt'
     $scope.working = { commit: false }
 
     // Reset the document title, in case the session expired
@@ -57,6 +57,7 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
     
     $scope.refreshPunches = function () {
         $scope.punches = []
+        $scope.refreshCount()
         $scope.loading.punches = true
 
         // Filter by user
@@ -66,14 +67,12 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
             filters.user_id = { $in: $scope.filters['user'].users.map(x => x._id) }
         }
 
-        var sortParameter = {}
-        sortParameter[$scope.sortType] = $scope.sortDirection
-
-        $http.get($rootScope.baseUrl + "/odata/Punches?$count=true&$expand=User,ServiceRate,PayrollRate,Task($expand=Job($expand=Customer))&$top=" + $scope.punchesPageCount + "&$skip=" + $scope.punchesPageStart + "&$filter=InAt ge " + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + " and InAt le " + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + '&$orderby=' + $scope.sortType + ' ' + $scope.sortDirection)
+        var url = $rootScope.baseUrl + "/api/PunchesExpanded?inAt=" + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + "&outAt=" + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + "&orderBy=" + $scope.sortType + "&orderByDirection=" + $scope.sortDirection + "$pageSize=" + $scope.punchesPageCount;
+        $http.get(url)
             .then(response => {
                 $scope.loading.punches = false
-                $scope.punchesCount = response.data["@odata.count"]
-                $scope.punches = response.data.value
+                $scope.punchesCount = response.headers("X-Paging-TotalRecordCount")
+                $scope.punches = response.data
                 $scope.refreshCount()
             }, error => {
                 $scope.loading.punches = false
@@ -287,21 +286,9 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
             })
     }
 
-    $scope.undo = function (commit) {
-        if (confirm("Are you sure you want to undo this lock? All the punches will be editable again?")) {
-
-            $http.post($rootScope.baseUrl + "/odata/Commits(" + commit.Id + ")/Default.Undo")
-                .then(response => {
-                    // Refresh the punches and commits
-                    $scope.refreshPunches()
-                    $scope.refreshCommits()
-                    $scope.working.commit = false
-                    alert('The punches have been unlocked.')
-                }, error => {
-                    console.error(error)
-                })
-        }
-    }
+    $scope.formatMinutes = function (minutes) {
+        return (parseInt(minutes) / 60.0).toFixed(2);
+    };
 
     $scope.refreshPunches()
 
