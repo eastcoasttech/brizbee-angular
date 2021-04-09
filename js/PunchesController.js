@@ -6,7 +6,7 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
     $scope.loading = { commits: false, punches: false }
     $scope.punches = []
     $scope.punchesPageSkip = 0;
-    $scope.punchesPageSize = 2;
+    $scope.punchesPageSize = 200;
     $scope.sortDirection = 'asc'
     $scope.sortType = 'Punches/InAt'
     $scope.working = { commit: false }
