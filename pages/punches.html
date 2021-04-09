@@ -172,8 +172,8 @@
     
     <div class="row">
         <div class="col-md-6">
-            <button class="btn btn-sm btn-default" ng-click="punchesPrevious()" ng-show="punchesCount > 200"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
-            <button class="btn btn-sm btn-default" ng-click="punchesNext()" ng-show="punchesCount > 200"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+            <button class="btn btn-sm btn-default" ng-click="punchesPrevious()" ng-show="punchesCount > punchesPageSize"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+            <button class="btn btn-sm btn-default" ng-click="punchesNext()" ng-show="punchesCount > punchesPageSize"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
         </div>
         <div class="col-md-6 text-right">
             <p class="form-control-static" ng-hide="((punches.length == 0) && (!loading.punches)) || loading.punches">{{punchesStart()}} to {{punchesEnd()}} of {{punchesCount}}</p>

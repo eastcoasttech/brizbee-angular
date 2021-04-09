@@ -5,8 +5,8 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
     $scope.filters = { customer: {}, job: {}, task: {}, user: { users: [] } }
     $scope.loading = { commits: false, punches: false }
     $scope.punches = []
-    $scope.punchesPageStart = 0;
-    $scope.punchesPageCount = 200;
+    $scope.punchesPageSkip = 0;
+    $scope.punchesPageSize = 2;
     $scope.sortDirection = 'asc'
     $scope.sortType = 'Punches/InAt'
     $scope.working = { commit: false }
@@ -25,21 +25,28 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
     }
     
     $scope.punchesEnd = function () {
-        return $scope.punchesPageStart + $scope.punchesPageCount < $scope.punchesCount ? $scope.punchesPageStart + $scope.punchesPageCount : $scope.punchesCount;
+        // return $scope.punchesPageStart + $scope.punchesPageCount < $scope.punchesCount ? $scope.punchesPageStart + $scope.punchesPageCount : $scope.punchesCount;
+        return $scope.punchesPageSkip + $scope.punchesPageSize < $scope.punchesCount ? $scope.punchesPageSkip + $scope.punchesPageSize : $scope.punchesCount;
     };
 
     $scope.punchesNext = function () {
-        $scope.punchesPageStart = $scope.punchesPageStart + $scope.punchesPageCount
-        $scope.refreshPunches()
+        // $scope.punchesPageStart = $scope.punchesPageStart + $scope.punchesPageCount
+        // $scope.refreshPunches()
+        $scope.punchesPageSkip = $scope.punchesPageSkip + $scope.punchesPageSize;
+        $scope.skip = $scope.punchesPageSkip;
+        $scope.refreshPunches();
     }
     
     $scope.punchesPrevious = function () {
-        $scope.punchesPageStart = $scope.punchesPageStart - $scope.punchesPageCount
-        $scope.refreshPunches()
+        // $scope.punchesPageStart = $scope.punchesPageStart - $scope.punchesPageCount
+        // $scope.refreshPunches()
+        $scope.punchesPageSkip = $scope.punchesPageSkip - $scope.punchesPageSize;
+        $scope.skip = $scope.punchesPageSkip;
+        $scope.refreshPunches();
     }
 
     $scope.punchesStart = function () {
-        return $scope.punchesPageStart + 1
+        return $scope.punchesPageSkip + 1
     }
 
     $scope.refreshCount = function () {
@@ -67,7 +74,7 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
             filters.user_id = { $in: $scope.filters['user'].users.map(x => x._id) }
         }
 
-        var url = $rootScope.baseUrl + "/api/PunchesExpanded?inAt=" + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + "&outAt=" + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + "&orderBy=" + $scope.sortType + "&orderByDirection=" + $scope.sortDirection + "$pageSize=" + $scope.punchesPageCount;
+        var url = $rootScope.baseUrl + "/api/PunchesExpanded?inAt=" + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + "&outAt=" + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + "&orderBy=" + $scope.sortType + "&orderByDirection=" + $scope.sortDirection + "&pageSize=" + $scope.punchesPageSize + "&skip=" + $scope.punchesPageSkip;
         $http.get(url)
             .then(response => {
                 $scope.loading.punches = false
