@@ -74,7 +74,7 @@ app.controller('PunchesController', function ($http, $location, $rootScope, $sco
             filters.user_id = { $in: $scope.filters['user'].users.map(x => x._id) }
         }
 
-        var url = $rootScope.baseUrl + "/api/PunchesExpanded?inAt=" + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + "&outAt=" + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + "&orderBy=" + $scope.sortType + "&orderByDirection=" + $scope.sortDirection + "&pageSize=" + $scope.punchesPageSize + "&skip=" + $scope.punchesPageSkip;
+        var url = $rootScope.baseUrl + "/api/PunchesExpanded?min=" + $scope.formatMomentFromDate($rootScope.range.InAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + "&max=" + $scope.formatMomentFromDate($rootScope.range.OutAt, 'YYYY-MM-DDTHH:mm:ss-00:00') + "&orderBy=" + $scope.sortType + "&orderByDirection=" + $scope.sortDirection + "&pageSize=" + $scope.punchesPageSize + "&skip=" + $scope.punchesPageSkip;
         $http.get(url)
             .then(response => {
                 $scope.loading.punches = false
